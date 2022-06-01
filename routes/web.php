@@ -1,0 +1,67 @@
+<?php
+
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\JobSeeker\JobSeekerController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::view('/', 'index');
+Route::view('/a', 'dashboard.crud.index');
+
+Route::get('aya',function(){
+return 5;
+});
+
+Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
+
+    Route::view('/register', 'dashboard.jobSeekers.register')->name('register');
+    Route::post('/create', [JobSeekerController::class, 'create'])->name('create');
+
+    Route::view('/login', 'dashboard.jobSeekers.login')->name('login');
+    Route::post('/check', [JobSeekerController::class, 'check'])->name('check');
+
+    Route::middleware('auth:job_seekers')->group(function () {
+        Route::view('/home', 'dashboard.jobSeekers.home')->name('home');
+        Route::post('/logout', [JobSeekerController::class, 'logout'])->name('logout');
+    });
+
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::view('/login', 'dashboard.admin.login')->name('login');
+    Route::post('/check', [AdminController::class, 'check'])->name('check');
+
+    Route::middleware('auth:admins')->group(function () {
+        Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    });
+
+});
+
+Route::prefix('company')->name('company.')->group(function () {
+
+    Route::view('/register', 'dashboard.companies.register')->name('register');
+    Route::post('/create', [CompanyController::class, 'create'])->name('create');
+
+    Route::view('/login', 'dashboard.companies.login')->name('login');
+    Route::post('/check', [CompanyController::class, 'check'])->name('check');
+
+    Route::middleware('auth:companies')->group(function () {
+        Route::view('/home', 'dashboard.companies.home')->name('home');
+        Route::post('logout', [CompanyController::class, 'logout'])->name('logout');
+    });
+
+});
+
