@@ -18,15 +18,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         Admin::query()->create([
-            'name' => 'aya',
-            'email' => 'aya@admin.com',
-            'password' => Hash::make(12345678)
+            'name' => 'Nishan Admin',
+            'email' => 'nishan@admin.com',
+            'password' => 'nishan',
+            'is_super_admin' => 1
         ]);
+
+        $this->call(CategorySeeder::class);
+        $this->call(CitySeeder::class);
+        $this->call(CurrencySeeder::class);
+        $this->call(PerSeeder::class);
+        $this->call(TypeSeeder::class);
     }
 }

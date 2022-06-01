@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image')->nullable();
-            $table->boolean('is_super_admin')->default(0);
-            $table->rememberToken();
+            $table->string('icon')->nullable();
+            $table->string('title')->nullable();
+            $table->string('body')->nullable();
+            $table->string('notifiable')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('notifications');
     }
 };

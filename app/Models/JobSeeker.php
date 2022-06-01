@@ -19,9 +19,20 @@ class JobSeeker extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'first_name',
         'name',
+        'last_name',
         'email',
+        'confirm_email',
         'password',
+        'read_conditions',
+        'photo',
+        'type',
+        'company_name',
+        'employee_count',
+        'industry',
+        'website_url',
+        'overview',
     ];
     /**
      * The attributes that should be hidden for serialization.

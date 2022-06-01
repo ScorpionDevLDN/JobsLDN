@@ -11,8 +11,8 @@
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 	<!--begin::Logo-->
-	<a href="index.html">
-		<img alt="Logo" src="assets/media/logos/logo-light.png"/>
+	<a href="{{route('admin.home')}}">
+		<img alt="Logo" src="{{asset('assets/media/svg/logo.svg')}}"/>
 	</a>
 	<!--end::Logo-->
 	<!--begin::Toolbar-->
@@ -42,8 +42,8 @@
 			<!--begin::Brand-->
 			<div class="brand flex-column-auto" id="kt_brand">
 				<!--begin::Logo-->
-				<a href="index.html" class="brand-logo">
-					<img alt="Logo" src="assets/media/logos/logo-light.png"/>
+				<a href="{{route('admin.home')}}">
+					<img style="height: 25px" alt="Logo" src="{{asset('assets/media/svg/logo.svg')}}"/>
 				</a>
 				<!--end::Logo-->
 				<!--begin::Toggle-->
