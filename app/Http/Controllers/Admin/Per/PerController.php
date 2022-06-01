@@ -11,7 +11,7 @@ class PerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -33,11 +33,12 @@ class PerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        Per::query()->create($request->all());
+        return redirect()->route('admin.pers.index');
     }
 
     /**
@@ -67,21 +68,23 @@ class PerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Per  $per
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Per $per)
     {
-        //
+        $per->update($request->all());
+        return redirect()->route('admin.pers.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Per  $per
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Per $per)
     {
-        //
+        $per->delete();
+        return redirect()->route('admin.pers.index');
     }
 }

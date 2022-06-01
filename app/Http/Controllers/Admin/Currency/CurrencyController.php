@@ -33,11 +33,12 @@ class CurrencyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        Currency::query()->create($request->all());
+        return redirect()->route('admin.currencies.index');
     }
 
     /**
@@ -67,21 +68,23 @@ class CurrencyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Currency $currency)
     {
-        //
+        $currency->update($request->all());
+        return redirect()->route('admin.currencies.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Currency $currency)
     {
-        //
+        $currency->delete();
+        return redirect()->route('admin.currencies.index');
     }
 }

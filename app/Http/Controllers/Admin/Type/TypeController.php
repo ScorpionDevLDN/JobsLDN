@@ -16,7 +16,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::query()->get();
-        return view('dashboard.admin.type.index' , compact('types'));
+        return view('dashboard.admin.type.index', compact('types'));
     }
 
     /**
@@ -32,18 +32,19 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        Type::query()->create($request->all());
+        return redirect()->route('admin.types.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Type  $type
+     * @param \App\Models\Type $type
      * @return \Illuminate\Http\Response
      */
     public function show(Type $type)
@@ -54,7 +55,7 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Type  $type
+     * @param \App\Models\Type $type
      * @return \Illuminate\Http\Response
      */
     public function edit(Type $type)
@@ -65,23 +66,25 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Type $type
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $type->update($request->all());
+        return redirect()->route('admin.types.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Type $type
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index');
     }
 }

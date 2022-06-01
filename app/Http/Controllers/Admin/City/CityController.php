@@ -33,11 +33,14 @@ class CityController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        City::query()->create([
+            'name' => $request->name
+        ]);
+        return redirect()->route('admin.cities.index');
     }
 
     /**
@@ -67,21 +70,25 @@ class CityController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, City $city)
     {
-        //
+        $city->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('admin.cities.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return redirect()->route('admin.cities.index');
     }
 }

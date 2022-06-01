@@ -70,21 +70,25 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('admin.categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }
