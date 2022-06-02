@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminGetContactUsController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\City\CityController;
 use App\Http\Controllers\Admin\Currency\CurrencyController;
+use App\Http\Controllers\Admin\DynamicController;
 use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
@@ -35,6 +37,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('pers', PerController::class);
         Route::resource('currencies', CurrencyController::class);
         Route::resource('types', TypeController::class);
+
+        Route::resource('pages', DynamicController::class);
+        Route::get('contacts',[AdminGetContactUsController::class,'getContactUs']);
     });
 
 });
