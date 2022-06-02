@@ -14,5 +14,6 @@
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/crud/datatables/advanced/column-rendering.js')}}"></script>
+<script src="{{asset('assets/js/pages/features/miscellaneous/toastr.js')}}"></script>
 
 @push('js')

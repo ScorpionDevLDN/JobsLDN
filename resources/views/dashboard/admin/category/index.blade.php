@@ -109,15 +109,16 @@
                                         <div class="form-group">
                                             <label>Category Name
                                                 <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" placeholder="Enter category name"/>
-                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                                            <input required type="text" name="name" class="form-control"
+                                                   placeholder="Enter category name"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light-primary font-weight-bold"
                                                 data-dismiss="modal">Close
                                         </button>
-                                        <button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+                                        <button type="submit" class="btn btn-primary font-weight-bold">Save changes
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -128,31 +129,101 @@
             </div>
             <div class="card-body">
                 <!--begin: Datatable-->
-                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+
+                <table class="table">
                     <thead>
                     <tr>
-                        <th>Company Name</th>
-                        <th>Company Name</th>
-                        <th>Company Name</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Actions</th>
+                        <th scope="col">#</th>
+                        <th scope="col">id</th>
+                        <th scope="col">name</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($categories as $category)
-                        <tr>
-                            <td>Hayes Boule</td>
-                            <td>Hayes Boule</td>
-                            <td>Casper-Kerluke</td>
-                            <td>{{$category->name}}</td>
-                            <td>fhk</td>
-                            <td nowrap="nowrap"></td>
-                        </tr>
+                    <tr>
+                        <th scope="row">{{$category->id}}</th>
+                        <td>{{$category->name}}</td>
+                        <td>
+                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalEdit">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalDelete">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Modal-->
+                    <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form action="{{route('admin.categories.update',$category->id)}}" method="post">
+                                @method('put')
+                                @csrf
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Category Name
+                                                <span class="text-danger">*</span></label>
+                                            <input required value="{{$category->name}}" type="text" name="name" class="form-control"
+                                                   placeholder="Enter category name"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary font-weight-bold">Save changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--end::Button-->
+                    <!-- Modal-->
+                    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form action="{{route('admin.categories.destroy',$category->id)}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Are You sure to delete category? <span class="text-danger">*</span></label>
+                                            <input readonly value="{{$category->name}}" type="text" name="name" class="form-control"
+                                                   placeholder="Enter category name"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-danger font-weight-bold">Save changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--end::Button-->
                     @endforeach
                     </tbody>
                 </table>
-                <!--end: Datatable-->
+
             </div>
         </div>
         <!--end::Card-->

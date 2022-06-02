@@ -15,7 +15,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::query()->get();
+        $cities = City::query()->paginate(10);
         return view('dashboard.admin.city.index' , compact('cities'));
     }
 

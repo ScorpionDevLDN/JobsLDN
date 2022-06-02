@@ -96,7 +96,7 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="{{route('admin.categories.store')}}" method="post">
+                            <form action="{{route('admin.currencies.store')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Category Name
+                                            <label>Currency Name
                                                 <span class="text-danger">*</span></label>
                                             <input type="text" name="name" class="form-control" placeholder="Enter category name"/>
                                             <span class="form-text text-muted">We'll never share your email with anyone else.</span>
@@ -127,32 +127,114 @@
                 </div>
             </div>
             <div class="card-body">
-                <!--begin: Datatable-->
-                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                <table class="table">
                     <thead>
                     <tr>
-                        <th>Company Name</th>
-                        <th>Company Name</th>
-                        <th>Company Name</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Actions</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">symbol</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($currencies as $currency)
                         <tr>
-                            <td>Hayes Boule</td>
-                            <td>Hayes Boule</td>
-                            <td>Casper-Kerluke</td>
+                            <th scope="row">{{$currency->id}}</th>
                             <td>{{$currency->name}}</td>
-                            <td>fhk</td>
-                            <td nowrap="nowrap"></td>
+                            <td>{{$currency->code}}</td>
+                            <td>{{$currency->symbol}}</td>
+                            <td>
+                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalEdit">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalDelete">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
                         </tr>
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.currencies.update',$currency->id)}}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Currency</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Currency Name
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$currency->name}}" type="text" name="name" class="form-control"
+                                                       placeholder="Enter currency name"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Currency Code
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$currency->code}}" type="text" name="code" class="form-control"
+                                                       placeholder="Enter currency code"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Currency Symbol
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$currency->symbol}}" type="text" name="symbol" class="form-control"
+                                                       placeholder="Enter currency name"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary font-weight-bold">Save changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--end::Button-->
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.currencies.destroy',$currency->id)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Currency</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Are You sure to delete this currency? <span class="text-danger">*</span></label>
+                                                <input readonly value="{{$currency->name}}" type="text" name="name" class="form-control"
+                                                       placeholder="Enter currency name"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-danger font-weight-bold">Save changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--end::Button-->
                     @endforeach
                     </tbody>
                 </table>
-                <!--end: Datatable-->
             </div>
         </div>
         <!--end::Card-->

@@ -15,7 +15,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::query()->get();
+        $currencies = Currency::query()->paginate(10);
         return view('dashboard.admin.currency.index' , compact('currencies'));
     }
 

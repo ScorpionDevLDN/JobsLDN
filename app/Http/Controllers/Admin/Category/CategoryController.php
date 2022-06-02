@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Category;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use \Toastr;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::query()->get();
-        return view('dashboard.admin.category.index' , compact('categories'));
+        $categories = Category::query()->paginate(10);
+        return view('dashboard.admin.category.index', compact('categories'));
     }
 
     /**
@@ -32,21 +33,22 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        Category::query()->create([
-           'name' => $request->name
+        $validatedData = $request->validate([
+            'name' => 'required|unique:categories|max:255',
         ]);
-        return redirect()->route('admin.categories.index');
+        Category::query()->create($validatedData);
+        return redirect()->route('admin.categories.index')->with('msg', 'Category Created Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -57,7 +59,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
@@ -68,8 +70,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Category $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Category $category)
@@ -83,7 +85,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param \App\Models\Category $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category)

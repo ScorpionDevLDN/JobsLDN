@@ -89,6 +89,7 @@
 				<div class="d-flex flex-column-fluid">
 					<!--begin::Container-->
 					<div class="container">
+						@include('dashboard.shared.msg')
 						@yield('content')
 					</div>
 					<!--end::Container-->
