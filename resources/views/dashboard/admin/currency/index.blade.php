@@ -100,7 +100,7 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Cuurency</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <i aria-hidden="true" class="ki ki-close"></i>
                                         </button>
@@ -110,7 +110,16 @@
                                             <label>Currency Name
                                                 <span class="text-danger">*</span></label>
                                             <input type="text" name="name" class="form-control" placeholder="Enter category name"/>
-                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Currency code
+                                                <span class="text-danger">*</span></label>
+                                            <input type="text" name="code" class="form-control" placeholder="Enter category code"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Currency Symbol
+                                                <span class="text-danger">*</span></label>
+                                            <input type="text" name="symbol" class="form-control" placeholder="Enter category symbol"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -127,6 +136,7 @@
                 </div>
             </div>
             <div class="card-body">
+                @if($currencies->count()>0)
                 <table class="table">
                     <thead>
                     <tr>
@@ -235,6 +245,10 @@
                     @endforeach
                     </tbody>
                 </table>
+                    {{ $currencies->links() }}
+                @else
+                    <div class='alert alert-light text-center'>No data to display</div>
+                @endif
             </div>
         </div>
         <!--end::Card-->

@@ -127,6 +127,7 @@
                 </div>
             </div>
             <div class="card-body">
+                @if($types->count()>0)
                 <table class="table">
                     <thead>
                     <tr>
@@ -220,6 +221,10 @@
                     @endforeach
                     </tbody>
                 </table>
+                    {{ $types->links() }}
+                @else
+                    <div class='alert alert-light text-center'>No data to display</div>
+                @endif
             </div>
         </div>
         <!--end::Card-->

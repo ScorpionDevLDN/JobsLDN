@@ -130,6 +130,7 @@
             <div class="card-body">
                 <!--begin: Datatable-->
 
+                @if($categories->count()>0)
                 <table class="table">
                     <thead>
                     <tr>
@@ -223,6 +224,10 @@
                     @endforeach
                     </tbody>
                 </table>
+                    {{ $categories->links() }}
+                @else
+                    <div class='alert alert-info'><b>نأسف</b> !لا توجد نتائج </div>
+                @endif
 
             </div>
         </div>
