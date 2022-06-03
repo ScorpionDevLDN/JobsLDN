@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\User\RegisterAndLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
+Route::prefix('auth')->name('auth')->group(function (){
+    Route::post('register',[RegisterAndLoginController::class,'register']);
+    Route::post('login',[RegisterAndLoginController::class,'login']);
+});
 
 Route::view('/', 'index');
 Route::view('/a', 'dashboard.crud.index');
