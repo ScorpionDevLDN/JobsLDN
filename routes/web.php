@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\Currency\CurrencyController;
 use App\Http\Controllers\Admin\DynamicController;
 use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +41,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('types', TypeController::class);
 
         Route::resource('pages', DynamicController::class);
-        Route::get('contacts',[AdminGetContactUsController::class,'getContactUs']);
+        Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
+        Route::resource('settings', SettingController::class);
+
+        Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies');
+        Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers');
     });
 
 });
