@@ -130,13 +130,12 @@
             </div>
             <div class="card-body">
                 @if($pers->count()>0)
-                <table class="table">
+                <table class="table table-bordered table-hover text-center">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">id</th>
                         <th scope="col">Per</th>
-                        <th scope="col"></th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -1,5 +1,6 @@
 @extends('AdminDashboard.index')
 
+@section('title' ,'Setting')
 @section('content')
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
@@ -11,89 +12,89 @@
                     <div class="card-spacer">
                         <!--begin::Row-->
                         <div class="row text-center">
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="text-light flaticon2-magnifier-tool text-primary icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#websiteModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">Website name</a>
+                                   class="text-light font-weight-bold font-size-h6">Website name</a>
                             </div>
                             <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="flaticon2-photo-camera text-success icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#logoModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">Logo</a>
+                                   class="text-success font-weight-bold font-size-h6">Logo</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-light-danger px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="far fa-image text-danger icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#coverModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">cover</a>
+                                   class="text-danger font-weight-bold font-size-h6">cover</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="fas fa-map-marker-alt text-warning icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#addressModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">address</a>
+                                   class="text-warning font-weight-bold font-size-h6">address</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-light-info px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="fas fa-info-circle text-info icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#bioModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">bio</a>
+                                   class="text-info font-weight-bold font-size-h6">bio</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-light-secondary px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="flaticon-multimedia-2 text-secondary icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#emailModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">contact email</a>
+                                   class="text-secondary font-weight-bold font-size-h6">Contact Email</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 bg-light-success px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="flaticon2-phone text-success icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#phoneModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">phone</a>
+                                   class="text-dark font-weight-bold font-size-h6">phone</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 px-6 py-8 rounded-xl mr-7 mb-7">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i style="color: #271de3" class="flaticon-facebook-letter-logo icon-3x"></i>
                                 </span>
-                                <a data-toggle="modal" data-target="#linksModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">social_links</a>
+                                <a style="color: #271de3" data-toggle="modal" data-target="#linksModal" href="#"
+                                   class="font-weight-bold font-size-h6">Social Links</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 px-6 py-8 rounded-xl mr-7 mb-7" style="background-color: #e6b8b8">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="flaticon-edit-1 text-dark icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#sloganModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">slogan_text</a>
+                                   class="text-dark font-weight-bold font-size-h6">Slogan Text</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 px-6 py-8 rounded-xl mr-7 mb-7" style="background-color: #c7b3e3">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="far fa-copyright text-secondary icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#copyRightsModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">copy_right_text</a>
+                                   class="text-dark font-weight-bold font-size-h6">Copy Right Text</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
-								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+                            <div class="col-md-2 px-6 py-8 rounded-xl mr-7 mb-7" style="background-color: {{$setting->main_color}}">
+								<span class=" svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+									<i class="text-light flaticon2-pen icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#mainColorModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">main_color</a>
+                                   class="text-light font-weight-bold font-size-h6">Main Color</a>
                             </div>
-                            <div class="col-md-2 bg-light-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                            <div class="col-md-2 px-6 py-8 rounded-xl mr-7 mb-7" style="background-color: {{$setting->secondary_color}}">
 								<span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-									<i class="flaticon2-gear text-primary icon-3x"></i>
+									<i class="fa fa-fill-drip text-primary icon-3x"></i>
                                 </span>
                                 <a data-toggle="modal" data-target="#secondaryColorModal" href="#"
-                                   class="text-primary font-weight-bold font-size-h6">secondary_color</a>
+                                   class="text-primary font-weight-bold font-size-h6">Secondary Color</a>
                             </div>
 
                         </div>
@@ -142,7 +143,7 @@
             <div class="modal fade" id="logoModal" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="{{route('admin.settings.update',1)}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('admin.settings.update',1)}}" method="post">
                         @method('put')
                         @csrf
                         <div class="modal-content">
@@ -153,10 +154,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label>website logo
-                                        <span class="text-danger">*</span></label>
-                                    <input required type="file" name="logo"class="form-control" placeholder="Enter logo"/>
+                                <div class="custom-file">
+                                    <input name="logo" type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -175,7 +175,7 @@
             <div class="modal fade" id="coverModal" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="{{route('admin.settings.update',1)}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('admin.settings.update',1)}}" method="post">
                         @method('put')
                         @csrf
                         <div class="modal-content">
@@ -186,12 +186,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label>website cover
-                                        <span class="text-danger">*</span></label>
-                                    <input required type="file" name="cover"
-                                           class="form-control"
-                                           placeholder="Enter website_name name"/>
+                                <div class="custom-file">
+                                    <input name="cover" type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -434,7 +431,8 @@
                                 <div class="form-group">
                                     <label>copy_right_text
                                         <span class="text-danger">*</span></label>
-                                    <input required value="{{$setting->copy_right_text}}" type="text" name="copy_right_text"
+                                    <input required value="{{$setting->copy_right_text}}" type="text"
+                                           name="copy_right_text"
                                            class="form-control"
                                            placeholder="Enter copy_right_text"/>
                                 </div>
@@ -504,7 +502,8 @@
                                 <div class="form-group">
                                     <label>website secondary_color
                                         <span class="text-danger">*</span></label>
-                                    <input required value="{{$setting->secondary_color}}" type="color" name="secondary_color"
+                                    <input required value="{{$setting->secondary_color}}" type="color"
+                                           name="secondary_color"
                                            class="form-control"
                                            placeholder="Enter secondary_color"/>
                                 </div>

@@ -128,13 +128,12 @@
             </div>
             <div class="card-body">
                 @if($types->count()>0)
-                <table class="table">
+                <table class="table table-bordered table-hover text-center">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col"></th>
+                        <th scope="col">Job Type</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>

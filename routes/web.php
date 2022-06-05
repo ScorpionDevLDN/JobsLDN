@@ -51,11 +51,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 });
 
-
+//login and register
 Route::prefix('auth')->name('auth')->group(function (){
     Route::post('register',[RegisterAndLoginController::class,'register']);
     Route::post('login',[RegisterAndLoginController::class,'login']);
 });
+
+//home page
+//Route::get('')
 
 Route::view('/', 'index');
 Route::view('/a', 'dashboard.crud.index');

@@ -131,13 +131,12 @@
                 <!--begin: Datatable-->
 
                 @if($categories->count()>0)
-                <table class="table">
+                <table class="table table-bordered table-hover text-center">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col"></th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>

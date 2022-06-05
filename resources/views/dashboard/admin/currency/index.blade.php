@@ -137,14 +137,14 @@
             </div>
             <div class="card-body">
                 @if($currencies->count()>0)
-                <table class="table">
+                <table class="table table-bordered table-hover text-center">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Code</th>
-                        <th scope="col">symbol</th>
-                        <th scope="col"></th>
+                        <th scope="col">Currency Name</th>
+                        <th scope="col">Currency Code</th>
+                        <th scope="col">Currency Symbol</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
