@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\User\RegisterAndLoginController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/check', [AdminController::class, 'check'])->name('check');
 
     Route::middleware('auth:admins')->group(function () {
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
         Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
@@ -52,10 +55,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 //login and register
-Route::prefix('auth')->name('auth')->group(function (){
-    Route::post('register',[RegisterAndLoginController::class,'register']);
-    Route::post('login',[RegisterAndLoginController::class,'login']);
-});
+//Route::prefix('auth')->name('auth')->group(function (){
+//    Route::post('register',[RegisterAndLoginController::class,'register']);
+//    Route::post('login',[RegisterAndLoginController::class,'login']);
+//});
 
 //home page
 //Route::get('')

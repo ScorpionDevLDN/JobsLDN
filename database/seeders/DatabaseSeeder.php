@@ -3,9 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,14 +19,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(PermissionTableSeeder::class);
+
         // \App\Models\User::factory(10)->create();
 
-        Admin::query()->create([
+        $user = Admin::query()->create([
             'name' => 'Nishan Admin',
             'email' => 'nishan@admin.com',
             'password' => 'nishan',
-            'is_super_admin' => 1
+//            'is_super_admin' => 1
         ]);
+        $role = Role::create(['name' => 'Admin']);
+
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
 
         $this->call(CategorySeeder::class);
         $this->call(CitySeeder::class);

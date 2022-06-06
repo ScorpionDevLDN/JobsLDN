@@ -48,6 +48,10 @@ return [
         'admins' => [
             'driver' => 'session',
             'provider' => 'admin',
+        ],
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ]
     ],
 
@@ -83,6 +87,10 @@ return [
             'model' => App\Models\JobSeeker::class,
         ],
         'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'web' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
