@@ -96,21 +96,30 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="{{route('admin.categories.store')}}" method="post">
+                            <form action="{{route('admin.roles.store')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Categoty</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Create New Role</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <i aria-hidden="true" class="ki ki-close"></i>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Category Name
+                                            <label>Role Name
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
-                                                   placeholder="Enter category name"/>
+                                                   placeholder="Enter role name"/>
+                                        </div>
+                                        <div class="form-group checkbox-list">
+                                            <label>Permission
+                                                <span class="text-danger">*</span></label>
+                                            @foreach($permissions as $permission)
+                                            <label class="checkbox">
+                                                <input id="{{$permission->id}}" type="checkbox" name="permission[]">
+                                                <span></span>{{$permission->name}}</label>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="modal-footer">

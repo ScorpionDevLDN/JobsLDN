@@ -24,9 +24,10 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $permissions = Permission::all();
         $roles = Role::orderBy('id','DESC')->paginate(5);
 //        dd($roles);
-        return view('dashboard.admin.roles.index',compact('roles'));
+        return view('dashboard.admin.roles.index',compact('roles','permissions'));
     }
 
     /**
@@ -54,7 +55,7 @@ class RoleController extends Controller
         ]);
 
         $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        //$role->syncPermissions($request->input('permission'));
 
         return redirect()->route('admin.roles.index')
             ->with('success','Role created successfully');

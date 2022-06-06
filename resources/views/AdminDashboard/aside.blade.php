@@ -57,14 +57,16 @@
             					<span class="menu-text">Pages</span>
             				</span>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.categories.index')}}" class="menu-link">
+                        @can('category-list')
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{route('admin.categories.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="fas fa-cubes text-info"></i>
 										</span>
-                                <span class="menu-text">Categories</span>
-                            </a>
-                        </li>
+                                    <span class="menu-text">Categories</span>
+                                </a>
+                            </li>
+                        @endcan
 
                         <li class="menu-item" aria-haspopup="true">
                             <a href="{{route('admin.cities.index')}}" class="menu-link">

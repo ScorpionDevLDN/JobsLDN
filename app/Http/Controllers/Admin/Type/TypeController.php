@@ -11,10 +11,10 @@ class TypeController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:type-list|type-create|type-edit|type-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:type-create', ['only' => ['create','store']]);
-        $this->middleware('permission:type-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:type-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:type-list2|type-create|type-edit|type-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:type-create2', ['only' => ['create','store']]);
+        $this->middleware('permission:type-edit2', ['only' => ['edit','update']]);
+        $this->middleware('permission:type-delete2', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
