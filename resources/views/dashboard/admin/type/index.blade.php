@@ -128,7 +128,7 @@
             </div>
             <div class="card-body">
                 @if($types->count()>0)
-                <table class="table table-bordered table-hover text-center">
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -220,7 +220,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                    {{ $types->links() }}
+{{--                    {{ $types->links() }}--}}
                 @else
                     <div class='alert alert-light text-center'>No data to display</div>
                 @endif

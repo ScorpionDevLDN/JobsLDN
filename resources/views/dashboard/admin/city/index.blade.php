@@ -127,10 +127,10 @@
             </div>
             <div class="card-body">
                 @if($cities->count()>0)
-                <table class="table table-bordered table-hover text-center">
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
                         <th scope="col">City Name</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -219,7 +219,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $cities->links() }}
+{{--                {{ $cities->links(class="table table-separate table-head-custom table-checkable" id="kt_datatable"<) }}--}}
                 @else
                     <div class='alert alert-light text-center'>No data to display</div>
                 @endif

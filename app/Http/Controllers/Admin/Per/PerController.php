@@ -15,7 +15,7 @@ class PerController extends Controller
      */
     public function index()
     {
-        $pers = Per::query()->paginate(10);
+        $pers = Per::query()->get();
         return view('dashboard.admin.Per.index' , compact('pers'));
     }
 

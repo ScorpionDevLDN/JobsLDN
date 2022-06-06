@@ -137,7 +137,7 @@
             </div>
             <div class="card-body">
                 @if($currencies->count()>0)
-                <table class="table table-bordered table-hover text-center">
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -245,7 +245,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                    {{ $currencies->links() }}
+{{--                    {{ $currencies->links() }}--}}
                 @else
                     <div class='alert alert-light text-center'>No data to display</div>
                 @endif

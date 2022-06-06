@@ -15,7 +15,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::query()->paginate(10);
+        $types = Type::query()->get();
         return view('dashboard.admin.type.index', compact('types'));
     }
 

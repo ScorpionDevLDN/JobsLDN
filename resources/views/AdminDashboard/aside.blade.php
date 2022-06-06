@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="menu-section">
-                <h4 class="menu-text">Statctics</h4>
+                <h4 class="menu-text">Job Settings</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
 
@@ -46,7 +46,7 @@
             											</svg>
                                                         <!--end::Svg Icon-->
             										</span>
-                    <span class="menu-text">Pages</span>
+                    <span class="menu-text">Job Settings</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">

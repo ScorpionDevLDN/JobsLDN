@@ -131,7 +131,7 @@
                 <!--begin: Datatable-->
 
                 @if($pages->count()>0)
-                <table class="table">
+                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -224,7 +224,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                    {{ $pages->links() }}
+{{--                    {{ $pages->links() }}--}}
                 @else
                     <div class='alert alert-light text-center'>No data to display</div>
                 @endif
