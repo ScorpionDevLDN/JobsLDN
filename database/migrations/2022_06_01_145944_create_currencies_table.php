@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('code');
             $table->string('symbol');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

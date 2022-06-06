@@ -155,12 +155,28 @@
                             <td>{{$currency->code}}</td>
                             <td>{{$currency->symbol}}</td>
                             <td>
-                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalEdit">
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalDelete">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalEdit">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalDelete">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-3">
+															<span class="switch switch-outline switch-icon switch-brand">
+																<label>
+																	<input type="checkbox" checked="checked"
+                                                                           name="select">
+																	<span></span>
+																</label>
+															</span>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
                         <!-- Modal-->

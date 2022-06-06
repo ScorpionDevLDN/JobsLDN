@@ -109,14 +109,16 @@
                                         <div class="form-group">
                                             <label>City Name
                                                 <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" placeholder="Enter City name"/>
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="Enter City name"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light-primary font-weight-bold"
                                                 data-dismiss="modal">Close
                                         </button>
-                                        <button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
+                                        <button type="submit" class="btn btn-primary font-weight-bold">Save changes
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -127,99 +129,124 @@
             </div>
             <div class="card-body">
                 @if($cities->count()>0)
-                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">City Name</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($cities as $city)
+                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                        <thead>
                         <tr>
-                            <th scope="row">{{$city->id}}</th>
-                            <td>{{$city->name}}</td>
-                            <td>
-                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalEdit">
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal" data-target="#exampleModalDelete">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-                            </td>
+                            <th scope="col">Id</th>
+                            <th scope="col">City Name</th>
+                            <th scope="col">Actions</th>
                         </tr>
-                        <!-- Modal-->
-                        <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.cities.update',$city->id)}}" method="post">
-                                    @method('put')
-                                    @csrf
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit City</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <i aria-hidden="true" class="ki ki-close"></i>
-                                            </button>
+                        </thead>
+                        <tbody>
+                        @foreach($cities as $city)
+                            <tr>
+                                <th scope="row">{{$city->id}}</th>
+                                <td>{{$city->name}}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal"
+                                               data-target="#exampleModalEdit">
+                                                <i class="far fa-edit"></i>
+                                            </a>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>City Name
-                                                    <span class="text-danger">*</span></label>
-                                                <input required value="{{$city->name}}" type="text" name="name" class="form-control"
-                                                       placeholder="Enter city name"/>
-                                            </div>
+                                        <div class="col-1">
+                                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal"
+                                               data-target="#exampleModalDelete">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light-primary font-weight-bold"
-                                                    data-dismiss="modal">Close
-                                            </button>
-                                            <button type="submit" class="btn btn-primary font-weight-bold">Save changes
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--end::Button-->
-                        <!-- Modal-->
-                        <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.cities.destroy',$city->id)}}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete City</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <i aria-hidden="true" class="ki ki-close"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Are You sure to delete this city? <span class="text-danger">*</span></label>
-                                                <input readonly value="{{$city->name}}" type="text" name="name" class="form-control"
-                                                       placeholder="Enter city name"/>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light-primary font-weight-bold"
-                                                    data-dismiss="modal">Close
-                                            </button>
-                                            <button type="submit" class="btn btn-danger font-weight-bold">Save changes
-                                            </button>
+                                        <div class="col-3">
+															<span class="switch switch-outline switch-icon switch-brand">
+																<label>
+																	<input type="checkbox" checked="checked"
+                                                                           name="select">
+																	<span></span>
+																</label>
+															</span>
                                         </div>
                                     </div>
-                                </form>
+
+                                </td>
+                            </tr>
+                            <!-- Modal-->
+                            <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('admin.cities.update',$city->id)}}" method="post">
+                                        @method('put')
+                                        @csrf
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit City</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>City Name
+                                                        <span class="text-danger">*</span></label>
+                                                    <input required value="{{$city->name}}" type="text" name="name"
+                                                           class="form-control"
+                                                           placeholder="Enter city name"/>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary font-weight-bold">Save
+                                                    changes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        <!--end::Button-->
-                    @endforeach
-                    </tbody>
-                </table>
-{{--                {{ $cities->links(class="table table-separate table-head-custom table-checkable" id="kt_datatable"<) }}--}}
+                            <!--end::Button-->
+                            <!-- Modal-->
+                            <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{route('admin.cities.destroy',$city->id)}}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete City</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Are You sure to delete this city? <span
+                                                                class="text-danger">*</span></label>
+                                                    <input readonly value="{{$city->name}}" type="text" name="name"
+                                                           class="form-control"
+                                                           placeholder="Enter city name"/>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-danger font-weight-bold">Save
+                                                    changes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--end::Button-->
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {{--                {{ $cities->links(class="table table-separate table-head-custom table-checkable" id="kt_datatable"<) }}--}}
                 @else
                     <div class='alert alert-light text-center'>No data to display</div>
                 @endif

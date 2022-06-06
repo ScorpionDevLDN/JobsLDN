@@ -147,9 +147,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-1">
-                                            <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
+                                            <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes" data-toggle="modal"
                                                data-target="#exampleModalEdit">
-                                                <i class="far fa-edit"></i>
+                                                <i class="far fa-edit "></i>
                                             </a>
                                         </div>
                                         <div class="col-1">
@@ -161,8 +161,13 @@
                                         <div class="col-3">
 															<span class="switch switch-outline switch-icon switch-brand">
 																<label>
+                                                                    @if($category->status == 1)
 																	<input type="checkbox" checked="checked"
                                                                            name="select">
+                                                                    @else
+                                                                        <input type="checkbox"
+                                                                               name="select">
+                                                                    @endif
 																	<span></span>
 																</label>
 															</span>

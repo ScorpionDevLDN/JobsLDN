@@ -10,7 +10,8 @@ class Per extends Model
     use HasFactory;
 
     protected $fillable = [
-        'per'
+        'per',
+        'status'
     ];
 }
 

@@ -12,5 +12,7 @@ class Currency extends Model
         'name',
         'code',
         'symbol',
+        'status'
+
     ];
 }

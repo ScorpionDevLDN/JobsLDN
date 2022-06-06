@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pers', function (Blueprint $table) {
             $table->id();
             $table->string('per');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
