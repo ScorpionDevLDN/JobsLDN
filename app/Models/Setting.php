@@ -18,11 +18,20 @@ class Setting extends Model
         'bio',
         'contact_email',
         'phone',
-        'social_links', //
+//        'social_links', //
         'slogan_text',
         'copy_right_text',
         'main_color',
         'secondary_color',
+
+        'phone',
+        'phone2',
+        'whatsapp_phone',
+        'facebook_link',
+        'twitter_link',
+        'instagram_link',
+        'youtube_link',
+        'telegram_link',
     ];
 
 

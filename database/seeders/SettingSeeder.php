@@ -24,11 +24,19 @@ class SettingSeeder extends Seeder
             'bio' => 'bio',
             'contact_email' => 'Nishan@gmail.com',
             'phone' => '(+00) - 00 0000000',
-            'social_links' => 'www.fd.com', //
+//            'social_links' => 'www.fd.com', //
             'slogan_text' => 'You apply, we hire!',
             'copy_right_text' => 'Copyright © 2022 - JOBSLDN',
             'main_color' => '#2900ff',
             'secondary_color' => '#f0eded',
+
+            'phone2' => '(+00) - 00 0000000',
+            'whatsapp_phone' => 'ww.whatsapp.com',
+            'facebook_link'=> 'ww.fb.com',
+            'twitter_link'=> 'ww.tw.com',
+            'instagram_link'=> 'ww.intsa.com',
+            'youtube_link'=> 'ww.yout.com',
+            'telegram_link'=> 'ww.teleg.com',
         ]);
     }
 }

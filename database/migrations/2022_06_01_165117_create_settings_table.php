@@ -22,11 +22,19 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('contact_email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('social_links')->nullable();
+//            $table->string('social_links')->nullable();
             $table->string('slogan_text')->nullable();
             $table->string('copy_right_text')->nullable();
             $table->string('main_color')->nullable();
             $table->string('secondary_color')->nullable();
+
+            $table->string('phone2')->nullable();
+            $table->string('whatsapp_phone')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('twitter_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->string('telegram_link')->nullable();
             $table->timestamps();
         });
     }
