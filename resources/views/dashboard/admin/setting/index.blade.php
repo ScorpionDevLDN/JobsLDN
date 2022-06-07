@@ -60,7 +60,8 @@
                                 </div>
                             </div>
 
-                            <form action="{{route('admin.settings.update',$setting->id)}}" method="post">
+                            <form enctype="multipart/form-data" action="{{route('admin.settings.update',$setting->id)}}"
+                                  method="post">
                                 @method('put')
                                 @csrf
                                 <div class="col-12 col-lg-8 px-3 py-5">
@@ -223,7 +224,7 @@
                                                 Facebook Link
                                             </div>
                                             <div class="col-12 col-lg-9 px-2">
-                                                <input type="url" name="facebook_link" class="form-control"
+                                                <input type="text" name="facebook_link" class="form-control"
                                                        value="{{$setting->facebook_link}}">
                                             </div>
                                         </div>
@@ -232,7 +233,7 @@
                                                 Twitter URL
                                             </div>
                                             <div class="col-12 col-lg-9 px-2">
-                                                <input type="url" name="twitter_link" class="form-control"
+                                                <input type="text" name="twitter_link" class="form-control"
                                                        value="{{$setting->twitter_link}}">
                                             </div>
                                         </div>
@@ -241,7 +242,7 @@
                                                 Instagram Link
                                             </div>
                                             <div class="col-12 col-lg-9 px-2">
-                                                <input type="url" name="instagram_link" class="form-control"
+                                                <input type="text" name="instagram_link" class="form-control"
                                                        value="{{$setting->instagram_link}}">
                                             </div>
                                         </div>
@@ -250,7 +251,7 @@
                                                 Youtube Link
                                             </div>
                                             <div class="col-12 col-lg-9 px-2">
-                                                <input type="url" name="youtube_link" class="form-control"
+                                                <input type="text" name="youtube_link" class="form-control"
                                                        value="{{$setting->youtube_link}}">
                                             </div>
                                         </div>
@@ -259,7 +260,7 @@
                                                 Telegram Link
                                             </div>
                                             <div class="col-12 col-lg-9 px-2">
-                                                <input type="url" name="telegram_link" class="form-control"
+                                                <input type="text" name="telegram_link" class="form-control"
                                                        value="{{$setting->telegram_link}}">
                                             </div>
                                         </div>
@@ -558,12 +559,11 @@
                                     </div>
                                     <div class="col-12 row p-0 taber" id="others-tab">
                                     </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary pb-2 px-15">Save
-                                        </button>
-                                    </div>
                                 </div>
-
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary pb-2 px-15">Save
+                                    </button>
+                                </div>
                             </form>
 
                         </div>
