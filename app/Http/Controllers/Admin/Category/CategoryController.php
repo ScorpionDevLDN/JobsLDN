@@ -101,10 +101,11 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
-    public function updateCategoryStatus(Category $category){
-        $category->update([
-            'status' => !$category->status
-        ]);
+    public function updateCategoryStatus(Request $request){
+        $ca = Category::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
         return redirect()->route('admin.categories.index');
     }
 }

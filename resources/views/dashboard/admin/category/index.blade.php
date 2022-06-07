@@ -56,10 +56,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <!--begin: Datatable-->
-
-                @if($categories->count()>0)
-                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                 <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -88,19 +85,7 @@
                                             </a>
                                         </div>
                                         <div class="col-3">
-                                            <form action="{{route('admin.update_category_status',$category->id)}}"
-                                                  method="post" id="statusForm{{$category->id}}">
-                                                @csrf
-                                                <input name="id" type="hidden" value="{{$category->id}}">
-                                                <span class="switch switch-outline switch-icon switch-brand">
-																<label>
-                                                                    <input {{isset($category['status']) && $category['status'] == '1' ? 'checked' : ''}}
-                                                                           value="1" type="checkbox" name="status"
-                                                                           onchange="document.getElementById('statusForm{{$category->id}}').submit()">
-																	<span></span>
-																</label>
-															</span>
-                                            </form>
+                                            <input name="status" data-id="{{$category->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $category->status ? 'checked' : '' }}>
                                         </div>
                                     </div>
                                 </td>
@@ -182,13 +167,31 @@
                         @endforeach
                         </tbody>
                     </table>
-                    {{--                    {{ $categories->links() }}--}}
-                @else
-                    <div class='alert alert-info'><b>نأسف</b> !لا توجد نتائج</div>
-                @endif
+
 
             </div>
         </div>
         <!--end::Card-->
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(function() {
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var category_id = $(this).data('id');
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/changeStatus',
+                    data: {'status': status, 'id': category_id},
+                    success: function(data){
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
+    </script>
 @endsection

@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('changeStatus', [CategoryController::class,'updateCategoryStatus'])->name('changeStatus');
+
 
 //admin routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -39,7 +41,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
-        Route::post('update_category_status/{category}', [CategoryController::class,'updateCategoryStatus'])->name('update_category_status');
         Route::resource('categories', CategoryController::class);
 
         Route::post('update_city_status/{city}', [CityController::class,'updateCategoryStatus'])->name('update_city_status');
