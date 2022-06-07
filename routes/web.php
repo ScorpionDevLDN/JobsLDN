@@ -54,6 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('types', TypeController::class);
 
         Route::resource('pages', DynamicController::class);
+        Route::post('update_page_status/{page}', [DynamicController::class,'updateCategoryStatus'])->name('update_page_status');
         Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 

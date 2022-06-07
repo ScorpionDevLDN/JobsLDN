@@ -18,4 +18,5 @@
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/crud/datatables/advanced/column-rendering.js')}}"></script>
-@push('js')
+<script src="{{asset('assets/js/pages/crud/forms/editors/summernote.js')}}"></script>
+@yield('js')

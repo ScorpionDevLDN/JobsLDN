@@ -22,11 +22,11 @@ class DynamicController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.pages.create');
     }
 
     /**
@@ -37,16 +37,19 @@ class DynamicController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $validatedData = $request->validate([
             'title' => 'required|unique:dynamic_pages|max:255',
-            'images' => 'required', // بجدول لحالها
-            'description' =>'required',
-            'content'=>'required',
-            'slug'=>'required',
-            'keywords' =>'required', // بدها جدول لحالها
-            'metadata' =>'required',
+            'image' => 'required', // بجدول لحالها
+//            'description' =>'required',
+            'content' => 'required',
+            'slug' => 'required',
+//            'keywords' =>'required', // بدها جدول لحالها
+            'metadata' => 'required',
         ]);
-        DynamicPage::query()->create($validatedData);
+        DynamicPage::query()->create($validatedData + [
+                'shown_in' => $request->shown_in
+            ]);
         return redirect()->route('admin.pages.index')->with('msg', 'Category Created Successfully');
     }
 
@@ -65,11 +68,12 @@ class DynamicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $dynamicPage = DynamicPage::query()->findOrFail($id)->first();
+        return view('dashboard.admin.pages.edit',compact('dynamicPage'));
     }
 
     /**
@@ -79,11 +83,9 @@ class DynamicController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, DynamicPage $dynamicPage)
+    public function update(Request $request, $id)
     {
-        $dynamicPage->update([
-            'title' => $request->title
-        ]);
+        DynamicPage::query()->findOrFail($id)->update($request->all());
         return redirect()->route('admin.pages.index');
     }
 
@@ -93,9 +95,17 @@ class DynamicController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(DynamicPage $dynamicPage)
+    public function destroy( $id)
     {
-        $dynamicPage->delete();
+        DynamicPage::query()->findOrFail($id)->delete();
+        return redirect()->route('admin.pages.index');
+    }
+
+    public function updateCategoryStatus($id){
+        $page = DynamicPage::query()->findOrFail($id)->first();
+        $page->update([
+            'status' => !$page->status
+        ]);
         return redirect()->route('admin.pages.index');
     }
 }
