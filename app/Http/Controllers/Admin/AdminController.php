@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -38,5 +40,13 @@ class AdminController extends Controller
     {
         Auth::guard('admins')->logout();
         return redirect('/admin/login');
+    }
+
+    public function home(){
+        $companies= Company::query()->count();
+        $seekers= Company::query()->count();
+        $jobs= Company::query()->count();
+        $aya = [100, 50, 57, 56, 61, 58, 0];
+        return view('dashboard.admin.home',compact('companies','seekers','jobs','aya'));
     }
 }

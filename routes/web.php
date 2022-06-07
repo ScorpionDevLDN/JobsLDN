@@ -35,7 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admins')->group(function () {
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
-        Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
+//        Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
+        Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
         Route::post('update_category_status/{category}', [CategoryController::class,'updateCategoryStatus'])->name('update_category_status');
