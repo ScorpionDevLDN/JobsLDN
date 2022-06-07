@@ -87,4 +87,11 @@ class CurrencyController extends Controller
         $currency->delete();
         return redirect()->route('admin.currencies.index');
     }
+
+    public function updateCategoryStatus(Currency $currency){
+        $currency->update([
+            'status' => !$currency->status
+        ]);
+        return redirect()->route('admin.currencies.index');
+    }
 }

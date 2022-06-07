@@ -95,4 +95,11 @@ class TypeController extends Controller
         $type->delete();
         return redirect()->route('admin.types.index');
     }
+
+    public function updateCategoryStatus(Type $type){
+        $type->update([
+            'status' => !$type->status
+        ]);
+        return redirect()->route('admin.types.index');
+    }
 }

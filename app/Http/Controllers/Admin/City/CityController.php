@@ -91,4 +91,11 @@ class CityController extends Controller
         $city->delete();
         return redirect()->route('admin.cities.index');
     }
+
+    public function updateCategoryStatus(City $city){
+        $city->update([
+            'status' => !$city->status
+        ]);
+        return redirect()->route('admin.cities.index');
+    }
 }

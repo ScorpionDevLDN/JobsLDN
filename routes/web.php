@@ -38,10 +38,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
+        Route::post('update_category_status/{category}', [CategoryController::class,'updateCategoryStatus'])->name('update_category_status');
         Route::resource('categories', CategoryController::class);
+
+        Route::post('update_city_status/{city}', [CityController::class,'updateCategoryStatus'])->name('update_city_status');
         Route::resource('cities', CityController::class);
+
+        Route::post('update_per_status/{per}', [PerController::class,'updateCategoryStatus'])->name('update_per_status');
         Route::resource('pers', PerController::class);
+
+        Route::post('update_currency_status/{currency}', [CurrencyController::class,'updateCategoryStatus'])->name('update_currency_status');
         Route::resource('currencies', CurrencyController::class);
+
+        Route::post('update_type_status/{type}', [TypeController::class,'updateCategoryStatus'])->name('update_type_status');
         Route::resource('types', TypeController::class);
 
         Route::resource('pages', DynamicController::class);

@@ -1,5 +1,6 @@
 @extends('AdminDashboard.index')
 
+@section('title','City')
 @section('content')
     <div class="container">
 
@@ -157,13 +158,19 @@
                                             </a>
                                         </div>
                                         <div class="col-3">
-															<span class="switch switch-outline switch-icon switch-brand">
+                                            <form action="{{route('admin.update_city_status',$city->id)}}"
+                                                  method="post" id="statusForm{{$city->id}}">
+                                                @csrf
+                                                <input name="id" type="hidden" value="{{$city->id}}">
+                                                <span class="switch switch-outline switch-icon switch-brand">
 																<label>
-																	<input type="checkbox" checked="checked"
-                                                                           name="select">
+                                                                    <input {{isset($city['status']) && $city['status'] == '1' ? 'checked' : ''}}
+                                                                           value="1" type="checkbox" name="status"
+                                                                           onchange="document.getElementById('statusForm{{$city->id}}').submit()">
 																	<span></span>
 																</label>
 															</span>
+                                            </form>
                                         </div>
                                     </div>
 

@@ -1,4 +1,5 @@
 @extends('AdminDashboard.index')
+@section('title','Currency')
 
 @section('content')
     <div class="container">
@@ -167,13 +168,19 @@
                                         </a>
                                     </div>
                                     <div class="col-3">
-															<span class="switch switch-outline switch-icon switch-brand">
+                                        <form action="{{route('admin.update_currency_status',$currency->id)}}"
+                                              method="post" id="statusForm{{$currency->id}}">
+                                            @csrf
+                                            <input name="id" type="hidden" value="{{$currency->id}}">
+                                            <span class="switch switch-outline switch-icon switch-brand">
 																<label>
-																	<input type="checkbox" checked="checked"
-                                                                           name="select">
+                                                                    <input {{isset($currency['status']) && $currency['status'] == '1' ? 'checked' : ''}}
+                                                                           value="1" type="checkbox" name="status"
+                                                                           onchange="document.getElementById('statusForm{{$currency->id}}').submit()">
 																	<span></span>
 																</label>
 															</span>
+                                        </form>
                                     </div>
                                 </div>
 

@@ -1,4 +1,5 @@
 @extends('AdminDashboard.index')
+@section('title','Type')
 
 @section('content')
     <div class="container">
@@ -158,13 +159,19 @@
                                             </a>
                                         </div>
                                         <div class="col-3">
-															<span class="switch switch-outline switch-icon switch-primary">
+                                            <form action="{{route('admin.update_type_status',$type->id)}}"
+                                                  method="post" id="statusForm{{$type->id}}">
+                                                @csrf
+                                                <input name="id" type="hidden" value="{{$type->id}}">
+                                                <span class="switch switch-outline switch-icon switch-brand">
 																<label>
-																	<input type="checkbox" checked="checked"
-                                                                           name="select">
+                                                                    <input {{isset($type['status']) && $type['status'] == '1' ? 'checked' : ''}}
+                                                                           value="1" type="checkbox" name="status"
+                                                                           onchange="document.getElementById('statusForm{{$type->id}}').submit()">
 																	<span></span>
 																</label>
 															</span>
+                                            </form>
                                         </div>
                                     </div>
 

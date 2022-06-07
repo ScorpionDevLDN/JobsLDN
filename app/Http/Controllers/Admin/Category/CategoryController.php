@@ -100,4 +100,11 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.categories.index');
     }
+
+    public function updateCategoryStatus(Category $category){
+        $category->update([
+            'status' => !$category->status
+        ]);
+        return redirect()->route('admin.categories.index');
+    }
 }

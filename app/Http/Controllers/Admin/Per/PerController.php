@@ -87,4 +87,11 @@ class PerController extends Controller
         $per->delete();
         return redirect()->route('admin.pers.index');
     }
+
+    public function updateCategoryStatus(Per $per){
+        $per->update([
+            'status' => !$per->status
+        ]);
+        return redirect()->route('admin.pers.index');
+    }
 }
