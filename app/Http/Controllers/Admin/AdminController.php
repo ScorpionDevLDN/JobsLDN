@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Job;
+use App\Models\JobSeeker;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -44,9 +48,15 @@ class AdminController extends Controller
 
     public function home(){
         $companies= Company::query()->count();
-        $seekers= Company::query()->count();
-        $jobs= Company::query()->count();
-        $aya = [100, 50, 57, 56, 61, 58, 0];
-        return view('dashboard.admin.home',compact('companies','seekers','jobs','aya'));
+        $seekers= JobSeeker::query()->count();
+        $jobs= Job::query()->count();
+        $all_jobs = Job::query()->orderBy('created_at')->get()->groupBy(function($t) {
+            return Carbon::parse($t->created_at)->format('m');
+        });
+        $data_job = collect($all_jobs)->values()->map(function ($job)  {
+            return $job->count();
+        });
+//        dd($data_job);
+        return view('dashboard.admin.home',compact('companies','seekers','jobs','data_job'));
     }
 }

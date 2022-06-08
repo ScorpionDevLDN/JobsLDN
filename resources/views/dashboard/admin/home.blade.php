@@ -217,7 +217,7 @@
 
 @section('js')
     <script>
-        var data = {!! json_encode($aya) !!};
+        var data = {!! json_encode($data_job) !!};
         // console.log(tmp);
         var KTWidgets = function () {
             var _initChartsWidget1 = function () {

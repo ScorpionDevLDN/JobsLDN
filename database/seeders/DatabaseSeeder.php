@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PerSeeder::class);
         $this->call(TypeSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(JobSeeder::class);
     }
 }

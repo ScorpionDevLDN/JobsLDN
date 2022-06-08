@@ -18,9 +18,20 @@ class Company extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'first_name',
         'name',
+        'last_name',
         'email',
+        'confirm_email',
         'password',
+        'read_conditions',
+        'photo',
+        'type',
+        'company_name',
+        'employee_count',
+        'industry',
+        'website_url',
+        'overview',
     ];
 
     protected $guarded = 'company';
@@ -42,4 +53,9 @@ class Company extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
