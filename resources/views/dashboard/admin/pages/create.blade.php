@@ -34,7 +34,7 @@
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-3 col-form-label">Content</label>
                                 <div class="col-lg-9">
-                            <textarea id="content" rows='8' name="content" placeholder="description"
+                            <textarea  id="content" rows='8' name="content" placeholder="content"
                                       class="form-control">{{old("content")}}</textarea>
                                 </div>
 

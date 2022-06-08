@@ -166,7 +166,7 @@
 					<span class="svg-icon menu-icon">
 						<i class="flaticon-multimedia-2 text-primary"></i>
 										</span>
-                    <span class="menu-text">Supports</span>
+                    <span class="menu-text">Contacts</span>
                 </a>
             </li>
             <li class="menu-item" aria-haspopup="true">
