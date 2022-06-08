@@ -29,4 +29,5 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/>
+    @yield('css')
 </head>
