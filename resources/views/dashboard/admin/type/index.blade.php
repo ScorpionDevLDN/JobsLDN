@@ -1,14 +1,12 @@
 @extends('AdminDashboard.index')
-@section('title','Type')
 
+@section('title','Type')
 @section('content')
     <div class="container">
-
-        <!--begin::Card-->
         <div class="card card-custom">
             <div class="card-header flex-wrap py-5">
                 <div class="card-title">
-                    <h3 class="card-label">Type
+                    <h3 class="card-label">Types
                         <div class="text-muted pt-2 font-size-sm"></div>
                     </h3>
                 </div>
@@ -41,43 +39,11 @@
                                     Choose an option:
                                 </li>
                                 <li class="navi-item">
-                                    <a href="#" class="navi-link">
-																<span class="navi-icon">
-																	<i class="la la-print"></i>
-																</span>
-                                        <span class="navi-text">Print</span>
-                                    </a>
-                                </li>
-                                <li class="navi-item">
-                                    <a href="#" class="navi-link">
-																<span class="navi-icon">
-																	<i class="la la-copy"></i>
-																</span>
-                                        <span class="navi-text">Copy</span>
-                                    </a>
-                                </li>
-                                <li class="navi-item">
-                                    <a href="#" class="navi-link">
+                                    <a onclick="HtmlTOExcel()" id="exl" href="#" class="navi-link">
 																<span class="navi-icon">
 																	<i class="la la-file-excel-o"></i>
 																</span>
                                         <span class="navi-text">Excel</span>
-                                    </a>
-                                </li>
-                                <li class="navi-item">
-                                    <a href="#" class="navi-link">
-																<span class="navi-icon">
-																	<i class="la la-file-text-o"></i>
-																</span>
-                                        <span class="navi-text">CSV</span>
-                                    </a>
-                                </li>
-                                <li class="navi-item">
-                                    <a href="#" class="navi-link">
-																<span class="navi-icon">
-																	<i class="la la-file-pdf-o"></i>
-																</span>
-                                        <span class="navi-text">PDF</span>
                                     </a>
                                 </li>
                             </ul>
@@ -101,7 +67,7 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Type</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <i aria-hidden="true" class="ki ki-close"></i>
                                         </button>
@@ -110,9 +76,8 @@
                                         <div class="form-group">
                                             <label>Type Name
                                                 <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control"
-                                                   placeholder="Enter Type name"/>
-                                            <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                                            <input required type="text" name="name" class="form-control"
+                                                   placeholder="Enter type name"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -130,136 +95,206 @@
                 </div>
             </div>
             <div class="card-body">
-                @if($types->count()>0)
-                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
-                        <thead>
+                <table id="tableToExcel" class="table table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">type Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($types as $type)
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Job Type</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($types as $type)
-                            <tr>
-                                <th scope="row">{{$type->id}}</th>
-                                <td>{{$type->name}}</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-1">
-                                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal"
-                                               data-target="#exampleModalEdit">
-                                                <i class="far fa-edit"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-1">
-                                            <a href="#" class="btn font-weight-bold mr-2" data-toggle="modal"
-                                               data-target="#exampleModalDelete">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-3">
-                                            <form action="{{route('admin.update_type_status',$type->id)}}"
-                                                  method="post" id="statusForm{{$type->id}}">
-                                                @csrf
-                                                <input name="id" type="hidden" value="{{$type->id}}">
-                                                <span class="switch switch-outline switch-icon switch-brand">
-																<label>
-                                                                    <input {{isset($type['status']) && $type['status'] == '1' ? 'checked' : ''}}
-                                                                           value="1" type="checkbox" name="status"
-                                                                           onchange="document.getElementById('statusForm{{$type->id}}').submit()">
-																	<span></span>
-																</label>
-															</span>
-                                            </form>
+                            <th scope="row">{{$type->id}}</th>
+                            <td>{{$type->name}}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="pretty p-icon p-toggle p-plain">
+                                            <input name="status" data-id="{{$type->id}}" class="toggle-class"
+                                                   type="checkbox" {{ $type->status ? 'checked' : '' }}>
+                                            <div class="state p-success-o p-on">
+                                                <img src="{{asset('assets/icons/show_blue.svg')}}" alt="">
+                                                {{--<label>Show</label>--}}
+                                            </div>
+                                            <div class="state p-off">
+                                                <img src="{{asset('assets/icons/show-grey.svg')}}" alt="">
+
+                                                {{-- <label>Hide</label>--}}
+                                            </div>
                                         </div>
                                     </div>
-
-                                </td>
-                            </tr>
-                            <!-- Modal-->
-                            <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <form action="{{route('admin.types.update',$type->id)}}" method="post">
-                                        @method('put')
-                                        @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <i aria-hidden="true" class="ki ki-close"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label>Type Name
-                                                        <span class="text-danger">*</span></label>
-                                                    <input required value="{{$type->name}}" type="text" name="name"
-                                                           class="form-control"
-                                                           placeholder="Enter Type name"/>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold"
-                                                        data-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" class="btn btn-primary font-weight-bold">Save
-                                                    changes
-                                                </button>
+                                    <div class="col-2">
+                                        <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
+                                           data-toggle="modal"
+                                           data-target="#exampleModalEdit{{$type->id}}">
+                                            <img src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
+                                           data-target="#exampleModalDelete{{$type->id}}">
+                                            <img src="{{asset('assets/icons/delete.svg')}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalEdit{{$type->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.types.update',$type->id)}}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit type</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>type Name
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$type->name}}" type="text" name="name"
+                                                       class="form-control"
+                                                       placeholder="Enter type name"/>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary font-weight-bold">Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <!--end::Button-->
-                            <!-- Modal-->
-                            <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <form action="{{route('admin.types.destroy',$type->id)}}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Type</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <i aria-hidden="true" class="ki ki-close"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label>Are You sure to delete Type? <span
-                                                                class="text-danger">*</span></label>
-                                                    <input readonly value="{{$type->name}}" type="text" name="name"
-                                                           class="form-control"
-                                                           placeholder="Enter Type name"/>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light-primary font-weight-bold"
-                                                        data-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" class="btn btn-danger font-weight-bold">Save
-                                                    changes
-                                                </button>
+                        </div>
+                        <!--end::Button-->
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalDelete{{$type->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.types.destroy',$type->id)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete type</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Are You sure to delete type? <span
+                                                            class="text-danger">*</span></label>
+                                                <input readonly value="{{$type->name}}" type="text" name="name"
+                                                       class="form-control"
+                                                       placeholder="Enter type name"/>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-danger font-weight-bold">Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <!--end::Button-->
-                        @endforeach
-                        </tbody>
-                    </table>
-                    {{--                    {{ $types->links() }}--}}
-                @else
-                    <div class='alert alert-light text-center'>No data to display</div>
-                @endif
+                        </div>
+                        <!--end::Button-->
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        <!--end::Card-->
     </div>
+    </body>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function () {
+            // document.title = 'types';
+            $('#tableToExcel').DataTable(
+                {
+                    // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                    // dom: 'Bfrtip',
+                    buttons: [
+                        'excel'
+                    ],
+                    "paging": true,
+                    "autoWidth": true,
+                }
+            );
+        });
+    </script>
+    <script>
+        $(function () {
+            // $('.toggle-class').change(function () {
+            $(document).on("click", ".toggle-class", function(){
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var type_id = $(this).data('id');
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/changeTypeStatus',
+                    data: {'status': status, 'id': type_id},
+                    success: function (data) {
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
+    </script>
+    <script>
+        function HtmlTOExcel() {
+            // const table = document.getElementById('tableToExcel');
+            // const html = table.outerHTML;
+            // // window.open('data:application/vnd.ms-excel;base64,' + btoa(html));
+            // window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+
+            var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+            var textRange;
+            var j = 0;
+            tab = document.getElementById('tableToExcel'); // id of table
+
+            for (j = 0; j < tab.rows.length; j++) {
+                tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+                //tab_text=tab_text+"</tr>";
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+            } else                 //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+            return (sa);
+        }
+    </script>
 @endsection

@@ -94,4 +94,11 @@ class CurrencyController extends Controller
         ]);
         return redirect()->route('admin.currencies.index');
     }
+
+    public function changeCurrencyStatus(Request $request){
+        $ca = Currency::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

@@ -98,4 +98,11 @@ class CityController extends Controller
         ]);
         return redirect()->route('admin.cities.index');
     }
+
+    public function updateCityStatus(Request $request){
+        $ca = City::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

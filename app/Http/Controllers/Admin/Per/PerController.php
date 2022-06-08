@@ -94,4 +94,11 @@ class PerController extends Controller
         ]);
         return redirect()->route('admin.pers.index');
     }
+
+    public function changePerStatus(Request $request){
+        $ca = Per::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

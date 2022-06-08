@@ -26,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('changeStatus', [CategoryController::class,'updateCategoryStatus'])->name('changeStatus');
+Route::get('changeCityStatus', [CityController::class,'updateCityStatus'])->name('changeCityStatus');
+Route::get('changeCurrencyStatus', [CurrencyController::class,'changeCurrencyStatus'])->name('changeCurrencyStatus');
+Route::get('changePerStatus', [PerController::class,'changePerStatus'])->name('changePerStatus');
+Route::get('changeTypeStatus', [TypeController::class,'changeTypeStatus'])->name('changeTypeStatus');
 
 
 //admin routes

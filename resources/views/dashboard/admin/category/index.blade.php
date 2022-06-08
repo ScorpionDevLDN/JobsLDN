@@ -128,13 +128,13 @@
                                     <div class="col-2">
                                         <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
                                            data-toggle="modal"
-                                           data-target="#exampleModalEdit">
+                                           data-target="#exampleModalEdit{{$category->id}}">
                                             <img src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-2">
                                         <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
-                                           data-target="#exampleModalDelete">
+                                           data-target="#exampleModalDelete{{$category->id}}">
                                             <img src="{{asset('assets/icons/delete.svg')}}" alt="">
                                         </a>
                                     </div>
@@ -142,7 +142,7 @@
                             </td>
                         </tr>
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalEdit{{$category->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <form action="{{route('admin.categories.update',$category->id)}}" method="post">
@@ -179,7 +179,7 @@
                         </div>
                         <!--end::Button-->
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalDelete{{$category->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <form action="{{route('admin.categories.destroy',$category->id)}}" method="post">
@@ -242,7 +242,8 @@
     </script>
     <script>
         $(function () {
-            $('.toggle-class').change(function () {
+            // $('.toggle-class').change(function () {
+            $(document).on("click", ".toggle-class", function(){
                 var status = $(this).prop('checked') == true ? 1 : 0;
                 var category_id = $(this).data('id');
 

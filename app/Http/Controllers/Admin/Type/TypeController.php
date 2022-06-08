@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 class TypeController extends Controller
 {
 
-    function __construct()
-    {
-        $this->middleware('permission:type-list2|type-create|type-edit|type-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:type-create2', ['only' => ['create','store']]);
-        $this->middleware('permission:type-edit2', ['only' => ['edit','update']]);
-        $this->middleware('permission:type-delete2', ['only' => ['destroy']]);
-    }
+//    function __construct()
+//    {
+//        $this->middleware('permission:type-list2|type-create|type-edit|type-delete', ['only' => ['index','show']]);
+//        $this->middleware('permission:type-create2', ['only' => ['create','store']]);
+//        $this->middleware('permission:type-edit2', ['only' => ['edit','update']]);
+//        $this->middleware('permission:type-delete2', ['only' => ['destroy']]);
+//    }
     /**
      * Display a listing of the resource.
      *
@@ -101,5 +101,12 @@ class TypeController extends Controller
             'status' => !$type->status
         ]);
         return redirect()->route('admin.types.index');
+    }
+
+    public function changeTypeStatus(Request $request){
+        $ca = Type::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }
