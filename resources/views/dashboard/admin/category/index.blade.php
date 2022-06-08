@@ -110,27 +110,33 @@
                             <td>{{$category->name}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2">
+                                        <div class="pretty p-icon p-toggle p-plain">
+                                            <input name="status" data-id="{{$category->id}}" class="toggle-class"
+                                                   type="checkbox" {{ $category->status ? 'checked' : '' }}>
+                                            <div class="state p-success-o p-on">
+                                                <img src="{{asset('assets/icons/show_blue.svg')}}" alt="">
+                                                {{--<label>Show</label>--}}
+                                            </div>
+                                            <div class="state p-off">
+                                                <img src="{{asset('assets/icons/show-grey.svg')}}" alt="">
+
+                                                {{-- <label>Hide</label>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
                                         <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit">
                                             <img src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}" alt="">
                                         </a>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
                                            data-target="#exampleModalDelete">
                                             <img src="{{asset('assets/icons/delete.svg')}}" alt="">
                                         </a>
-                                    </div>
-                                    <div class="col-3">
-                                            <span class="switch switch-primary">
-												<label>
-													<input name="status" data-id="{{$category->id}}"
-                                                           class="toggle-class" type="checkbox" {{ $category->status ? 'checked' : '' }}>
-														<span></span>
-												</label>
-											</span>
                                     </div>
                                 </div>
                             </td>

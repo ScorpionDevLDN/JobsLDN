@@ -29,5 +29,6 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
     @yield('css')
 </head>
