@@ -41,16 +41,16 @@ class DynamicController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:dynamic_pages|max:255',
             'image' => 'required', // بجدول لحالها
-//            'description' =>'required',
+            'description' =>'required',
             'content' => 'required',
             'slug' => 'required',
-//            'keywords' =>'required', // بدها جدول لحالها
+            'keywords' =>'required', // بدها جدول لحالها
             'metadata' => 'required',
         ]);
         DynamicPage::query()->create($validatedData + [
                 'shown_in' => $request->shown_in
             ]);
-        return redirect()->route('admin.pages.index')->with('msg', 'Category Created Successfully');
+        return redirect()->route('admin.pages.index')->with('msg', 'Page Created Successfully');
     }
 
     /**
@@ -72,7 +72,7 @@ class DynamicController extends Controller
      */
     public function edit($id)
     {
-        $dynamicPage = DynamicPage::query()->findOrFail($id)->first();
+        $dynamicPage = DynamicPage::query()->where('id',$id)->first();
         return view('dashboard.admin.pages.edit',compact('dynamicPage'));
     }
 
@@ -85,6 +85,15 @@ class DynamicController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        $validatedData = $request->validate([
+//            'title' => 'required|unique:dynamic_pages|max:255',
+////            'image' => 'required', // بجدول لحالها
+//            'description' =>'required',
+//            'content' => 'required',
+//            'slug' => 'required',
+//            'keywords' =>'required', // بدها جدول لحالها
+//            'metadata' => 'required',
+//        ]);
         DynamicPage::query()->findOrFail($id)->update($request->all());
         return redirect()->route('admin.pages.index');
     }

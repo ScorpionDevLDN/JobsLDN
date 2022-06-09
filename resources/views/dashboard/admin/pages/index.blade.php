@@ -61,7 +61,9 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">title</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Shown In</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -70,6 +72,8 @@
                         <tr>
                             <th scope="row">{{$page->id}}</th>
                             <td>{{$page->title}}</td>
+                            <td>{{$page->description}}  </td>
+                            <td>{{$page->shown}}  </td>
                             <td>
                                 <div class="row">
                                     <div class="col-2">
