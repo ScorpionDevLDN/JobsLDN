@@ -39,33 +39,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/check', [AdminController::class, 'check'])->name('check');
 
     Route::middleware('auth:admins')->group(function () {
-        Route::resource('roles', RoleController::class);
-        Route::resource('users', UserController::class);
-//        Route::view('/home', 'dashboard.admin.home')->name('home')->middleware('admin');
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
         Route::resource('categories', CategoryController::class);
 
-        Route::post('update_city_status/{city}', [CityController::class,'updateCategoryStatus'])->name('update_city_status');
         Route::resource('cities', CityController::class);
 
-        Route::post('update_per_status/{per}', [PerController::class,'updateCategoryStatus'])->name('update_per_status');
         Route::resource('pers', PerController::class);
 
-        Route::post('update_currency_status/{currency}', [CurrencyController::class,'updateCategoryStatus'])->name('update_currency_status');
         Route::resource('currencies', CurrencyController::class);
 
-        Route::post('update_type_status/{type}', [TypeController::class,'updateCategoryStatus'])->name('update_type_status');
         Route::resource('types', TypeController::class);
 
         Route::resource('pages', DynamicController::class);
         Route::post('update_page_status/{page}', [DynamicController::class,'updateCategoryStatus'])->name('update_page_status');
+
         Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 
         Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies');
         Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers');
+
+        Route::resource('roles', RoleController::class);
+        Route::resource('admins', UserController::class);
     });
 
 });

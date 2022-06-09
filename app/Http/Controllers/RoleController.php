@@ -49,16 +49,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+//            'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
+
+        $role = Role::query()->create(['name' => $request->input('name')]);
+
         //$role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('admin.roles.index')
-            ->with('success','Role created successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role created successfully');
     }
     /**
      * Display the specified resource.
@@ -102,19 +103,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
+        $validatedData = $request->validate([
+            'name' => 'required|unique:roles,name',
+//            'permission' => 'required',
         ]);
 
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
 
-        $role->syncPermissions($request->input('permission'));
+//        $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('roles.index')
-            ->with('success','Role updated successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -125,7 +125,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index')
-            ->with('success','Role deleted successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role deleted successfully');
     }
 }

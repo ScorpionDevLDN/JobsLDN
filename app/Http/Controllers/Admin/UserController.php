@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Company;
 use App\Models\JobSeeker;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -26,11 +27,10 @@ class UserController extends Controller
         return view('dashboard.admin.users.jobSeekers', compact('job_seekers'));
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $admins = Admin::query()->get();
+        return view('dashboard.admin.users.admins', compact('admins'));
     }
 
     /**
@@ -44,29 +44,21 @@ class UserController extends Controller
         return view('users.create',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'email' => 'required|email|unique:admins,email',
+            'password' => 'required',
+//            'roles' => 'required'
         ]);
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        Admin::query()->create($validatedData);
+//        $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
-            ->with('success','User created successfully');
+        return redirect()->route('admin.admins.index')->with('success','User created successfully');
     }
 
     /**
