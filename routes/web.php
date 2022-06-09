@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\City\CityController;
 use App\Http\Controllers\Admin\Currency\CurrencyController;
 use App\Http\Controllers\Admin\DynamicController;
+use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\PaymentConteroller;
 use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
@@ -38,7 +41,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/login', 'dashboard.admin.login')->name('login');
     Route::post('/check', [AdminController::class, 'check'])->name('check');
 
-    Route::middleware('auth:admins')->group(function () {
+    Route::middleware('auth:admins')->group(callback: function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
@@ -60,6 +63,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies')->middleware(['permission:user-list']);
         Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
+        Route::resource('get-jobs', JobController::class);
+        Route::resource('newsletter', NewsletterController::class);
+        Route::resource('get-payments', PaymentConteroller::class);
 
         Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);

@@ -4,7 +4,7 @@
          data-menu-dropdown-timeout="500">
         <!--begin::Menu Nav-->
         <ul class="menu-nav">
-            <li class="menu-item menu-item-active" aria-haspopup="true">
+            <li class="menu-item {{ (request()->is('admin/home')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.home')}}" class="menu-link">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -30,143 +30,176 @@
             'type-list',
             'role-list',
             'user-list')
-            <li class="menu-section">
-                <h4 class="menu-text">Job Settings</h4>
-                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-            </li>
+                <li class="menu-section">
+                    <h4 class="menu-text">Job Settings</h4>
+                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                </li>
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
             										<span class="svg-icon menu-icon">
             											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg-->
                                                         <i class="fas fa-viruses text-inverse-primary"></i>
                                                         <!--end::Svg Icon-->
             										</span>
-                    <span class="menu-text">Job Settings</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
-                    <ul class="menu-subnav">
-                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                        <span class="menu-text">Job Settings</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
             				<span class="menu-link">
             					<span class="menu-text">Pages</span>
             				</span>
-                        </li>
-                        @can('category-list')
-                            <li class="menu-item" aria-haspopup="true">
-                                <a href="{{route('admin.categories.index')}}" class="menu-link">
+                            </li>
+                            @can('category-list')
+                                <li class="menu-item {{ (request()->is('admin/categories')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{route('admin.categories.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="fas fa-cubes text-info"></i>
 										</span>
-                                    <span class="menu-text">Categories</span>
-                                </a>
-                            </li>
-                        @endcan
+                                        <span class="menu-text">Categories</span>
+                                    </a>
+                                </li>
+                            @endcan
 
-                        @can('city-list')
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.cities.index')}}" class="menu-link">
+                            @can('city-list')
+                                <li class="menu-item {{ (request()->is('admin/cities')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{route('admin.cities.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<img src="{{asset('assets/icons/location.svg')}}" alt="">
 										</span>
-                                <span class="menu-text">Cities</span>
-                            </a>
-                        </li>
-                        @endcan
+                                        <span class="menu-text">Cities</span>
+                                    </a>
+                                </li>
+                            @endcan
 
-                        @can('per-list')
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.pers.index')}}" class="menu-link">
+                            @can('per-list')
+                                <li class="menu-item {{ (request()->is('admin/pers')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{route('admin.pers.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<img src="{{asset('assets/icons/wallet.svg')}}" alt="">
 										</span>
-                                <span class="menu-text">Pers</span>
-                            </a>
-                        </li>
-                        @endcan
+                                        <span class="menu-text">Pers</span>
+                                    </a>
+                                </li>
+                            @endcan
 
-                        @can('currency-list')
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.currencies.index')}}" class="menu-link">
+                            @can('currency-list')
+                                <li class="menu-item {{ (request()->is('admin/currencies')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{route('admin.currencies.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="far fa-money-bill-alt text-success mr-5"></i>
                     <span class="menu-text">Currencies</span>
                     </span></a>
-                        </li>
-                        @endcan
+                                </li>
+                            @endcan
 
-                        @can('type-list')
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.types.index')}}" class="menu-link">
-                                <img class="mr-5" src="{{asset('assets/icons/full_time.svg')}}" alt="">
-                                <span class="menu-text">Types</span>
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
-                </div>
-            </li>
+                            @can('type-list')
+                                <li class="menu-item {{ (request()->is('admin/types')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{route('admin.types.index')}}" class="menu-link">
+                                        <img class="mr-5" src="{{asset('assets/icons/full_time.svg')}}" alt="">
+                                        <span class="menu-text">Types</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
+                </li>
             @endcanany
 
             {{--Users--}}
             @can('user-list')
-            <li class="menu-section">
-                <h4 class="menu-text">Users</h4>
-                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-            </li>
+                <li class="menu-section">
+                    <h4 class="menu-text">Users</h4>
+                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+                </li>
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" class="menu-link menu-toggle">
+                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
             										<span class="svg-icon menu-icon">
             											<i class="fas fa-users text-inverse-primary"></i>
             										</span>
-                    <span class="menu-text">Users</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
-                    <ul class="menu-subnav">
-                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                        <span class="menu-text">Users</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
             				<span class="menu-link">
             					<span class="menu-text">Users</span>
             				</span>
-                        </li>
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.admins.index')}}" class="menu-link">
+                            </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{route('admin.admins.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="flaticon2-avatar text-inverse-primary"></i>
 										</span>
-                                <span class="menu-text">Admins</span>
-                            </a>
-                        </li>
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.get_companies')}}" class="menu-link">
+                                    <span class="menu-text">Admins</span>
+                                </a>
+                            </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{route('admin.get_companies')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="fas fa-user-tie text-success"></i>
 										</span>
-                                <span class="menu-text">Companies</span>
-                            </a>
-                        </li>
+                                    <span class="menu-text">Companies</span>
+                                </a>
+                            </li>
 
-                        <li class="menu-item" aria-haspopup="true">
-                            <a href="{{route('admin.get_job_seekers')}}" class="menu-link">
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{route('admin.get_job_seekers')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="fa fa-user-cog text-primary"></i>
 										</span>
-                                <span class="menu-text">Job Seekers</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+                                    <span class="menu-text">Job Seekers</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             @endcan
 
+            {{--      Jobs      --}}
+            <li class="menu-section">
+                <h4 class="menu-text">Jobs</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+            <li class="menu-item {{ (request()->is('admin/get-jobs')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{route('admin.get-jobs.index')}}" class="menu-link">
+					<span class="svg-icon menu-icon">
+						<i class="far fa-check-square text-inverse-primary"></i>
+										</span>
+                    <span class="menu-text">jobs</span>
+                </a>
+            </li>
+
+            <li class="menu-item {{ (request()->is('admin/newsletter')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{route('admin.newsletter.index')}}" class="menu-link">
+					<span class="svg-icon menu-icon">
+						<i class="far fa-check-square text-inverse-primary"></i>
+										</span>
+                    <span class="menu-text">Newsletter</span>
+                </a>
+            </li>
+
+            <li class="menu-item {{ (request()->is('admin/get-payments')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{route('admin.get-payments.index')}}" class="menu-link">
+					<span class="svg-icon menu-icon">
+						<i class="far fa-check-square text-inverse-primary"></i>
+										</span>
+                    <span class="menu-text">Payments</span>
+                </a>
+            </li>
+
+            {{--layout--}}
             <li class="menu-section">
                 <h4 class="menu-text">Layout</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ (request()->is('admin/roles')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.roles.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="far fa-check-square text-inverse-primary"></i>
@@ -174,7 +207,7 @@
                     <span class="menu-text">Roles</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ (request()->is('admin/pages')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.pages.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="flaticon2-sheet text-inverse-primary"></i>
@@ -182,7 +215,7 @@
                     <span class="menu-text">Dynamic Pages</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ (request()->is('admin/contacts')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.contacts')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="flaticon-multimedia-2 text-inverse-primary"></i>
@@ -190,7 +223,7 @@
                     <span class="menu-text">Contacts</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ (request()->is('admin/settings')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.settings.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
 						<i class="fas fa-wrench text-inverse-primary"></i>

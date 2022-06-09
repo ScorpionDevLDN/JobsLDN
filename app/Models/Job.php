@@ -42,4 +42,8 @@ class Job extends Model
     public function per(){
         return $this->belongsTo(Per::class);
     }
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }
