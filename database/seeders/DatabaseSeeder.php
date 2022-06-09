@@ -29,13 +29,21 @@ class DatabaseSeeder extends Seeder
             'password' => 'nishan',
 //            'is_super_admin' => 1
         ]);
+        $user2 = Admin::query()->create([
+            'name' => 'Anas Admin',
+            'email' => 'anas@admin.com',
+            'password' => 'nishan',
+//            'is_super_admin' => 1
+        ]);
         $role = Role::create(['name' => 'Admin']);
+        $role2 = Role::create(['name' => 'Editor']);
 
         $permissions = Permission::pluck('id','name')->all();
 
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+        $user2->assignRole([$role2->id]);
 
         $this->call(CategorySeeder::class);
         $this->call(CitySeeder::class);

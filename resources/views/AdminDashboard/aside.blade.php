@@ -23,6 +23,13 @@
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
+
+            @canany('category-list','city-list',
+            'per-list',
+            'currency-list',
+            'type-list',
+            'role-list',
+            'user-list')
             <li class="menu-section">
                 <h4 class="menu-text">Job Settings</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -57,6 +64,7 @@
                             </li>
                         @endcan
 
+                        @can('city-list')
                         <li class="menu-item" aria-haspopup="true">
                             <a href="{{route('admin.cities.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
@@ -65,7 +73,9 @@
                                 <span class="menu-text">Cities</span>
                             </a>
                         </li>
+                        @endcan
 
+                        @can('per-list')
                         <li class="menu-item" aria-haspopup="true">
                             <a href="{{route('admin.pers.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
@@ -74,7 +84,9 @@
                                 <span class="menu-text">Pers</span>
                             </a>
                         </li>
+                        @endcan
 
+                        @can('currency-list')
                         <li class="menu-item" aria-haspopup="true">
                             <a href="{{route('admin.currencies.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
@@ -82,19 +94,23 @@
                     <span class="menu-text">Currencies</span>
                     </span></a>
                         </li>
+                        @endcan
 
+                        @can('type-list')
                         <li class="menu-item" aria-haspopup="true">
                             <a href="{{route('admin.types.index')}}" class="menu-link">
                                 <img class="mr-5" src="{{asset('assets/icons/full_time.svg')}}" alt="">
                                 <span class="menu-text">Types</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </div>
             </li>
-
+            @endcanany
 
             {{--Users--}}
+            @can('user-list')
             <li class="menu-section">
                 <h4 class="menu-text">Users</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -144,7 +160,7 @@
                     </ul>
                 </div>
             </li>
-
+            @endcan
 
             <li class="menu-section">
                 <h4 class="menu-text">Layout</h4>

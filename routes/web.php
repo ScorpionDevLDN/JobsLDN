@@ -42,15 +42,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
-        Route::resource('categories', CategoryController::class);
+        Route::resource('categories', CategoryController::class)->middleware(['permission:category-list']);
 
-        Route::resource('cities', CityController::class);
+        Route::resource('cities', CityController::class)->middleware(['permission:city-list']);
 
-        Route::resource('pers', PerController::class);
+        Route::resource('pers', PerController::class)->middleware(['permission:per-list']);
 
-        Route::resource('currencies', CurrencyController::class);
+        Route::resource('currencies', CurrencyController::class)->middleware(['permission:currency-list']);
 
-        Route::resource('types', TypeController::class);
+        Route::resource('types', TypeController::class)->middleware(['permission:type-list']);
 
         Route::resource('pages', DynamicController::class);
         Route::post('update_page_status/{page}', [DynamicController::class,'updateCategoryStatus'])->name('update_page_status');
@@ -58,11 +58,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 
-        Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies');
-        Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers');
+        Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies')->middleware(['permission:user-list']);
+        Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
 
-        Route::resource('roles', RoleController::class);
-        Route::resource('admins', UserController::class);
+        Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
+        Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
     });
 
 });
