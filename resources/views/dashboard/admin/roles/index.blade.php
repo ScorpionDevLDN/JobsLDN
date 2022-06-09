@@ -78,6 +78,15 @@
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
                                                    placeholder="Enter Role name"/>
+                                            <div class="form-group">
+                                                <strong>Permission:</strong>
+                                                <br/>
+                                                @foreach($permissions as $value)
+                                                    <label><input name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
+                                                    <br/>
+                                                @endforeach
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="modal-footer">

@@ -51,13 +51,16 @@ class RoleController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:roles,name',
-//            'permission' => 'required',
+            'permission' => 'required',
         ]);
 
 
-        $role = Role::query()->create(['name' => $request->input('name')]);
+        $role = Role::query()->create([
+            'name' => $request->input('name'),
+            'guard_name' => 'web',
+            ]);
 
-        //$role->syncPermissions($request->input('permission'));
+        $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('admin.roles.index')->with('success','Role created successfully');
     }

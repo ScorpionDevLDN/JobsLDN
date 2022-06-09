@@ -29,8 +29,9 @@ class UserController extends Controller
 
     public function index()
     {
+        $roles = Role::all();
         $admins = Admin::query()->get();
-        return view('dashboard.admin.users.admins', compact('admins'));
+        return view('dashboard.admin.users.admins', compact('admins','roles'));
     }
 
     /**
@@ -51,12 +52,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required',
-//            'roles' => 'required'
+            'roles' => 'required'
         ]);
 
 
-        Admin::query()->create($validatedData);
-//        $user->assignRole($request->input('roles'));
+        $user = Admin::query()->create($validatedData);
+        $user->assignRole($request->input('roles'));
 
         return redirect()->route('admin.admins.index')->with('success','User created successfully');
     }

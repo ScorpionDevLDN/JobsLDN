@@ -93,6 +93,14 @@
                                             <input required type="text" name="password" class="form-control"
                                                    placeholder="Enter Category name"/>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleSelectd">Default Select</label>
+                                            <select name="roles" class="form-control" id="exampleSelectd">
+                                                @foreach($roles as $role)
+                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light-primary font-weight-bold"
@@ -114,6 +122,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Admin Name</th>
+                        <th scope="col">Admin Role</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -122,6 +131,13 @@
                         <tr>
                             <th scope="row">{{$admin->id}}</th>
                             <td>{{$admin->name}}</td>
+                            <td>
+                                @if(!empty($admin->getRoleNames()))
+                                    @foreach($admin->getRoleNames() as $v)
+                                        <label class="badge badge-primary">{{ $v }}</label>
+                                    @endforeach
+                                @endif
+                            </td>
                             <td>
                                 <div class="row">
                                     <div class="col-2">
