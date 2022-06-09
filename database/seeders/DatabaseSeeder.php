@@ -20,23 +20,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PermissionTableSeeder::class);
-
-        // \App\Models\User::factory(10)->create();
+        $role = Role::create(['name' => 'Admin']);
+        $role2 = Role::create(['name' => 'Editor']);
 
         $user = Admin::query()->create([
             'name' => 'Nishan Admin',
             'email' => 'nishan@admin.com',
             'password' => 'nishan',
-//            'is_super_admin' => 1
+            'is_super_admin' => 1
         ]);
         $user2 = Admin::query()->create([
             'name' => 'Anas Admin',
             'email' => 'anas@admin.com',
             'password' => 'nishan',
-//            'is_super_admin' => 1
         ]);
-        $role = Role::create(['name' => 'Admin']);
-        $role2 = Role::create(['name' => 'Editor']);
 
         $permissions = Permission::pluck('id','name')->all();
 
@@ -45,6 +42,7 @@ class DatabaseSeeder extends Seeder
         $user->assignRole([$role->id]);
         $user2->assignRole([$role2->id]);
 
+        \App\Models\Job::factory(50)->create();
         $this->call(CategorySeeder::class);
         $this->call(CitySeeder::class);
         $this->call(CurrencySeeder::class);

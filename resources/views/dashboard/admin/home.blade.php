@@ -116,47 +116,47 @@
                         <div class="card-body">
                             <div class="row"><h5>Shortcut</h5></div>
                             <hr>
-                            <div class="row justify-content-between mb-10 text-center">
-                                <div class="col-4 pb-10">
+                            <div class="row justify-content-between mb-5 text-center">
+                                <div class="col-4 pb-5">
                                     <a href="{{route('admin.home')}}">
                                         <i class="fas fa-home text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Home</h6>
+                                        <small class="text-dark">Home</small>
                                     </a>
                                 </div>
                                 <div class="col-4 pb-10">
                                     <a href="{{route('admin.home')}}">
                                         <i class="fas fa-wrench text-dark icon-3x"></i>
-                                        <h6 class="text-dark"><span>Setting</span></h6>
+                                        <small class="text-dark"><span>Setting</span></small>
                                     </a>
                                 </div>
                                 <div class="col-4 pb-10">
                                     <a href="{{route('admin.home')}}">
                                         <i class="far fa-bell text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Notification</h6>
+                                        <small class="text-dark">Notification</small>
                                     </a>
                                 </div>
                                 <div class="col-4 pb-10">
                                     <a href="{{route('admin.home')}}">
                                         <i class="fas fa-user-edit text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Edit Profile</h6>
+                                        <small class="text-dark">Edit Profile</small>
                                     </a>
                                 </div>
                                 <div class="col-4 pb-10">
                                     <a href="{{route('admin.home')}}">
                                         <i class="flaticon-network text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Jobs</h6>
+                                        <small class="text-dark">Jobs</small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-10">
+                                <div class="col-4">
                                     <a href="{{route('admin.home')}}">
                                         <i class="flaticon2-group text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Company</h6>
+                                        <small class="text-dark">Company</small>
                                     </a>
                                 </div>
                                 <div class="col-4 pb-5">
                                     <a href="{{route('admin.home')}}">
                                         <i class="flaticon-businesswoman text-dark icon-3x"></i>
-                                        <h6 class="text-dark">Job Seekers</h6>
+                                        <small class="text-dark">Job Seekers</small>
                                     </a>
                                 </div>
                             </div>
@@ -180,29 +180,6 @@
 {{--                            <span class="d-block text-dark-50 mt-2 font-size-sm">Month</span>--}}
                         </h3>
                     </div>
-                    <!--end::Title-->
-                    <!--begin::Toolbar-->
-{{--                                    <div class="card-toolbar">--}}
-{{--                                        <ul class="nav nav-pills nav-pills-sm nav-dark-75" role="tablist">--}}
-{{--                                            <li class="nav-item">--}}
-{{--                                                <a id="myBtn" class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_1">--}}
-{{--                                                    <span class="nav-text font-size-sm">Month</span>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="nav-item">--}}
-{{--                                                <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_2">--}}
-{{--                                                    <span class="nav-text font-size-sm">Week</span>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="nav-item">--}}
-{{--                                                <a class="nav-link py-2 px-4 active" data-toggle="tab"--}}
-{{--                                                   href="#kt_charts_widget_2_chart_tab_3">--}}
-{{--                                                    <span class="nav-text font-size-sm">Day</span>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-                <!--end::Toolbar-->
                 </div>
                 <!--end::Header-->
                 <!--begin::Body-->
@@ -233,7 +210,7 @@
                 var options = {
                     series: [
                         {
-                            name: 'Net Profit',
+                            name: 'Jobs Count',
                             data: data
                         },
                         // {
@@ -267,7 +244,7 @@
                         colors: ['transparent']
                     },
                     xaxis: {
-                        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                        categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Aug','Nov','Dec'],
                         axisBorder: {
                             show: false,
                         },
