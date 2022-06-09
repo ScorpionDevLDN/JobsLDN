@@ -1,6 +1,8 @@
 @extends('AdminDashboard.index')
-
-@section('title' ,'Setting')
+@section('breadcrumb')
+    <a href="#" class="btn">Settings</a>
+@endsection
+@section('title' ,'Settings')
 @section('js')
     <script type="text/javascript">
         $('.settings-tab-opener').on('click', function () {

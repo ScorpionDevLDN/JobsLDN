@@ -1,6 +1,9 @@
 @extends('AdminDashboard.index')
 
 @section('title','Admin Home')
+@section('breadcrumb')
+    <a href="#" class="btn">Admin DashBoard - {{auth('admins')->user()->name}}</a>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-xl-4">

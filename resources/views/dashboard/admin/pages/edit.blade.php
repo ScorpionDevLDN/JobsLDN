@@ -1,6 +1,9 @@
 @extends('AdminDashboard.index')
 @section('title','Edit Page')
-
+@section('breadcrumb')
+    <a href="{{route('admin.pages.index')}}" class="btn">Pages</a>
+    <a href="#" class="btn">Edit Page: {{$dynamicPage->title}}</a>
+@endsection
 
 @section('content')
     <div class="container">

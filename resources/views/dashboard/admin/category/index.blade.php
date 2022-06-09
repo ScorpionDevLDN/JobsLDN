@@ -1,5 +1,8 @@
 @extends('AdminDashboard.index')
-
+@section('breadcrumb')
+    <a href="#" class="btn">Job Settings</a>
+    <a href="#" class="btn">Categories</a>
+@endsection
 @section('title','Category')
 @section('content')
     <div class="container">
@@ -226,7 +229,7 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            document.title = 'Categories';
+            // document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',

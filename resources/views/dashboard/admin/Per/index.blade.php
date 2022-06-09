@@ -1,5 +1,8 @@
 @extends('AdminDashboard.index')
-
+@section('breadcrumb')
+    <a href="#" class="btn">Job Settings</a>
+    <a href="#" class="btn">Pers</a>
+@endsection
 @section('title','Per')
 @section('content')
     <div class="container">
