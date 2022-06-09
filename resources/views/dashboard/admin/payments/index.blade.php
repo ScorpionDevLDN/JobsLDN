@@ -57,10 +57,6 @@
                     <!--end::Dropdown-->
                     <!--begin::Button-->
 
-                    <!-- Button trigger modal-->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Add new
-                    </button>
 
                     <!-- Modal-->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
