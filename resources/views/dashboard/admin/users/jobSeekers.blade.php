@@ -103,6 +103,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">JobSeeker Name</th>
+                        <th scope="col">JobSeeker Email</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -111,6 +112,7 @@
                         <tr>
                             <th scope="row">{{$category->id}}</th>
                             <td>{{$category->name}}</td>
+                            <td>{{$category->email}}</td>
                             <td>
                                 <div class="row">
                                     <div class="col-2">
@@ -128,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    {{--<div class="col-2">
                                         <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$category->id}}">
@@ -140,7 +142,7 @@
                                            data-target="#exampleModalDelete{{$category->id}}">
                                             <img src="{{asset('assets/icons/delete.svg')}}" alt="">
                                         </a>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </td>
                         </tr>

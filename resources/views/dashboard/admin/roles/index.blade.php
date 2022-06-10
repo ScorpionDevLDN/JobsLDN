@@ -80,15 +80,14 @@
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
                                                    placeholder="Enter Role name"/>
-                                            <div class="form-group">
-                                                <strong>Permission:</strong>
+                                        </div>
+                                        <div class="form-group">
+                                            <strong>Permission:</strong>
+                                            <br/>
+                                            @foreach($permissions as $value)
+                                                <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
                                                 <br/>
-                                                @foreach($permissions as $value)
-                                                    <label><input name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
-                                                    <br/>
-                                                @endforeach
-                                            </div>
-
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -174,6 +173,15 @@
                                                 <input required value="{{$role->name}}" type="text" name="name"
                                                        class="form-control"
                                                        placeholder="Enter role name"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <strong>Permission:</strong>
+                                                <br/>
+                                                @foreach($permissions as $value)
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
+                                                    <br/>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="modal-footer">

@@ -80,24 +80,24 @@
                                             <label>Admin Name
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
-                                                   placeholder="Enter Category name"/>
+                                                   placeholder="Enter admin name"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Admin Email
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="email" class="form-control"
-                                                   placeholder="Enter Category name"/>
+                                                   placeholder="Enter admin name"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Admin Password
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="password" class="form-control"
-                                                   placeholder="Enter Category name"/>
+                                                   placeholder="Enter admin name"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleSelectd">Default Select</label>
+                                            <label for="exampleSelectd">Role</label>
                                             <select name="roles" class="form-control" id="exampleSelectd">
                                                 @foreach($roles as $role)
                                                 <option value="{{$role->id}}">{{$role->name}}</option>
@@ -178,12 +178,12 @@
                         <div class="modal fade" id="exampleModalEdit{{$admin->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.update',$admin->id)}}" method="post">
+                                <form action="{{route('admin.admins.update',$admin->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit admin</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -191,11 +191,27 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Category Name
+                                                <label>Admin Name
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$admin->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                       placeholder="Enter admin name"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Admin Email
+                                                    <span class="text-danger">*</span></label>
+                                                <input value="{{$admin->email}}" required type="text" name="email" class="form-control"
+                                                       placeholder="Enter admin email"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="exampleSelectd">Role</label>
+                                                <select name="roles" class="form-control" id="exampleSelectd">
+                                                    @foreach($roles as $role)
+                                                        <option {{ $role->id == $admin->roles->first()->id ? 'selected' : '' }} value="{{$role->id}}">{{$role->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -215,12 +231,12 @@
                         <div class="modal fade" id="exampleModalDelete{{$admin->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.destroy',$admin->id)}}" method="post">
+                                <form action="{{route('admin.admins.destroy',$admin->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Admin</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -228,11 +244,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Are You sure to delete category? <span
+                                                <label>Are You sure to delete Admin? <span
                                                             class="text-danger">*</span></label>
                                                 <input readonly value="{{$admin->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                       placeholder="Enter admin name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -277,13 +293,13 @@
             // $('.toggle-class').change(function () {
             $(document).on("click", ".toggle-class", function(){
                 var status = $(this).prop('checked') == true ? 1 : 0;
-                var category_id = $(this).data('id');
+                var admin_id = $(this).data('id');
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
                     url: '/changeStatus',
-                    data: {'status': status, 'id': category_id},
+                    data: {'status': status, 'id': admin_id},
                     success: function (data) {
                         console.log(data.success)
                     }

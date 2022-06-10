@@ -102,21 +102,27 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Company Manager</th>
                         <th scope="col">Company Name</th>
+                        <th scope="col">Company Industry</th>
+                        <th scope="col">Company Email</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($companies as $category)
+                    @foreach($companies as $company)
                         <tr>
-                            <th scope="row">{{$category->id}}</th>
-                            <td>{{$category->name}}</td>
+                            <th scope="row">{{$company->id}}</th>
+                            <td>{{$company->name}}</td>
+                            <td>{{$company->company_name}}</td>
+                            <td>{{$company->industry}}</td>
+                            <td>{{$company->email}}</td>
                             <td>
                                 <div class="row">
                                     <div class="col-2">
                                         <div class="pretty p-icon p-toggle p-plain">
-                                            <input name="status" data-id="{{$category->id}}" class="toggle-class"
-                                                   type="checkbox" {{ $category->status ? 'checked' : '' }}>
+                                            <input name="status" data-id="{{$company->id}}" class="toggle-class"
+                                                   type="checkbox" {{ $company->status ? 'checked' : '' }}>
                                             <div class="state p-success-o p-on">
                                                 <img src="{{asset('assets/icons/show_blue.svg')}}" alt="">
                                                 {{--<label>Show</label>--}}
@@ -128,27 +134,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+{{--                                    <div class="col-2">
                                         <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
                                            data-toggle="modal"
-                                           data-target="#exampleModalEdit{{$category->id}}">
+                                           data-target="#exampleModalEdit{{$company->id}}">
                                             <img src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-2">
                                         <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
-                                           data-target="#exampleModalDelete{{$category->id}}">
+                                           data-target="#exampleModalDelete{{$company->id}}">
                                             <img src="{{asset('assets/icons/delete.svg')}}" alt="">
                                         </a>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </td>
                         </tr>
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalEdit{{$category->id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalEdit{{$company->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.update',$category->id)}}" method="post">
+                                <form action="{{route('admin.categories.update',$company->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
@@ -163,7 +169,7 @@
                                             <div class="form-group">
                                                 <label>Category Name
                                                     <span class="text-danger">*</span></label>
-                                                <input required value="{{$category->name}}" type="text" name="name"
+                                                <input required value="{{$company->name}}" type="text" name="name"
                                                        class="form-control"
                                                        placeholder="Enter category name"/>
                                             </div>
@@ -182,10 +188,10 @@
                         </div>
                         <!--end::Button-->
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalDelete{{$category->id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalDelete{{$company->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.destroy',$category->id)}}" method="post">
+                                <form action="{{route('admin.categories.destroy',$company->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <div class="modal-content">
@@ -200,7 +206,7 @@
                                             <div class="form-group">
                                                 <label>Are You sure to delete category? <span
                                                             class="text-danger">*</span></label>
-                                                <input readonly value="{{$category->name}}" type="text" name="name"
+                                                <input readonly value="{{$company->name}}" type="text" name="name"
                                                        class="form-control"
                                                        placeholder="Enter category name"/>
                                             </div>
