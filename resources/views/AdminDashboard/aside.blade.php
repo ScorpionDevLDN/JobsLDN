@@ -39,7 +39,7 @@
                     <a href="javascript:;" class="menu-link menu-toggle">
             										<span class="svg-icon menu-icon">
             											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg-->
-                                                        <i class="fas fa-viruses text-inverse-primary"></i>
+                                                        <i class="fas fa-shopping-bag text-inverse-primary"></i>
                                                         <!--end::Svg Icon-->
             										</span>
                         <span class="menu-text">Job Settings</span>
@@ -143,7 +143,7 @@
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{route('admin.get_companies')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="fas fa-user-tie text-success"></i>
+						<i class="flaticon2-group text-inverse-dark"></i>
 										</span>
                                     <span class="menu-text">Companies</span>
                                 </a>
@@ -152,7 +152,7 @@
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{route('admin.get_job_seekers')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="fa fa-user-cog text-primary"></i>
+						<i class="fa fa-user-cog text-inverse-dark"></i>
 										</span>
                                     <span class="menu-text">Job Seekers</span>
                                 </a>
@@ -170,7 +170,7 @@
             <li class="menu-item {{ (request()->is('admin/get-jobs')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.get-jobs.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="far fa-check-square text-inverse-primary"></i>
+						<i class="flaticon-list-2 text-inverse-primary"></i>
 										</span>
                     <span class="menu-text">jobs</span>
                 </a>
@@ -179,7 +179,7 @@
             <li class="menu-item {{ (request()->is('admin/newsletter')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.newsletter.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="far fa-check-square text-inverse-primary"></i>
+						<i class="fas fa-mail-bulk text-inverse-primary"></i>
 										</span>
                     <span class="menu-text">Newsletter</span>
                 </a>
@@ -188,7 +188,7 @@
             <li class="menu-item {{ (request()->is('admin/get-payments')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.get-payments.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="far fa-check-square text-inverse-primary"></i>
+						<i class="fas fa-dollar-sign text-inverse-primary"></i>
 										</span>
                     <span class="menu-text">Payments</span>
                 </a>
@@ -202,7 +202,7 @@
             <li class="menu-item {{ (request()->is('admin/roles')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{route('admin.roles.index')}}" class="menu-link">
 					<span class="svg-icon menu-icon">
-						<i class="far fa-check-square text-inverse-primary"></i>
+						<i class="fas fa-users-slash text-inverse-primary"></i>
 										</span>
                     <span class="menu-text">Roles</span>
                 </a>

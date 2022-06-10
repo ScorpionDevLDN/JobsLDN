@@ -286,6 +286,10 @@
                     url: '/changeCurrencyStatus',
                     data: {'status': status, 'id': currency_id},
                     success: function (data) {
+                        toastr.options.closeButton = true;
+                        toastr.options.closeMethod = 'fadeOut';
+                        toastr.options.closeDuration = 100;
+                        toastr.info(data.success);
                         console.log(data.success)
                     }
                 });

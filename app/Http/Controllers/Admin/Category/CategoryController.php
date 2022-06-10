@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name
         ]);
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('msg', 'Category Updated Successfully');
     }
 
     /**
@@ -98,7 +98,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('msg', 'Category Deleted Successfully');
     }
 
     public function updateCategoryStatus(Request $request){

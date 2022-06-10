@@ -18,4 +18,5 @@
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/crud/datatables/advanced/column-rendering.js')}}"></script>
 <script src="{{asset('assets/js/pages/crud/forms/editors/summernote.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('js')

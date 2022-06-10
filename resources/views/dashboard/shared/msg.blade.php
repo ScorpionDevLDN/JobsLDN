@@ -1,64 +1,34 @@
-{{--@if ($errors->any())--}}
-{{--    <div class="alert alert-danger alert-dismissible fade show">--}}
-{{--        <ul>--}}
-{{--            @foreach ($errors->all() as $error)--}}
-{{--                <li>{{ $error }}</li>--}}
-{{--            @endforeach--}}
-{{--        </ul>--}}
-{{--        <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-{{--            <span aria-hidden="true">&times;</span>--}}
-{{--        </button>--}}
-{{--    </div>--}}
-{{--@endif--}}
-<script>
-    @if(Session::has('msg'))
+<?php
+$msg = \Session::get("msg");
+$msgClass = 'alert-primary';
+?>
+@if($msg)
+    <?php
 
-        toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-bottom-center",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-
-   //toastr.success("New order has been placed!");
-            toastr.success("{{ session('msg') }}");
-    @endif
-
-    @if(Session::has('error'))
-    toastr.options =
-    {
-        "closeButton" : true,
-        "progressBar" : true
+    //اول حرفين من الرسالة وتحويلهم الى حروف صغيرة
+    $first2Letters = strtolower(substr($msg,0,2));
+    if($first2Letters == 's:'){
+        $msgClass = 'alert-success';
+        $msg = substr($msg,2);//قص اول حرفين
     }
-            toastr.error("{{ session('error') }}");
-    @endif
-
-    @if(Session::has('info'))
-    toastr.options =
-    {
-        "closeButton" : true,
-        "progressBar" : true
+    else if($first2Letters == 'w:'){
+        $msgClass = 'alert-warning';
+        $msg = substr($msg,2);//قص اول حرفين
     }
-            toastr.info("{{ session('info') }}");
-    @endif
-
-    @if(Session::has('warning'))
-    toastr.options =
-    {
-        "closeButton" : true,
-        "progressBar" : true
+    else if($first2Letters == 'i:'){
+        $msgClass = 'alert-info';
+        $msg = substr($msg,2);//قص اول حرفين
     }
-            toastr.warning("{{ session('warning') }}");
-    @endif
-  </script>
+    else if($first2Letters == 'e:'){
+        $msgClass = 'alert-danger';
+        $msg = substr($msg,2);//قص اول حرفين
+    }
+    ?>
+    <div class='alert {{$msgClass}} alert-dismissible'>
+        {{$msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+

@@ -116,46 +116,46 @@
                         <div class="card-body">
                             <div class="row"><h5>Shortcut</h5></div>
                             <hr>
-                            <div class="row justify-content-between mb-5 text-center">
-                                <div class="col-4 pb-5">
+                            <div class="row justify-content-between text-center">
+                                <div class="col-4">
                                     <a href="{{route('admin.home')}}">
                                         <i class="fas fa-home text-dark icon-3x"></i>
                                         <small class="text-dark">Home</small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-10">
-                                    <a href="{{route('admin.home')}}">
+                                <div class="col-4">
+                                    <a target="_blank" href="{{route('admin.settings.index')}}">
                                         <i class="fas fa-wrench text-dark icon-3x"></i>
                                         <small class="text-dark"><span>Setting</span></small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-10">
+                                <div class="col-4">
                                     <a href="{{route('admin.home')}}">
                                         <i class="far fa-bell text-dark icon-3x"></i>
                                         <small class="text-dark">Notification</small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-10">
+                                <div class="col-4">
                                     <a href="{{route('admin.home')}}">
                                         <i class="fas fa-user-edit text-dark icon-3x"></i>
                                         <small class="text-dark">Edit Profile</small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-10">
-                                    <a href="{{route('admin.home')}}">
-                                        <i class="flaticon-network text-dark icon-3x"></i>
+                                <div class="col-4">
+                                    <a target="_blank" href="{{route('admin.get-jobs.index')}}">
+                                        <i class="flaticon-list-2 text-dark icon-3x"></i>
                                         <small class="text-dark">Jobs</small>
                                     </a>
                                 </div>
                                 <div class="col-4">
-                                    <a href="{{route('admin.home')}}">
+                                    <a target="_blank" href="{{route('admin.get_companies')}}">
                                         <i class="flaticon2-group text-dark icon-3x"></i>
                                         <small class="text-dark">Company</small>
                                     </a>
                                 </div>
-                                <div class="col-4 pb-5">
-                                    <a href="{{route('admin.home')}}">
-                                        <i class="flaticon-businesswoman text-dark icon-3x"></i>
+                                <div class="col-4">
+                                    <a target="_blank" href="{{route('admin.get_job_seekers')}}">
+                                        <i class="fa fa-user-cog text-dark icon-3x"></i>
                                         <small class="text-dark">Job Seekers</small>
                                     </a>
                                 </div>
@@ -174,7 +174,7 @@
                 <!--begin::Header-->
                 <div class="card-header h-auto border-0">
                     <!--begin::Title-->
-                    <div class="card-title py-5">
+                    <div class="card-title">
                         <h3 class="card-label">
                             <span class="d-block text-dark font-weight-bolder">Total Earning</span>
 {{--                            <span class="d-block text-dark-50 mt-2 font-size-sm">Month</span>--}}
