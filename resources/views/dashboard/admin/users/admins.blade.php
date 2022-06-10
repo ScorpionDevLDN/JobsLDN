@@ -125,6 +125,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Admin Name</th>
+                        <th scope="col">Admin Email</th>
                         <th scope="col">Admin Role</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -134,6 +135,7 @@
                         <tr>
                             <th scope="row">{{$admin->id}}</th>
                             <td>{{$admin->name}}</td>
+                            <td>{{$admin->email}}</td>
                             <td>
                                 @if(!empty($admin->getRoleNames()))
                                     @foreach($admin->getRoleNames() as $v)
