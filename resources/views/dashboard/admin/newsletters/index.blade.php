@@ -71,6 +71,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,7 +79,48 @@
                         <tr>
                             <th scope="row">{{$newsletter->id}}</th>
                             <td>{{$newsletter->email}}</td>
+                            <td><div class="col-2">
+                                    <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
+                                       data-target="#exampleModalDelete{{$newsletter->id}}">
+                                        <img src="{{asset('assets/icons/delete.svg')}}" alt="">
+                                    </a>
+                                </div></td>
                         </tr>
+                        <div class="modal fade" id="exampleModalDelete{{$newsletter->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.categories.destroy',$newsletter->id)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Newsletter</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Are You sure to delete newsletter? <span
+                                                            class="text-danger">*</span></label>
+                                                <input readonly value="{{$newsletter->email}}" type="text" name="email"
+                                                       class="form-control"
+                                                       placeholder="Enter category name"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-danger font-weight-bold">Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     @endforeach
                     </tbody>
                 </table>
