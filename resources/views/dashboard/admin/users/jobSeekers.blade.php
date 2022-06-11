@@ -70,17 +70,17 @@
                 {{--                                @csrf--}}
                 {{--                                <div class="modal-content">--}}
                 {{--                                    <div class="modal-header">--}}
-                {{--                                        <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>--}}
+                {{--                                        <h5 class="modal-title" id="exampleModalLabel">Add jobseeker</h5>--}}
                 {{--                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
                 {{--                                            <i aria-hidden="true" class="ki ki-close"></i>--}}
                 {{--                                        </button>--}}
                 {{--                                    </div>--}}
                 {{--                                    <div class="modal-body">--}}
                 {{--                                        <div class="form-group">--}}
-                {{--                                            <label>Category Name--}}
+                {{--                                            <label>jobseeker Name--}}
                 {{--                                                <span class="text-danger">*</span></label>--}}
                 {{--                                            <input required type="text" name="name" class="form-control"--}}
-                {{--                                                   placeholder="Enter Category name"/>--}}
+                {{--                                                   placeholder="Enter jobseeker name"/>--}}
                 {{--                                        </div>--}}
                 {{--                                    </div>--}}
                 {{--                                    <div class="modal-footer">--}}
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="tableToExcel" class="table table-bordered" cellspacing="0" width="100%">
+                <table id="tableToExcel" class="table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -108,54 +108,61 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($job_seekers as $category)
+                    @foreach($job_seekers as $job_seeker)
                         <tr>
-                            <th scope="row">{{$category->id}}</th>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->email}}</td>
+                            <th scope="row">{{$job_seeker->id}}</th>
+                            <td>{{$job_seeker->name}}</td>
+                            <td>{{$job_seeker->email}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-2">
-                                        <div class="pretty p-icon p-toggle p-plain">
-                                            <input name="status" data-id="{{$category->id}}" class="toggle-class"
-                                                   type="checkbox" {{ $category->status ? 'checked' : '' }}>
-                                            <div class="state p-success-o p-on">
-                                                <img src="{{asset('assets/icons/show_blue.svg')}}" alt="">
-                                                {{--<label>Show</label>--}}
-                                            </div>
-                                            <div class="state p-off">
-                                                <img src="{{asset('assets/icons/show-grey.svg')}}" alt="">
-
-                                                {{-- <label>Hide</label>--}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{--<div class="col-2">
-                                        <a href="#" class="btn font-weight-bold mr-2 btn-icon btn-succes"
+                                    <div class="col-1 mx-4">
+                                        <a href="#" class="btn btn-light-primary font-weight-bold btn-icon"
                                            data-toggle="modal"
-                                           data-target="#exampleModalEdit{{$category->id}}">
-                                            <img src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}" alt="">
+                                           data-target="#exampleModalEdit{{$job_seeker->id}}">
+                                            <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Design/Edit.svg--><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z"
+              fill="#000000" fill-rule="nonzero"
+              transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/>
+        <rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
                                         </a>
                                     </div>
-                                    <div class="col-2">
-                                        <a href="#" class="btn btn-icon font-weight-bold mr-2" data-toggle="modal"
-                                           data-target="#exampleModalDelete{{$category->id}}">
-                                            <img src="{{asset('assets/icons/delete.svg')}}" alt="">
+                                    <div class="col-1 mx-4">
+                                        <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
+                                           data-target="#exampleModalDelete{{$job_seeker->id}}">
+                                            <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24" height="24"/>
+                                                                <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z"
+                                                                      fill="#000000" fill-rule="nonzero"/>
+                                                                <path d="M14,4.5 L14,3.5 C14,3.22385763 13.7761424,3 13.5,3 L10.5,3 C10.2238576,3 10,3.22385763 10,3.5 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                      fill="#000000" opacity="0.3"/>
+                                                            </g>
+                                                        </svg><!--end::Svg Icon--></span>
                                         </a>
-                                    </div>--}}
+                                    </div>
                                 </div>
                             </td>
                         </tr>
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalEdit{{$category->id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalEdit{{$job_seeker->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.update',$category->id)}}" method="post">
+                                <form action="{{route('admin.categories.update',$job_seeker->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit jobseeker</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -163,11 +170,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Category Name
+                                                <label>jobseeker Name
                                                     <span class="text-danger">*</span></label>
-                                                <input required value="{{$category->name}}" type="text" name="name"
+                                                <input required value="{{$job_seeker->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                       placeholder="Enter jobseeker name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -184,15 +191,15 @@
                         </div>
                         <!--end::Button-->
                         <!-- Modal-->
-                        <div class="modal fade" id="exampleModalDelete{{$category->id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="exampleModalDelete{{$job_seeker->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.destroy',$category->id)}}" method="post">
+                                <form action="{{route('admin.categories.destroy',$job_seeker->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete jobseeker</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -200,11 +207,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Are You sure to delete category? <span
+                                                <label>Are You sure to delete jobseeker? <span
                                                             class="text-danger">*</span></label>
-                                                <input readonly value="{{$category->name}}" type="text" name="name"
+                                                <input readonly value="{{$job_seeker->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                       placeholder="Enter jobseeker name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -231,7 +238,6 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
@@ -250,13 +256,13 @@
             // $('.toggle-class').change(function () {
             $(document).on("click", ".toggle-class", function(){
                 var status = $(this).prop('checked') == true ? 1 : 0;
-                var category_id = $(this).data('id');
+                var jobseeker_id = $(this).data('id');
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
                     url: '/changeStatus',
-                    data: {'status': status, 'id': category_id},
+                    data: {'status': status, 'id': jobseeker_id},
                     success: function (data) {
                         console.log(data.success)
                     }

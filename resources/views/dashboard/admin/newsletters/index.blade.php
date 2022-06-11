@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="tableToExcel" class="table table-bordered" cellspacing="0" width="100%">
+                <table id="tableToExcel" class="table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
