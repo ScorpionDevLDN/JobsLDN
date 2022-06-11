@@ -6,110 +6,35 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-xl-4">
-            <!--begin::Stats Widget 4-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Companies</a>
-                        <span class="font-weight-bold text-muted font-size-lg">{{$companies}} total companies</span>
+        {{--chart--}}
+        <div class="col-12">
+            <!--begin::Charts Widget 2-->
+            <div class="card card-custom bg-gray-100 card-stretch gutter-b">
+                <!--begin::Header-->
+                <div class="card-header h-auto border-0">
+                    <!--begin::Title-->
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            <span class="d-block text-dark font-weight-bolder">Total Earning</span>
+                            {{--                            <span class="d-block text-dark-50 mt-2 font-size-sm">Month</span>--}}
+                        </h3>
                     </div>
-                    <img src="{{asset('assets/media/svg/avatars/029-boy-11.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
+                </div>
+                <!--end::Header-->
+                <!--begin::Body-->
+                <div class="card-body">
+                    <!--begin::Chart-->
+                    <div id="kt_charts_widget_2_chart_tab_1"></div>
+                    <!--end::Chart-->
                 </div>
                 <!--end::Body-->
             </div>
-            <!--end::Stats Widget 4-->
-        </div>
-        <div class="col-xl-4">
-            <!--begin::Stats Widget 5-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Job
-                            Seekers</a>
-                        <span class="font-weight-bold text-muted font-size-lg">{{$seekers}} total Job Seekers</span>
-                    </div>
-                    <img src="{{asset('assets/media/svg/avatars/014-girl-7.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Stats Widget 5-->
-        </div>
-        <div class="col-xl-4">
-            <!--begin::Stats Widget 6-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Jobs</a>
-                        <span class="font-weight-bold text-muted font-size-lg">{{$jobs}} total jobs</span>
-                    </div>
-                    <img src="{{asset('assets/media/svg/avatars/004-boy-1.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Stats Widget 6-->
+            <!--end::Charts Widget 2-->
         </div>
     </div>
 
     <div class="row">
         <div class="col-4">
-            <div class="row">
-                <div class="col-xl-6">
-                    <!--begin::Tiles Widget 4-->
-                    <div class="card card-custom gutter-b" style="height: 130px">
-                        <!--begin::Body-->
-                        <div class="card-body d-flex flex-column">
-                            <!--begin::Stats-->
-                            <div class="flex-grow-1">
-                                <div class="text-dark-50 font-weight-bold">Last Published Job</div>
-                                <div class="font-weight-bolder font-size-h3">4,9M</div>
-                            </div>
-                            <!--end::Stats-->
-                            <!--begin::Progress-->
-                            <div class="progress progress-xs">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;"
-                                     aria-valuenow="75"
-                                     aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <!--end::Progress-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Tiles Widget 4-->
-                </div>
-                <div class="col-xl-6">
-                    <!--begin::Tiles Widget 4-->
-                    <div class="card card-custom gutter-b" style="height: 130px">
-                        <!--begin::Body-->
-                        <div class="card-body d-flex flex-column">
-                            <!--begin::Stats-->
-                            <div class="flex-grow-1">
-                                <div class="text-dark-50 font-weight-bold">Total Sales</div>
-                                <div class="font-weight-bolder font-size-h3">4,9M</div>
-                            </div>
-                            <!--end::Stats-->
-                            <!--begin::Progress-->
-                            <div class="progress progress-xs">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;"
-                                     aria-valuenow="75"
-                                     aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <!--end::Progress-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Tiles Widget 4-->
-                </div>
-            </div>
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -165,34 +90,67 @@
                 </div>
             </div>
         </div>
-
-
-        {{--chart--}}
         <div class="col-8">
-            <!--begin::Charts Widget 2-->
-            <div class="card card-custom bg-gray-100 card-stretch gutter-b">
-                <!--begin::Header-->
-                <div class="card-header h-auto border-0">
-                    <!--begin::Title-->
-                    <div class="card-title">
-                        <h3 class="card-label">
-                            <span class="d-block text-dark font-weight-bolder">Total Earning</span>
-{{--                            <span class="d-block text-dark-50 mt-2 font-size-sm">Month</span>--}}
-                        </h3>
+            <div class="row">
+                <div class="col-xl-4">
+                    <!--begin::Stats Widget 4-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body d-flex align-items-center py-0 mt-8">
+                            <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
+                                <a href="#"
+                                   class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Companies</a>
+                                <span class="font-weight-bold text-muted font-size-lg">{{$companies}} total companies</span>
+                            </div>
+                            <img src="{{asset('assets/media/svg/avatars/029-boy-11.svg')}}" alt=""
+                                 class="align-self-end h-100px"/>
+                        </div>
+                        <!--end::Body-->
                     </div>
+                    <!--end::Stats Widget 4-->
                 </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body">
-                    <!--begin::Chart-->
-                    <div id="kt_charts_widget_2_chart_tab_1"></div>
-                    <!--end::Chart-->
+                <div class="col-xl-4">
+                    <!--begin::Stats Widget 5-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body d-flex align-items-center py-0 mt-8">
+                            <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
+                                <a href="#"
+                                   class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Job
+                                    Seekers</a>
+                                <span class="font-weight-bold text-muted font-size-lg">{{$seekers}} total Job Seekers</span>
+                            </div>
+                            <img src="{{asset('assets/media/svg/avatars/014-girl-7.svg')}}" alt=""
+                                 class="align-self-end h-100px"/>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 5-->
                 </div>
-                <!--end::Body-->
+                <div class="col-xl-4">
+                    <!--begin::Stats Widget 6-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body d-flex align-items-center py-0 mt-8">
+                            <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
+                                <a href="#"
+                                   class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">Jobs</a>
+                                <span class="font-weight-bold text-muted font-size-lg">{{$jobs}} total jobs</span>
+                            </div>
+                            <img src="{{asset('assets/media/svg/avatars/004-boy-1.svg')}}" alt=""
+                                 class="align-self-end h-100px"/>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 6-->
+                </div>
             </div>
-            <!--end::Charts Widget 2-->
         </div>
+
+
+
     </div>
+
 @endsection
 
 @section('js')

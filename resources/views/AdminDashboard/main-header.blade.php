@@ -9,7 +9,7 @@
                 <ul class="menu-nav">
                     <li class="menu-item">
                         <a href="#" class="menu-link menu-toggle">
-                            <span class="menu-text">Welcome to {{\App\Models\Setting::query()->first()->website_name}} - Website</span>
+                            <span class="menu-text">Welcome to {{\App\Models\Setting::query()->first()->website_name}}</span>
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
