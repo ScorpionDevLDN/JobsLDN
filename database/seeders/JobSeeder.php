@@ -27,7 +27,7 @@ class JobSeeder extends Seeder
 
         JobSeeker::query()->create([
             'first_name' => 'Mahmoud',
-            'last_name' => 'Elh',
+            'last_name' => 'Mahmoud',
             'email' => 'mahmoud@gmail.com',
             'password' => 12345678,
             'read_conditions' => 1,
@@ -35,7 +35,7 @@ class JobSeeder extends Seeder
 
         $c1 = Company::query()->create([
             'first_name' => 'Anas',
-            'last_name' => 'Omran',
+            'last_name' => 'Anas',
             'email' => 'anas@gmail.com',
             'password' => 12345678,
             'read_conditions' => 1,
@@ -48,7 +48,7 @@ class JobSeeder extends Seeder
 
         $c1 = Company::query()->create([
             'first_name' => 'Sergy',
-            'last_name' => 'Omran',
+            'last_name' => 'Sergy',
             'email' => 'Sergy@gmail.com',
             'password' => 12345678,
             'read_conditions' => 1,

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Newsletter;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -50,5 +51,11 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(JobSeeder::class);
+
+        foreach (range(0,10) as $i){
+            Newsletter::query()->create([
+                'email' => 'name'.$i.'@gmail.com'
+            ]);
+        }
     }
 }
