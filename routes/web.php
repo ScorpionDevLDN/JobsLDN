@@ -63,6 +63,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('settings', SettingController::class);
 
         Route::resource('get_companies',CompanyController::class)->middleware(['permission:user-list']);
+//        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
 
         Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
         Route::resource('get-jobs', JobController::class);
