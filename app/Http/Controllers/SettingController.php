@@ -70,7 +70,18 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $requestData = $request->all();
+        if($request->logo){
+            $filename= $request->logo->store('public');
+            $imagename= $request->logo->hashName();
+            $requestData['logo'] = $imagename;
+        }
+        if($request->cover){
+            $filename= $request->cover->store('public');
+            $imagename= $request->cover->hashName();
+            $requestData['cover'] = $imagename;
+        }
         Setting::query()->findOrFail($id)->update($requestData);
         return redirect()->route('admin.settings.index');
     }
