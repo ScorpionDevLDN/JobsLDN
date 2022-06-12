@@ -73,7 +73,7 @@
                                     </a>
                                 </div>
                                 <div class="col-4">
-                                    <a target="_blank" href="{{route('admin.get_companies')}}">
+                                    <a target="_blank" href="{{route('admin.get_companies.index')}}">
                                         <i class="flaticon2-group text-dark icon-3x"></i>
                                         <small class="text-dark">Company</small>
                                     </a>
