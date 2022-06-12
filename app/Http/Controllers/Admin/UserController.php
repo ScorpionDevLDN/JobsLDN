@@ -19,10 +19,30 @@ class UserController extends Controller
         return view('dashboard.admin.users.companies', compact('companies'));
     }
 
+    public function editCompany($id){
+        Company::query()->where('id',$id)->update(\request()->all());
+        return redirect()->route('admin.get_companies');
+    }
+
+    public function deleteCompany($id){
+        Company::query()->where('id',$id)->delete();
+        return redirect()->route('admin.get_companies');
+    }
+
     public function getJobSeekers()
     {
         $job_seekers = JobSeeker::query()->get();
         return view('dashboard.admin.users.jobSeekers', compact('job_seekers'));
+    }
+
+    public function editJobSeeker($id){
+        JobSeeker::query()->where('id',$id)->update(\request()->all());
+        return redirect()->route('admin.get_job_seekers');
+    }
+
+    public function deleteJobSeeker($id){
+        JobSeeker::query()->where('id',$id)->delete();
+        return redirect()->route('admin.get_job_seekers');
     }
 
     public function index()

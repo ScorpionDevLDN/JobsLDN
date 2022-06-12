@@ -161,12 +161,12 @@
                         <div class="modal fade" id="exampleModalEdit{{$company->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.update',$company->id)}}" method="post">
+                                <form action="{{route('admin.get_companies.update',$company->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -174,9 +174,9 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Category Name
+                                                <label>First Name
                                                     <span class="text-danger">*</span></label>
-                                                <input required value="{{$company->name}}" type="text" name="name"
+                                                <input required value="{{$company->first_name}}" type="text" name="first_name"
                                                        class="form-control"
                                                        placeholder="Enter category name"/>
                                             </div>
@@ -242,7 +242,6 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',

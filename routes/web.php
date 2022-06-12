@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminGetContactUsController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\City\CityController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\Currency\CurrencyController;
 use App\Http\Controllers\Admin\DynamicController;
 use App\Http\Controllers\Admin\JobController;
@@ -61,7 +62,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 
-        Route::get('get_companies',[UserController::class,'getCompanies'])->name('get_companies')->middleware(['permission:user-list']);
+        Route::resource('get_companies',CompanyController::class)->middleware(['permission:user-list']);
+
         Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
         Route::resource('get-jobs', JobController::class);
         Route::resource('newsletter', NewsletterController::class);
