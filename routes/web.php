@@ -85,7 +85,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 //home page
 //Route::get('')
 
-Route::view('/', 'index');
+Route::view('/', 'dashboard.admin.login');
 Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya',function(){
