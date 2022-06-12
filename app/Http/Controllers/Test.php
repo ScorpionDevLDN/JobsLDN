@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class Test
+class Testa
 {
 
 }
