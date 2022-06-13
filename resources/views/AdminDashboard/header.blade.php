@@ -33,3 +33,27 @@
           href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
     @yield('css')
 </head>
+<style>
+    table.dataTable.no-footer{
+        border-bottom: 1px solid #ebedf3;
+    }
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+        color:blue !important;
+        background-color: blue;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button  {
+        color:blue !important;
+        background: rgba(0, 0, 0, 0) no-repeat scroll right center;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: blue;
+        border: none;
+        color: white!important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+        border: 1px solid blue;
+    }
+</style>

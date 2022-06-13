@@ -254,6 +254,7 @@
             // document.title = 'cities';
             $('#tableToExcel').DataTable(
                 {
+                    pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
                     buttons: [
