@@ -249,7 +249,7 @@
     </body>
 @endsection
 @section('js')
-    <script type="text/javascript">
+    <script type="text/jsx">
         $(document).ready(function () {
             // document.title = 'Categories';
             $('#tableToExcel').DataTable(
