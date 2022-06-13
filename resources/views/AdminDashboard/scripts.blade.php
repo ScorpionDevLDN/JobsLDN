@@ -1,6 +1,6 @@
 
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
+{{--<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>--}}
 <script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 <script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 <!--end::Global Theme Bundle-->
@@ -15,7 +15,6 @@
 <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('assets/js/pages/crud/datatables/advanced/column-rendering.js')}}"></script>
 <script src="{{asset('assets/js/pages/crud/forms/editors/summernote.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('js')
