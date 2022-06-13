@@ -14,7 +14,7 @@
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 
-<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/crud/forms/editors/summernote.js')}}"></script>
