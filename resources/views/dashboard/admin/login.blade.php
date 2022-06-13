@@ -40,12 +40,16 @@
                 </a>
                 <!--end::Logo-->
                 <!--begin::Aside body-->
-                <div class="d-flex flex-column-fluid flex-column flex-center" style="margin-top: -300px">
+                <div class="d-flex flex-column-fluid flex-column flex-center">
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-1">
                         <!--begin::Form-->
                         <form id="login-form" class="form" action="{{ route('admin.check') }}" method="post">
                             @csrf
+                            <!--begin::Title-->
+                            <div class="text-center pb-8">
+                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Sign In</h2>
+                            </div>
                             <!--end::Title-->
                             <!--begin::Form group-->
                             <div class="form-group">
