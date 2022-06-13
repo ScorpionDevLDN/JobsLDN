@@ -1,6 +1,8 @@
 
 <!--begin::Global Theme Bundle(used by all pages)-->
 {{--<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>--}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 <script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 <!--end::Global Theme Bundle-->
