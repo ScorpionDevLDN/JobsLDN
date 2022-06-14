@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="tableToExcel" class="table" cellspacing="0" width="100%">
+                <table id="tableToExcel" class="table responsive" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -254,6 +254,9 @@
             // document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    responsive: true,
+                    language: { search: "" },
                     pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
