@@ -66,10 +66,10 @@ class Setting extends Model
         }
     }
 
-    public function getCoverAttribute($cover): ?string
-    {
-        return $cover ? Storage::url( $cover) : asset('assets/user.png');
-    }
+//    public function getCoverAttribute($cover): ?string
+//    {
+//        return $cover ? Storage::url( $cover) : asset('assets/user.png');
+//    }
 
     public function deleteCover()
     {
