@@ -12,4 +12,10 @@ class NewsletterController extends Controller
         $newsletters = Newsletter::query()->get();
         return view('dashboard.admin.newsletters.index', compact('newsletters'));
     }
+
+    public function destroy(Newsletter $newsletter)
+    {
+        $newsletter->delete();
+        return redirect()->route('admin.newsletter.index')->with('msg', 'Newsletter Deleted Successfully');
+    }
 }
