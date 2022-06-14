@@ -92,6 +92,7 @@ Route::view('/a', 'dashboard.crud.index');
 Route::get('aya',function(){
     set_time_limit(0);
     Artisan::call('storage:link');
+    Artisan::call('migrate:fresh --seed');
     return 'success db_seed';
 });
 
