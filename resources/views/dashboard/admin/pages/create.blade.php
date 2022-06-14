@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-10">
+            <div class="col-md-10 col-sm-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
                         <h3 class="card-title">Add New Page</h3>

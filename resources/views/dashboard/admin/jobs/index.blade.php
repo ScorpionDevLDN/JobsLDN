@@ -60,7 +60,7 @@
                 <!-- Button trigger modal-->
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table id="tableToExcel" class="table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -78,7 +78,7 @@
                             <td>{{$job->title}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-1 mx-4">
+                                    <div class="col-1 pr-10" style="margin-left: -10px;">
                                         <a href="#" class="btn btn-light-info font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalShow{{$job->id}}">
@@ -202,7 +202,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-1 mx-4">
+                                    <div class="col-1 pr-10">
                                         <a href="#" class="btn btn-light-success font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$job->id}}">
@@ -219,7 +219,7 @@
 </svg><!--end::Svg Icon--></span>
                                         </a>
                                     </div>
-                                    <div class="col-1 mx-4">
+                                    <div class="col-1">
                                         <a href="#" class="btn btn-light-danger font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$job->id}}">
@@ -256,6 +256,10 @@
             // document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    responsive: true,
+                    language: { search: "" },
+                    pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
                     buttons: [
