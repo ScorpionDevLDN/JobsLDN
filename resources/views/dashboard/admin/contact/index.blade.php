@@ -47,6 +47,10 @@
             // document.title = 'Categories';
             $('#tableToExcel').DataTable(
                 {
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    responsive: true,
+                    language: { search: "" },
+                    pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
                     buttons: [

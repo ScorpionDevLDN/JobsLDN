@@ -120,7 +120,7 @@
                             <td>{{$role->name}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-1 mx-2">
+                                    <div class="col-1 pr-10" style="margin-left: -10px;">
                                         <a href="#" class="btn btn-light-primary font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$role->id}}">
@@ -138,7 +138,7 @@
 </svg><!--end::Svg Icon--></span>
                                         </a>
                                     </div>
-                                    <div class="col-1 mx-2">
+                                    <div class="col-1">
                                         <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
                                            data-target="#exampleModalDelete{{$role->id}}">
                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
@@ -254,6 +254,10 @@
         $(document).ready(function () {
             $('#tableToExcel').DataTable(
                 {
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    responsive: true,
+                    language: { search: "" },
+                    pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
                     buttons: [
