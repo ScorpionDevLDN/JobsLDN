@@ -16,7 +16,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-10">
+        <div class="col-md-10 col-sm-12">
             <div class="card card-custom">
                 <!--begin::Header-->
                 <div class="card-header card-header-tabs-line">
