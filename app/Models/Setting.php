@@ -57,24 +57,24 @@ class Setting extends Model
 //    }
 
 
-//    public function setCoverAttribute($cover)
-//    {
-//        $this->deleteCover();
-//        if (gettype($cover) != 'string') {
-//            $cover->store('setting');
-//            $this->attributes['cover'] = $cover->hashName();
-//        }
-//    }
+    public function setCoverAttribute($cover)
+    {
+        $this->deleteCover();
+        if (gettype($cover) != 'string') {
+            $cover->store('setting');
+            $this->attributes['cover'] = $cover->hashName();
+        }
+    }
 
-//    public function getCoverAttribute($cover): ?string
-//    {
-//        return $cover ? Storage::url( $cover) : asset('assets/user.png');
-//    }
+    public function getCoverAttribute($cover): ?string
+    {
+        return $cover ? Storage::url( $cover) : asset('assets/user.png');
+    }
 
-//    public function deleteCover()
-//    {
-//        if (isset($this->attributes['cover']) && $this->attributes['cover']) {
-//            Storage::delete('setting/' . $this->attributes['cover']);
-//        }
-//    }
+    public function deleteCover()
+    {
+        if (isset($this->attributes['cover']) && $this->attributes['cover']) {
+            Storage::delete('setting/' . $this->attributes['cover']);
+        }
+    }
 }

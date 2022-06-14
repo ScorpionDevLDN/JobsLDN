@@ -72,7 +72,7 @@ class SettingController extends Controller
     {
 
         $requestData = $request->all();
-        if($request->logo){
+        /*if($request->logo){
             $filename= $request->logo->store('public');
             $imagename= $request->logo->hashName();
             $requestData['logo'] = $imagename;
@@ -81,7 +81,7 @@ class SettingController extends Controller
             $filename= $request->cover->store('public');
             $imagename= $request->cover->hashName();
             $requestData['cover'] = $imagename;
-        }
+        }*/
         Setting::query()->findOrFail($id)->update($requestData);
         return redirect()->route('admin.settings.index');
     }
