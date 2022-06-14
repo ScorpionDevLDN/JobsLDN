@@ -113,7 +113,7 @@
                             <td>{{$category->name}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-1 mx-2">
+                                    <div class="col-1" style="margin-left: -10px">
                                         <div class="pretty p-icon p-toggle p-plain btn btn-light-info btn-icon">
                                             <input name="status" data-id="{{$category->id}}" class="toggle-class"
                                                    type="checkbox" {{ $category->status ? 'checked' : '' }}>

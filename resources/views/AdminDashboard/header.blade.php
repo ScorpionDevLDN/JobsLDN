@@ -39,21 +39,37 @@
     }
 
 
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current{
-        color:blue !important;
-        background-color: blue;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button  {
-        color:blue !important;
-        background: rgba(0, 0, 0, 0) no-repeat scroll right center;
-    }
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-        background: blue;
-        border: none;
-        color: white!important; /*change the hover text color*/
-    }
+    /*.dataTables_wrapper .dataTables_paginate .paginate_button.current{*/
+    /*    color:blue !important;*/
+    /*    background-color: blue;*/
+    /*}*/
+    /*.dataTables_wrapper .dataTables_paginate .paginate_button  {*/
+    /*    color:blue !important;*/
+    /*    background: rgba(0, 0, 0, 0) no-repeat scroll right center;*/
+    /*}*/
+    /*.dataTables_wrapper .dataTables_paginate .paginate_button:hover {*/
+    /*    background: blue;*/
+    /*    border: none;*/
+    /*    color: white!important; !*change the hover text color*!*/
+    /*}*/
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
-        border: 1px solid blue;
+        border: 1px solid #e1f0ff;
     }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #e1f0ff;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background: #e1f0ff;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #e1f0ff none;
+        color: black!important;
+        border-radius: 4px;
+        border: 1px solid #e1f0ff;
+    }
+    table.dataTable thead th {
+        border-bottom: none;
+    }
+
 </style>
