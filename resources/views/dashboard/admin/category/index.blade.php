@@ -113,7 +113,7 @@
                             <td>{{$category->name}}</td>
                             <td>
                                 <div class="row">
-                                    <div class="col-1" style="margin-left: -10px">
+                                    <div class="col-1 pr-10" style="margin-left: -10px;">
                                         <div class="pretty p-icon p-toggle p-plain btn btn-light-info btn-icon">
                                             <input name="status" data-id="{{$category->id}}" class="toggle-class"
                                                    type="checkbox" {{ $category->status ? 'checked' : '' }}>
@@ -128,7 +128,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-1 mx-2">
+                                    <div class="col-1 pr-10">
                                         <a href="#" class="btn btn-light-primary font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$category->id}}">
@@ -146,7 +146,7 @@
 </svg><!--end::Svg Icon--></span>
                                         </a>
                                     </div>
-                                    <div class="col-1 mx-2">
+                                    <div class="col-1">
                                         <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
                                            data-target="#exampleModalDelete{{$category->id}}">
                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
