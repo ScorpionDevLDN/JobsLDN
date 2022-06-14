@@ -17,6 +17,7 @@ use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\User\RegisterAndLoginController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,7 +90,11 @@ Route::view('/', 'dashboard.admin.login');
 Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya',function(){
-return 5;
+    Artisan::call('storage:link');
+    return "linkes";
+    set_time_limit(0);
+    Artisan::call('migrate:fresh --seed --force');
+    return 'success db_seed';
 });
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
