@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
             'is_super_admin' => 1
         ]);
         $user2 = Admin::query()->create([
-            'name' => 'Anas Admin',
-            'email' => 'anas@admin.com',
+            'name' => 'Aya Omar',
+            'email' => 'ayakhomar@gmail.com',
             'password' => 'nishan',
         ]);
 

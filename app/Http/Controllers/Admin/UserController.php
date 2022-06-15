@@ -29,8 +29,28 @@ class UserController extends Controller
         return redirect()->route('admin.get_companies');
     }
 
-    public function getJobSeekers()
+    public function getJobSeekers(Request $request)
     {
+        $listId = env('MAILCHIMP_LIST_ID');
+
+        $mailchimp = new \Mailchimp('d713eb5c6555e5ae6e46f1a3174c3d35-us8');
+
+        $campaign = $mailchimp->campaigns->create('regular', [
+            'list_id' => $listId,
+            'subject' => 'Example Mail',
+            'from_email' => 'rajeshgajjar1997@gmail.com',
+            'from_name' => 'Rajesh',
+            'to_name' => 'Rajesh Subscribers'
+
+        ], [
+            'html' => $request->input('content'),
+            'text' => strip_tags($request->input('content'))
+        ]);
+
+        //Send campaign
+        $mailchimp->campaigns->send($campaign['id']);
+
+        dd('Campaign send successfully.');
         $job_seekers = JobSeeker::query()->get();
         return view('dashboard.admin.users.jobSeekers', compact('job_seekers'));
     }
