@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function getJobSeekers(Request $request)
     {
-        $listId = env('MAILCHIMP_LIST_ID');
+        $listId = 'a7c2d8d8e4';
 
         $mailchimp = new \Mailchimp('d713eb5c6555e5ae6e46f1a3174c3d35-us8');
 
