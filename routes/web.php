@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\City\CityController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\Currency\CurrencyController;
 use App\Http\Controllers\Admin\DynamicController;
+use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PaymentConteroller;
@@ -42,6 +43,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/login', 'dashboard.admin.login')->name('login');
     Route::post('/check', [AdminController::class, 'check'])->name('check');
 
+    Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
     Route::middleware('auth:admins')->group(callback: function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
@@ -75,8 +81,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
         Route::get("profile", [UserController::class, 'editProfile'])->name("profile.edit");
-        Route::get("forget_password", [UserController::class, 'forgetPassword'])->name("forgetPassword");
         Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
+
     });
 
 });
