@@ -285,6 +285,15 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label>Job Details
+                                                    <span class="text-danger">*</span></label>
+                                                <input required
+                                                       value="{{$job->pdf_details}}"
+                                                       type="file" name="pdf_details"
+                                                       class="form-control"
+                                                       placeholder="Enter post summery"/>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Job Location
                                                     <span class="text-danger">*</span></label>
                                                 <select name="city_id" class="form-control" id="exampleSelectd">

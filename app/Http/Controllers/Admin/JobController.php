@@ -25,7 +25,15 @@ class JobController extends Controller
 
     public function update(Request $request, $id)
     {
-        Job::query()->findOrFail($id)->update($request->all());
+        $requestData =$request->all();
+
+        if($request->pdf_details){
+            $filename= $request->pdf_details->store('public');
+            $imagename= $request->pdf_details->hashName();
+            $requestData['pdf_details'] = $imagename;
+        }
+        Job::query()->findOrFail($id)->update($requestData);
+
         return redirect()->route('admin.get-jobs.index');
     }
 
