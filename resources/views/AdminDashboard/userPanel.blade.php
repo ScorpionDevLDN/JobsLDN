@@ -13,7 +13,7 @@
         <!--begin::Header-->
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
-                <div class="symbol-label" style="background-image:url('{{asset('assets/user.png')}}')"></div>
+                <div class="symbol-label" style="background-image:url('{{auth('admins')->user()->image}}')"></div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
