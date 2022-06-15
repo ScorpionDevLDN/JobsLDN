@@ -44,10 +44,10 @@ class Setting extends Model
 //        }
 //    }
 //
-//    public function getLogoAttribute($logo): ?string
-//    {
-//        return $logo ? Storage::url($logo) : asset('assets/user.png');
-//    }
+    public function getLogoAttribute($logo): ?string
+    {
+        return $logo ? Storage::url($logo) : asset('assets/user.png');
+    }
 
 //    public function deleteLogo()
 //    {
