@@ -78,15 +78,15 @@ class Job extends Model
 
     public function chechStatus()
     {
-        if ($this->status == 0){
+        if ($this->status == 0) {
             return 'Under Preview';
-        }elseif ($this->status == 1){
+        } elseif ($this->status == 1) {
             return 'Accepted';
         }
         return 'Rejected';
     }
 
-        public function setPdfDetailsAttribute($image)
+    public function setPdfDetailsAttribute($image)
     {
         if (gettype($image) != 'string') {
             $image->store('public');

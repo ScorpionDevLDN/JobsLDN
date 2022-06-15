@@ -252,7 +252,7 @@
                         <div class="modal fade" id="exampleModalEdit{{$job->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.get-jobs.update',$job->id)}}" method="post">
+                                <form enctype="multipart/form-data" action="{{route('admin.get-jobs.update',$job->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
