@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Admin;
+use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -47,7 +48,7 @@ class ForgotPasswordController extends Controller
     public function submitResetPasswordForm(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email|exists:admins',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
         ]);
@@ -63,8 +64,8 @@ class ForgotPasswordController extends Controller
             return back()->withInput()->with('error', 'Invalid token!');
         }
 
-        $user = Admin::where('email', $request->email)
-            ->update(['password' =>$request->password]);
+        $user = Admin::query()->where('email', $request->email)
+            ->update(['password' =>bcrypt($request->password)]);
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
