@@ -292,6 +292,7 @@
                                                        type="file" name="pdf_details"
                                                        class="form-control"
                                                        placeholder="Enter post summery"/>
+                                                <embed src="{{$job->pdf_details}}" type="application/pdf" width="100%" height="100%">
                                             </div>
                                             <div class="form-group">
                                                 <label>Job Location
