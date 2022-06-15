@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Job extends Model
 {
@@ -91,6 +92,18 @@ class Job extends Model
         if (gettype($image) != 'string') {
             $image->store('public');
             $this->attributes['pdf_details'] = $image->hashName();
+        }
+    }
+
+    public function getPdfDetailsAttribute($image): ?string
+    {
+        return $image ? Storage::url($image) : asset('assets/user.png');
+    }
+
+    public function deletePdfDetails()
+    {
+        if (isset($this->attributes['pdf_details']) && $this->attributes['pdf_details']) {
+            Storage::delete( $this->attributes['pdf_details']);
         }
     }
 }
