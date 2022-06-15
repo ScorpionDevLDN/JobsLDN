@@ -67,6 +67,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Job Company</th>
                         <th scope="col">Job Title</th>
+                        <th scope="col">Job status</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -76,6 +77,8 @@
                             <th scope="row">{{$job->id}}</th>
                             <td>{{$job->company->company_name}}</td>
                             <td>{{$job->title}}</td>
+                            <td> {{$job->chechStatus()}}
+                            </td>
                             <td>
                                 <div class="row">
                                     <div class="col-1 pr-10" style="margin-left: -10px;">
@@ -115,7 +118,8 @@
                                                     <div class="form-group">
                                                         <label>Company Name
                                                             <span class="text-danger">*</span></label>
-                                                        <input disabled required value="{{$job->company->company_name}}" type="text" name="name"
+                                                        <input disabled required value="{{$job->company->company_name}}"
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
@@ -123,50 +127,69 @@
                                                     <div class="form-group">
                                                         <label>Job Title
                                                             <span class="text-danger">*</span></label>
-                                                        <input disabled required value="{{$job->title}} - ({{$job->applicants_count}} Applicant)" type="text" name="name"
+                                                        <input disabled required
+                                                               value="{{$job->title}} - ({{$job->applicants_count}} Applicant)"
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
 
                                                     <div class="form-group">
+                                                        <label>Job Summery
+                                                            <span class="text-danger">*</span></label>
+                                                        <input disabled required
+                                                               value="{{$job->summery}}"
+                                                               type="text" name="summery"
+                                                               class="form-control"
+                                                               placeholder="Enter Job summery"/>
+                                                    </div>
+
+                                                    <div class="form-group">
                                                         <label>Job Location
                                                             <span class="text-danger">*</span></label>
-                                                        <input disabled required value="{{$job->city->name}}" type="text" name="name"
+                                                        <input disabled required value="{{$job->city->name}}"
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Job Type
                                                             <span class="text-danger">*</span></label>
-                                                        <input disabled required value="{{$job->type->name}}" type="text" name="name"
+                                                        <input disabled required value="{{$job->type->name}}"
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Job Salary
                                                             <span class="text-danger">*</span></label>
-                                                        <input disabled required value="{{$job->salary}} {{$job->currency->symbol}} /{{$job->per->per}} " type="text" name="name"
+                                                        <input disabled required
+                                                               value="{{$job->salary}} {{$job->currency->symbol}} /{{$job->per->per}} "
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Job Email</label>
-                                                        <input disabled required value="{{$job->job_post_email}}" type="text" name="name"
+                                                        <input disabled required value="{{$job->job_post_email}}"
+                                                               type="text" name="name"
                                                                class="form-control"
                                                                placeholder="Enter category name"/>
                                                     </div>
 
                                                 </div>
                                                 <div class="modal-footer">
+                                                    @if($job->status == 0)
                                                     <div class="col-1 mx-2">
-                                                        <a href="#" class="btn btn-light-success font-weight-bold btn-icon"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModalEdit{{$job->id}}">
+                                                        <a href="{{route('admin.accept',$job->id)}}"
+                                                           class="btn btn-light-success font-weight-bold btn-icon">
                                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Check.svg--><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                                height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                        width="24px"
+                                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                                           fill-rule="evenodd">
                                                                             <polygon points="0 0 24 0 24 24 0 24"/>
                                                                             <path d="M6.26193932,17.6476484 C5.90425297,18.0684559 5.27315905,18.1196257 4.85235158,17.7619393 C4.43154411,17.404253 4.38037434,16.773159 4.73806068,16.3523516 L13.2380607,6.35235158 C13.6013618,5.92493855 14.2451015,5.87991302 14.6643638,6.25259068 L19.1643638,10.2525907 C19.5771466,10.6195087 19.6143273,11.2515811 19.2474093,11.6643638 C18.8804913,12.0771466 18.2484189,12.1143273 17.8356362,11.7474093 L14.0997854,8.42665306 L6.26193932,17.6476484 Z"
                                                                                   fill="#000000" fill-rule="nonzero"
@@ -177,9 +200,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-1 mx-2">
-                                                        <a href="#" class="btn btn-light-danger font-weight-bold btn-icon"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModalEdit{{$job->id}}">
+                                                        <a href="{{route('admin.reject',$job->id)}}"
+                                                           class="btn btn-light-danger font-weight-bold btn-icon">
                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Close.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -196,52 +218,193 @@
 </svg><!--end::Svg Icon--></span>
                                                         </a>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             {{--                                            </form>--}}
                                         </div>
                                     </div>
 
-                                    <div class="col-1 pr-10">
+                                    @if($job->status == 0)
+                                    <div class="col-1">
                                         <a href="#" class="btn btn-light-success font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalEdit{{$job->id}}">
-                                            <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Check.svg--><svg
+                                            <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Design/Edit.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon points="0 0 24 0 24 24 0 24"/>
-        <path d="M6.26193932,17.6476484 C5.90425297,18.0684559 5.27315905,18.1196257 4.85235158,17.7619393 C4.43154411,17.404253 4.38037434,16.773159 4.73806068,16.3523516 L13.2380607,6.35235158 C13.6013618,5.92493855 14.2451015,5.87991302 14.6643638,6.25259068 L19.1643638,10.2525907 C19.5771466,10.6195087 19.6143273,11.2515811 19.2474093,11.6643638 C18.8804913,12.0771466 18.2484189,12.1143273 17.8356362,11.7474093 L14.0997854,8.42665306 L6.26193932,17.6476484 Z"
+        <rect x="0" y="0" width="24" height="24"/>
+        <path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z"
               fill="#000000" fill-rule="nonzero"
-              transform="translate(11.999995, 12.000002) rotate(-180.000000) translate(-11.999995, -12.000002) "/>
+              transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/>
+        <rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/>
     </g>
 </svg><!--end::Svg Icon--></span>
                                         </a>
                                     </div>
-                                    <div class="col-1">
-                                        <a href="#" class="btn btn-light-danger font-weight-bold btn-icon"
-                                           data-toggle="modal"
-                                           data-target="#exampleModalEdit{{$job->id}}">
-                                            <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Close.svg--><svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                        height="24px" viewBox="0 0 24 24" version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
-           fill="#000000">
-            <rect x="0" y="7" width="16" height="2" rx="1"/>
-            <rect opacity="0.3"
-                  transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000) " x="0"
-                  y="7" width="16" height="2" rx="1"/>
-        </g>
-    </g>
-</svg><!--end::Svg Icon--></span>
-                                        </a>
-                                    </div>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalEdit{{$job->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.get-jobs.update',$job->id)}}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Job Title
+                                                    <span class="text-danger">*</span></label>
+                                                <input required
+                                                       value="{{$job->title}}"
+                                                       type="text" name="title"
+                                                       class="form-control"
+                                                       placeholder="Enter post title"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Summery
+                                                    <span class="text-danger">*</span></label>
+                                                <input required
+                                                       value="{{$job->summery}}"
+                                                       type="text" name="summery"
+                                                       class="form-control"
+                                                       placeholder="Enter post summery"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Location
+                                                    <span class="text-danger">*</span></label>
+                                                <select name="city_id" class="form-control" id="exampleSelectd">
+                                                    @foreach($cities as $city)
+                                                        <option {{ $city->id == $job->city_id ? 'selected' : '' }} value="{{$city->id}}">{{$city->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Type
+                                                    <span class="text-danger">*</span></label>
+                                                <select name="type_id" class="form-control" id="exampleSelectd">
+                                                    @foreach($types as $type)
+                                                        <option {{ $type->id == $job->type_id ? 'selected' : '' }} value="{{$type->id}}">{{$type->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Category
+                                                    <span class="text-danger">*</span></label>
+                                                <select name="category_id" class="form-control" id="exampleSelectd">
+                                                    @foreach($categories as $category)
+                                                        <option {{ $category->id == $job->category_id ? 'selected' : '' }} value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Currency
+                                                    <span class="text-danger">*</span></label>
+                                                <select name="currency_id" class="form-control" id="exampleSelectd">
+                                                    @foreach($currencies as $currency)
+                                                        <option {{ $currency->id == $job->currency_id ? 'selected' : '' }} value="{{$currency->id}}">{{$currency->symbol}}-{{$currency->code}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Per
+                                                    <span class="text-danger">*</span></label>
+                                                <select name="per_id" class="form-control" id="exampleSelectd">
+                                                    @foreach($pers as $per)
+                                                        <option {{ $per->id == $job->per_id ? 'selected' : '' }} value="{{$per->id}}">{{$per->per}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Salary
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$job->salary}}" type="text"
+                                                       name="salary"
+                                                       class="form-control"
+                                                       placeholder="Enter job salary"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Email
+                                                    <span class="text-danger">*</span></label>
+                                                <input required
+                                                       value="{{$job->job_post_email}}"
+                                                       type="text" name="job_post_email"
+                                                       class="form-control"
+                                                       placeholder="Enter post email"/>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary font-weight-bold">Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--end::Button-->
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModalDelete{{$job->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{route('admin.categories.destroy',$job->id)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Are You sure to delete category? <span
+                                                            class="text-danger">*</span></label>
+                                                <input readonly value="{{$job->name}}" type="text" name="name"
+                                                       class="form-control"
+                                                       placeholder="Enter category name"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-danger font-weight-bold">Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--end::Button-->
                     @endforeach
                     </tbody>
                 </table>
@@ -258,7 +421,7 @@
                 {
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                     responsive: true,
-                    language: { search: "" },
+                    language: {search: ""},
                     pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',

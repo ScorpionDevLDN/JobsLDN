@@ -36,24 +36,24 @@ class Admin extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function setImageAttribute($image)
-    {
-        $this->deleteImage();
-        if (gettype($image) != 'string') {
-            $image->store('admin');
-            $this->attributes['image'] = $image->hashName();
-        }
-    }
-
-    public function getImageAttribute($image): ?string
-    {
-        return $image ? Storage::url('admin/' . $image) : asset('assets/user.png');
-    }
-
-    public function deleteImage()
-    {
-        if (isset($this->attributes['image']) && $this->attributes['image']) {
-            Storage::delete('admin/' . $this->attributes['image']);
-        }
-    }
+//    public function setImageAttribute($image)
+//    {
+//        $this->deleteImage();
+//        if (gettype($image) != 'string') {
+//            $image->store('admin');
+//            $this->attributes['image'] = $image->hashName();
+//        }
+//    }
+//
+//    public function getImageAttribute($image): ?string
+//    {
+//        return $image ? Storage::url('admin/' . $image) : asset('assets/user.png');
+//    }
+//
+//    public function deleteImage()
+//    {
+//        if (isset($this->attributes['image']) && $this->attributes['image']) {
+//            Storage::delete('admin/' . $this->attributes['image']);
+//        }
+//    }
 }

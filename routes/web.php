@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\User\RegisterAndLoginController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -30,11 +29,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('changeStatus', [CategoryController::class,'updateCategoryStatus'])->name('changeStatus');
-Route::get('changeCityStatus', [CityController::class,'updateCityStatus'])->name('changeCityStatus');
-Route::get('changeCurrencyStatus', [CurrencyController::class,'changeCurrencyStatus'])->name('changeCurrencyStatus');
-Route::get('changePerStatus', [PerController::class,'changePerStatus'])->name('changePerStatus');
-Route::get('changeTypeStatus', [TypeController::class,'changeTypeStatus'])->name('changeTypeStatus');
+Route::get('changeStatus', [CategoryController::class, 'updateCategoryStatus'])->name('changeStatus');
+Route::get('changeCityStatus', [CityController::class, 'updateCityStatus'])->name('changeCityStatus');
+Route::get('changeCurrencyStatus', [CurrencyController::class, 'changeCurrencyStatus'])->name('changeCurrencyStatus');
+Route::get('changePerStatus', [PerController::class, 'changePerStatus'])->name('changePerStatus');
+Route::get('changeTypeStatus', [TypeController::class, 'changeTypeStatus'])->name('changeTypeStatus');
 
 
 //admin routes
@@ -58,21 +57,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('types', TypeController::class)->middleware(['permission:type-list']);
 
         Route::resource('pages', DynamicController::class);
-        Route::post('update_page_status/{page}', [DynamicController::class,'updateCategoryStatus'])->name('update_page_status');
+        Route::post('update_page_status/{page}', [DynamicController::class, 'updateCategoryStatus'])->name('update_page_status');
 
-        Route::get('contacts',[AdminGetContactUsController::class,'getContactUs'])->name('contacts');
+        Route::get('contacts', [AdminGetContactUsController::class, 'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 
-        Route::resource('get_companies',CompanyController::class)->middleware(['permission:user-list']);
+        Route::resource('get_companies', CompanyController::class)->middleware(['permission:user-list']);
 //        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
 
-        Route::get('get_job_seekers',[UserController::class,'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
+        Route::get('get_job_seekers', [UserController::class, 'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
         Route::resource('get-jobs', JobController::class);
+        Route::get('accept/{id}', [JobController::class, 'accept'])->name('accept');
+        Route::get('reject/{id}', [JobController::class, 'reject'])->name('reject');
         Route::resource('newsletter', NewsletterController::class);
         Route::resource('get-payments', PaymentConteroller::class);
 
         Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
+        Route::get("profile", [UserController::class, 'editProfile'])->name("profile.edit");
+        Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
     });
 
 });
@@ -89,7 +92,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::view('/', 'dashboard.admin.login');
 Route::view('/a', 'dashboard.crud.index');
 
-Route::get('aya',function(){
+Route::get('aya', function () {
     set_time_limit(0);
     Artisan::call('storage:link');
 //    Artisan::call('migrate:fresh --seed');

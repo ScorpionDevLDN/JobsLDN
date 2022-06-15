@@ -138,4 +138,30 @@ class UserController extends Controller
         Admin::find($id)->delete();
         return redirect()->route('admin.admins.index')->with('msg', 'Admin Deleted successfully');
     }
+
+    public function editProfile(){
+        $user = auth('admins')->user();
+        return view('dashboard.admin.users.profile')->withUser($user);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth('admins')->user();
+        $filename="";
+        $requestData= $request->all();
+
+        if($request->image){
+            $filename= $request->image->store('public/admin');
+            $imagename= $request->image->hashName();
+            $requestData['image'] = $imagename;
+        }
+        $user->fill($requestData);
+        $user->save();
+        $customerDB= Admin::find($request->id);
+        if($customerDB){
+            $customerDB->update($requestData);
+        }
+        session()->flash('msg','s:تم تعديل الملف الشخصي بنجاح');
+        return redirect(route("admin.profile.edit"));
+    }
 }
