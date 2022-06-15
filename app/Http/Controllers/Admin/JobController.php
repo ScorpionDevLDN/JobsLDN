@@ -27,11 +27,11 @@ class JobController extends Controller
     {
         $requestData =$request->all();
 
-        if($request->pdf_details){
-            $filename= $request->pdf_details->store('public');
-            $imagename= $request->pdf_details->hashName();
-            $requestData['pdf_details'] = $imagename;
-        }
+//        if($request->pdf_details){
+//            $filename= $request->pdf_details->store('public');
+//            $imagename= $request->pdf_details->hashName();
+//            $requestData['pdf_details'] = $imagename;
+//        }
         Job::query()->findOrFail($id)->update($requestData);
 
         return redirect()->route('admin.get-jobs.index');

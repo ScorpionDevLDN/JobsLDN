@@ -85,4 +85,12 @@ class Job extends Model
         }
         return 'Rejected';
     }
+
+        public function setPdfDetailsAttribute($image)
+    {
+        if (gettype($image) != 'string') {
+            $image->store('public');
+            $this->attributes['pdf_details'] = $image->hashName();
+        }
+    }
 }
