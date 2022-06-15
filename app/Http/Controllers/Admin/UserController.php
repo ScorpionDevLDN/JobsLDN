@@ -151,7 +151,7 @@ class UserController extends Controller
         $requestData= $request->all();
 
         if($request->image){
-            $filename= $request->image->store('public/admin');
+            $filename= $request->image->store('public');
             $imagename= $request->image->hashName();
             $requestData['image'] = $imagename;
         }

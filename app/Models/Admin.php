@@ -47,7 +47,7 @@ class Admin extends Authenticatable
 //
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url('admin/' . $image) : asset('assets/user.png');
+        return $image ? Storage::url($image) : asset('assets/user.png');
     }
 //
 //    public function deleteImage()
