@@ -45,10 +45,10 @@ class Admin extends Authenticatable
 //        }
 //    }
 //
-    public function getImageAttribute($image): ?string
-    {
-        return $image ? Storage::url('admin/' . $image) : asset('assets/user.png');
-    }
+//    public function getImageAttribute($image): ?string
+//    {
+//        return $image ? Storage::url('admin/' . $image) : asset('assets/user.png');
+//    }
 //
 //    public function deleteImage()
 //    {

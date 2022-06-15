@@ -47,7 +47,7 @@
                                         <input name="image" type="file" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                         <span class="text-danger">@error('image'){{ $message }}@enderror</span>
-                                        <img src="{{$user->image}}" alt="" style="width:auto; height:100px;" id="display_user_image"/>
+                                        <img src="{{asset('admin/'.$user->image)}}" alt="" style="width:auto; height:100px;" id="display_user_image"/>
                                     </div>
                                 </div>
                             </div>
