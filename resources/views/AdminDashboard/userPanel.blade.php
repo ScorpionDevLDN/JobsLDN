@@ -6,6 +6,7 @@
             <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
                 <i class="ki ki-close icon-xs text-muted"></i>
             </a>
+        </h3>
     </div>
     <!--end::Header-->
     <!--begin::Content-->
@@ -14,7 +15,7 @@
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
                 <div class="symbol-label" style="background-image:url('{{auth('admins')->user()->image}}')"></div>
-                <i class="symbol-badge bg-success"></i>
+                <i class="symbol-badge bg-primary"></i>
             </div>
             <div class="d-flex flex-column">
                 <a href="#"

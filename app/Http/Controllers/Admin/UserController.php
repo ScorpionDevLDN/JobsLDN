@@ -164,4 +164,8 @@ class UserController extends Controller
         session()->flash('msg','s:تم تعديل الملف الشخصي بنجاح');
         return redirect(route("admin.profile.edit"));
     }
+
+    public function forgetPassword(){
+        return view('dashboard.admin.forget_password');
+    }
 }

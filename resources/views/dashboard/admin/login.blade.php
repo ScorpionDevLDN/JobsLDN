@@ -2,13 +2,9 @@
 <html lang="en">
 <!--begin::Head-->
 <head>
-    <base href="../../../">
-    <meta charset="utf-8"/>
     <title>Login to Admin Panel</title>
     <meta name="description" content="Login page example"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="canonical" href="https://keenthemes.com/metronic"/>
-    <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <!--end::Fonts-->
     <!--begin::Page Custom Styles(used by this page)-->
@@ -163,12 +159,10 @@
     };</script>
 <!--end::Global Config-->
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
-<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
-<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
+@include('AdminDashboard.scripts')
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('assets/js/pages/custom/login/login-general.j')}}s"></script>
+<script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->

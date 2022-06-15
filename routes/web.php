@@ -75,6 +75,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
         Route::get("profile", [UserController::class, 'editProfile'])->name("profile.edit");
+        Route::get("forget_password", [UserController::class, 'forgetPassword'])->name("forgetPassword");
         Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
     });
 
