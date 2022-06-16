@@ -94,7 +94,54 @@
                 </div>
             </div>
             <div class="card-body">
-                Soon
+                <div class="card mb-3">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <br>
+                            <div class="col-12 p-3">
+                                <div class="row justify-content-center justify-content-sm-between">
+                                    <div class="col-sm-auto text-center">
+                                        <h5 class="d-inline-block">Subscription Plans</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 border-top">
+                                <div style="height: 200px">
+                                    <div class="text-center p-4">
+                                        <h3 class="font-weight-normal mt-5">Monthly</h3>
+                                        <p class="mt-3">Some promotional text comes here...</p>
+                                        <h2 class="font-weight-medium my-4"> <sup class="font-weight-normal fs-2 mr-1">$</sup>20<small class="fs--1 text-700">/ Month</small></h2>
+                                        <a class="btn btn-outline-primary" href="#">Subscribe</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 border-top">
+                                <div class="h-100" style="background-color: rgba(115, 255, 236, 0.18)">
+                                    <div class="text-center p-4">
+                                        <h3 class="font-weight-normal mt-5">Annual</h3>
+                                        <p class="mt-3">Some promotional text comes here...</p>
+                                        <h2 class="font-weight-medium my-4"><sup class="font-weight-normal fs-2 mr-1">$</sup>160<small class="fs--1 text-700">/ Year</small></h2>
+                                        <a class="btn btn-primary" href="#">Subscribe</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Payment Setting</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5>Plan</h5>
+                        <p class="fs-0"><strong>Developer</strong>- Unlimited private repositories</p><a class="btn btn-outline-primary btn-md" href="#!">Update Plan</a>
+                    </div>
+                    <div class="card-body border-top">
+                        <h5>Payment</h5>
+                        <p class="fs-0">You have not added any payment.</p><a class="btn btn-outline-primary btn-md" href="#!">Add Payment </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
