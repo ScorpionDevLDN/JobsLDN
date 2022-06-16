@@ -59,7 +59,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Admin Email</label>
                                 <div class="col-9">
-                                    <input readonly value="{{auth('admins')->user()->email}}" name="email" class="form-control" type="text"
+                                    <input disabled value="{{auth('admins')->user()->email}}" name="email" class="form-control" type="text"
                                            id="example-text-input">
                                     <span class="text-danger">@error('email'){{ $message }}@enderror</span>
 
