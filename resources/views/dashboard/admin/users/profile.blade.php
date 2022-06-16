@@ -21,7 +21,7 @@
                         @csrf
                         <div class="card-body table-responsive">
                             <div class="form-group row">
-                                <label class="col-3 col-form-label">Image</label>
+                                <label class="col-3 col-form-label">Personal Image</label>
                                 <div class="col-lg-9 col-xl-6">
                                     <div class="image-input image-input-outline image-input-circle" id="kt_image_3">
                                         <div class="image-input-wrapper" style="background-image: url({{$user->image}})"></div>
@@ -59,7 +59,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Admin Email</label>
                                 <div class="col-9">
-                                    <input value="{{auth('admins')->user()->email}}" name="email" class="form-control" type="text"
+                                    <input readonly value="{{auth('admins')->user()->email}}" name="email" class="form-control" type="text"
                                            id="example-text-input">
                                     <span class="text-danger">@error('email'){{ $message }}@enderror</span>
 
