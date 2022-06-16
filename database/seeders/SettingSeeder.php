@@ -37,6 +37,8 @@ class SettingSeeder extends Seeder
             'instagram_link'=> 'ww.intsa.com',
             'youtube_link'=> 'ww.yout.com',
             'telegram_link'=> 'ww.teleg.com',
+            'site_key' => 'test site_key',
+            'secret_key' => 'test secret_key',
         ]);
     }
 }

@@ -101,6 +101,27 @@
                                                value="{{$setting->copy_right_text}}">
                                     </div>
                                 </div>
+
+                                {{--capatcha--}}
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Recaptcha Site Key
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="site_key" class="form-control"
+                                               value="{{$setting->site_key}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Recaptcha Secret Key
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="secret_key" class="form-control"
+                                               value="{{$setting->secret_key}}">
+                                    </div>
+                                </div>
                             </div>
                             <!--end::Tab Pane-->
                             <!--begin::Tab Pane-->

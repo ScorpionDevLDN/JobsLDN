@@ -32,6 +32,8 @@ class Setting extends Model
         'instagram_link',
         'youtube_link',
         'telegram_link',
+        'site_key',
+        'secret_key',
     ];
 
 
