@@ -16,13 +16,13 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'category-list',
-            'city-list',
-            'per-list',
-            'currency-list',
-            'type-list',
-            'role-list',
-            'user-list',
+            'categories',
+            'cities',
+            'pers',
+            'currencies',
+            'types',
+            'roles',
+            'users',
         ];
 
         foreach ($permissions as $permission) {
