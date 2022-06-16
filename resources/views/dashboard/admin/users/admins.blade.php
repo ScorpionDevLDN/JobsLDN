@@ -133,7 +133,7 @@
                     <tbody>
                     @foreach($admins as $admin)
                         <tr>
-                            <th scope="row">{{$admin->id}}</th>
+                            <th scope="row"><img width="30" src="{{$admin->image}}"></th>
                             <td>{{$admin->name}}</td>
                             <td>{{$admin->email}}</td>
                             <td>
@@ -214,6 +214,12 @@
                                                        placeholder="Enter admin email"/>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label>Admin Password
+                                                    <span class="text-danger">*</span></label>
+                                                <input value="" required type="text" name="password" class="form-control"
+                                                       placeholder="Enter admin password"/>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleSelectd">Role</label>
                                                 <select name="roles" class="form-control" id="exampleSelectd">
