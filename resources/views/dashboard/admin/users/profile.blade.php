@@ -27,8 +27,8 @@
                                         <div class="image-input-wrapper" style="background-image: url({{$user->image}})"></div>
                                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                             <i class="fa fa-pen icon-sm text-muted"></i>
-                                            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
-                                            <input type="hidden" name="profile_avatar_remove">
+                                            <input type="file" name="image" accept=".png, .jpg, .jpeg">
+                                            <input type="hidden" name="image">
                                         </label>
                                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
 															<i class="ki ki-bold-close icon-xs text-muted"></i>
@@ -91,7 +91,7 @@
                             </h3>
                         </div>
                     </div>
-                    <form enctype="multipart/form-data" action="{{route('admin.profile.update')}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('admin.updatePassword')}}" method="post">
                         @method('put')
                         @csrf
                         <div class="card-body table-responsive">
@@ -108,9 +108,9 @@
                             <div class="form-group row">
                                 <label class="col-12 col-form-label">New Password</label>
                                 <div class="col-12">
-                                    <input required  name="password" class="form-control"
+                                    <input required  name="new_password" class="form-control"
                                             type="password" id="example-text-input">
-                                    <span class="text-danger">@error('password'){{ $message }}@enderror</span>
+                                    <span class="text-danger">@error('new_password'){{ $message }}@enderror</span>
 
                                 </div>
                             </div>
@@ -118,9 +118,9 @@
                             <div class="form-group row">
                                 <label class="col-12 col-form-label">Confirm Password</label>
                                 <div class="col-12">
-                                    <input required  name="password" class="form-control"
+                                    <input required  name="new_password_confirmation" class="form-control"
                                             type="password" id="example-text-input">
-                                    <span class="text-danger">@error('password'){{ $message }}@enderror</span>
+                                    <span class="text-danger">@error('new_password_confirmation'){{ $message }}@enderror</span>
 
                                 </div>
                             </div>
