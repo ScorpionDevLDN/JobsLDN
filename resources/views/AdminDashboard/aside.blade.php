@@ -25,12 +25,12 @@
                 </a>
             </li>
 
-            @canany('categories','cities',
-            'pers',
-            'currencies',
-            'types',
-            'roles',
-            'users')
+            @canany('category-list','city-list',
+            'per-list',
+            'currency-list',
+            'type-list',
+            'role-list',
+            'user-list')
 
                 <li class="menu-item menu-item-submenu mb-2" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
@@ -52,7 +52,7 @@
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
 
-                            @can('categories')
+                            @can('category-list')
                                 <li class="menu-item {{ (request()->is('admin/categories')) ? 'menu-item-active' : '' }}"
                                     aria-haspopup="true">
                                     <a href="{{route('admin.categories.index')}}" class="menu-link">
@@ -62,7 +62,7 @@
                                 </li>
                             @endcan
 
-                            @can('cities')
+                            @can('city-list')
                                 <li class="menu-item {{ (request()->is('admin/cities')) ? 'menu-item-active' : '' }}"
                                     aria-haspopup="true">
                                     <a href="{{route('admin.cities.index')}}" class="menu-link">
@@ -72,7 +72,7 @@
                                 </li>
                             @endcan
 
-                            @can('pers')
+                            @can('per-list')
                                 <li class="menu-item {{ (request()->is('admin/pers')) ? 'menu-item-active' : '' }}"
                                     aria-haspopup="true">
                                     <a href="{{route('admin.pers.index')}}" class="menu-link">
@@ -82,7 +82,7 @@
                                 </li>
                             @endcan
 
-                            @can('currencies')
+                            @can('currency-list')
                                 <li class="menu-item {{ (request()->is('admin/currencies')) ? 'menu-item-active' : '' }}"
                                     aria-haspopup="true">
                                     <a href="{{route('admin.currencies.index')}}" class="menu-link">
@@ -92,7 +92,7 @@
                                 </li>
                             @endcan
 
-                            @can('types')
+                            @can('type-list')
                                 <li class="menu-item {{ (request()->is('admin/types')) ? 'menu-item-active' : '' }}"
                                     aria-haspopup="true">
                                     <a href="{{route('admin.types.index')}}" class="menu-link">
@@ -182,7 +182,7 @@
             </li>
 
             {{--Users--}}
-            @can('users')
+            @can('user-list')
 
                 <li class="menu-item menu-item-submenu mb-2" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">

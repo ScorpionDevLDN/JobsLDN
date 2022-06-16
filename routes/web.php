@@ -53,15 +53,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [AdminController::class, 'home'])->name('home');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
-        Route::resource('categories', CategoryController::class)->middleware(['permission:categories']);
+        Route::resource('categories', CategoryController::class)->middleware(['permission:category-list']);
 
-        Route::resource('cities', CityController::class)->middleware(['permission:cities']);
+        Route::resource('cities', CityController::class)->middleware(['permission:city-list']);
 
-        Route::resource('pers', PerController::class)->middleware(['permission:pers']);
+        Route::resource('pers', PerController::class)->middleware(['permission:per-list']);
 
-        Route::resource('currencies', CurrencyController::class)->middleware(['permission:currencies']);
+        Route::resource('currencies', CurrencyController::class)->middleware(['permission:currency-list']);
 
-        Route::resource('types', TypeController::class)->middleware(['permission:types']);
+        Route::resource('types', TypeController::class)->middleware(['permission:type-list']);
 
         Route::resource('pages', DynamicController::class);
         Route::post('update_page_status/{page}', [DynamicController::class, 'updateCategoryStatus'])->name('update_page_status');
@@ -69,18 +69,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('contacts', [AdminGetContactUsController::class, 'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
 
-        Route::resource('get_companies', CompanyController::class)->middleware(['permission:users']);
+        Route::resource('get_companies', CompanyController::class)->middleware(['permission:user-list']);
 //        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
 
-        Route::get('get_job_seekers', [UserController::class, 'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:users']);
+        Route::get('get_job_seekers', [UserController::class, 'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
         Route::resource('get-jobs', JobController::class);
         Route::get('accept/{id}', [JobController::class, 'accept'])->name('accept');
         Route::get('reject/{id}', [JobController::class, 'reject'])->name('reject');
         Route::resource('newsletter', NewsletterController::class);
         Route::resource('get-payments', PaymentConteroller::class);
 
-        Route::resource('roles', RoleController::class)->middleware(['permission:roles']);
-        Route::resource('admins', UserController::class)->middleware(['permission:users']);
+        Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
+        Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
         Route::get("profile", [UserController::class, 'editProfile'])->name("profile.edit");
         Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
         Route::put("updatePassword", [UserController::class, 'updatePassword'])->name("updatePassword");
@@ -103,9 +103,9 @@ Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya', function () {
     set_time_limit(0);
-//    Artisan::call('storage:link');
-    Artisan::call('optimize');
-    return 'success optimize';
+    Artisan::call('storage:link');
+//    Artisan::call('migrate:fresh --seed');
+    return 'success db_seed';
 });
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
