@@ -103,9 +103,9 @@ Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya', function () {
     set_time_limit(0);
-    Artisan::call('storage:link');
-//    Artisan::call('migrate:fresh --seed');
-    return 'success db_seed';
+//    Artisan::call('storage:link');
+    Artisan::call('optimize');
+    return 'success optimize';
 });
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
