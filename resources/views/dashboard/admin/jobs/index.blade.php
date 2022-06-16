@@ -157,6 +157,11 @@
                                                     </div>
 
                                                     <div class="form-group">
+                                                        <label>Job Details
+                                                            <span class="text-danger">*</span></label>
+                                                        <embed src="{{$job->pdf_details}}" type="application/pdf" width="100%" height="100%">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label>Job Location
                                                             <span class="text-danger">*</span></label>
                                                         <input disabled required value="{{$job->city->name}}"
