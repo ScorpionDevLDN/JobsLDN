@@ -20,12 +20,11 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return string
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
         $permissions = Permission::all();
-
         $roles = Role::orderBy('id', 'DESC')->paginate(5);
         return view('dashboard.admin.roles.index', compact('roles', 'permissions'));
     }

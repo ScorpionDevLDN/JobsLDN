@@ -166,7 +166,7 @@
                                                 <br/>
                                                 @foreach($permissions as $value)
                                                     @if($value->id == 1)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Categories</label>
+                                                        <label><input  style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Categories</label>
                                                         <br/>
                                                     @elseif($value->id == 2)
                                                         <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Cities</label>
