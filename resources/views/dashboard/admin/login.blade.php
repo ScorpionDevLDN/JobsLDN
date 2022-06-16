@@ -67,18 +67,18 @@
                                        type="password" name="password" autocomplete="off"/>
                             </div>
 
-                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                    <label class="col-md-4 control-label">Captcha</label>
-                                    <div class="col-md-6">
+{{--                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">--}}
+{{--                                    <label class="col-md-4 control-label">Captcha</label>--}}
+{{--                                    <div class="col-md-6">--}}
 {{--                                        {!! app('captcha')->display() !!}--}}
-                                        <div class="g-recaptcha" data-sitekey="6LcHGhITAAAAABIgEAplK2EWsVFkaE5o0DWUpsIs"></div>
-                                        @if ($errors->has('g-recaptcha-response'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                        <div class="g-recaptcha" data-sitekey="6LcHGhITAAAAABIgEAplK2EWsVFkaE5o0DWUpsIs"></div>--}}
+{{--                                        @if ($errors->has('g-recaptcha-response'))--}}
+{{--                                            <span class="help-block">--}}
+{{--                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             <!--end::Form group-->
                             <!--begin::Action-->
                             <div class="text-center pt-2">
