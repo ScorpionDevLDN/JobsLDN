@@ -182,7 +182,7 @@ class UserController extends Controller
         if($customerDB){
             $customerDB->update($requestData);
         }
-        session()->flash('msg','s:تم تعديل الملف الشخصي بنجاح');
+        session()->flash('msg','Profile Updated Successfully');
         return redirect(route("admin.profile.edit"));
     }
 
@@ -199,6 +199,8 @@ class UserController extends Controller
         Auth::guard('admins')->user()->update([
            'password' =>  $request->new_password
         ]);
+        session()->flash('msg','Password Updated Successfully');
+
         return redirect(route("admin.profile.edit"));
     }
 }
