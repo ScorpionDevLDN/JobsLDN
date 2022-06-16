@@ -3,6 +3,7 @@
 <!--begin::Head-->
 <head>
     <title>Login to Admin Panel</title>
+    {!! NoCaptcha::renderJs() !!}
     <meta name="description" content="Login page example"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
@@ -65,6 +66,19 @@
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
                                        type="password" name="password" autocomplete="off"/>
                             </div>
+
+                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                    <label class="col-md-4 control-label">Captcha</label>
+                                    <div class="col-md-6">
+{{--                                        {!! app('captcha')->display() !!}--}}
+                                        <div class="g-recaptcha" data-sitekey="6LcHGhITAAAAABIgEAplK2EWsVFkaE5o0DWUpsIs"></div>
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
                             <!--end::Form group-->
                             <!--begin::Action-->
                             <div class="text-center pt-2">

@@ -26,7 +26,8 @@ class AdminController extends Controller
         //Validate Inputs
         $request->validate([
             'email' => 'required|email|exists:admins,email',
-            'password' => 'required|min:5|max:30'
+            'password' => 'required|min:5|max:30',
+//            'g-recaptcha-response' => 'required|captcha',
         ], [
             'email.exists' => 'This email is not exists in admins table'
         ]);
