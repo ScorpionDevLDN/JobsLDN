@@ -83,6 +83,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);
         Route::get("profile", [UserController::class, 'editProfile'])->name("profile.edit");
         Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
+        Route::put("updatePassword", [UserController::class, 'updatePassword'])->name("updatePassword");
 
     });
 

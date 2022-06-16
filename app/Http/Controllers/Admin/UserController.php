@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\JobSeeker;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
@@ -187,5 +188,17 @@ class UserController extends Controller
 
     public function forgetPassword(){
         return view('dashboard.admin.forget_password');
+    }
+    
+    public function updatePassword(Request $request){
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        Auth::guard('admins')->user()->update([
+           'password' =>  $request->new_password
+        ]);
+        return redirect(route("admin.profile.edit"));
     }
 }
