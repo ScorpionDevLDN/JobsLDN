@@ -82,6 +82,18 @@
                             <td>
                                 <div class="row">
                                     <div class="col-1 pr-10" style="margin-left: -10px;">
+                                        <div class="pretty p-icon p-toggle p-plain btn btn-light-info btn-icon">
+                                            <input name="shown" data-id="{{$job->id}}" class="toggle-class"
+                                                   type="checkbox" {{ $job->shown ? 'checked' : '' }}>
+                                            <div class="state p-success-o p-on">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <div class="state p-off ">
+                                                <i class="fas fa-eye-slash"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 pr-10">
                                         <a href="#" class="btn btn-light-info font-weight-bold btn-icon"
                                            data-toggle="modal"
                                            data-target="#exampleModalShow{{$job->id}}">
@@ -448,15 +460,19 @@
         $(function () {
             // $('.toggle-class').change(function () {
             $(document).on("click", ".toggle-class", function () {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var category_id = $(this).data('id');
+                var shown = $(this).prop('checked') == true ? 1 : 0;
+                var post_id = $(this).data('id');
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changeStatus',
-                    data: {'status': status, 'id': category_id},
+                    url: '/changePostStatus',
+                    data: {'shown': shown, 'id': post_id},
                     success: function (data) {
+                        toastr.options.closeButton = true;
+                        toastr.options.closeMethod = 'fadeOut';
+                        toastr.options.closeDuration = 100;
+                        toastr.info(data.success);
                         console.log(data.success)
                     }
                 });

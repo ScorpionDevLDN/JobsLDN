@@ -35,6 +35,7 @@ Route::get('changeCityStatus', [CityController::class, 'updateCityStatus'])->nam
 Route::get('changeCurrencyStatus', [CurrencyController::class, 'changeCurrencyStatus'])->name('changeCurrencyStatus');
 Route::get('changePerStatus', [PerController::class, 'changePerStatus'])->name('changePerStatus');
 Route::get('changeTypeStatus', [TypeController::class, 'changeTypeStatus'])->name('changeTypeStatus');
+Route::get('changePostStatus', [JobController::class, 'changePostStatus'])->name('changePostStatus');
 
 
 //admin routes

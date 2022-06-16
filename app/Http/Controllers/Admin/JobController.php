@@ -52,4 +52,11 @@ class JobController extends Controller
         ]);
         return redirect()->route('admin.get-jobs.index');
     }
+
+    public function changePostStatus(Request $request){
+        $ca = Job::find($request->id);
+        $ca->shown = $request->shown;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

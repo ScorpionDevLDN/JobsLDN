@@ -27,6 +27,7 @@ class Job extends Model
         'applicants_count',
         'views_count',
         'status', //0 under preview,1 accepted,2 rejected
+        'shown'
     ];
 
     public function city()
