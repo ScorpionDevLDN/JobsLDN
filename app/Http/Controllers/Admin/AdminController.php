@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
-use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -21,6 +19,7 @@ class AdminController extends Controller
     {
         return view('dashboard.admin.login');
     }
+
     function check(Request $request)
     {
         //Validate Inputs
@@ -34,10 +33,18 @@ class AdminController extends Controller
 
         $creds = $request->only('email', 'password');
 
+        $admin = Admin::query()->where('email',$request->email)->first();
+
         if (Auth::guard('admins')->attempt($creds)) {
             return redirect()->route('admin.home');
+        }
+        elseif (!Hash::check($admin->password, $request->password)) {
+            return Redirect::route('admin.login')
+                ->with('Error', 'Current Password Error !')
+                ->withInput();
         } else {
-            return redirect()->route('admin.login')->with('fail', 'Incorrect credentials');
+//            session()->flash('msg','Password Updated Successfully');
+            return redirect()->route('admin.login');
         }
     }
 
@@ -47,17 +54,18 @@ class AdminController extends Controller
         return redirect('/admin/login');
     }
 
-    public function home(){
-        $companies= Company::query()->count();
-        $seekers= JobSeeker::query()->count();
-        $jobs= Job::query()->count();
-        $all_jobs = Job::query()->orderBy('created_at')->get()->groupBy(function($t) {
+    public function home()
+    {
+        $companies = Company::query()->count();
+        $seekers = JobSeeker::query()->count();
+        $jobs = Job::query()->count();
+        $all_jobs = Job::query()->orderBy('created_at')->get()->groupBy(function ($t) {
             return Carbon::parse($t->created_at)->format('m');
         });
-        $data_job = collect($all_jobs)->values()->map(function ($job)  {
+        $data_job = collect($all_jobs)->values()->map(function ($job) {
             return $job->count();
         });
 //        dd($data_job);
-        return view('dashboard.admin.home',compact('companies','seekers','jobs','data_job'));
+        return view('dashboard.admin.home', compact('companies', 'seekers', 'jobs', 'data_job'));
     }
 }

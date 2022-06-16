@@ -53,6 +53,7 @@
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text"
                                        name="email" autocomplete="off"/>
+                                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                             </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
@@ -65,6 +66,9 @@
                                 </div>
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
                                        type="password" name="password" autocomplete="off"/>
+                                @if(\Illuminate\Support\Facades\Session::has('Error'))
+                                    <span class="text-danger">Current Password Error !</span>
+                                @endif
                             </div>
 
 {{--                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">--}}
