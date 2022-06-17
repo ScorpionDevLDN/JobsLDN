@@ -19,7 +19,7 @@ class DynamicPage extends Model
         'keywords', // بدها جدول لحالها
         'metadata',
         'status',
-        'shown_in',//1 header 0 footer
+        'shown_in',//1 header 0 footer,2both
     ];
 
     public function setImageAttribute($image)
@@ -48,6 +48,7 @@ class DynamicPage extends Model
         return collect([
             1 => 'Header',
             0 => 'Footer',
+            2 => 'Header & Footer',
         ])->get($this->shown_in);
     }
 }

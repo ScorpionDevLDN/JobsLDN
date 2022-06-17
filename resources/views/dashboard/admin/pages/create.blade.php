@@ -91,6 +91,9 @@
                                     <label class="radio">
                                         <input {{old('shown_in')=='0'?"checked":""}} checked value="0" type="radio" name="shown_in">
                                         <span></span>Footer</label>
+                                    <label class="radio">
+                                        <input {{old('shown_in')=='2'?"checked":""}} checked value="2" type="radio" name="shown_in">
+                                        <span></span>Both</label>
                                 </div>
                             </div>
                         </div>

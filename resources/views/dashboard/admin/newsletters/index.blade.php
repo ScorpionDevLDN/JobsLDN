@@ -71,6 +71,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Created At</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -79,6 +80,7 @@
                         <tr>
                             <th scope="row">{{$newsletter->id}}</th>
                             <td>{{$newsletter->email}}</td>
+                            <td>{{$newsletter->created_at->format('Y-m-d')}}</td>
                             <td><div class="col-2">
                                     <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
                                        data-target="#exampleModalDelete{{$newsletter->id}}">
