@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\PaymentConteroller;
 use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Front\CompanyJobsController;
+use App\Http\Controllers\Front\HomeFrontController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -87,6 +89,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     });
 
+});
+
+Route::prefix('front')->group(function (){
+    Route::resource('home', HomeFrontController::class);
+    Route::resource('jobs', CompanyJobsController::class);
 });
 
 //login and register
