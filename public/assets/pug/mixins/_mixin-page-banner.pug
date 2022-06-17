@@ -1,0 +1,13 @@
+mixin pageBanner(pageBannerObj)
+  // Page banner
+  section.page-banner.py-5
+    .container
+      .row
+        .col-md-6.order-2.order-md-1
+          h2.page-banner__title= pageBannerObj.title
+          if pageBannerObj.subtitle
+            p.page-banner__subtitle= pageBannerObj.subtitle
+        .col-md-6.order-1.order-md-2
+          .page-banner__image
+            img(src=pageBannerObj.image)
+  // page-banner-end

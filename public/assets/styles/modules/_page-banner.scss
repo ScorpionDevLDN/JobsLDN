@@ -1,0 +1,56 @@
+.page-banner {
+  &__title {
+    margin-top: 0rem;
+    font-size: 1.5rem;
+    text-align: center;
+
+    @include responsive(atMedium) {
+      font-size: 2.5rem;
+      text-align: left;
+      margin-top: 3rem;
+    }
+  }
+
+  &__image {
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.profile-page-banner {
+  box-shadow: 0 0.25rem .5rem rgba(0, 0, 0, .2);
+
+  &__navbar {
+    padding: 2rem 0;
+
+    ul {
+      padding: 0;
+      list-style: none;
+      display: flex;
+
+      li {
+        margin-right: 1.5rem;
+        color: $mainTextColor;
+
+        @include responsive(atMedium) {
+          margin-right: 3rem;
+        }
+
+        &.active {
+          color: $primary;
+          font-weight: bold;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+    }
+  }
+}

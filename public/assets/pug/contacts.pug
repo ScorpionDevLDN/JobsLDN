@@ -1,0 +1,50 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Contacts | JOBSLDN
+
+block navbar
+	- let activePage = 'contacts'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	include ./mixins/_mixin-page-banner
+	+pageBanner({title: 'Contacts', image: "assets/images/contact/header.svg"})
+	|
+	|
+	// Contact info
+	section.contact.py-5
+		.container
+			.row
+				.col-md-3
+					h5 Our Office
+					p 425 Berry Street, CA 93584
+				.col-md-3
+					h5 Email
+					p info@domain.com
+				.col-md-3
+					h5 Phone
+					p (+00) - 00 0000000
+				.col-md-3
+					h5 Mobile
+					p (+00) - 00 0000000
+	// contact-info-end
+	|
+	|
+	// Contact form
+	section.py-5
+		.container
+			.row
+				.col-md-2
+					p.font-weight-bold We would love to hear from you!
+				.col-md-6
+					.form-group.mb-4
+						input.form-control-lg(type="text" placeholder="Full Name * " required)
+					.form-group.mb-4
+						input.form-control-lg(type="text" placeholder="Full Name * " required)
+					.form-group.mb-4
+						input.form-control-lg(type="text" placeholder="Full Name * " required)
+					.from-group.mb-4
+						textarea.form-control-lg(name="message", cols="30", rows="5")
+	// contact-form-end

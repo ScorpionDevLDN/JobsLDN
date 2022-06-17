@@ -1,0 +1,19 @@
+mixin modalNotification(modalNotificationObj)
+	.modal.fade(id=modalNotificationObj.id tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+		.modal-dialog(role='document')
+			.modal-content
+				.modal-header
+					h5.modal-title Notification
+					button.close(type='button' data-dismiss='modal' aria-label='Close')
+						span(aria-hidden='true') &times;
+				.modal-body.text-center
+					if (modalNotificationObj.icon != '')
+						i(class= modalNotificationObj.icon)
+					h6(class= modalNotificationObj.message.color)= modalNotificationObj.message.text
+					.my-4
+						if (modalNotificationObj.hasButton)
+							if (modalNotificationObj.form === true)
+								form(method="POST" action="#")
+									button.btn.btn-primary.px-5(type="submit")= modalNotificationObj.buttonText
+							else
+								button.btn.btn-primary.px-5(data-dismiss="modal")= modalNotificationObj.buttonText

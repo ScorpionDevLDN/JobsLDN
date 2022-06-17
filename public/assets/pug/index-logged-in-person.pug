@@ -1,0 +1,79 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Home | JOBSLDN
+
+block navbar
+	- let activePage = 'home'
+	include ./partials/_navbar-logged-in-person
+
+block content
+	// Slider
+	.slider
+		.owl-carousel.owl-theme
+			include ./mixins/_mixin-slider
+			+slide
+			+slide
+			+slide
+			+slide
+
+	// slider-end
+	|
+	|
+	// Discover now
+	section.discover-now.py-5
+		h2.section-title.section-title--smaller.section-title--half-margin Discover now
+		.container
+			.discover-now__form
+				.discover-now__filters
+					select.discover-now__filters-category.form-select
+						option(value="all_categories") Category
+						option(value="1") Category 1
+						option(value="2") Category 2
+						option(value="3") Category 3
+					select.discover-now__filters-category.form-select
+						option(value="all_categories") Type
+						option(value="1") Category 1
+						option(value="2") Category 2
+						option(value="3") Category 3
+					select.discover-now__filters-category.form-select
+						option(value="all_categories") City
+						option(value="1") Category 1
+						option(value="2") Category 2
+						option(value="3") Category 3
+					button.btn.btn-primary.px-5(type="submit") Go
+	// discover-now-end
+	|
+	|
+	// Featured jobs
+	section.featured-jobs.py-5
+		h2.section-title.section-title--smaller.section-title--half-margin Featured jobs
+
+	// featured-jobs-end
+	|
+	|
+	// Partners
+	section.partners.py-5
+		.container
+			h2.section-title.section-title--smaller.section-title--half-margin Partners
+			.owl-carousel
+				include ./mixins/_mixin-partner
+				+partner({image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"})
+				+partner({image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"})
+				+partner({image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"})
+	// partners-end
+	|
+	|
+	// Best business
+	section.general-section.py-5
+		.container
+			.row
+				.col-md-6
+					.general-section__image
+						img(src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+				.col-md-6
+					.general-section__content
+						h2 The best businesses deserve the best people
+						a.btn.btn-primary.px-4(href="#") Advertise now
+	// best-business-end

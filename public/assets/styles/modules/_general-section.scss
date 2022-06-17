@@ -1,0 +1,45 @@
+.general-section {
+  &__content {
+    text-align: center;
+
+    @include responsive(atMedium) {
+      text-align: left;
+    }
+
+    h2 {
+      // margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+
+      @include responsive(atMedium) {
+        margin-top: 4.5rem;
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  [class*="col-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .general-section__image {
+      height: 200px;
+
+      @include responsive(atMedium) {
+        height: 350px;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        height: 70%;
+        display: block;
+        object-fit: cover;
+        margin-left: 9rem !important;
+      }
+    }
+  }
+}

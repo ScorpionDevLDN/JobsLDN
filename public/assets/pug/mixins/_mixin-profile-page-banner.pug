@@ -1,0 +1,14 @@
+mixin profilePageBanner(profilePageBannerObj)
+	// Profile page banner
+	section.profile-page-banner.py-5
+		.container
+			.profile-page-banner__navbar
+				ul
+					each item in profilePageBannerObj.navbar
+						li
+							a(href= profilePageBannerObj.navbar.link title= profilePageBannerObj.navbar.title) profilePageBannerObj.navbar.title
+			.profile-page-banner__title
+				h1 profilePageBannerObj.title
+				if profilePageBannerObj.action
+					a.btn.btn-primary.px-5(href="#") profilePageBannerObj.action
+	// profile-page-banner-end

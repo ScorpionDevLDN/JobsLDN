@@ -1,0 +1,176 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'SofiaProLight';
+  src: url('../fonts/Sofia Pro Light Az.otf') format("truetype");
+}
+
+@font-face {
+  font-family: 'SofiaProRegular';
+  src: url('../fonts/Sofia Pro Regular Az.otf') format("truetype");
+}
+
+@font-face {
+  font-family: 'SofiaProBold';
+  src: url('../fonts/Sofia Pro Bold Az.otf') format("truetype");
+}
+
+body {
+  font-family: 'SofiaProRegular', Arial, sans-serif;
+  color: $mainTextColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  font-family: 'SofiaProBold', Arial, sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  // &.py-5 {
+  //   @include responsive(atSmall) {
+  //     padding-top: 1.5rem !important;
+  //     padding-bottom: 1.5rem !important;
+  //   }
+  // }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    padding-bottom: 1.75rem;
+
+    @include responsive(atSmall) {
+      font-size: 1.625rem !important;
+    }
+
+    &--smaller {
+      font-size: 1.5rem;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--half-margin {
+      margin-bottom: 1.5rem !important;
+    }
+
+    &--no-margin {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+div.bordered-bottom {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '';
+    display: none;
+    width: 50%;
+    height: 0.125rem;
+    background-color: $primary;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include responsive(atMedium) {
+      display: block;
+      // width: 100%;
+      // left: 0;
+    }
+  }
+
+  &--grey {
+    &::after {
+      background-color: $grey;
+    }
+  }
+}
+
+// Inputs and textareas
+.form-control-lg,
+textarea.form-control {
+  border-color: rgba($primary, .5) !important;
+  font-size: 1rem;
+
+  @include responsive(atSmall) {
+    width: 95%;
+  }
+
+  &::placeholder {
+    font-size: 1rem;
+    opacity: .8rem;
+  }
+}
+
+textarea.form-control {
+  border-width: 2px;
+}
+
+.form-actions {
+  width: 100%;
+}
+
+// show/hide password inputs
+.input-group {
+  border-color: rgba($primary, .5) !important;
+
+  .show-hide-password {
+    height: calc(1.5em + 1rem + 2px);
+    width: 350px;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    border: 2px solid rgba($primary, .5) !important;
+    border-right: none !important;
+
+    &::placeholder {
+      font-size: 1rem;
+      opacity: .8rem;
+    }
+  }
+
+  .input-group-append {
+    height: calc(1.5em + 1rem + 2px);
+    border: 2px solid rgba($primary, .5) !important;
+    border-left: none !important;
+
+    .input-group-text {
+      background: none !important;
+      border: none;
+    }
+  }
+
+  .input-group-instructions {
+    font-size: .8rem;
+    margin-top: 0.125rem;
+    font-family: 'SofiaProLight', Arial, sans-serif;
+    margin-left: 2rem;
+  }
+}
+
+// Inputs inside modals
+.modal {
+
+  .form-control-lg,
+  .show-hide-password {
+    width: 330px;
+  }
+}

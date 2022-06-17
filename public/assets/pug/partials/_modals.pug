@@ -1,0 +1,207 @@
+// Modals
+// Login/Register modal
+#modalLoginForm.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+	.modal-dialog(role='document')
+		.modal-content.p-5
+			.modal-header
+				.modal-header-tabs
+					.modal-header-tabs__tab.active#login-form-title
+						h5.modal-title Login
+					.modal-header-tabs__tab#register-form-title
+						h5.modal-title Register
+				button.close(type='button' data-dismiss='modal' aria-label='Close')
+					span(aria-hidden='true') &times;
+			.modal-body
+				#login-form
+					.text-center
+						h5.mb-1 We are glad to see you again!
+						p.text-muted Don’t have an account? <a href="#" id="register-form-link">Sign Up!</a>
+					form(method="POST" action="#")
+						.row.mt-5.text-center
+							.col-12.mb-3
+								input.form-control-lg(type='text' placeholder='Email' name='email' required)
+							.col-12.mb-4
+								input.form-control-lg(type='password' placeholder='Password' name='password' required)
+								.my-3
+									a(href="" id="modal-forgot-password-link" data-toggle="modal" data-target="#modalForgotPassword" data-dismiss="modal") Forgot Password?
+								button.btn.btn-primary.px-5(type="submit") Login
+				#register-form
+					.text-center
+						h5 Let's create your account!
+					form(method="POST" action="#")
+						.row.mt-5.text-center
+							.col-12.mb-4
+								.btn-group.btn-group-toggle(data-toggle='buttons')
+									label.btn.btn-outline-primary.px-5.mr-4.active
+										input#option1(type='radio' name='accountType' autocomplete='off' checked='')
+										|  Jobseeker
+									label.btn.btn-outline-primary.px-5.mr-4
+										input#option2(type='radio' name='accountType' autocomplete='off')
+										| Company
+							.col-12.mb-3
+								input.form-control-lg(type='text' placeholder="First Name" name="firstName" required)
+							.col-12.mb-3
+								input.form-control-lg(type='text' placeholder="Last Name" name="lastName" required)
+							.col-12.mb-3
+								input.form-control-lg(type='email' placeholder="Email" name="email" required)
+							.col-12.mb-3
+								input.form-control-lg(type='email' placeholder="Confirm Email" name="emailConfirm" required)
+							.col-12.mb-3
+								input.form-control-lg(type='password' placeholder="Password" name="password" required)
+							.col-12.mb-3
+								input.form-control-lg(type='password' placeholder="Password" name="passwordConfirm" required)
+							.col-12
+								.form-check.my-3
+									input.form-check-input(type='checkbox' name='registerTerms' id='registerTerms')
+									label(for='registerTerms') By continuing you accept our standard <a href="#">terms and conditions</a> and our <a href="#">privacy policy</a>
+								| .
+								button.btn.btn-primary.px-5(type="submit") Register
+// login-register-modal-end
+|
+|
+// Forgot password modal
+#modalForgotPassword.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+	.modal-dialog(role='document')
+		.modal-content.p-5
+			.modal-header
+				h5.modal-title Reset password
+				button.close(type='button' data-dismiss='modal' aria-label='Close')
+					span(aria-hidden='true') &times;
+			.modal-body
+				form(method="POST" action="#")
+					.row.mt-5.text-center
+						.col-12.mb-3
+							p Enter Your Email to Reset Your Password
+							input.form-control-lg(type='email' placeholder='ُEnter Your Email' name='email' required)
+							.my-4
+								button.btn.btn-primary.px-5(type="submit") Reset Password
+// forgot-password-modal-end
+|
+|
+// Create a new job post modal
+#modalCreateJob.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+	.modal-dialog(role='document')
+		.modal-content.p-5
+			.modal-header
+				h5.modal-title Create a new job post
+				button.close(type='button' data-dismiss='modal' aria-label='Close')
+					span(aria-hidden='true') &times;
+			.modal-body
+				form(method="POST" action="#")
+					.row.mt-5.text-center
+						.col-12.mb-3
+							input.form-control-lg(type='text' placeholder='Title *' name='jobTitle')
+						.col-12.mb-3
+							textarea.form-control(name="jobSummary" rows="5" placeholder="Summary *" required)
+						.col-12.mb-3
+							d-flex.justify-content-between
+								input(type='text' placeholder='Salary *' name='jobSalary')
+								select(name="jobSalaryCurrency")
+									option(value="currency1") Currency 1
+									option(value="currency2") Currency 2
+									option(value="currency3") Currency 3
+						.col-12.mb-3
+							select(name="jobSalaryPer")
+								option(value="hour") Hour
+								option(value="day") Day
+								option(value="month") Month
+						.col-12.mb-3
+							select(name="jobType")
+								option(value="type1") Type 1
+								option(value="type2") Type 2
+								option(value="type3") Type 3
+						.col-12.mb-3
+							select(name="jobCategory")
+								option(value="category1") Category 1
+								option(value="category2") Category 2
+								option(value="category3") Category 3
+						.col-12.mb-3
+							select(name="jobCity")
+								option(value="city1") City 1
+								option(value="city2") City 2
+								option(value="city3") City 3
+						.col-12.mb-3
+							input.form-control-lg(type="date" placeholder="Expiration Date *")
+						.col-12.mb-3
+							input.form-control-lg(type="email" placeholder="Email *")
+							span.text-muted You will receive direct applaied requests.
+// create-a-new-job-post-modal-end
+|
+|
+// Notifications modals
+include ../mixins/_mixin-modal-notification
+// Logout modal
++modalNotification({
+	id: 'modalLogout',
+	icon: '',
+	message: {
+		color: '',
+		text: 'Are you sure you want to log out?'
+	},
+	hasButton: true,
+	form: true,
+	buttonText: 'Logout'
+})
+// logout-modal-end
+|
+|
+// Delete item modal
++modalNotification({
+	id: 'modalDeleteThis',
+	icon: '',
+	message: {
+		color: '',
+		text: 'Are you sure you want to delete this?'
+	},
+	hasButton: true,
+	form: false,
+	buttonText: 'Yes'
+})
+// delete-item-modal-end
+|
+|
+// Retract application
++modalNotification({
+	id: 'modalRetractApplicationConfirm',
+	icon: '',
+	message: {
+		color: '',
+		text: 'Are you sure you want to retract your application?'
+	},
+	hasButton: true,
+	form: false,
+	buttonText: 'Yes'
+})
+|
+|
+// retract-application-end
+|
+|
+// Retract application success
++modalNotification({
+	id: 'modalRetractApplicationSuccess',
+	icon: 'fas fa-check text-muted text-success fa-2x my-3',
+	message: {
+		color: 'text-success',
+		text: 'Are you sure you want to retract your application?'
+	},
+	hasButton: false,
+	form: false,
+	buttonText: ''
+})
+// retract-application-success-end
+|
+|
+// Can't complete this action
++modalNotification({
+	id: 'modalActionNotSuccess',
+	icon: 'fas fa-times text-muted text-danger fa-2x my-3',
+	message: {
+		color: 'text-danger',
+		text: `Sorry! We can't complete this action at this time!`
+	},
+	hasButton: false,
+	form: false,
+	buttonText: ''
+})
+// cannot-complete-action-end

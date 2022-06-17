@@ -1,0 +1,23 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Dynamic Page | JOBSLDN
+
+block navbar
+	- let activePage = 'dynamicPage'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	include ./mixins/_mixin-page-banner
+	+pageBanner({title: 'Dynamic Page', subtitle: 'Last update Jun 12, 2022', image: "assets/images/contact/header.svg"})
+	|
+	|
+	// Page content
+	section.page-content.py-5
+		.container
+			p Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem itaque nemo eveniet possimus cupiditate, mollitia ipsum facilis perferendis expedita dolores odit fugiat saepe esse labore unde voluptatem, inventore sunt excepturi voluptates? Veniam numquam eius, dolor consectetur repellat inventore necessitatibus. Modi.
+			p Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eligendi unde cupiditate sequi distinctio, nam esse veniam aut molestias animi? Adipisci, nobis alias quas ut consectetur aperiam inventore. Repudiandae quidem sit ex accusantium iure eaque eum suscipit nostrum libero aliquam!
+			p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusamus corrupti quo quos sint maxime laboriosam aliquid quia sed illum velit consectetur amet, deleniti quibusdam aut atque libero voluptatibus! Neque qui maxime ex. Doloribus, dolor ipsa minus expedita inventore debitis.
+			p Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum recusandae corporis ducimus officiis quia obcaecati laboriosam aut et temporibus eaque? Nulla eligendi voluptatibus corporis fuga. Accusamus, reiciendis a similique incidunt cupiditate dolores commodi, expedita iure blanditiis maiores esse eligendi sunt?
+	// page-content-end

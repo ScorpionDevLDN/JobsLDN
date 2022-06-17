@@ -1,0 +1,105 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Jobs - Company | JOBSLDN
+
+block navbar
+	- let activePage = 'contacts'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	// Profile page banner
+	section.profile-page-banner
+		.container
+			.profile-page-banner__navbar
+				ul
+					li
+						a(href="profile-company.html") Profile
+					li.active
+						a(href="profile-company-jobs.html") Jobs
+					li
+						a(href="profile-company-notifications.html") Notifications
+					li
+						a(href="" data-toggle="modal" data-target="#modalLogout") Logout
+	// profile-page-banner-end
+	|
+	|
+	// Profile company jobs
+	section.profile.py-5
+		.container
+			.profile__title-with-action
+				h1.mb-4.text-center.text-md-left Jobs
+				div.text-center.text-md-right
+					a.btn.btn-primary.px-5(href="" data-toggle="modal" data-target="#modalCreateJob") Post a job
+			.row
+				.col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+					h5.mb-1
+						span 24
+						|  Jobs Created
+					p.text-muted.mb-4.mb-md-0 The number of jobs you have created.
+				.col-md-9
+					include ./mixins/_mixin-profile-company-job
+					+jobItem({
+							employer: {
+								logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+								name: "Google"
+							},
+							title: "Senior Frontend Developer",
+							location: "New York",
+							type: "Full-Time",
+							salaryFrom: "$3000",
+							salaryTo: "$5000",
+							postedAt: "2 days"
+						})
+					+jobItem({
+							employer: {
+								logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+								name: "Google"
+							},
+							title: "Senior Frontend Developer",
+							location: "New York",
+							type: "Full-Time",
+							salaryFrom: "$3000",
+							salaryTo: "$5000",
+							postedAt: "2 days"
+						})
+					+jobItem({
+							employer: {
+								logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+								name: "Google"
+							},
+							title: "Senior Frontend Developer",
+							location: "New York",
+							type: "Full-Time",
+							salaryFrom: "$3000",
+							salaryTo: "$5000",
+							postedAt: "2 days"
+						})
+					+jobItem({
+							employer: {
+								logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+								name: "Google"
+							},
+							title: "Senior Frontend Developer",
+							location: "New York",
+							type: "Full-Time",
+							salaryFrom: "$3000",
+							salaryTo: "$5000",
+							postedAt: "2 days"
+						})
+					+jobItem({
+							employer: {
+								logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+								name: "Google"
+							},
+							title: "Senior Frontend Developer",
+							location: "New York",
+							type: "Full-Time",
+							salaryFrom: "$3000",
+							salaryTo: "$5000",
+							postedAt: "2 days"
+						})
+					// pagination
+					include ./partials/_pagination
+	// profile-end

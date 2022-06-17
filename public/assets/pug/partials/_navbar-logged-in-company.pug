@@ -1,0 +1,32 @@
+//-
+	- Main navbar
+// Navbar
+nav.navbar.sticky-top.navbar-expand-lg.navbar-light.bg-light.py-4
+	.container
+		a.navbar-brand(href='index.html')
+			div.navbar-brand__box
+				img(src="assets/images/logo.svg" class="img-fluid" alt="JOBSLDN Website")
+		button.navbar-toggler(type='button' data-toggle='collapse' data-target='#main-menu' aria-controls='main-menu' aria-expanded='false' aria-label='Toggle navigation')
+			span.navbar-toggler-icon
+		#main-menu.collapse.navbar-collapse
+			ul.navbar-nav.ml-auto
+				li.nav-item(class=activePage == 'home' ? 'active' : '')
+					a.nav-link(href='index.html') Home
+						span.sr-only (current)
+				li.nav-item(class=activePage == 'jobs' ? 'active' : '')
+					a.nav-link(href='jobs.html') Jobs
+				li.nav-item(class=activePage == 'dynamicPage' ? 'active' : '')
+					a.nav-link(href='dynamic-page.html') Dynamic Page
+				li.nav-item(class=activePage == 'contacts' ? 'active' : '')
+					a.nav-link(href='contacts.html') Contacts
+				a.btn.btn-outline-primary.px-4(href="" data-toggle="modal" data-target="#modalCreateJob") Post a job
+				.navbar__profile
+					.navbar__profile-image
+						img(src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+					.navbar__profile-name
+						h6 Surgey Ivanov
+						small Company
+					.navbar__dots
+						a(href="profile-company.html")
+							i.fas.fa-ellipsis-h
+// navbar-end

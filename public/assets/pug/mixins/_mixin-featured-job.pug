@@ -1,0 +1,25 @@
+mixin featuredJob(featuredJobObj)
+	.col-md-3
+		.featured-jobs__job
+			.featured-jobs__job-bookmark
+				img(src="assets/images/icons/star-fill.svg")
+			small.featured-jobs__job-employer= featuredJobObj.employer
+			h3.featured-jobs__job-title= featuredJobObj.position
+			.featured-jobs__job-info
+				.featured-jobs__job-info-description
+					div
+						img.icon(src="assets/images/home/location.svg")
+						span= featuredJobObj.location
+					div
+						img.icon(src="assets/images/home/full-time.svg")
+						span= featuredJobObj.partOrFull
+				.featured-jobs__job-info-salary
+					img.icon(src="assets/images/home/wallet.svg")
+					small
+						span.from= featuredJobObj.salaryFrom + " - "
+						span.to= featuredJobObj.salaryTo
+						|
+						|
+						span.period= '/' + featuredJobObj.period
+		.featured-jobs__job-action.py-2.px-md-3.text-center.text-md-left
+			a.btn.btn-primary(href="#") More Details

@@ -1,0 +1,60 @@
+//-
+	- Main footer
+// Footer
+footer.site-footer
+	// follow us
+	.follow-us.py-4
+		.container
+			.row
+				.col-md-6
+					.site-footer__logo
+						img(src="assets/images/logo.svg")
+				.col-md-6
+					.site-footer__sm
+						h5 Follow us now
+						.site-footer__sm-icons
+							a.social-icon(href="#")
+								i.fab.fa-linkedin-in
+							a.social-icon(href="#")
+								i.fab.fa-twitter
+							a.social-icon(href="#")
+								i.fab.fa-instagram
+							a.social-icon(href="#")
+								i.fab.fa-facebook-f
+							a.social-icon(href="#")
+								i.fab.fa-youtube
+	// apply
+	.apply.py-4
+		.container
+			.row
+				.col-md-3
+					h4 You apply, we hire!
+				.col-md-3
+					ul.site-footer__nav
+						li
+							a(href="#") Home
+						li
+							a(href="#") Jobs
+						li
+							a(href="#") Contact
+				.col-md-3
+					ul.site-footer__nav
+						li
+							a(href="#") Dynamic Page
+						li
+							a(href="#") Dynamic Page
+						li
+							a(href="#") Privacy Policy
+						li
+							a(href="#") Terms and Conditions
+				.col-md-3
+					form(action="#" method="GET")
+						.form-group
+							label(for="newsletterSubscription") Subscribe to the latest updates
+							input.form-control-lg.mb-3(type="text" id="newsletterSubscription" name="newsletterSubscription" placeholder="Write your email")
+							button.btn.btn-primary.px-4.py-2(type="submit") Sign up
+	// copyright
+	.copyright.py-3.text-center
+		.container
+			p Copyright &copy; <script>document.write(new Date().getFullYear())</script> - JOBSLDN
+// footer-end

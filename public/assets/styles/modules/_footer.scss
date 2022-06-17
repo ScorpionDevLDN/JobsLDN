@@ -1,0 +1,94 @@
+.site-footer {
+  @include responsive(atSmall) {
+    text-align: center;
+  }
+
+  &__logo {
+    width: 125px;
+
+    @include responsive(atSmall) {
+      margin: 2rem auto;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .follow-us {
+    border-top: 1px solid $grey;
+    border-bottom: 1px solid $grey;
+
+    .site-footer__sm {
+      text-align: center;
+
+      @include responsive(atMedium) {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      h5 {
+
+        @include responsive(atSmall) {
+          margin-bottom: 1rem;
+        }
+
+        @include responsive(atMedium) {
+          margin-right: 2rem;
+        }
+      }
+
+      .social-icon {
+        margin-right: 1rem;
+        font-size: 1.25rem;
+
+        .fa-linkedin-in,
+        .fa-instagram,
+        .fa-facebook-f,
+        .fa-youtube {
+          color: #1d1d1b;
+        }
+      }
+    }
+  }
+
+  .apply {
+    border-bottom: 1px solid $grey;
+
+    .col-md-3 {
+      @include responsive(atSmall) {
+        position: relative;
+        padding: 1rem 0;
+
+        &:not(:last-child)::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 25%;
+          height: 4px;
+          background-color: $primary;
+          opacity: .5;
+        }
+      }
+    }
+
+    .site-footer__nav {
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: .5rem;
+
+        a {
+          color: #6c757d;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

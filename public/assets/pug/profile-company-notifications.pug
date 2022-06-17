@@ -1,0 +1,70 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Notifications - Company | JOBSLDN
+
+block navbar
+	- let activePage = 'contacts'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	// Profile page banner
+	section.profile-page-banner
+		.container
+			.profile-page-banner__navbar
+				ul
+					li
+						a(href="profile-company.html") Profile
+					li
+						a(href="profile-company-jobs.html") Jobs
+					li.active
+						a(href="profile-company-notifications.html") Notifications
+					li
+						a(href="" data-toggle="modal" data-target="#modalLogout") Logout
+	// profile-page-banner-end
+	|
+	|
+	// Profile company jobs
+	section.profile.py-5
+		.container
+			h1.mb-4.text-center.text-md-left Notifications
+			.row
+				.col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+					h5.mb-1
+						span 2
+						|  new notifications
+				.col-md-9
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-check.svg")
+						|  Surgey Ivanov applied for a job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-close.svg")
+						|  Joseph has withdrawn his application from the job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-check.svg")
+						|  Surgey Ivanov applied for a job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-close.svg")
+						|  Joseph has withdrawn his application from the job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-check.svg")
+						|  Surgey Ivanov applied for a job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					.alert.alert-success.py-4.mb-4(role="alert")
+						img(src="assets/images/icons/ic-actions-notifications-close.svg")
+						|  Joseph has withdrawn his application from the job: &nbsp;
+						span.font-weight-bold Super Project Manager
+						| .
+					// pagination
+					include ./partials/_pagination
+	// profile-end

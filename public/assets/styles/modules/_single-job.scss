@@ -1,0 +1,106 @@
+.single-job {
+
+  &__details {
+    &-info {
+      &-item {
+        @include responsive(atMedium) {
+          display: flex;
+          align-items: flex-start;
+        }
+
+        @include responsive(atSmall) {
+          margin-bottom: 1.5rem;
+        }
+
+        img {
+          width: 22px;
+        }
+
+        &-icon {
+          padding: .5rem;
+        }
+
+        &-text {
+
+          span {
+            display: block;
+
+            &:first-child {
+              margin-bottom: 0;
+              font-family: 'SofiaProLight', sans-serif;
+
+              @include responsive(atMedium) {
+                margin-top: 0.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__image {
+    @include responsive(atMedium) {
+      height: 300px;
+    }
+
+    img {
+      @include responsive(atMedium) {
+        height: 100%;
+      }
+    }
+  }
+
+  &__description {
+
+    // Reset select2 bg color
+    .select2-selection {
+      background-color: #FFF !important;
+    }
+
+    .copy-link {
+      display: flex;
+
+      input {
+        background-color: $grey;
+        color: rgba($primary, .75);
+        width: 80%;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      a {
+        background: $grey;
+        width: 20%;
+
+
+        img {
+          width: 20px;
+          margin-top: 0.5rem;
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    .share-link {
+      display: flex;
+
+      @include responsive(atSmall) {
+        justify-content: center;
+      }
+
+      a {
+        border: 1px solid $primary;
+        padding: .5rem;
+        border-radius: .25px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+}

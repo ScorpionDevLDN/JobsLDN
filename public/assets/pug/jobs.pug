@@ -1,0 +1,149 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Contacts | JOBSLDN
+
+block navbar
+	- let activePage = 'jobs'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	include ./mixins/_mixin-page-banner
+	+pageBanner({title: 'A lot of small businesses turn their ideas into reality', image: "assets/images/jobs/jobs-header.gi"})
+	|
+	|
+	// Jobs list
+	section.jobs.py-5
+		.container
+			.row
+				.col-md-3.mt-4.mt-md-0.order-2.order-md-1
+					.jobs__col-title.text-center.text-md-left
+						p.font-weight-light Search Filter
+					.jobs__search-filters
+						form(action="#" method="GET")
+							.row
+								.col-12.mb-5
+									select.js-example-basic-single(name="category")
+										option(value="category") Category
+										option(value="category1") Category 1
+										option(value="category2") Category 2
+										option(value="category3") Category 3
+								.col-12.mb-5
+									select.js-example-basic-single(name="city")
+										option(value="city") City
+										option(value="city1") City 1
+										option(value="city2") City 2
+										option(value="city3") City 3
+								.col-12.mb-5
+									select.js-example-basic-single(name="type")
+										option(value="category") Type
+										option(value="type1") Type 1
+										option(value="type2") Type 2
+										option(value="type3") Type 3
+								.col-12.mb-5
+									select.js-example-basic-single(name="keywords")
+										option(value="keywords") Keywords
+										option(value="keyword1") Keyword 1
+										option(value="keyword2") Keyword 2
+										option(value="keyword3") Keyword 3
+								.col-12.mb-5
+									select.js-example-basic-single(name="salaryRange")
+										option(value="salary_range") Salary Range
+										option(value="range1") Range 1
+										option(value="range2") Range 2
+										option(value="range3") Range 3
+						.jobs__salary-range
+							p Salary
+								span.ml-3 $3000 -&nbsp;
+								span $8500
+							.ui-slider.my-5
+							.text-center.text-md-left
+								button.btn.btn-primary.px-4(type="submit") Apply
+
+				.col-md-9.order-1.order-md-2
+					.jobs__col-title.d-flex.justify-content-between.align-items-center
+						h4 Jobs
+						.sort-jobs
+							span Sort by
+							form(action="#")
+								select.sort-filter
+									option(value="newest") Newest
+									option(value="value1") Value 1
+									option(value="value2") Value 2
+									option(value="value3") Value 3
+					include ./mixins/_mixin-job-item
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					+jobItem({
+						employer: {
+							logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png",
+							name: "Google"
+						},
+						title: "Senior Frontend Developer",
+						location: "New York",
+						type: "Full-Time",
+						salaryFrom: "$3000",
+						salaryTo: "$5000",
+						postedAt: "2 days"
+					})
+					include ./partials/_pagination
+	// jobs-list-end

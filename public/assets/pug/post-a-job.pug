@@ -1,0 +1,48 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Contacts | JOBSLDN
+
+block navbar
+	- let activePage = 'contacts'
+	include ./partials/_navbar-logged-in-company
+
+block content
+	include ./mixins/_mixin-page-banner
+	+pageBanner({title: 'Post a new job for free now!', image: "https://picsum.photos/1920/300"})
+
+	// Post job form
+	section.py-5
+		.container
+			.row
+				.col-md-4
+					h4 Summary
+					p Write about the desired job, it is recommended that this be brief
+
+				.col-md-8
+					input(type="text", required, class="form-control mb-4 p-4", placeholder="Title *")
+					textarea(class="form-control mb-4 p-4", rows="5", placeholder="Summary *")
+					.custom-file.py-4
+						input(type="file", class="custom-file-input" id="custom-file")
+						label(class="custom-file-label" for="custom-file")
+							i.fas.fa-upload
+							| Choose file
+				// seperator
+				.separator.my-5
+				.col-md-4
+					h4 Inside
+					p The accuracy and clarity of the data will help you get the most out of publishing this job post.
+				.col-md-8
+					.col-md-6
+						select(class="form-control mb-4 p-4")
+						option(value="") Select
+						option(value="full-time") Full Time
+						option(value="part-time") Part Time
+						option(value="freelance") Freelance
+						option(value="internship") Internship
+						option(value="temporary") Temporary
+						option(value="contract") Contract
+						option(value="volunteer") Volunteer
+						option(value="other") Other
+	// post-job-form-end

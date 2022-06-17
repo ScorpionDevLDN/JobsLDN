@@ -1,0 +1,18 @@
+.pagination {
+  margin-top: 2rem;
+
+  .page-item {
+    font-size: .85rem;
+
+    @include responsive(atMedium) {
+      padding: .5rem;
+      font-size: 1rem;
+    }
+
+    &.active {
+      .page-link {
+        background: $primary;
+      }
+    }
+  }
+}

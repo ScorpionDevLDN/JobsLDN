@@ -1,0 +1,31 @@
+// Libraries
+@import 'libs/all.min.scss';
+@import 'libs/bootstrap.min.scss';
+@import 'libs/owl.carousel.min.scss';
+@import 'libs/owl.theme.default.min.scss';
+@import 'libs/select2.min.scss';
+
+// Base
+@import 'base/mixins';
+@import 'base/vars';
+@import 'base/globals';
+@import 'base/styles-reset';
+
+// Modules
+@import 'modules/navbar';
+@import 'modules/slider';
+@import 'modules/discover-now';
+@import 'modules/partners';
+@import 'modules/page-banner';
+@import 'modules/contact';
+@import 'modules/general-section';
+@import 'modules/featured-jobs';
+@import 'modules/jobs';
+@import 'modules/single-job';
+@import 'modules/pagination';
+@import 'modules/modals';
+@import 'modules/profile';
+@import 'modules/ui-slider';
+
+// Generals
+@import 'modules/footer';

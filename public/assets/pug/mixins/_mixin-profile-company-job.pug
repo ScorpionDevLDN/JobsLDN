@@ -1,0 +1,30 @@
+mixin jobItem(jobItemObj)
+  .jobs__item
+    .jobs__item-details
+      h5= jobItemObj.title
+      .jobs__item-details-meta
+        .jobs__item-details-meta-item
+          img(src="assets/images/home/location.svg")
+          span= jobItemObj.location
+        .jobs__item-details-meta-item
+          img(src="assets/images/home/full-time.svg")
+          span= jobItemObj.type
+        .jobs__item-details-meta-item.salary
+          img(src="assets/images/home/wallet.svg")
+          span= jobItemObj.salaryFrom
+          span.period /Monthly
+        .jobs__item-details-meta-item
+          img(src="assets/images/home/time.svg")
+          span= jobItemObj.postedAt + ' ago.'
+        .jobs__item-details-actions
+          div
+            a.btn.btn-outline-primary(href="#") Apply now
+          div
+            a(href="#") Open
+              i.far.fa-long-arrow-alt-right
+          div
+            a(href="#")
+              i.fas.fa-edit.text-success
+          div
+            a(href="#")
+              i.fas.fa-trash.text-danger

@@ -1,0 +1,26 @@
+.modal {
+  &-header {
+    &-tabs {
+      display: flex;
+
+      &__tab {
+        padding: 0 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal-title {
+    font-family: 'SofiaProLight', Arial, sans-serif !important;
+  }
+
+  .active {
+    .modal-title {
+      font-family: 'SofiaProBold', Arial, sans-serif !important;
+    }
+  }
+
+  #register-form {
+    display: none;
+  }
+}

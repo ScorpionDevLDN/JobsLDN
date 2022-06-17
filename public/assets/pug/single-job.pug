@@ -1,0 +1,176 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Contacts | JOBSLDN
+
+block navbar
+	- let activePage = 'jobs'
+	include ./partials/_navbar-logged-in-person
+
+block content
+	// Single job header
+	section.single-job.bg-light.py-5.text-center.text-md-left
+		.container
+			.row
+				.col-md-6.order-2.order-md-1.mt-4.mt-md-0
+					.single-job__details.text-center.text-md-left
+						p.text-muted.mb-0 Park Plaza London Riverbank
+						h4 Super Project Manager
+						a.btn.btn-outline-primary.p-3.mt-3(href="" download)
+							i.fas.fa-download.mr-2
+							span Download Job Details
+						// job details info
+						.single-job__details-info.mt-5
+							.row
+								.col-md-3.single-job__details-info-item
+									.single-job__details-info-item-icon
+										img(src="assets/images/home/location.svg")
+									.single-job__details-info-item-text
+										span.text-primary Location
+										span London
+								.col-md-3.single-job__details-info-item
+									.single-job__details-info-item-icon
+										img(src="assets/images/home/full-time.svg")
+									.single-job__details-info-item-text
+										span.text-primary Type
+										span Full-Time
+								.col-md-3.single-job__details-info-item
+									.single-job__details-info-item-icon
+										img(src="assets/images/home/wallet.svg")
+									.single-job__details-info-item-text
+										span.text-primary Salary
+										span $5000
+										span.text-primary /Monthly
+								.col-md-3.single-job__details-info-item
+									.single-job__details-info-item-icon
+										img(src="assets/images/home/time.svg")
+									.single-job__details-info-item-text
+										span.text-primary Date Posted
+										span 2 days ago.
+
+				.col-md-6.order-1.order-md-2
+					.single-job__image
+						img(src="assets/images/jobs/jobs-header.svg")
+	// single-job-header-end
+	|
+	|
+	// Single job description
+	section.py-5.single-job__description
+		.container
+			.row
+				.col-md-9
+					h4.mb-3.text-center.text-md-left Job Description
+					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis beatae debitis.
+					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis beatae debitis.
+					p Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis beatae debitis.
+				.col-md-3
+					h4.mb-4.mt-4.mt-md-0.text-center.text-md-left Apply Now
+					form(action="#" method="POST")
+						select.js-example-basic-single(name="ApplyForJobCV")
+							option Select your CV
+							option CV 1
+							option CV 2
+							option CV 3
+						button.btn.btn-primary.px-5.py-2.btn-block.mt-3(type="submit") Apply now
+					// single job actions
+					h4.mt-5.text-center.text-md-left Interesting?
+					.copy-link.mt-3
+						input.form-control(type="text" value="https://jobs.ldn.io/jobs/super-project-manager")
+						a(href="#")
+							img(src="assets/images/icons/copy.svg")
+					.share-link.mt-5
+						a.mr-3(href="#")
+							img(src="assets/images/icons/star.svg")
+						a(href="#")
+							img(src="assets/images/icons/share.svg")
+
+	// single-job-description-end
+	|
+	|
+	// Similar jobs
+	section.py-5
+		.container
+			h4.text-center.text-md-left Similar Jobs
+			.row.mt-4
+				.col-md-3
+					a.text-decoration-none(href="#")
+						.featured-jobs__job
+							small.featured-jobs__job-employer Google
+							h3.featured-jobs__job-title Super Project Manager
+							.featured-jobs__job-info
+								.featured-jobs__job-info-description
+									div
+										img.icon(src="assets/images/home/location.svg")
+										span London
+									div
+										img.icon(src="assets/images/home/full-time.svg")
+										span Full-Time
+								.featured-jobs__job-info-salary
+									img.icon(src="assets/images/home/wallet.svg")
+									small
+										span.from $4000
+										|
+										|
+										span.period /Monthly
+				.col-md-3
+					a.text-decoration-none(href="#")
+						.featured-jobs__job
+							small.featured-jobs__job-employer Google
+							h3.featured-jobs__job-title Super Project Manager
+							.featured-jobs__job-info
+								.featured-jobs__job-info-description
+									div
+										img.icon(src="assets/images/home/location.svg")
+										span London
+									div
+										img.icon(src="assets/images/home/full-time.svg")
+										span Full-Time
+								.featured-jobs__job-info-salary
+									img.icon(src="assets/images/home/wallet.svg")
+									small
+										span.from $4000
+										|
+										|
+										span.period /Monthly
+				.col-md-3
+					a.text-decoration-none(href="#")
+						.featured-jobs__job
+							small.featured-jobs__job-employer Google
+							h3.featured-jobs__job-title Super Project Manager
+							.featured-jobs__job-info
+								.featured-jobs__job-info-description
+									div
+										img.icon(src="assets/images/home/location.svg")
+										span London
+									div
+										img.icon(src="assets/images/home/full-time.svg")
+										span Full-Time
+								.featured-jobs__job-info-salary
+									img.icon(src="assets/images/home/wallet.svg")
+									small
+										span.from $4000
+										|
+										|
+										span.period /Monthly
+				.col-md-3
+					a.text-decoration-none(href="#")
+						.featured-jobs__job
+							small.featured-jobs__job-employer Google
+							h3.featured-jobs__job-title Super Project Manager
+							.featured-jobs__job-info
+								.featured-jobs__job-info-description
+									div
+										img.icon(src="assets/images/home/location.svg")
+										span London
+									div
+										img.icon(src="assets/images/home/full-time.svg")
+										span Full-Time
+								.featured-jobs__job-info-salary
+									img.icon(src="assets/images/home/wallet.svg")
+									small
+										span.from $4000
+										|
+										|
+										span.period /Monthly
+	// similar-jobs-end

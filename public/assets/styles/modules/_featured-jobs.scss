@@ -1,0 +1,70 @@
+.featured-jobs {
+  &__job {
+    position: relative;
+    border: 1px solid $primary;
+    padding: 1rem;
+    border-radius: .25rem;
+    transition: border .3s ease-in-out, background .3s ease-in-out;
+
+    img {
+      width: 17.5px;
+      margin-right: .5rem;
+    }
+
+    &-bookmark {
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      z-index: 2;
+
+      img {
+        width: 22px;
+      }
+    }
+
+    &-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+
+      div {
+        margin-bottom: 1rem;
+
+        .period {
+          display: block;
+          text-align: right;
+          margin-top: 0.5rem;
+          font-size: 1rem;
+          font-style: italic;
+        }
+      }
+    }
+
+    &-action {
+      opacity: 0;
+      background-color: $grey;
+      transition: all .3s ease-in-out;
+    }
+
+    &:hover {
+      border: none;
+      background: $grey;
+
+      &+.featured-jobs__job-action {
+        opacity: 1;
+      }
+    }
+
+    &-employer {
+      opacity: .9;
+      margin-bottom: .5rem;
+      display: block;
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+  }
+}

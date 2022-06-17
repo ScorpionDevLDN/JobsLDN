@@ -1,0 +1,129 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+  title Profile - Company | JOBSLDN
+
+block navbar
+  - let activePage = 'contacts'
+  include ./partials/_navbar-logged-in-person
+
+block content
+  // Profile page banner
+  section.profile-page-banner
+    .container
+      .profile-page-banner__navbar
+        ul
+          li.active
+            a(href="profile-person.html") Profile
+          li
+            a(href="profile-person-jobs.html") Jobs
+          li
+            a(href="profile-person-bookmarks.html") Bookmarks
+          li
+            a(href="" data-toggle="modal" data-target="#modalLogout") Logout
+  // profile-page-banner-end
+  |
+  |
+  // Profile
+  section.profile.py-5
+    .container
+      h1.mb-4.text-center.text-md-left Profile
+      form(method="POST" action="#")
+        div
+          .row.pb-0.pb-md-5
+            .col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+              h5.mb-1 Account Type
+              p.text-muted.mb-4.mb-md-0 Your account type determine your role on our website it can’t be changed.
+            .col-md-9.bordered-bottom.text-center.text-md-left
+              .btn-group.btn-group-toggle(data-toggle='buttons')
+                label.btn.btn-outline-primary.px-5.mr-4.active
+                  input#option1(type='radio' name='accountType' autocomplete='off' checked='')
+                  |  Jobseeker
+                label.btn.btn-outline-primary.px-5.mr-4
+                  input#option2(type='radio' name='accountType' autocomplete='off')
+                  | Company
+          .row.pb-0.pb-md-5
+            .col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+              h5.mb-1 My Account
+              p.text-muted.mb-4.mb-md-0 Manage all details for your personal account.
+            .col-md-9.pb-5.bordered-bottom
+              .row
+                .col-md-6.py-3
+                  input(type="text" class="form-control-lg" placeholder="First Name *" required)
+                .col-md-6.py-3
+                  input(type="text" class="form-control-lg" placeholder="Last Name *" required)
+                .col-md-6.py-3
+                  input(type="email" class="form-control-lg" placeholder="Email *" required)
+                .col-md-6.py-3
+                  input(type="email" class="form-control-lg" placeholder="Confirm Email *" required)
+                .px-md-3.mt-4.text-center.text-md-left.form-actions
+                  button.btn.btn-primary.px-5(type="submit") Update
+                  button.btn.btn-link.px-5.mt-4.mt-md-0(type="submit") Delete My Account
+      // person details
+      form
+        .row.pb-0.pb-md-5
+          .col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+            h5.mb-1 My Account
+            p.text-muted.mb-4.mb-md-0 Manage all details for your personal account.
+          .col-md-9.bordered-bottom
+            .row
+              .col-md-12.py-3
+                .profile__details
+                  .profile__details-logo
+                    span.profile__details-logo-text
+                      i.fas.fa-user
+                  .profile__details-actions
+                    .profile__details-actions-item
+                      label(for="profileLogo")
+                        img(src="assets/images/icons/upload.svg")
+                      input.profile__details-image-upload(type="file" id="profileLogo" name="profileLogo" accept="image/*")
+                    .profile__details-actions-item
+                      a.profile__details-logo-image-remover(href="#")
+                        img(src="assets/images/icons/delete.svg")
+
+
+              .col-md-6.py-3
+                input(type="text" class="form-control-lg" placeholder="First Name *" required)
+              .col-md-6.py-3
+                input(type="text" class="form-control-lg" placeholder="Last Name *" required)
+              .col-md-6.py-3
+                input(type="text" class="form-control-lg" placeholder="Email *" required)
+              .col-md-6.py-3
+                input(type="text" class="form-control-lg" placeholder="A New Email *" required)
+              .col-md-12.py-3
+                textarea.form-control(rows="5" placeholder="Introduce Your Self *" required)
+              .px-3.mt-4.text-center.text-md-left.form-actions
+                button.btn.btn-primary.px-5(type="submit") Update
+      // security
+      // company details
+      form
+        .row.pb-0.pb-md-5
+          .col-md-3.pr-md-5.text-center.text-md-left.mt-4.mt-md-0
+            h5.mb-1 Security
+            p.text-muted.mb-4.mb-md-0 Only change the password when necessary.
+          .col-md-9.bordered-bottom
+            form(method="POST" action="#")
+              .row
+                .col-md-12.py-3
+                  .input-group
+                    input.show-hide-password(type="password" placeholder="Current Password *" data-toggle="password" required)
+                    .input-group-append
+                      span.input-group-text
+                        i.fas.fa-eye-slash
+                .col-md-6.py-3
+                  .input-group
+                    input.show-hide-password(type="password" placeholder="New Password *" data-toggle="password" required)
+                    .input-group-append
+                      span.input-group-text
+                        i.fas.fa-eye-slash
+                    span.input-group-instructions.text-muted Must be at least 8 characters
+                .col-md-6.py-3
+                  .input-group
+                    input.show-hide-password(type="password" placeholder="Must Match Your New Password *" data-toggle="password" required)
+                    .input-group-append
+                      span.input-group-text
+                        i.fas.fa-eye-slash
+              .px-3.mt-4.text-center.text-md-left.form-actions
+                  button.btn.btn-primary.px-5(type="submit") Update
+  // profile-end

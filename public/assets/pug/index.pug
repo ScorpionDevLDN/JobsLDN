@@ -1,0 +1,96 @@
+extends ./layouts/default
+
+//- Blocks
+block pageTitle
+	title Home | JOBSLDN
+
+block navbar
+	- let activePage = 'home'
+	include ./partials/_navbar
+
+block content
+	// Slider
+	.slider
+		.owl-carousel.owl-theme
+			include ./mixins/_mixin-slider
+			+slide
+			+slide
+			+slide
+			+slide
+
+	// slider-end
+	|
+	|
+	// Discover now
+	section.discover-now.py-5.bg-light
+		h2.section-title.section-title--smaller.section-title--half-margin Discover now
+		.container
+			form
+				.row.justify-content-center
+					.col-md-2.mb-5.mb-md-0
+						select.js-example-basic-single(name="category")
+							option(value="all_categories") Category
+							option(value="1") Category 1
+							option(value="2") Category 2
+							option(value="3") Category 3
+					.col-md-2.mb-5.mb-md-0
+						select.js-example-basic-single(name="type")
+							option(value="all_categories") Type
+							option(value="1") Category 1
+							option(value="2") Category 2
+							option(value="3") Category 3
+					.col-md-2.mb-5.mb-md-0
+						select.js-example-basic-single(name="city")
+							option(value="all_categories") City
+							option(value="1") Category 1
+							option(value="2") Category 2
+							option(value="3") Category 3
+					.col-md-2.mb-5.mb-md-0
+						.text-center.text-md-left
+							button.btn.btn-primary.px-5.py-2.py-md-3(type="submit") Go
+	// discover-now-end
+	|
+	|
+	// Featured jobs
+	section.featured-jobs.py-5
+		.container
+			h2.section-title.section-title--smaller.section-title--half-margin Featured jobs
+			.row
+				include ./mixins/_mixin-featured-job
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+				+featuredJob({employer: 'The Waldorf Hilton, London', position: 'Co-Founder Roles', location: 'London', partOrFull: 'Full-Time', salaryFrom: '$2000', salaryTo: '$3000', period: 'Month'})
+			.text-center.py-3.py-md-4
+				a.all-jobs(href="#") All Jobs
+	// featured-jobs-end
+	|
+	|
+	// Partners
+	section.partners.py-5
+		.container
+			h2.section-title.section-title--smaller.section-title--no-margin Partners
+			.owl-carousel
+				include ./mixins/_mixin-partner
+				+partner({image: "https://logos-world.net/wp-content/uploads/2020/04/Samsung-Logo.png"})
+				+partner({image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png"})
+				+partner({image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"})
+	// partners-end
+	|
+	|
+	// Best business
+	section.general-section.py-5.bg-light
+		.container
+			.row
+				.col-md-6
+					.general-section__image
+						img(src="assets/images/home/best-businesses.svg")
+				.col-md-6
+					.general-section__content
+						h2 The best businesses deserve the best people
+						a.btn.btn-primary.px-4(href="#") Advertise now
+	// best-business-end
