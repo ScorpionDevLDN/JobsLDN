@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Role Name
+                                            <label>Name
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
                                                    placeholder="Enter Role name"/>
@@ -42,25 +42,25 @@
                                             <br/>
                                             @foreach($permissions as $value)
                                                 @if($value->id == 1)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Categories</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Categories</label>
                                                     <br/>
                                                 @elseif($value->id == 2)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Cities</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Cities</label>
                                                     <br/>
                                                 @elseif($value->id == 3)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Pers</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Pers</label>
                                                     <br/>
                                                 @elseif($value->id == 4)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Currencies</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Currencies</label>
                                                     <br/>
                                                 @elseif($value->id == 5)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Types</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Types</label>
                                                     <br/>
                                                 @elseif($value->id == 6)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Roles</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Roles</label>
                                                     <br/>
                                                 @elseif($value->id == 7)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Users</label>
+                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Users</label>
                                                     <br/>
                                                 @else
                                                     <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
@@ -88,7 +88,7 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">role Name</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>role Name
+                                                <label>Name
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$role->name}}" type="text" name="name"
                                                        class="form-control"
@@ -166,25 +166,25 @@
                                                 <br/>
                                                 @foreach($permissions as $value)
                                                     @if($value->id == 1)
-                                                        <label><input  style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Categories</label>
+                                                        <label><input  style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Categories</label>
                                                         <br/>
                                                     @elseif($value->id == 2)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Cities</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Cities</label>
                                                         <br/>
                                                     @elseif($value->id == 3)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Pers</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Pers</label>
                                                         <br/>
                                                     @elseif($value->id == 4)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Currencies</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Currencies</label>
                                                         <br/>
                                                     @elseif($value->id == 5)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Types</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Types</label>
                                                         <br/>
                                                     @elseif($value->id == 6)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Roles</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Roles</label>
                                                         <br/>
                                                     @elseif($value->id == 7)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Manage Users</label>
+                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Users</label>
                                                         <br/>
                                                     @else
                                                         <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>

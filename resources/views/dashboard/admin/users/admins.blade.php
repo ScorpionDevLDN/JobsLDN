@@ -77,24 +77,24 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Admin Name
+                                            <label>Name
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
-                                                   placeholder="Enter admin name"/>
+                                                   placeholder="Enter name"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Admin Email
+                                            <label>Email
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="email" class="form-control"
-                                                   placeholder="Enter admin name"/>
+                                                   placeholder="Enter name"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Admin Password
+                                            <label>Password
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="password" class="form-control"
-                                                   placeholder="Enter admin name"/>
+                                                   placeholder="Enter name"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleSelectd">Role</label>
@@ -124,9 +124,9 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Admin Name</th>
-                        <th scope="col">Admin Email</th>
-                        <th scope="col">Admin Role</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -200,25 +200,25 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Admin Name
+                                                <label>Name
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$admin->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter admin name"/>
+                                                       placeholder="Enter name"/>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Admin Email
+                                                <label>Email
                                                     <span class="text-danger">*</span></label>
                                                 <input value="{{$admin->email}}" required type="text" name="email" class="form-control"
-                                                       placeholder="Enter admin email"/>
+                                                       placeholder="Enter email"/>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Admin Password
+                                                <label>Password
                                                     <span class="text-danger">*</span></label>
                                                 <input value="" required type="text" name="password" class="form-control"
-                                                       placeholder="Enter admin password"/>
+                                                       placeholder="Enter password"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleSelectd">Role</label>
@@ -263,7 +263,7 @@
                                                             class="text-danger">*</span></label>
                                                 <input readonly value="{{$admin->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter admin name"/>
+                                                       placeholder="Enter name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

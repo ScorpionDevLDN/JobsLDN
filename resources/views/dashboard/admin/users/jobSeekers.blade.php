@@ -77,10 +77,10 @@
                 {{--                                    </div>--}}
                 {{--                                    <div class="modal-body">--}}
                 {{--                                        <div class="form-group">--}}
-                {{--                                            <label>jobseeker Name--}}
+                {{--                                            <label>Name--}}
                 {{--                                                <span class="text-danger">*</span></label>--}}
                 {{--                                            <input required type="text" name="name" class="form-control"--}}
-                {{--                                                   placeholder="Enter jobseeker name"/>--}}
+                {{--                                                   placeholder="Enter name"/>--}}
                 {{--                                        </div>--}}
                 {{--                                    </div>--}}
                 {{--                                    <div class="modal-footer">--}}
@@ -102,8 +102,8 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">JobSeeker Name</th>
-                        <th scope="col">JobSeeker Email</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -170,11 +170,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>jobseeker Name
+                                                <label>Name
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$job_seeker->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter jobseeker name"/>
+                                                       placeholder="Enter name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -211,7 +211,7 @@
                                                             class="text-danger">*</span></label>
                                                 <input readonly value="{{$job_seeker->name}}" type="text" name="name"
                                                        class="form-control"
-                                                       placeholder="Enter jobseeker name"/>
+                                                       placeholder="Enter name"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

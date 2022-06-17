@@ -102,10 +102,10 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Company Manager</th>
-                        <th scope="col">Company Name</th>
-                        <th scope="col">Company Industry</th>
-                        <th scope="col">Company Email</th>
+                        <th scope="col">Manager</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Industry</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
