@@ -18,6 +18,10 @@
 
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
+    {!! htmlScriptTagJsApi([
+           'action' => 'homepage',
+           'custom_validation' => 'myCustomValidation'
+       ]) !!}
 </head>
 <!--end::Head-->
 <!--begin::Body-->
