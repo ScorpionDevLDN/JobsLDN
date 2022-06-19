@@ -18,7 +18,6 @@ class AdminController extends Controller
 {
     public function login()
     {
-        Artisan::call('config:cache');
         return view('dashboard.admin.login');
     }
 
