@@ -112,7 +112,7 @@
     <!--end::Login-->
 </div>
 
-@include('AdminDashboard.scripts')
+{{--@include('AdminDashboard.scripts')--}}
 <script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>
 </body>
 </html>
