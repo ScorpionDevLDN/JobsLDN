@@ -111,6 +111,7 @@ Route::view('/a', 'dashboard.crud.index');
 Route::get('aya', function () {
     set_time_limit(0);
     Artisan::call('optimize');
+    Artisan::call('config:cache');
 //    Artisan::call('migrate:fresh --seed');
     return 'success optimizes';
 });

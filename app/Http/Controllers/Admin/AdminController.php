@@ -57,6 +57,7 @@ class AdminController extends Controller
 
     public function home()
     {
+        Artisan::call('config:cache');
         $companies = Company::query()->count();
         $seekers = JobSeeker::query()->count();
         $jobs = Job::query()->count();
