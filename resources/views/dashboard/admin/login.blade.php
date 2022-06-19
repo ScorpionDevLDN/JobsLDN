@@ -15,7 +15,7 @@
     <link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
-    <script src="https://www.google.com/recaptcha/api.js?render=SITEKEY"></script>
+
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/>
 {{--    {!! htmlScriptTagJsApi([--}}
@@ -77,12 +77,21 @@
                                 @endif
                             </div>
 
-{{--                            <div class="form-group">--}}
-{{--                                <label class="font-size-h6 font-weight-bolder text-dark">Captacha</label>--}}
-{{--                                <div class="g-recaptcha" data-sitekey="6LdjwHogAAAAAId77VK90hzQOjHJZJF5LpHTXJI2"></div>--}}
-{{--                                <span class="text-danger">@error('email'){{ $message }}@enderror</span>--}}
-{{--                            </div>--}}
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Captcha</label>
 
+
+                                <div class="col-md-6">
+                                    {!! app('captcha')->display() !!}
+
+
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <!--end::Form group-->
                             <!--begin::Action-->
@@ -93,27 +102,6 @@
                             </div>
                             <!--end::Action-->
                         </form>
-                        <script>
-                            grecaptcha.ready(function() {
-                                grecaptcha.execute('SITEKEY', {action: 'submit'}).then(function(token) {
-                                    document.getElementById("token").value = token;
-                                });
-                            });
-                        </script>
-                    <?php
-
-                    if(isset($_POST['submit'])){
-                        $request = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LdjwHogAAAAAO2045lUef0hN7ujbTgnE2WJawVT&response=" . $_POST['token']);
-                        $request = json_decode($request);
-                        if($request->success == true){
-                            if($request->score >= 0.6){
-                                echo 'tst'
-                            }else{
-                                echo "error";
-                            }
-                        }
-                    }
-                    ?>
                         <!--end::Form-->
                     </div>
                     <!--end::Signin-->
