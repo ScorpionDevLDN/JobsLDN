@@ -112,8 +112,9 @@ Route::get('aya', function () {
     set_time_limit(0);
     Artisan::call('optimize');
     Artisan::call('config:cache');
+    Artisan::call('cache:clear');
 //    Artisan::call('migrate:fresh --seed');
-    return 'success optimizes';
+    return 'success clear';
 });
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {

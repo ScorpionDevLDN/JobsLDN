@@ -21,6 +21,7 @@
     <script type="text/javascript" class="init"></script>
     @yield('js')
 
+<<<<<<< HEAD
 <!--end::Global Theme Bundle-->
 <!--begin::Page Vendors(used by this page)-->
 {{-- <script src="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script> --}}
@@ -30,11 +31,28 @@
 <!--begin::Page Scripts(used by this page)-->
 {{-- <script src="{{asset('assets/js/pages/widgets.js')}}"></script> --}}
 {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
+=======
+{{--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>--}}
+<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
+
+<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
+<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
+
+<script src="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script>
+
+<script src="{{asset('assets/js/pages/widgets.js')}}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+>>>>>>> 6d09864da0cd18c1d711f7a74a80ddc820a2a0e8
 
 {{-- <script type="text/javascript" charset="utf8" src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script> --}}
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
 {{-- <script src="{{asset('assets/js/pages/crud/forms/editors/summernote.js')}}"></script> --}}
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>--}}
+<<<<<<< HEAD
 {{-- <script type="text/javascript" class="init"></script> --}}
 {{-- @yield('js') --}}
+=======
+{{--<script type="text/javascript" class="init"></script>--}}
+@yield('js')
+>>>>>>> 6d09864da0cd18c1d711f7a74a80ddc820a2a0e8
