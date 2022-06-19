@@ -15,7 +15,6 @@ class HomeFrontController extends Controller
      */
     public function index()
     {
-        Artisan::call('config:cache');
         return view('Front.FrontHome');
     }
 
