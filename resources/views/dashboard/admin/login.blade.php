@@ -19,7 +19,8 @@
 
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/>
-    {!! htmlScriptTagJsApi() !!}
+    <script src='https://www.google.com/recaptcha/api.js'></script>s
+
 
 </head>
 <!--end::Head-->
@@ -78,6 +79,7 @@
                             <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Captcha</label>
 
+                                <div class="g-recaptcha" data-sitekey="{!! env('RECAPTCHA_SITE_KEY') !!}"></div>
 
 {{--                                <div class="col-md-6">--}}
 {{--                                    {!! app('captcha')->display() !!}--}}
