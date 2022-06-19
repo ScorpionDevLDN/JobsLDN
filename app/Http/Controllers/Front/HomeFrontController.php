@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeFrontController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeFrontController extends Controller
      */
     public function index()
     {
+        Artisan::call('config:cache');
         return view('Front.FrontHome');
     }
 
