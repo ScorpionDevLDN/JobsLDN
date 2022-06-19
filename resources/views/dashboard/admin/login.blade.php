@@ -77,21 +77,12 @@
                                 @endif
                             </div>
 
-                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Captcha</label>
+                            <div class="form-group">
+                                <label class="font-size-h6 font-weight-bolder text-dark">Captacha</label>
                                 <div class="g-recaptcha" data-sitekey="6LdjwHogAAAAAId77VK90hzQOjHJZJF5LpHTXJI2"></div>
-
-                                {{--                                <div class="col-md-6">--}}
-{{--                                    {!! app('captcha')->display() !!}--}}
-
-
-{{--                                    @if ($errors->has('g-recaptcha-response'))--}}
-{{--                                        <span class="help-block">--}}
-{{--                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                    @endif--}}
-{{--                                </div>--}}
+{{--                                <span class="text-danger">@error('email'){{ $message }}@enderror</span>--}}
                             </div>
+
 
                             <!--end::Form group-->
                             <!--begin::Action-->
