@@ -79,7 +79,7 @@
 
                             <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Captcha</label>
-                                <div class="g-recaptcha" data-sitekey="{!! env('RECAPTCHA_SITE_KEY') !!}"></div>
+                                <div class="g-recaptcha" data-sitekey="6LdjwHogAAAAAId77VK90hzQOjHJZJF5LpHTXJI2"></div>
 
                                 {{--                                <div class="col-md-6">--}}
 {{--                                    {!! app('captcha')->display() !!}--}}
