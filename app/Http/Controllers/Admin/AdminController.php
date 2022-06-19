@@ -23,7 +23,6 @@ class AdminController extends Controller
 
     function check(Request $request)
     {
-        Artisan::call('optimize');
         //Validate Inputs
         $request->validate([
             'email' => 'required|email|exists:admins,email',
