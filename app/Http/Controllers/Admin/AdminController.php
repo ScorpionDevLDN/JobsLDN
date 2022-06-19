@@ -9,6 +9,7 @@ use App\Models\Job;
 use App\Models\JobSeeker;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -22,6 +23,7 @@ class AdminController extends Controller
 
     function check(Request $request)
     {
+        Artisan::call('optimize');
         //Validate Inputs
         $request->validate([
             'email' => 'required|email|exists:admins,email',
