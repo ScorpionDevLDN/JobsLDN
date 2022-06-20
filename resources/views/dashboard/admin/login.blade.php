@@ -163,12 +163,12 @@
     };</script>
 <!--end::Global Config-->
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
-<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
-<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
-<!--end::Global Theme Bundle-->
-<!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>
+{{--<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>--}}
+{{--<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>--}}
+{{--<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>--}}
+{{--<!--end::Global Theme Bundle-->--}}
+{{--<!--begin::Page Scripts(used by this page)-->--}}
+{{--<script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>--}}
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->
