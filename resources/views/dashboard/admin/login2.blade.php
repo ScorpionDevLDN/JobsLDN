@@ -168,7 +168,7 @@
 <script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('assets/js/pages/custom/login/login-general.j')}}s"></script>
+<script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->
