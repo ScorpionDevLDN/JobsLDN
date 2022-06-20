@@ -15,7 +15,10 @@ use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Front\CompanyJobsController;
+use App\Http\Controllers\Front\CompanyProfileController;
+use App\Http\Controllers\Front\ContactfrontController;
 use App\Http\Controllers\Front\HomeFrontController;
+use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -94,6 +97,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('front')->group(function (){
     Route::resource('home', HomeFrontController::class);
     Route::resource('jobs', CompanyJobsController::class);
+    Route::resource('pages', PagefrontController::class);
+    Route::resource('contacts', ContactfrontController::class);
+    Route::resource('company-profile', CompanyProfileController::class);
 });
 
 //login and register

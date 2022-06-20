@@ -123,5 +123,21 @@
     .jobs__item{
         border-color: {{\App\Models\Setting::query()->first()->main_color}} !important;
     }
+    .page-banner{
+        background-color: {{\App\Models\Setting::query()->first()->secondary_color}};
+    }
+    .btn-primary-ldn-outline{
+        border-color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+        color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+    }
+    .btn-primary-ldn-outline2{
+        border-color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+        color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+    }
+
+    .btn-primary-ldn-outline2:hover{
+        background-color: {{\App\Models\Setting::query()->first()->secondary_color}} !important;
+        color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+    }
 
 </style>

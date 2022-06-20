@@ -16,7 +16,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-10 col-sm-12">
+        <div class="col-md-12 col-sm-12">
             <div class="card card-custom">
                 <!--begin::Header-->
                 <div class="card-header card-header-tabs-line">
@@ -29,6 +29,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#kt_builder_header">Links</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_builder_recaptcha">Re-captcha</a>
                         </li>
                     </ul>
                 </div>
@@ -99,27 +102,6 @@
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="copy_right_text" class="form-control"
                                                value="{{$setting->copy_right_text}}">
-                                    </div>
-                                </div>
-
-                                {{--capatcha--}}
-                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
-                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Recaptcha Site Key
-                                    </div>
-                                    <div class="col-12 col-lg-9 px-2">
-                                        <input type="text" name="site_key" class="form-control"
-                                               value="{{$setting->site_key}}">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
-                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Recaptcha Secret Key
-                                    </div>
-                                    <div class="col-12 col-lg-9 px-2">
-                                        <input type="text" name="secret_key" class="form-control"
-                                               value="{{$setting->secret_key}}">
                                     </div>
                                 </div>
                             </div>
@@ -265,6 +247,31 @@
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="telegram_link" class="form-control"
                                                value="{{$setting->telegram_link}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab Pane-->
+
+                            <!--begin::Tab Pane-->
+                            <div class="tab-pane" id="kt_builder_recaptcha">
+                                {{--capatcha--}}
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Recaptcha Site Key
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="site_key" class="form-control"
+                                               value="{{$setting->site_key}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Recaptcha Secret Key
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="secret_key" class="form-control"
+                                               value="{{$setting->secret_key}}">
                                     </div>
                                 </div>
                             </div>

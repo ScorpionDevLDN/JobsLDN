@@ -71,7 +71,6 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-lg-3"></div>
                                 <div class="col-lg-9">
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     <a href="{{route('admin.home')}}" type="button" class="button btn btn-secondary">Cancel</a>
@@ -84,7 +83,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-custom">
-                    <div class="card-header flex-wrap py-5">
+                    <div class="card-header flex-wrap">
                         <div class="card-title">
                             <h3 class="card-label">Update Password
                                 <div class="text-muted pt-2 font-size-sm"></div>
@@ -94,7 +93,7 @@
                     <form enctype="multipart/form-data" action="{{route('admin.updatePassword')}}" method="post">
                         @method('put')
                         @csrf
-                        <div class="card-body table-responsive">
+                        <div class="card-body">
                             <div class="form-group row">
                                 <label class="col-12 col-form-label">Current Password</label>
                                 <div class="col-12">
@@ -126,9 +125,8 @@
                             </div>
 
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" style="margin-top: -26px">
                             <div class="row">
-                                <div class="col-lg-3"></div>
                                 <div class="col-lg-9">
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     <a href="{{route('admin.home')}}" type="button" class="button btn btn-secondary">Cancel</a>

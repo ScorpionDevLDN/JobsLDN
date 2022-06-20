@@ -41,7 +41,7 @@
                     <form action="#" method="GET">
                         <div class="form-group">
                             <label for="newsletterSubscription"><small>Subscribe to the latest updates</small></label>
-                            <input class="form-control-lg mb-3" type="text" id="newsletterSubscription" name="newsletterSubscription" placeholder="Write your email">
+                            <input class="form-control form-control-lg mb-3" type="text" id="newsletterSubscription" name="newsletterSubscription" placeholder="Write your email">
                             <button class="btn btn-primary-ldn px-4 py-2" type="submit">Sign up</button>
                         </div>
                     </form>
