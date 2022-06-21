@@ -18,19 +18,10 @@
     <link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
-    <!--end::Global Theme Styles-->
-    <!--begin::Layout Themes(used by all pages)-->
-    <link href="{{asset('assets/css/themes/layout/header/base/light.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets/css/themes/layout/header/menu/light.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets/css/themes/layout/brand/dark.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets/css/themes/layout/aside/dark.css')}}" rel="stylesheet" type="text/css"/>
+
     <!--end::Layout Themes-->
     <!--begin::Page Vendors Styles(used by this page)-->     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <!--end::Page Vendors Styles-->
-    <!--begin::Global Theme Styles(used by all pages)-->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
-    <!--begin::Page Scripts(used by this page)-->
 	<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
     <!--end::Page Scripts-->
     {{-- Number({{-- <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/> --}}
