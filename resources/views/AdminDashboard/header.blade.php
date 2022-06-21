@@ -33,14 +33,7 @@
     <!--begin::Page Scripts(used by this page)-->
 	<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
     <!--end::Page Scripts-->
-   {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-
-   {{-- <link href="{{asset('assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/> --}}
-    <!--end::Page Vendors Styles-->
-    <!--begin::Global Theme Styles(used by all pages)-->
-    <!--end::Global Theme Styles-->
-    <!--begin::Layout Themes(used by all pages)-->
-    {{-- <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/> --}}
+    {{-- Number({{-- <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/> --}}
     @yield('css')
 </head>
 <style>
