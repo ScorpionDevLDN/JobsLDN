@@ -1,225 +1,125 @@
-@extends('AdminDashboard.index')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 1500px}
 
-@section('title','Admin Home')
-@section('breadcrumb')
-    <a href="#" class="btn">Admin DashBoard - {{auth('admins')->user()->name}}</a>
-@endsection
-@section('content')
-    <div class="row">
-        {{--chart--}}
-        <div class="col-12">
-            <!--begin::Charts Widget 2-->
-            <div class="card card-custom bg-gray-100 card-stretch gutter-b">
-                <!--begin::Header-->
-                <div class="card-header h-auto border-0">
-                    <!--begin::Title-->
-                    <div class="card-title">
-                        <h3 class="card-label">
-                            <span class="d-block text-dark font-weight-bolder">Total Earning</span>
-                            {{--                            <span class="d-block text-dark-50 mt-2 font-size-sm">Month</span>--}}
-                        </h3>
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <h4>John's Blog</h4>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#section1">Home</a></li>
+                <li><a href="#section2">Friends</a></li>
+                <li><a href="#section3">Family</a></li>
+                <li><a href="#section3">Photos</a></li>
+            </ul><br>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Blog..">
+                <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <h4><small>RECENT POSTS</small></h4>
+            <hr>
+            <h2>I Love Food</h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+            <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+            <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <br><br>
+
+            <h4><small>RECENT POSTS</small></h4>
+            <hr>
+            <h2>Officially Blogging</h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
+            <h5><span class="label label-success">Lorem</span></h5><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <hr>
+
+            <h4>Leave a Comment:</h4>
+            <form role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            <br><br>
+
+            <p><span class="badge">2</span> Comments:</p><br>
+
+            <div class="row">
+                <div class="col-sm-2 text-center">
+                    <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                </div>
+                <div class="col-sm-10">
+                    <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
+                    <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <br>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                </div>
+                <div class="col-sm-10">
+                    <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
+                    <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <br>
+                    <p><span class="badge">1</span> Comment:</p><br>
+                    <div class="row">
+                        <div class="col-sm-2 text-center">
+                            <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+                        </div>
+                        <div class="col-xs-10">
+                            <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
+                            <p>Me too! WOW!</p>
+                            <br>
+                        </div>
                     </div>
                 </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body">
-                    <!--begin::Chart-->
-                    <div id="kt_charts_widget_2_chart_tab_1"></div>
-                    <!--end::Chart-->
-                </div>
-                <!--end::Body-->
             </div>
-            <!--end::Charts Widget 2-->
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-4 col-sm-4">
-            <!--begin::Stats Widget 4-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$companies}} total companies</a>
-                        <span class="font-weight-bold text-muted font-size-lg"> </span>
-                    </div>
-                    <img src="{{asset('assets/media/svg/avatars/029-boy-11.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Stats Widget 4-->
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <!--begin::Stats Widget 5-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$seekers}} total Job Seekers</a>
-                        <span class="font-weight-bold text-muted font-size-lg"></span>
-                    </div>
-                    <img src="{{asset('assets/media/svg/avatars/014-girl-7.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Stats Widget 5-->
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <!--begin::Stats Widget 6-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-8">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a href="#"
-                           class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$jobs}} total jobs</a>
-                        <span class="font-weight-bold text-muted font-size-lg"></span>
-                    </div>
-                    <img src="{{asset('assets/media/svg/avatars/004-boy-1.svg')}}" alt=""
-                         class="align-self-end h-100px"/>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Stats Widget 6-->
-        </div>
-    </div>
+<footer class="container-fluid">
+    <p>Footer Text</p>
+</footer>
 
-
-@endsection
-
-@section('js')
-    <script>
-        var data = {!! json_encode($data_job) !!};
-        // console.log(tmp);
-        var KTWidgets = function () {
-            var _initChartsWidget1 = function () {
-                var element = document.getElementById("kt_charts_widget_2_chart_tab_1");
-
-                if (!element) {
-                    return;
-                }
-
-                var options = {
-                    series: [
-                        {
-                            name: 'Jobs Count',
-                            data: data
-                        },
-                        // {
-                        //     name: 'Revenue',
-                        //     data: [76, 85, 101, 98, 87, 105, 10]
-                        // }
-                    ],
-                    chart: {
-                        type: 'bar',
-                        height: 350,
-                        toolbar: {
-                            show: false
-                        }
-                    },
-                    plotOptions: {
-                        bar: {
-                            horizontal: false,
-                            columnWidth: ['30%'],
-                            endingShape: 'rounded'
-                        },
-                    },
-                    legend: {
-                        show: false
-                    },
-                    dataLabels: {
-                        enabled: false
-                    },
-                    stroke: {
-                        show: true,
-                        width: 2,
-                        colors: ['transparent']
-                    },
-                    xaxis: {
-                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Aug', 'Nov', 'Dec'],
-                        axisBorder: {
-                            show: false,
-                        },
-                        axisTicks: {
-                            show: false
-                        },
-                        labels: {
-                            style: {
-                                colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                                fontSize: '12px',
-                                fontFamily: KTApp.getSettings()['font-family']
-                            }
-                        }
-                    },
-                    yaxis: {
-                        labels: {
-                            style: {
-                                colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                                fontSize: '12px',
-                                fontFamily: KTApp.getSettings()['font-family']
-                            }
-                        }
-                    },
-                    fill: {
-                        opacity: 1
-                    },
-                    states: {
-                        normal: {
-                            filter: {
-                                type: 'none',
-                                value: 0
-                            }
-                        },
-                        hover: {
-                            filter: {
-                                type: 'none',
-                                value: 0
-                            }
-                        },
-                        active: {
-                            allowMultipleDataPointsSelection: false,
-                            filter: {
-                                type: 'none',
-                                value: 0
-                            }
-                        }
-                    },
-                    tooltip: {
-                        style: {
-                            fontSize: '12px',
-                            fontFamily: KTApp.getSettings()['font-family']
-                        },
-                        y: {
-                            formatter: function (val) {
-                                return "$" + val + " thousands"
-                            }
-                        }
-                    },
-                    colors: [KTApp.getSettings()['colors']['theme']['base']['primary'], KTApp.getSettings()['colors']['gray']['gray-300']],
-                    grid: {
-                        borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
-                        strokeDashArray: 4,
-                        yaxis: {
-                            lines: {
-                                show: true
-                            }
-                        }
-                    }
-                };
-
-                var chart = new ApexCharts(element, options);
-                chart.render();
-            }
-
-            // Public methods
-            return {
-                init: function () {
-                    _initChartsWidget1();
-                }
-            }
-        }();
-    </script>
-@endsection
+</body>
+</html>
