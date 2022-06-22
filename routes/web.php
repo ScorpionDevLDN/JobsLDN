@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\CompanyProfileController;
 use App\Http\Controllers\Front\ContactfrontController;
 use App\Http\Controllers\Front\HomeFrontController;
 use App\Http\Controllers\Front\PagefrontController;
+use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -102,6 +103,7 @@ Route::prefix('front')->group(function (){
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('company-profile', CompanyProfileController::class);
+    Route::resource('single-job', SingleJobController::class);
 });
 
 //login and register

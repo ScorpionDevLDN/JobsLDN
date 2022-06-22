@@ -164,7 +164,7 @@
         <div class="container">
             <h2 class="section-title section-title--smaller section-title--half-margin">Featured jobs</h2>
             <div class="row">
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-3">
                     <div class="featured-jobs__job">
                         <div class="featured-jobs__job-bookmark"><img src="{{asset('assets/images/icons/star-fill.svg')}}"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title">Co-Founder Roles</h6>
@@ -179,7 +179,7 @@
                     </div>
                     <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3">
                     <div class="featured-jobs__job">
                         <div class="featured-jobs__job-bookmark"><img src="{{asset('assets/images/icons/star-fill.svg')}}"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title">Co-Founder Roles</h6>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3">
                     <div class="featured-jobs__job">
                         <div class="featured-jobs__job-bookmark"><img src="{{asset('assets/images/icons/star-fill.svg')}}"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title">Co-Founder Roles</h6>
@@ -209,7 +209,7 @@
                     </div>
                     <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3">
                     <div class="featured-jobs__job">
                         <div class="featured-jobs__job-bookmark"><img src="{{asset('assets/images/icons/star-fill.svg')}}"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title">Co-Founder Roles</h6>
