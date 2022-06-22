@@ -256,11 +256,10 @@
                             <div class="tab-pane" id="kt_builder_recaptcha">
                                 {{--capatcha--}}
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
-                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        To create a reCaptcha admin account for yourself
-                                        <a href="https://www.google.com/recaptcha/admin/create">Visit this link </a>
-                                    </div>
-                                    
+                                        <h6>
+                                            Get your key from here:
+                                            <a target="_blank" href="https://www.google.com/recaptcha/admin/create">Google reCAPTCHA </a></h6>
+
                                 </div>
 
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
@@ -281,6 +280,10 @@
                                         <input type="text" name="secret_key" class="form-control"
                                                value="{{$setting->secret_key}}">
                                     </div>
+                                </div>
+                                <br>
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <h6 class="text-muted"> Before you logout, please open anew browser and make sure your reCaptcha is working  </h6>
                                 </div>
                             </div>
                             <!--end::Tab Pane-->
