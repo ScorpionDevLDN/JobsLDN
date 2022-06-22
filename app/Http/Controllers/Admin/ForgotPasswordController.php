@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +35,6 @@ class ForgotPasswordController extends Controller
         Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Reset Password');
-            $message->from(Setting::query()->first()->website_name);
         });
 
         return redirect(route('admin.login'))->with('msgTst', 'Your Password Reset Link was sent to your email
