@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#kt_builder_recaptcha">Re-captcha</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_builder_email">Emails from</a>
+                        </li>
                     </ul>
                 </div>
                 <!--end::Header-->
@@ -285,6 +288,21 @@
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <h6 class="text-muted"> Before you logout, please open anew browser and make sure your reCaptcha is working  </h6>
                                 </div>
+                            </div>
+                            <!--end::Tab Pane-->
+
+                            <!--begin::Tab Pane-->
+                            <div class="tab-pane" id="kt_builder_email">
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Emails from
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="email_from" class="form-control"
+                                               value="test@demo2.admin.com">
+                                    </div>
+                                </div>
+
                             </div>
                             <!--end::Tab Pane-->
 
