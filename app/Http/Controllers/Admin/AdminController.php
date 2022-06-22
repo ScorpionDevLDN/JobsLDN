@@ -41,7 +41,7 @@ class AdminController extends Controller
         }
         elseif (!Hash::check($admin->password, $request->password)) {
             return Redirect::route('admin.login')
-                ->with('Error', 'Current Password Error !')
+                ->with('error', 'Your password didnt match our record !')
                 ->withInput();
         } else {
 //            session()->flash('msg','Password Updated Successfully');

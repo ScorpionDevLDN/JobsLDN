@@ -1,152 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
 <head>
-    <title>Login to Admin Panel</title>
-    <meta name="description" content="Login page example"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
-    <!--end::Fonts-->
-    <!--begin::Page Custom Styles(used by this page)-->
-    <link href="{{asset('assets/css/pages/login/login-2.css')}}" rel="stylesheet" type="text/css"/>
-    <!--end::Page Custom Styles-->
-    <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
-
-    <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}"/>
+    <title>Forget Password</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animsition/css/animsition.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/daterangepicker/daterangepicker.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css/main.css')}}">
+    <!--===============================================================================================-->
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-<body id="kt_body"
-      class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-<!--begin::Main-->
-<div class="d-flex flex-column flex-root">
-    <!--begin::Login-->
-    <div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
-        <!--begin::Aside-->
-        <div class="login-aside order-2 order-lg-1 d-flex flex-row-auto position-relative overflow-hidden">
-            <!--begin: Aside Container-->
-            <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
-                <!--begin::Logo-->
-                <a href="{{route('admin.home')}}" class="text-center pt-2">
-                    <img src="{{asset('assets/media/svg/logo.svg')}}" class="max-h-75px" alt=""/>
-                </a>
-                <!--end::Logo-->
-                <!--begin::Aside body-->
-                <div class="d-flex flex-column-fluid flex-column flex-center">
-                    <!--begin::Signin-->
-                    <div class="login-form login-signin py-1">
-                        <!--begin::Form-->
-                        <form action="{{ route('admin.forget.password.post') }}" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="email" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Signin-->
+<body style="background-color: #666666;">
 
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" autocomplete="off" action="{{ route('admin.forget.password.post') }}"
+                  method="post">
+                <img src="{{asset('assets/images/logo.svg')}}" alt="" style="margin-top: -200px;margin-left: 25%">
+
+                @csrf
+                <span class="login100-form-title p-b-43">
+                    <h5>You Forget Your Password?</h5>
+                    <h6>Dont worry! Just type your email and we will send you email</h6>
+					</span>
+
+
+                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+
+                    <input autocomplete="off" class="input100" type="text" name="email">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Email</span>
                 </div>
-                <!--end::Aside body-->
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Send Password Reset Link
+                    </button>
+                </div>
+                <div>
+                    <small class="txt1">You remember Your Password? </small>
+                    <a href="{{route('admin.login')}}" class="txt1">
+                        Login
+                    </a>
+                </div>
+
+            </form>
+
+            <div class="login100-more" style="background-image: url({{asset('admin/images/bg-01.jpg')}});">
             </div>
-            <!--end: Aside Container-->
         </div>
-        <!--begin::Aside-->
-        <!--begin::Content-->
-        <div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0" style="background-color: #B1DCED;">
-            <!--begin::Title-->
-            <div class="d-flex flex-column justify-content-center text-center pt-lg-40 pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
-                <h3 class="display4 font-weight-bolder my-7 text-dark" style="color: #986923;">Amazing Wireframes</h3>
-                <p class="font-weight-bolder font-size-h2-md font-size-lg text-dark opacity-70">User Experience &amp;
-                    Interface Design, Product Strategy
-                    <br/>Web Application SaaS Solutions</p>
-            </div>
-            <!--end::Title-->
-            <!--begin::Image-->
-            <div class="content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
-                 style="background-image: url(assets/media/svg/illustrations/login-visual-2.svg);"></div>
-            <!--end::Image-->
-        </div>
-        <!--end::Content-->
     </div>
-    <!--end::Login-->
 </div>
-<!--end::Main-->
-{{--<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>--}}
-<!--begin::Global Config(global config for global JS scripts)-->
-<script>var KTAppSettings = {"breakpoints": {"sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400},
-        "colors": {
-            "theme": {
-                "base": {
-                    "white": "#ffffff",
-                    "primary": "#3699FF",
-                    "secondary": "#E5EAEE",
-                    "success": "#1BC5BD",
-                    "info": "#8950FC",
-                    "warning": "#FFA800",
-                    "danger": "#F64E60",
-                    "light": "#E4E6EF",
-                    "dark": "#181C32"
-                },
-                "light": {
-                    "white": "#ffffff",
-                    "primary": "#E1F0FF",
-                    "secondary": "#EBEDF3",
-                    "success": "#C9F7F5",
-                    "info": "#EEE5FF",
-                    "warning": "#FFF4DE",
-                    "danger": "#FFE2E5",
-                    "light": "#F3F6F9",
-                    "dark": "#D6D6E0"
-                },
-                "inverse": {
-                    "white": "#ffffff",
-                    "primary": "#ffffff",
-                    "secondary": "#3F4254",
-                    "success": "#ffffff",
-                    "info": "#ffffff",
-                    "warning": "#ffffff",
-                    "danger": "#ffffff",
-                    "light": "#464E5F",
-                    "dark": "#ffffff"
-                }
-            },
-            "gray": {
-                "gray-100": "#F3F6F9",
-                "gray-200": "#EBEDF3",
-                "gray-300": "#E4E6EF",
-                "gray-400": "#D1D3E0",
-                "gray-500": "#B5B5C3",
-                "gray-600": "#7E8299",
-                "gray-700": "#5E6278",
-                "gray-800": "#3F4254",
-                "gray-900": "#181C32"
-            }
-        },
-        "font-family": "Poppins"
-    };</script>
-<!--end::Global Config-->
-<!--begin::Global Theme Bundle(used by all pages)-->
-@include('AdminDashboard.scripts')
-<!--end::Global Theme Bundle-->
-<!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('assets/js/pages/custom/login/login-general.js')}}"></script>
-<!--end::Page Scripts-->
+
+
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/bootstrap/js/popper.js')}}"></script>
+<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/daterangepicker/moment.min.js')}}"></script>
+<script src="{{asset('assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/countdowntime/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{asset('assets/vendor/js/main.js')}}"></script>
+
 </body>
-<!--end::Body-->
 </html>

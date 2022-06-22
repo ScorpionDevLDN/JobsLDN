@@ -7,7 +7,6 @@ use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -33,15 +32,17 @@ class ForgotPasswordController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
+        Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Reset Password');
         });
 
-        return view('auth.Sent');
+        return redirect(route('admin.login'))->with('msgTst', 'Your Password Reset Link was sent to your email
+        !please check your email');
     }
 
-    public function showResetPasswordForm($token) {
+    public function showResetPasswordForm($token)
+    {
         return view('auth.forgetPasswordLink', ['token' => $token]);
     }
 
@@ -60,15 +61,15 @@ class ForgotPasswordController extends Controller
             ])
             ->first();
 
-        if(!$updatePassword){
+        if (!$updatePassword) {
             return back()->withInput()->with('error', 'Invalid token!');
         }
 
         $user = Admin::query()->where('email', $request->email)
-            ->update(['password' =>bcrypt($request->password)]);
+            ->update(['password' => bcrypt($request->password)]);
 
-        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+        DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return redirect('admin/login')->with('message', 'Your password has been changed!');
+        return redirect('admin/login')->with('msgTst', 'Your password has been changed!welcome again');
     }
 }
