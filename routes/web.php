@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Front\CompanyJobController;
 use App\Http\Controllers\Front\CompanyJobsController;
+use App\Http\Controllers\Front\CompanyNotificationController;
 use App\Http\Controllers\Front\CompanyProfileController;
 use App\Http\Controllers\Front\ContactfrontController;
 use App\Http\Controllers\Front\HomeFrontController;
@@ -106,6 +107,7 @@ Route::prefix('front')->group(function (){
     Route::resource('company-profile', CompanyProfileController::class);
     Route::resource('single-job', SingleJobController::class);
     Route::resource('company-jobs', CompanyJobController::class);
+    Route::resource('company-notifications', CompanyNotificationController::class);
 });
 
 //login and register
