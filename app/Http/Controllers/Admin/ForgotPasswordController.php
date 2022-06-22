@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return view('auth.Sent');
     }
 
     public function showResetPasswordForm($token) {
