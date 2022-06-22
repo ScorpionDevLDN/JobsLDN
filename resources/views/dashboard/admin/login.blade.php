@@ -99,7 +99,7 @@
             <!--end::Title-->
             <!--begin::Image-->
             <div class="content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
-                 style="background-image: url(assets/media/svg/illustrations/login-visual-2.svg);"></div>
+                 style="background-image: url({{asset('assets/media/svg/illustrations/login-visual-2.svg')}});"></div>
             <!--end::Image-->
         </div>
         <!--end::Content-->
