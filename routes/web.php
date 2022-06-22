@@ -22,6 +22,7 @@ use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +74,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('contacts', [AdminGetContactUsController::class, 'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
+        Route::resource('sliders', SliderController::class);
 
         Route::resource('get_companies', CompanyController::class)->middleware(['permission:user-list']);
 //        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);

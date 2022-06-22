@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(JobSeeder::class);
+        $this->call(SliderSeeder::class);
 
         foreach (range(0,10) as $i){
             Newsletter::query()->create([

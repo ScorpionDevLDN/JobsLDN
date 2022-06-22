@@ -34,6 +34,11 @@ class Setting extends Model
         'telegram_link',
         'site_key',
         'secret_key',
+
+        'text',
+        'description',
+        'cta',
+        'image',
     ];
 
 

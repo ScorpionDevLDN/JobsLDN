@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Slider;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::query()->first();
-        return view('dashboard.admin.setting.index',compact('setting'));
+        $sliders = Slider::query()->get();
+        return view('dashboard.admin.setting.index',compact('setting','sliders'));
     }
 
     /**
