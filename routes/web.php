@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PaymentConteroller;
 use App\Http\Controllers\Admin\Per\PerController;
 use App\Http\Controllers\Admin\Type\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Front\CompanyJobController;
 use App\Http\Controllers\Front\CompanyJobsController;
 use App\Http\Controllers\Front\CompanyProfileController;
 use App\Http\Controllers\Front\ContactfrontController;
@@ -104,6 +105,7 @@ Route::prefix('front')->group(function (){
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('company-profile', CompanyProfileController::class);
     Route::resource('single-job', SingleJobController::class);
+    Route::resource('company-jobs', CompanyJobController::class);
 });
 
 //login and register
