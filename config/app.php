@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => \App\Models\Setting::query()->first()->website_name,
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
