@@ -104,11 +104,14 @@
                             <input class="form-control form-control-lg" type="text" placeholder="First Name *" required>
                         </div>
 
-                        <div class="from-group mb-4 col-md-6 py-3">
-                            <div class="row">
+                        <div class="from-group mb-4 col-md-12 py-3">
+                            <div class="row" style="background-color: #dcdcdc">
                                 <div class="col-md-6 order-2 order-md-1">
-                                    <h2 class="page-banner__title">Post a new job for
-                                        free now!</h2>
+                                    <h2 class="page-banner__title">Super Post</h2>
+                                    <p class="">There is no need to keep your post lost among thousands
+                                        of job posts. Now you can publish this ad to have priority on
+                                        these pages for 5 days for £16.99 only - Excluding VAT.</p>
+                                    <input class="" type="checkbox">Make this post as Super Post.
                                 </div>
                                 <div class="col-md-6 order-1 order-md-2">
                                     <div class="page-banner__image"><img
