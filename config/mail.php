@@ -93,7 +93,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => \App\Models\Setting::query()->first()->website_name,
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
