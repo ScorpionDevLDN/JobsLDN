@@ -257,6 +257,14 @@
                                 {{--capatcha--}}
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        To create a reCaptcha admin account for yourself
+                                        <a href="https://www.google.com/recaptcha/admin/create">Visit this link </a>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
                                         Recaptcha Site Key
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
