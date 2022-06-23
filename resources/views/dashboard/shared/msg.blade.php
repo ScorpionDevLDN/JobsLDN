@@ -24,11 +24,13 @@ $msgClass = 'alert-primary';
         $msg = substr($msg,2);//قص اول حرفين
     }
     ?>
-    <div class='alert {{$msgClass}} alert-dismissible'>
-        {{$msg}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="container">
+            <div class='alert {{$msgClass}} alert-dismissible'>
+                {{$msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
     </div>
 @endif
 

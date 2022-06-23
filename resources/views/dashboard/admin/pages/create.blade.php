@@ -99,7 +99,6 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-lg-3"></div>
                                 <div class="col-lg-9">
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     <a href="{{route('admin.pages.index')}}" type="button" class="button btn btn-secondary">Cancel</a>
