@@ -10,11 +10,12 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $sliders = Slider::query()->get();
+        return view('dashboard.admin.setting.sliders',compact('sliders'));
     }
 
     /**
@@ -82,5 +83,12 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         //
+    }
+
+    public function changeSliderStatus(Request $request){
+        $ca = Slider::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }

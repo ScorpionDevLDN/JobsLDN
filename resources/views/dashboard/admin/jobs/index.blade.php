@@ -1,6 +1,6 @@
 @extends('AdminDashboard.index')
 @section('breadcrumb')
-    <a href="#" class="btn">Jobs</a>
+    <a href="{{route('admin.get-jobs.index')}}" class="btn">Jobs</a>
 @endsection
 @section('title','Jobs')
 @section('content')

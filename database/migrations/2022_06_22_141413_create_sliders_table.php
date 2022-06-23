@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('cta')->nullable();
             $table->string('image')->nullable();
+            $table->string('link')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

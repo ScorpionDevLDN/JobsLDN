@@ -46,6 +46,7 @@ Route::get('changeCurrencyStatus', [CurrencyController::class, 'changeCurrencySt
 Route::get('changePerStatus', [PerController::class, 'changePerStatus'])->name('changePerStatus');
 Route::get('changeTypeStatus', [TypeController::class, 'changeTypeStatus'])->name('changeTypeStatus');
 Route::get('changePostStatus', [JobController::class, 'changePostStatus'])->name('changePostStatus');
+Route::get('changeSliderStatus', [SliderController::class, 'changeSliderStatus'])->name('changeSliderStatus');
 
 
 //admin routes

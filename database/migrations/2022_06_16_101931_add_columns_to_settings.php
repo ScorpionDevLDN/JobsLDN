@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('settings', function (Blueprint $table) {
             $table->string('secret_key')->nullable();
             $table->string('site_key')->nullable();
+            $table->string('email_from')->nullable();
         });
     }
 

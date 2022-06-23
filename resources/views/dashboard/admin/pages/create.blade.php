@@ -2,13 +2,13 @@
 @section('title','Pages')
 @section('breadcrumb')
     <a href="{{route('admin.pages.index')}}" class="btn">Pages</a>
-    <a href="#" class="btn">Create New Page</a>
+    <a href="{{route('admin.pages.create')}}" class="btn">Create New Page</a>
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-sm-12">
+            <div class="col-md-12 col-sm-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
                         <h3 class="card-title">Add New Page</h3>

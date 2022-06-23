@@ -39,6 +39,7 @@ class SettingSeeder extends Seeder
             'telegram_link'=> 'ww.teleg.com',
             'site_key' => 'test site_key',
             'secret_key' => 'test secret_key',
+            'email_from' => 'email@gmail.com',
         ]);
     }
 }

@@ -35,10 +35,7 @@ class Setting extends Model
         'site_key',
         'secret_key',
 
-        'text',
-        'description',
-        'cta',
-        'image',
+        'email_from'
     ];
 
 

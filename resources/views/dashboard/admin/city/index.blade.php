@@ -1,7 +1,7 @@
 @extends('AdminDashboard.index')
 @section('breadcrumb')
-    <a href="#" class="btn">Job Settings</a>
-    <a href="#" class="btn">Cities</a>
+    <a href="{{route('admin.cities.index')}}" class="btn">Job Settings</a>
+    <a href="{{route('admin.cities.index')}}" class="btn">Cities</a>
 @endsection
 @section('title','City')
 @section('content')

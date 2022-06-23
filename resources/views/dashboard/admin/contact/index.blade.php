@@ -1,6 +1,6 @@
 @extends('AdminDashboard.index')
 @section('breadcrumb')
-    <a href="#" class="btn">Contact Us</a>
+    <a href="{{route('admin.contacts')}}" class="btn">Contact Us</a>
 @endsection
 @section('title','Contact us')
 @section('content')

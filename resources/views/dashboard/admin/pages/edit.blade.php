@@ -2,13 +2,13 @@
 @section('title','Edit Page')
 @section('breadcrumb')
     <a href="{{route('admin.pages.index')}}" class="btn">Pages</a>
-    <a href="#" class="btn">Edit Page: {{$dynamicPage->title}}</a>
+    <a href="{{route('admin.pages.edit',$dynamicPage->id)}}" class="btn">Edit Page: {{$dynamicPage->title}}</a>
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-10">
+            <div class="col-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
                         <h3 class="card-title">Edit Page</h3>
