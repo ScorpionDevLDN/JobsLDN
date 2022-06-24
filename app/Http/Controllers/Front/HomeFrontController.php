@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Slider;
+use App\Models\Company;
+use App\Models\Job;
+use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -15,7 +19,12 @@ class HomeFrontController extends Controller
      */
     public function index()
     {
-        return view('Front.FrontHome');
+        $sliders = Slider::query()->where('status',1)->get();
+        $companies = Company::query()->count();
+        $job_seekers = JobSeeker::query()->count();
+        $posts_count = Job::query()->count();
+        $posts = Job::query()->take(8)->get();
+        return view('Front.FrontHome',compact('sliders','posts','companies','job_seekers','posts_count'));
     }
 
     /**

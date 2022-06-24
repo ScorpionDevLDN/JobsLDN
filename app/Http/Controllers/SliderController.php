@@ -71,7 +71,9 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         Slider::query()->findOrFail($id)->update($request->all());
-        return redirect()->route('admin.settings.index');
+
+        session()->flash('msg','Slider Updated Successfully');
+        return redirect()->route('admin.sliders.index');
     }
 
     /**

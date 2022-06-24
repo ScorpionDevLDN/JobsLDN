@@ -14,7 +14,9 @@ class Slider extends Model
         'text',
         'description',
         'cta',
+        'link',
         'image',
+        'status',
     ];
 
     public function setImageAttribute($image)

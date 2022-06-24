@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>text
+                                                <label>Text
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$slider->text}}" type="text"
                                                        name="text"
@@ -112,6 +112,14 @@
                                                 <input required value="{{$slider->cta}}" type="text" name="cta"
                                                        class="form-control"
                                                        placeholder="Enter slider cta"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>link
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$slider->link}}" type="text" name="link"
+                                                       class="form-control"
+                                                       placeholder="Enter slider cta link"/>
                                             </div>
 
                                             <div class="form-group row">

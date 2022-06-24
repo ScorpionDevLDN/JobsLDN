@@ -107,4 +107,5 @@ class Job extends Model
             Storage::delete( $this->attributes['pdf_details']);
         }
     }
+
 }

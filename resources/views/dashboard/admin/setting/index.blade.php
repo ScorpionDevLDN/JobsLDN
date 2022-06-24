@@ -305,6 +305,27 @@
                                         <input type="text" name="email_from" class="form-control"
                                                value="test@demo2.admin.com">
                                     </div>
+
+                                </div>
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Port
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="port" class="form-control"
+                                               value="465">
+                                    </div>
+
+                                </div>
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        SMPT
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="smpt" class="form-control"
+                                               value="smpt">
+                                    </div>
+
                                 </div>
 
                             </div>

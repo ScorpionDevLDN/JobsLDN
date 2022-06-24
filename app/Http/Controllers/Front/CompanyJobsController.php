@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Job;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class CompanyJobsController extends Controller
@@ -14,7 +18,18 @@ class CompanyJobsController extends Controller
      */
     public function index()
     {
-        return view('Front.Jobs');
+        if (\request()->has('Newest')) {
+            $posts = Job::query()->orderByDesc('id')->paginate(5);
+        }
+        elseif (\request()->has('salary')) {
+            $posts = Job::query()->orderByDesc('salary')->paginate(5);
+        } else {
+            $posts = Job::query()->paginate(5);
+        }
+        $categories = Category::query()->where('status',1)->get();
+        $cities = City::query()->where('status',1)->get();
+        $types = Type::query()->where('status',1)->get();
+        return view('Front.Jobs', compact('posts','categories','cities','types'));
     }
 
     /**
@@ -30,7 +45,7 @@ class CompanyJobsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +56,7 @@ class CompanyJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +67,7 @@ class CompanyJobsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +78,8 @@ class CompanyJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,7 +90,7 @@ class CompanyJobsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
