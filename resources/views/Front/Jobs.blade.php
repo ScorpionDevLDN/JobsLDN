@@ -24,13 +24,13 @@
                         <p class="font-weight-light text-muted" style="margin-bottom: 60px">Search Filter</p>
                     </div>
                     <div class="jobs__search-filters">
-                        <form action="#" method="GET">
+                        <form action="{{route('jobs.index')}}" method="get">
                             <div class="row">
                                 <div class="col-12 mb-5">
                                     <select class="js-example-basic-single" name="category">
                                         <option value="category">Category</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category}}">{{$category->name}}</option>
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -45,7 +45,7 @@
 
                                 <div class="col-12 mb-5">
                                     <select class="js-example-basic-single" name="type">
-                                        <option value="category">Type</option>
+                                        <option value="type">Type</option>
                                         @foreach($types as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option>
                                         @endforeach
@@ -65,12 +65,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <div class="jobs__salary-range">
-                            <div class="text-center text-md-left">
-                                <button class="btn btn-primary px-4" type="submit">Apply</button>
+
+                            <div class="jobs__salary-range">
+                                <div class="text-center text-md-left">
+                                    <button class="btn btn-primary px-4" type="submit">Apply</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -78,11 +79,12 @@
                 <div class="col-md-9 order-1 order-md-2">
                     <div class="jobs__col-title d-flex justify-content-between align-items-center">
                         <h4>Jobs</h4>
-                        <div class="sort-jobs text-muted"><span>Sort by</span>
-                            <form action="#">
-                                <select class="sort-filter">
-                                    <option value="newest"><a href="#">Newest</a></option>
-                                    <option value="value1">Salary</option>
+                        <div class="sort-jobs text-muted"><span>Sort By</span>
+                            <form action="{{route('jobs.index')}}" method="get">
+                                <select name="filter" class="sort-filter" onchange="this.form.submit()">
+{{--                                    <option >Sort By</option>--}}
+                                    <option value="newest">Newest</option>
+                                    <option value="salary">Salary</option>
                                 </select>
                             </form>
                         </div>

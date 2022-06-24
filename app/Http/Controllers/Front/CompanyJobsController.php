@@ -18,12 +18,22 @@ class CompanyJobsController extends Controller
      */
     public function index()
     {
-        if (\request()->has('Newest')) {
+        if (\request()->filter == 'newest') {
             $posts = Job::query()->orderByDesc('created_at')->paginate(5);
         }
-        elseif (\request()->has('salary')) {
+        elseif (\request()->filter =='salary') {
             $posts = Job::query()->orderByDesc('salary')->paginate(5);
-        } else {
+        }
+        elseif (\request()->filled('category')){
+            $posts = Job::query()->where('category_id',\request()->category)->paginate(5);
+        }
+        elseif (\request()->filled('city')){
+            $posts = Job::query()->where('city_id',\request()->city)->paginate(5);
+        }
+        elseif (\request()->filled('type')){
+            $posts = Job::query()->where('category_id',\request()->type)->paginate(5);
+        }
+        else{
             $posts = Job::query()->paginate(5);
         }
         $categories = Category::query()->where('status',1)->get();
@@ -97,4 +107,6 @@ class CompanyJobsController extends Controller
     {
         //
     }
+
+    public function search(){}
 }
