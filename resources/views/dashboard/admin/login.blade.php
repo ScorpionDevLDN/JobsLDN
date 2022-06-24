@@ -7,26 +7,26 @@
     <meta name="description" content="Login page example"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script type="text/javascript">
-        function callbackThen(response) {
-            // read Promise object
-            response.json().then(function(data) {
-                console.log(data);
-                if(data.success && data.score > 0.5) {
-                    console.log('valid recpatcha');
-                } else {
-                    document.getElementById('login-form').addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        alert('recpatcha error');
-                    });
-                }
-            });
-        }
+{{--    <script type="text/javascript">--}}
+{{--        function callbackThen(response) {--}}
+{{--            // read Promise object--}}
+{{--            response.json().then(function(data) {--}}
+{{--                console.log(data);--}}
+{{--                if(data.success && data.score > 0.5) {--}}
+{{--                    console.log('valid recpatcha');--}}
+{{--                } else {--}}
+{{--                    document.getElementById('login-form').addEventListener('submit', function(event) {--}}
+{{--                        event.preventDefault();--}}
+{{--                        alert('recpatcha error');--}}
+{{--                    });--}}
+{{--                }--}}
+{{--            });--}}
+{{--        }--}}
 
-        function callbackCatch(error){
-            console.error('Error:', error)
-        }
-    </script>
+{{--        function callbackCatch(error){--}}
+{{--            console.error('Error:', error)--}}
+{{--        }--}}
+{{--    </script>--}}
     {!! htmlScriptTagJsApi([
     'callback_then' => 'callbackThen',
     'callback_catch' => 'callbackCatch',
