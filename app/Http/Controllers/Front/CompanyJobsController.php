@@ -19,7 +19,7 @@ class CompanyJobsController extends Controller
     public function index()
     {
         if (\request()->has('Newest')) {
-            $posts = Job::query()->orderByDesc('id')->paginate(5);
+            $posts = Job::query()->orderByDesc('created_at')->paginate(5);
         }
         elseif (\request()->has('salary')) {
             $posts = Job::query()->orderByDesc('salary')->paginate(5);
