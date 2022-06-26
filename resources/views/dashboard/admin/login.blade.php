@@ -94,6 +94,9 @@
                                 </div>
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
                                        type="password" name="password" autocomplete="off"/>
+                                @if(session('error'))
+                                    <div class="alert alert-danger">{{session('error')}}</div>
+                                @endif
                             </div>
                             <!--end::Form group-->
                             <!--begin::Action-->
