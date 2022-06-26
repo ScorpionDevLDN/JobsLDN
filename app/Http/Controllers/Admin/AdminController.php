@@ -45,7 +45,7 @@ class AdminController extends Controller
                 ->withInput();
         } else {
 //            session()->flash('msg','Password Updated Successfully');
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login')->with('error', 'Your password or email didnt match our record !');
         }
     }
 
