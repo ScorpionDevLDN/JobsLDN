@@ -8,7 +8,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 d-flex flex-column justify-content-center order-2 order-md-1">
-                                <h6 class="slider__item-title">{{$slider->text}}</h6>
+                                <h6 class="slider__item-title ml3">{{$slider->text}}</h6>
                                 <div class="row">
                                     <div class="col-md-8">
                                         <small class="slider__item-content text-muted">{{$slider->description}}</small>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="slider__item-stats"><img
-                                                    src="{{asset('assets/images/home/jobs-posted.svg')}}">
+                                                    src="{{asset('assets/images/home/seekers-icon.svg')}}">
                                             <div class="slider__item-stats-figure">
                                                 <h3><small>{{$job_seekers}}K</small></h3><small><span
                                                             class="main-color">Job Seekers</span></small>
@@ -62,30 +62,30 @@
     <section class="discover-now py-5 bg-light">
         <h2 class="section-title section-title--smaller section-title--half-margin">Discover now</h2>
         <div class="container">
-            <form>
+            <form action="{{route('jobs.index')}}" method="get">
                 <div class="row justify-content-center">
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="category">
-                            <option class="tetas" value="all_categories">Category</option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="3">Category 3</option>
+                            <option value="category">Category</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="type">
-                            <option value="all_categories">Type</option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="3">Category 3</option>
+                            <option value="type">Type</option>
+                            @foreach($types as $type)
+                                <option value="{{$type->id}}">{{$type->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="city">
-                            <option value="all_categories">City</option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="3">Category 3</option>
+                            <option value="city">City</option>
+                            @foreach($cities as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
@@ -185,4 +185,42 @@
         </div>
     </section>
     <!-- best-business-end-->
+@endsection
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+            $(".zoom").hover(function () {
+
+                $(this).addClass('transition');
+            }, function () {
+
+                $(this).removeClass('transition');
+            });
+        });
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml3');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml3 .letter',
+                opacity: [0, 1],
+                easing: "easeInOutQuad",
+                duration: 5,
+                delay: (el, i) => 150 * (i + 1)
+            }).add({
+            targets: '.ml3',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+        });
+    </script>
 @endsection

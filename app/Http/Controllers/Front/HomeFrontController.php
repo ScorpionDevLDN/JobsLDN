@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Slider;
+use App\Models\Category;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -24,7 +27,11 @@ class HomeFrontController extends Controller
         $job_seekers = JobSeeker::query()->count();
         $posts_count = Job::query()->count();
         $posts = Job::query()->take(8)->get();
-        return view('Front.FrontHome',compact('sliders','posts','companies','job_seekers','posts_count'));
+        $categories = Category::query()->where('status',1)->get();
+        $cities = City::query()->where('status',1)->get();
+        $types = Type::query()->where('status',1)->get();
+        return view('Front.FrontHome',
+            compact('sliders','posts','companies','job_seekers','posts_count','categories','cities','types'));
     }
 
     /**
