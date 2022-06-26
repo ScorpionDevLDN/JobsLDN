@@ -59,10 +59,10 @@
 
                                 <div class="col-12 mb-5">
                                     <div class="form-group">
-{{--                                        <label><small class="text-muted">Salary</small><small>:{{$min_salary}} - {{$max_salary}}</small></label>--}}
+                                        <label><small class="text-muted">Salary</small><small>:{{$min_salary}} - {{$max_salary}}</small></label>
 {{--                                        <small>Salary <small>£1,500 - £8,400</small></small>--}}
                                         <div id=""></div>
-                                        <input onchange="showVal(this.value)" type="range" class="custom-range" min="0" max="100" id="customRange2">
+                                        <input onchange="showVal(this.value)" name="salary" type="range" class="custom-range" min="{{$min_salary}}" max="{{$max_salary}}" id="customRange2">
                                     </div>
                                 </div>
                             </div>

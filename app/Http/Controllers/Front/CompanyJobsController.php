@@ -35,7 +35,10 @@ class CompanyJobsController extends Controller
         }
         elseif (\request()->filled('keywords')){
             $keywords = \request()->keywords;
-            $posts = Job::query()->whereRaw('(title like ?)',["%$keywords%"])->paginate(5)->appends(['keywords'=>$keywords]);;
+            $posts = Job::query()->whereRaw('(title like ?)',["%$keywords%"])->paginate(5)->appends(['keywords'=>$keywords]);
+        }
+        elseif (\request()->filled('salary')){
+            $posts = Job::query()->where('salary',\request('salary'))->paginate(5);
         }
         else{
             $posts = Job::query()->paginate(5);
@@ -43,9 +46,9 @@ class CompanyJobsController extends Controller
         $categories = Category::query()->where('status',1)->get();
         $cities = City::query()->where('status',1)->get();
         $types = Type::query()->where('status',1)->get();
-//        $min_salary = Job::query()->min('salary');
-//        $max_salary = Job::query()->max('salary');
-        return view('Front.Jobs', compact('posts','categories','cities','types'));
+        $min_salary = Job::query()->min('salary');
+        $max_salary = Job::query()->max('salary');
+        return view('Front.Jobs', compact('posts','categories','cities','types','min_salary','max_salary'));
     }
 
     /**
