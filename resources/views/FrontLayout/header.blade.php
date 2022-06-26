@@ -148,4 +148,8 @@
         }
     }
 
+    .featured-jobs{
+        animation: float 3s ease-out infinite;
+    }
+
 </style>
