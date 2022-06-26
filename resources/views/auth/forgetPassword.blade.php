@@ -55,6 +55,9 @@
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="email"
                                        name="email" autocomplete="off"/>
+                                @if($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                             <div class="text-center pt-2">
                                 <button type="submit" id="kt_login_signin_submit"
