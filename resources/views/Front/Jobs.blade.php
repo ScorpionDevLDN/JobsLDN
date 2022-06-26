@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-12 mb-5">
                                     <select class="js-example-basic-single" name="category">
-                                        <option value="category">Category</option>
+                                        <option value="">Category</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-12 mb-5">
                                     <select class="js-example-basic-single" name="city">
-                                        <option value="city">City</option>
+                                        <option value="">City</option>
                                         @foreach($cities as $city)
                                         <option value="{{$city->id}}">{{$city->name}}</option>
                                         @endforeach
@@ -45,7 +45,7 @@
 
                                 <div class="col-12 mb-5">
                                     <select class="js-example-basic-single" name="type">
-                                        <option value="type">Type</option>
+                                        <option value="">Type</option>
                                         @foreach($types as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option>
                                         @endforeach
@@ -59,9 +59,10 @@
 
                                 <div class="col-12 mb-5">
                                     <div class="form-group">
-                                        <label>Salary</label>
-                                        <div></div>
-                                        <input type="range" class="custom-range" min="0" max="5" id="customRange2">
+{{--                                        <label><small class="text-muted">Salary</small><small>:{{$min_salary}} - {{$max_salary}}</small></label>--}}
+{{--                                        <small>Salary <small>£1,500 - £8,400</small></small>--}}
+                                        <div id=""></div>
+                                        <input onchange="showVal(this.value)" type="range" class="custom-range" min="0" max="100" id="customRange2">
                                     </div>
                                 </div>
                             </div>
@@ -144,4 +145,12 @@
         </div>
     </section>
     <!-- jobs-list-end-->
+@endsection
+
+@section('js')
+    <script>
+        function showVal(newVal){
+            document.getElementById("valBox").innerHTML=newVal;
+        }
+    </script>
 @endsection

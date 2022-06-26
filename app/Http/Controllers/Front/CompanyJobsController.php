@@ -33,12 +33,18 @@ class CompanyJobsController extends Controller
         elseif (\request()->filled('type')){
             $posts = Job::query()->where('type_id',\request()->type)->paginate(5);
         }
+        elseif (\request()->filled('keywords')){
+            $keywords = \request()->keywords;
+            $posts = Job::query()->whereRaw('(title like ?)',["%$keywords%"])->paginate(5)->appends(['keywords'=>$keywords]);;
+        }
         else{
             $posts = Job::query()->paginate(5);
         }
         $categories = Category::query()->where('status',1)->get();
         $cities = City::query()->where('status',1)->get();
         $types = Type::query()->where('status',1)->get();
+//        $min_salary = Job::query()->min('salary');
+//        $max_salary = Job::query()->max('salary');
         return view('Front.Jobs', compact('posts','categories','cities','types'));
     }
 

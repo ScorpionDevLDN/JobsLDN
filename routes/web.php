@@ -104,7 +104,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('front')->group(function (){
     Route::resource('home', HomeFrontController::class);
     Route::resource('jobs', CompanyJobsController::class);
-    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
+//    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('company-profile', CompanyProfileController::class);
