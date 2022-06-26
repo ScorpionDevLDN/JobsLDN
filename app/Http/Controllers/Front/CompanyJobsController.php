@@ -31,7 +31,7 @@ class CompanyJobsController extends Controller
             $posts = Job::query()->where('city_id',\request()->city)->paginate(5);
         }
         elseif (\request()->filled('type')){
-            $posts = Job::query()->where('category_id',\request()->type)->paginate(5);
+            $posts = Job::query()->where('type_id',\request()->type)->paginate(5);
         }
         else{
             $posts = Job::query()->paginate(5);

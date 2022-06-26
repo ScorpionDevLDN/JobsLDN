@@ -66,7 +66,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="category">
-                            <option value="category">Category</option>
+                            <option value="">Category</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="type">
-                            <option value="type">Type</option>
+                            <option value="">Type</option>
                             @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                             @endforeach
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="city">
-                            <option value="city">City</option>
+                            <option value="">City</option>
                             @foreach($cities as $city)
                                 <option value="{{$city->id}}">{{$city->name}}</option>
                             @endforeach

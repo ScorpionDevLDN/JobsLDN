@@ -79,11 +79,13 @@
                 <div class="col-md-9 order-1 order-md-2">
                     <div class="jobs__col-title d-flex justify-content-between align-items-center">
                         <h4>Jobs</h4>
-                        <div class="sort-jobs text-muted"><span>Sort By</span>
+                        <div class="sort-jobs text-muted"><span></span>
                             <form action="{{route('jobs.index')}}" method="get">
                                 <select name="filter" class="sort-filter" onchange="this.form.submit()">
 {{--                                    <option >Sort By</option>--}}
-                                    <option value="newest">Newest</option>
+
+                                    <option value="">Sort By</option>
+                                    <option value="newest" selected>Newest</option>
                                     <option value="salary">Salary</option>
                                 </select>
                             </form>
