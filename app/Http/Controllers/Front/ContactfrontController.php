@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class ContactfrontController extends Controller
@@ -14,7 +16,8 @@ class ContactfrontController extends Controller
      */
     public function index()
     {
-        return view('Front.Contacts');
+        $setting = Setting::query()->first();
+        return view('Front.Contacts',compact('setting'));
     }
 
     /**
@@ -31,11 +34,19 @@ class ContactfrontController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'full_name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+//            'attachment' => 'required',
+        ]);
+       Contact::query()->create($request->all());
+       return redirect()->route('home.index');
     }
 
     /**

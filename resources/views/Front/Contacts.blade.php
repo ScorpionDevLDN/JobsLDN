@@ -21,19 +21,19 @@
             <div class="row">
                 <div class="col-md-3">
                     <h6>Our Office</h6>
-                    <small>425 Berry Street, CA 93584</small>
+                    <small>{{$setting->address}}</small>
                 </div>
                 <div class="col-md-3">
                     <h6>Email</h6>
-                    <small>info@domain.com</small>
+                    <small>{{$setting->contact_email}}</small>
                 </div>
                 <div class="col-md-3">
                     <h6>Phone</h6>
-                    <small>(+00) - 00 0000000</small>
+                    <small>{{$setting->phone}}</small>
                 </div>
                 <div class="col-md-3">
                     <h6>Mobile</h6>
-                    <small>(+00) - 00 0000000</small>
+                    <small>{{$setting->phone2}}</small>
                 </div>
             </div>
         </div>
@@ -43,7 +43,8 @@
     <!-- Contact form-->
     <section class="py-5">
         <div class="container">
-            <form action="#">
+            <form enctype="multipart/form-data" action="{{route('contacts.store')}}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col-md-2">
                         <p class="font-weight-bold">We would love to hear from you!</p>
@@ -51,16 +52,28 @@
                     <div class="col-md-6">
                         <div class="form-group mb-4">
                             {{--                            <label>Large Input</label>--}}
-                            <input type="email" class="form-control form-control-lg" placeholder="Full Name">
+                            <input name="full_name" type="text" class="form-control form-control-lg" placeholder="Full Name">
+                            @if($errors->has('full_name'))
+                                <span class="text-danger">{{ $errors->first('full_name') }}</span>
+                            @endif
                         </div>
                         <div class="form-group mb-4">
-                            <input type="email" class="form-control form-control-lg" placeholder="Email">
+                            <input name="email" type="email" class="form-control form-control-lg" placeholder="Email">
+                            @if($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
                         </div>
                         <div class="form-group mb-4">
-                            <input type="email" class="form-control form-control-lg" placeholder="Subject">
+                            <input name="subject" type="text" class="form-control form-control-lg" placeholder="Subject">
+                            @if($errors->has('subject'))
+                                <span class="text-danger">{{ $errors->first('subject') }}</span>
+                            @endif
                         </div>
                         <div class="from-group mb-4">
-                            <textarea class="form-control form-control-lg" rows="3"></textarea>
+                            <textarea name="message" class="form-control form-control-lg" rows="3"></textarea>
+                            @if($errors->has('message'))
+                                <span class="text-danger">{{ $errors->first('message') }}</span>
+                            @endif
                         </div>
 
                         <div class="from-group mb-4">

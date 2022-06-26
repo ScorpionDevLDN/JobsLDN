@@ -139,5 +139,13 @@
         background-color: {{\App\Models\Setting::query()->first()->secondary_color}} !important;
         color: {{\App\Models\Setting::query()->first()->main_color}} !important;
     }
+    .modal .form-control-lg, .modal .show-hide-password{
+        width: 100%;
+    }
+    @media (min-width: 576px){
+        .modal-dialog{
+            max-width: 400px;
+        }
+    }
 
 </style>

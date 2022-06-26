@@ -1,78 +1,112 @@
 <!-- Modals-->
 <!-- Login/Register modal-->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content p-5">
-            <div class="modal-header">
+        <div class="modal-content">
+            <div class="modal-header p-3">
                 <div class="modal-header-tabs">
                     <div class="modal-header-tabs__tab active" id="login-form-title">
-                        <h5 class="modal-title">Login</h5>
+                        <h6 class="modal-title">Login</h6>
                     </div>
                     <div class="modal-header-tabs__tab" id="register-form-title">
-                        <h5 class="modal-title">Register</h5>
+                        <h6 class="modal-title">Register</h6>
                     </div>
                 </div>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div id="login-form">
                     <div class="text-center">
-                        <h5 class="mb-1">We are glad to see you again!</h5>
-                        <p class="text-muted">Don’t have an account? <a href="#" id="register-form-link">Sign Up!</a></p>
+                        <h6 class="mb-1">We are glad to see you again!</h6>
+                        <small>Don’t have an account? <a href="#" id="register-form-link">Sign Up!</a></small>
                     </div>
                     <form method="POST" action="#">
-                        <div class="row mt-5 text-center">
-                            <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="text" placeholder="Email" name="email" required>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <input class="form-control-lg" type="password" placeholder="Password" name="password" required>
-                                <div class="my-3"><a href="" id="modal-forgot-password-link" data-toggle="modal" data-target="#modalForgotPassword" data-dismiss="modal">Forgot Password?</a></div>
-                                <button class="btn btn-primary px-5" type="submit">Login</button>
+                        <div class="container">
+                            <div class="row mt-5">
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        <input class="form-control form-control-lg" type="text" placeholder="Email"
+                                               name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <input class="form-control form-control-lg" type="password"
+                                               placeholder="Password" name="password" required>
+                                    </div>
+                                    <div class="my-3"><a class="text-dark" href="" id="modal-forgot-password-link"
+                                                         data-toggle="modal"
+                                                         data-target="#modalForgotPassword" data-dismiss="modal"><small>Forgot
+                                                Password?</small></a></div>
+                                    <div class="center" style="text-align: center">
+                                        <button class="btn btn-primary-ldn px-5 text-center" type="submit">Login
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div id="register-form">
                     <div class="text-center">
-                        <h5>Let's create your account!</h5>
+                        <h6>Let's create your account!</h6>
                     </div>
                     <form method="POST" action="#">
-                        <div class="row mt-5 text-center">
+                        <div class="row mt-5">
                             <div class="col-12 mb-4">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-primary px-5 mr-4 active">
-                                        <input id="option1" type="radio" name="accountType" autocomplete="off" checked=""> Jobseeker
+                                    <label class="btn ayaTst px-5 mr-4 active">
+                                        <input id="option1" type="radio" name="accountType" autocomplete="off"
+                                               checked=""> Jobseeker
                                     </label>
-                                    <label class="btn btn-outline-primary px-5 mr-4">
+                                    <label class="btn ayaTst px-5 mr-4">
                                         <input id="option2" type="radio" name="accountType" autocomplete="off">Company
                                     </label>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="text" placeholder="First Name" name="firstName" required>
+                                <input class="form-control form-control-lg" type="text" placeholder="First Name"
+                                       name="firstName"
+                                       required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="text" placeholder="Last Name" name="lastName" required>
+                                <input class="form-control form-control-lg" type="text" placeholder="Last Name"
+                                       name="lastName"
+                                       required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="email" placeholder="Email" name="email" required>
+                                <input class="form-control form-control-lg" type="email" placeholder="Email"
+                                       name="email" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="email" placeholder="Confirm Email" name="emailConfirm" required>
+                                <input class="form-control form-control-lg" type="email" placeholder="Confirm Email"
+                                       name="emailConfirm" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="password" placeholder="Password" name="password" required>
+                                <input class="form-control form-control-lg" type="password" placeholder="Password"
+                                       name="password"
+                                       required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input class="form-control-lg" type="password" placeholder="Password" name="passwordConfirm" required>
+                                <input class="form-control form-control-lg" type="password" placeholder="Password"
+                                       name="passwordConfirm" required>
                             </div>
                             <div class="col-12">
                                 <div class="form-check my-3">
-                                    <input class="form-check-input" type="checkbox" name="registerTerms" id="registerTerms">
-                                    <label for="registerTerms">By continuing you accept our standard <a href="#">terms and conditions</a> and our <a href="#">privacy policy</a></label>
-                                </div>.
-                                <button class="btn btn-primary px-5" type="submit">Register</button>
+                                    <input class="form-check-input" type="checkbox" name="registerTerms"
+                                           id="registerTerms">
+                                    <label for="registerTerms"><small>
+                                            By continuing you accept our standard <a href="#">terms
+                                                and conditions</a> and our <a href="#">privacy policy</a>
+                                        </small></label>
+                                </div>
+                                <br>
+                                <div class="center" style="text-align: center">
+                                    <button class="btn btn-primary px-5" type="submit">Register</button>
+                                </div>
+                                <br>
                             </div>
                         </div>
                     </form>
@@ -84,20 +118,26 @@
 <!-- login-register-modal-end-->
 
 <!-- Forgot password modal-->
-<div class="modal fade" id="modalForgotPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalForgotPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content p-5">
-            <div class="modal-header">
-                <h5 class="modal-title">Reset password</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-content">
+            <div class="modal-header p-3">
+                <h6 class="modal-title">Reset password</h6>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="#">
-                    <div class="row mt-5 text-center">
+                    <div class="row">
                         <div class="col-12 mb-3">
-                            <p>Enter Your Email to Reset Your Password</p>
-                            <input class="form-control-lg" type="email" placeholder="ُEnter Your Email" name="email" required>
-                            <div class="my-4">
+                            <div class="text-center">
+                                <h6>Enter Your Email to Reset Your Password</h6>
+                            </div>
+                            <input class="form-control form-control-lg" type="email" placeholder="ُEnter Your Email"
+                                   name="email"
+                                   required>
+                            <div class="center my-4" style="text-align: center">
                                 <button class="btn btn-primary px-5" type="submit">Reset Password</button>
                             </div>
                         </div>
@@ -110,12 +150,14 @@
 <!-- forgot-password-modal-end-->
 
 <!-- Create a new job post modal-->
-<div class="modal fade" id="modalCreateJob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCreateJob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content p-5">
             <div class="modal-header">
                 <h5 class="modal-title">Create a new job post</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="#">
@@ -124,7 +166,8 @@
                             <input class="form-control-lg" type="text" placeholder="Title *" name="jobTitle">
                         </div>
                         <div class="col-12 mb-3">
-                            <textarea class="form-control" name="jobSummary" rows="5" placeholder="Summary *" required></textarea>
+                            <textarea class="form-control" name="jobSummary" rows="5" placeholder="Summary *"
+                                      required></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             <d-flex class="justify-content-between">
@@ -185,7 +228,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Notification</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center">
                 <h6>Are you sure you want to log out?</h6>
@@ -201,12 +245,14 @@
 <!-- logout-modal-end-->
 
 <!-- Delete item modal-->
-<div class="modal fade" id="modalDeleteThis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDeleteThis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Notification</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center">
                 <h6>Are you sure you want to delete this?</h6>
@@ -220,12 +266,14 @@
 <!-- delete-item-modal-end-->
 
 <!-- Retract application-->
-<div class="modal fade" id="modalRetractApplicationConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalRetractApplicationConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Notification</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center">
                 <h6>Are you sure you want to retract your application?</h6>
@@ -240,12 +288,14 @@
 <!-- retract-application-end-->
 
 <!-- Retract application success-->
-<div class="modal fade" id="modalRetractApplicationSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalRetractApplicationSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Notification</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center"><i class="fas fa-check text-muted text-success fa-2x my-3"></i>
                 <h6 class="text-success">Are you sure you want to retract your application?</h6>
@@ -258,12 +308,14 @@
 <!-- retract-application-success-end-->
 
 <!-- Can't complete this action-->
-<div class="modal fade" id="modalActionNotSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalActionNotSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Notification</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body text-center"><i class="fas fa-times text-muted text-danger fa-2x my-3"></i>
                 <h6 class="text-danger">Sorry! We can't complete this action at this time!</h6>

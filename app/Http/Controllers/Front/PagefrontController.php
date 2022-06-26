@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\DynamicPage;
 use Illuminate\Http\Request;
 
 class PagefrontController extends Controller
@@ -14,7 +15,8 @@ class PagefrontController extends Controller
      */
     public function index()
     {
-        return view('Front.DynamicPage');
+        $page = DynamicPage::query()->take(1)->first();
+        return view('Front.DynamicPage',compact('page'));
     }
 
     /**
