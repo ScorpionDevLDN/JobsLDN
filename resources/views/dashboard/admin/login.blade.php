@@ -83,7 +83,7 @@
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text"
                                        name="email" autocomplete="off"/>
                                 @if($errors->has('email'))
-                                    <span class="alert alert-danger">{{ $errors->first('email') }}</span>
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
                             </div>
                             <!--end::Form group-->
@@ -98,7 +98,7 @@
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
                                        type="password" name="password" autocomplete="off"/>
                                 @if(session('error'))
-                                    <div class="alert alert-danger">{{session('error')}}</div>
+                                    <div class="text-danger">{{session('error')}}</div>
                                 @endif
                             </div>
                             <!--end::Form group-->

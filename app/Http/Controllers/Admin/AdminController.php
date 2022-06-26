@@ -29,7 +29,7 @@ class AdminController extends Controller
             'password' => 'required|min:5|max:30',
 //            'g-recaptcha-response' => 'required|captcha',
         ], [
-            'email.exists' => 'This email is not exists in admins table'
+            'email.exists' => 'This email is not match our records '
         ]);
 
         $creds = $request->only('email', 'password');
