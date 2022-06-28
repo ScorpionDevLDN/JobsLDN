@@ -151,5 +151,19 @@
     .featured-jobs{
         animation: float 3s ease-out infinite;
     }
+    .select2-selection__rendered{
+        color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+    }
+    ul.select2-results__options{
+        color: {{\App\Models\Setting::query()->first()->main_color}};
+    }
+
+    span.select2-search input.select2-search__field{
+        color: {{\App\Models\Setting::query()->first()->main_color}};
+    }
+    .select2-container--default .select2-selection--single{
+        border: none;
+        border-radius: none;
+    }
 
 </style>
