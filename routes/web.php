@@ -114,14 +114,6 @@ Route::prefix('front')->group(function (){
     Route::resource('company-post-job', CompanyPostJobController::class);
 });
 
-//login and register
-//Route::prefix('auth')->name('auth')->group(function (){
-//    Route::post('register',[RegisterAndLoginController::class,'register']);
-//    Route::post('login',[RegisterAndLoginController::class,'login']);
-//});
-
-//home page
-//Route::get('')
 
 Route::view('/', 'dashboard.admin.login');
 Route::view('/a', 'dashboard.crud.index');
@@ -137,10 +129,10 @@ Route::get('aya', function () {
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
-    Route::view('/register', 'dashboard.jobSeekers.register')->name('register');
+//    Route::view('/register', 'dashboard.jobSeekers.register')->name('register');
     Route::post('/create', [JobSeekerController::class, 'create'])->name('create');
 
-    Route::view('/login', 'dashboard.jobSeekers.login')->name('login');
+//    Route::view('/login', 'dashboard.jobSeekers.login')->name('login');
     Route::post('/check', [JobSeekerController::class, 'check'])->name('check');
 
     Route::middleware('auth:job_seekers')->group(function () {
@@ -150,18 +142,4 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
 });
 
-//Route::prefix('company')->name('company.')->group(function () {
-//
-//    Route::view('/register', 'dashboard.companies.register')->name('register');
-//    Route::post('/create', [CompanyController::class, 'create'])->name('create');
-//
-//    Route::view('/login', 'dashboard.companies.login')->name('login');
-//    Route::post('/check', [CompanyController::class, 'check'])->name('check');
-//
-//    Route::middleware('auth:companies')->group(function () {
-//        Route::view('/home', 'dashboard.companies.home')->name('home');
-//        Route::post('logout', [CompanyController::class, 'logout'])->name('logout');
-//    });
-
-//});
 

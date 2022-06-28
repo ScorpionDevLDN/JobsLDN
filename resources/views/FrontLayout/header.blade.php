@@ -66,6 +66,11 @@
         border: 1px solid {{\App\Models\Setting::query()->first()->main_color}};
         height: 55px;
     }
+    .select22 {
+        width: 100% !important;
+        border: 1px solid {{\App\Models\Setting::query()->first()->main_color}};
+        height: 55px;
+    }
     .select2-selection__rendered{
         color: {{\App\Models\Setting::query()->first()->main_color}} !important;
     }
@@ -163,7 +168,6 @@
     }
     .select2-container--default .select2-selection--single{
         border: none;
-        border-radius: none;
     }
 
 </style>

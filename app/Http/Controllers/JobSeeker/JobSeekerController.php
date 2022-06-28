@@ -54,10 +54,9 @@ class JobSeekerController extends Controller
 
     }
 
-    function check(Request $request, $id)
+    function check(Request $request)
     {
-
-        if ($request->accountType == 1) {
+        if (JobSeeker::query()->where('email',$request->email)->exists()){
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:job_seekers,email',
@@ -69,26 +68,29 @@ class JobSeekerController extends Controller
             $creds = $request->only('email', 'password');
 
             if (Auth::guard('job_seekers')->attempt($creds)) {
-                return redirect()->route('job_seeker.home');
+                return redirect()->route('home.index');
             } else {
-                return redirect()->route('job_seeker.login')->with('fail', 'Incorrect Credentials');
+                return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
             }
-        } else {
-            //Validate inputs
+        }
+        elseif (Company::query()->where('email',$request->email)->exists()){
+            //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:companies,email',
                 'password' => 'required|min:5|max:30'
             ], [
-                'email.exists' => 'This email is not exists on users table'
+                'email.exists' => 'This email is not exists in companies table'
             ]);
 
             $creds = $request->only('email', 'password');
+
             if (Auth::guard('companies')->attempt($creds)) {
-                return redirect()->route('company.home');
+                return redirect()->route('home.index');
             } else {
-                return redirect()->route('company.login')->with('fail', 'Incorrect credentials');
+                return redirect()->back()->with('fail', 'Something went Wrong, failed to login');
             }
         }
+
     }
 
     function logout()

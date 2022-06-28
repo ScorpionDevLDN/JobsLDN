@@ -22,7 +22,8 @@
                         <h6 class="mb-1">We are glad to see you again!</h6>
                         <small>Don’t have an account? <a href="#" id="register-form-link">Sign Up!</a></small>
                     </div>
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{route('job_seeker.check')}}">
+                        @csrf
                         <div class="container">
                             <div class="row mt-5">
                                 <div class="col-12 mb-3">

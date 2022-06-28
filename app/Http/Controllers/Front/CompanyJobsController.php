@@ -43,12 +43,13 @@ class CompanyJobsController extends Controller
         else{
             $posts = Job::query()->paginate(5);
         }
+        $posts_company = Job::query()->where('company_id',auth('companies')->id())->paginate(5);
         $categories = Category::query()->where('status',1)->get();
         $cities = City::query()->where('status',1)->get();
         $types = Type::query()->where('status',1)->get();
         $min_salary = Job::query()->min('salary');
         $max_salary = Job::query()->max('salary');
-        return view('Front.Jobs', compact('posts','categories','cities','types','min_salary','max_salary'));
+        return view('Front.Jobs', compact('posts','categories','cities','types','min_salary','max_salary','posts_company'));
     }
 
     /**

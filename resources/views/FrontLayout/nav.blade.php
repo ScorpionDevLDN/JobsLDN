@@ -30,7 +30,7 @@
                             <img src="{{auth('job_seekers')->user()->photo}}">
                         </div>
                         <div class="navbar__profile-name">
-                            <h6>{{auth('job_seekers')->user()->name}}</h6><small>Company</small>
+                            <h6>{{auth('job_seekers')->user()->name}}</h6><small>Job Seeker</small>
                         </div>
                         <div class="navbar__dots"><a href="profile-company.html"><i class="fas fa-ellipsis-h"></i></a>
                         </div>
