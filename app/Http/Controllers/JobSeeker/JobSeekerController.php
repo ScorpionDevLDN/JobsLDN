@@ -12,7 +12,7 @@ class JobSeekerController extends Controller
 {
     function create(Request $request)
     {
-        if ($request->type == 'company'){
+        if ($request->type == 'company') {
             $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -27,12 +27,11 @@ class JobSeekerController extends Controller
             $creds = $request->only('email', 'password');
 
             if (Auth::guard('companies')->attempt($creds)) {
-                dd('companies');
-                return redirect()->route('job_seeker.home');
+                Auth::guard('companies')->login($save);
+                return redirect()->route('home.index');
             }
-            dd('companies22');
             return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
-        }else{
+        } else {
             $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -47,10 +46,9 @@ class JobSeekerController extends Controller
             $creds = $request->only('email', 'password');
 
             if (Auth::guard('job_seekers')->attempt($creds)) {
-                dd('job_seeker');
-                return redirect()->route('job_seeker.home');
+                Auth::guard('job_seekers')->login($save);
+                return redirect()->route('home.index');
             }
-            dd('job_seeker22');
             return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
         }
 

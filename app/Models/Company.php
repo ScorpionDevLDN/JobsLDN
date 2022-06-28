@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class Company extends Authenticatable
@@ -57,5 +57,28 @@ class Company extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function setPhotoAttribute($image)
+    {
+        $this->deletePhoto();
+        if (gettype($image) != 'string') {
+            $image->store('public');
+            $this->attributes['photo'] = $image->hashName();
+        }
+    }
+
+//
+    public function getPhotoAttribute($image): ?string
+    {
+        return $image ? Storage::url($image) : asset('assets/a.jpeg');
+    }
+
+//
+    public function deletePhoto()
+    {
+        if (isset($this->attributes['photo']) && $this->attributes['photo']) {
+            Storage::delete($this->attributes['photo']);
+        }
     }
 }
