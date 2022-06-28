@@ -53,50 +53,52 @@
                     <div class="text-center">
                         <h6>Let's create your account!</h6>
                     </div>
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{route('job_seeker.create')}}">
+                        @csrf
                         <div class="row mt-5">
                             <div class="col-12 mb-4">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn ayaTst px-5 mr-4 active">
-                                        <input id="option1" type="radio" name="accountType" autocomplete="off"
-                                               checked=""> Jobseeker
+                                        <input type="radio" name="type" value="jobseeker"> Jobseeker
                                     </label>
                                     <label class="btn ayaTst px-5 mr-4">
-                                        <input id="option2" type="radio" name="accountType" autocomplete="off">Company
+                                        <input type="radio" name="type" value="company">Company
                                     </label>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="text" placeholder="First Name"
-                                       name="firstName"
-                                       required>
+                                       name="first_name">
+                                <span class="text-danger">@error('first_name'){{ $message }}@enderror</span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="text" placeholder="Last Name"
-                                       name="lastName"
-                                       required>
+                                       name="last_name">
+                                <span class="text-danger">@error('last_name'){{ $message }}@enderror</span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="email" placeholder="Email"
-                                       name="email" required>
+                                       name="email">
+                                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="email" placeholder="Confirm Email"
-                                       name="emailConfirm" required>
+                                       name="confirm_email">
+                                <span class="text-danger">@error('confirm_email'){{ $message }}@enderror</span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="password" placeholder="Password"
-                                       name="password"
-                                       required>
+                                       name="password">
+                                <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                             </div>
                             <div class="col-12 mb-3">
                                 <input class="form-control form-control-lg" type="password" placeholder="Password"
-                                       name="passwordConfirm" required>
+                                       name="cpassword" required>
                             </div>
                             <div class="col-12">
                                 <div class="form-check my-3">
-                                    <input class="form-check-input" type="checkbox" name="registerTerms"
-                                           id="registerTerms">
+                                    <input class="form-check-input" type="checkbox" name="read_conditions"
+                                           id="registerTerms" required>
                                     <label for="registerTerms"><small>
                                             By continuing you accept our standard <a href="#">terms
                                                 and conditions</a> and our <a href="#">privacy policy</a>
@@ -104,7 +106,7 @@
                                 </div>
                                 <br>
                                 <div class="center" style="text-align: center">
-                                    <button class="btn btn-primary px-5" type="submit">Register</button>
+                                    <button class="btn btn-primary-ldn px-5" type="submit">Register</button>
                                 </div>
                                 <br>
                             </div>

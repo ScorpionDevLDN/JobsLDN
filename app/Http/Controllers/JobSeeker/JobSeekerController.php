@@ -3,43 +3,63 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class JobSeekerController extends Controller
 {
     function create(Request $request)
     {
-        //Validate inputs
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:job_seekers,email',
-            'password' => 'required|min:5|max:30',
-            'cpassword' => 'required|min:5|max:30|same:password'
-        ]);
+        if ($request->type == 'company'){
+            $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:companies,email',
+                'password' => 'required|min:5|max:30',
+                'cpassword' => 'required|min:5|max:30|same:password',
+//                'read_conditions' => 'required|in:1',
+            ]);
 
-        $save = JobSeeker::query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+            $save = Company::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
 
-        //        Auth::guard('job_seekers')->login();
+            $creds = $request->only('email', 'password');
 
-        $creds = $request->only('email', 'password');
+            if (Auth::guard('companies')->attempt($creds)) {
+                dd('companies');
+                return redirect()->route('job_seeker.home');
+            }
+            dd('companies22');
+            return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
+        }else{
+            $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:job_seekers,email',
+                'password' => 'required|min:5|max:30',
+                'cpassword' => 'required|min:5|max:30|same:password',
+//                'read_conditions' => 'required|in:1',
+            ]);
 
-        if (Auth::guard('job_seekers')->attempt($creds)) {
-            return redirect()->route('job_seeker.home');
-        } else {
+            $save = JobSeeker::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
+
+            $creds = $request->only('email', 'password');
+
+            if (Auth::guard('job_seekers')->attempt($creds)) {
+                dd('job_seeker');
+                return redirect()->route('job_seeker.home');
+            }
+            dd('job_seeker22');
             return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
         }
+
     }
 
     function check(Request $request, $id)
     {
-        if ($id == 1) {
+
+        if ($request->accountType == 1) {
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:job_seekers,email',
