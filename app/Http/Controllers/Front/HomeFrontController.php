@@ -11,7 +11,6 @@ use App\Models\Job;
 use App\Models\JobSeeker;
 use App\Models\Type;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 
 class HomeFrontController extends Controller
 {
@@ -22,16 +21,16 @@ class HomeFrontController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::query()->where('status',1)->get();
+        $sliders = Slider::query()->where('status', 1)->get();
         $companies = Company::query()->count();
         $job_seekers = JobSeeker::query()->count();
         $posts_count = Job::query()->count();
         $posts = Job::query()->take(8)->get();
-        $categories = Category::query()->where('status',1)->get();
-        $cities = City::query()->where('status',1)->get();
-        $types = Type::query()->where('status',1)->get();
+        $categories = Category::query()->where('status', 1)->get();
+        $cities = City::query()->where('status', 1)->get();
+        $types = Type::query()->where('status', 1)->get();
         return view('Front.FrontHome',
-            compact('sliders','posts','companies','job_seekers','posts_count','categories','cities','types'));
+            compact('sliders', 'posts', 'companies', 'job_seekers', 'posts_count', 'categories', 'cities', 'types'));
     }
 
     /**
@@ -47,7 +46,7 @@ class HomeFrontController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +57,7 @@ class HomeFrontController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,7 +68,7 @@ class HomeFrontController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +79,8 @@ class HomeFrontController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,11 +91,27 @@ class HomeFrontController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
+    public function logout(Request $request)
+    {
+        if (auth()->guard('job_seekers')->check()) {
+            auth()->guard('job_seekers')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } else {
+            auth()->guard('companies')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+        return redirect('/front/home');
+    }
+
+
 }

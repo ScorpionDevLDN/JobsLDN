@@ -230,15 +230,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Notification</h5>
+                <h5 class="modal-title">Logout</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body text-center">
                 <h6>Are you sure you want to log out?</h6>
                 <div class="my-4">
-                    <form method="POST" action="#">
-                        <button class="btn btn-primary px-5" type="submit">Logout</button>
+                    <form method="POST" action="{{route('logoutFront')}}">
+                        @csrf
+                        <button class="btn btn-primary-ldn px-5" type="submit">Logout</button>
                     </form>
                 </div>
             </div>

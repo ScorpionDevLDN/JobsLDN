@@ -102,15 +102,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 });
 
-Route::prefix('front')->group(function (){
+Route::prefix('front')->group(function () {
     Route::resource('home', HomeFrontController::class);
+    Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
     Route::resource('jobs', CompanyJobsController::class);
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);
-    Route::post('update-password', [CompanyProfileController::class,'updatePassword'])->name('updatePasswordFront');
+    Route::post('update-password', [CompanyProfileController::class, 'updatePassword'])->name('updatePasswordFront');
     Route::resource('single-job', SingleJobController::class);
     Route::resource('company-jobs', CompanyJobController::class);
     Route::resource('company-notifications', CompanyNotificationController::class);

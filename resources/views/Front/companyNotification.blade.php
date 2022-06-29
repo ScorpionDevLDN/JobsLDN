@@ -1,18 +1,18 @@
 @extends('FrontLayout.index')
 @section('content')
     <!-- Profile page banner-->
-    <section class="profile-page-banner">
-        <div class="container">
-            <div class="profile-page-banner__navbar">
-                <ul>
-                    <li><a href="profile-company.html">Profile</a></li>
-                    <li><a href="profile-company-jobs.html">Jobs</a></li>
-                    <li class="active"><a href="profile-company-notifications.html">Notifications</a></li>
-                    <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+{{--    <section class="profile-page-banner">--}}
+{{--        <div class="container">--}}
+{{--            <div class="profile-page-banner__navbar">--}}
+{{--                <ul>--}}
+{{--                    <li><a href="profile-company.html">Profile</a></li>--}}
+{{--                    <li><a href="profile-company-jobs.html">Jobs</a></li>--}}
+{{--                    <li class="active"><a href="profile-company-notifications.html">Notifications</a></li>--}}
+{{--                    <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!-- profile-page-banner-end-->
 
     <!-- Profile company jobs-->
