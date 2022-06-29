@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\JobSeeker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyProfileController extends Controller
 {
@@ -14,7 +18,13 @@ class CompanyProfileController extends Controller
      */
     public function index()
     {
-        return view('Front.profile-company');
+        if (auth()->guard('job_seekers')->check()){
+            $user = auth('job_seekers')->user();
+        }
+        else{
+            $user = auth('companies')->user();
+        }
+        return view('Front.profile-company',compact('user'));
     }
 
     /**
@@ -65,11 +75,30 @@ class CompanyProfileController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if (auth()->guard('job_seekers')->check()){
+            JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
+                'first_name' => $request->first_name,
+                'last_name'=> $request->last_name,
+                'email'=> $request->email,
+                'confirm_email'=> $request->confirm_email,
+            ]);
+            session()->flash('msgProfile','Profile Updated Successfully');
+            return redirect()->route('company-profile.index');
+        }
+        else{
+            Company::query()->where('id',auth('companies')->id())->update([
+                'first_name' => $request->first_name,
+                'last_name'=> $request->last_name,
+                'email'=> $request->email,
+                'confirm_email'=> $request->confirm_email,
+            ]);
+            session()->flash('msgProfile','Profile Updated Successfully');
+            return redirect()->route('company-profile.index');
+        }
     }
 
     /**
@@ -81,5 +110,40 @@ class CompanyProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updatePassword(Request $request){
+        if (auth()->guard('job_seekers')->check()){
+            $validatedData = $request->validate([
+                'currPassword' => function ($attribute, $value, $fail)  {
+                    $user = auth()->guard('job_seekers')->user();
+                    if (! Hash::check($value, $user->password)) {
+                        $fail('Your current password doesnt match our records');
+                    }
+                },
+                'password' => 'required|min:6|confirmed',
+            ]);
+            JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
+                'password' => bcrypt($request->password),
+            ]);
+            session()->flash('msg','Password Updated Successfully');
+            return redirect()->route('company-profile.index');
+        }
+        else{
+            $validatedData = $request->validate([
+                'currPassword' => function ($attribute, $value, $fail)  {
+                    $user = auth()->guard('companies')->user();
+                    if (! Hash::check($value, $user->password)) {
+                        $fail('Your current password doesnt match our records');
+                    }
+                },
+                'password' => 'required|min:6|confirmed',
+            ]);
+            Company::query()->where('id',auth('companies')->id())->update([
+                'password' => $request->password,
+            ]);
+            session()->flash('msg','Password Updated Successfully');
+            return redirect()->route('company-profile.index');
+        }
     }
 }

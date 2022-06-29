@@ -21,6 +21,7 @@ use App\Http\Controllers\Front\CompanyPostJobController;
 use App\Http\Controllers\Front\CompanyProfileController;
 use App\Http\Controllers\Front\ContactfrontController;
 use App\Http\Controllers\Front\HomeFrontController;
+use App\Http\Controllers\Front\JobSeekerProfileController;
 use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
@@ -107,7 +108,9 @@ Route::prefix('front')->group(function (){
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);
+    Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);
+    Route::post('update-password', [CompanyProfileController::class,'updatePassword'])->name('updatePasswordFront');
     Route::resource('single-job', SingleJobController::class);
     Route::resource('company-jobs', CompanyJobController::class);
     Route::resource('company-notifications', CompanyNotificationController::class);
