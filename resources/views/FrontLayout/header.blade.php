@@ -127,6 +127,7 @@
     }
     .jobs__item{
         border-color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+        padding: 1rem;
     }
     .page-banner{
         background-color: {{\App\Models\Setting::query()->first()->secondary_color}};
@@ -168,6 +169,14 @@
     }
     .select2-container--default .select2-selection--single{
         border: none;
+    }
+    .jobs__item:hover{
+        border: none;
+        background: {{\App\Models\Setting::query()->first()->secondary_color}} !important;
+    }
+    .applyNow:hover{
+        color: {{\App\Models\Setting::query()->first()->secondary_color}};
+        background: {{\App\Models\Setting::query()->first()->main_color}};
     }
 
 </style>

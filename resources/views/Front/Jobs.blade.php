@@ -76,7 +76,7 @@
 
                                 <div class="jobs__salary-range">
                                     <div class="text-center text-md-left">
-                                        <button class="btn btn-primary px-4" type="submit">Apply</button>
+                                        <button class="btn btn-primary-ldn px-4" type="submit">Apply</button>
                                     </div>
                                 </div>
                             </form>
@@ -101,7 +101,7 @@
                         @if(auth()->guard('companies')->check())
                             @if($posts_company->count()>0)
                                 @foreach($posts_company as $post)
-                                    <div class="jobs__item">
+                                    <div class="rounded jobs__item">
                                         <div class="jobs__item-employer"><img
                                                     src="{{\App\Models\Setting::query()->first()->logo}}">
                                         </div>
@@ -150,15 +150,15 @@
                         @else
                             @if($posts->count()>0)
                                 @foreach($posts as $post)
-                                    <div class="jobs__item">
+                                    <div class="jobs__item rounded">
                                         <div class="jobs__item-employer"><img
                                                     src="{{\App\Models\Setting::query()->first()->logo}}">
                                         </div>
-                                        <div class="jobs__item-details" style="margin-left: 20px">
+                                        <div class="jobs__item-details" style="margin-left: 20px;margin-right: 50px">
                                             <small>{{$post->company->company_name}}
                                                 ,{{$post->city->name}}</small>
                                             <h6>{{$post->title}}</h6>
-                                            <div class="jobs__item-details-meta">
+                                            <div class="jobs__item-details-meta justify-content-end">
                                                 <div class="jobs__item-details-meta-item"><img
                                                             src="{{asset('assets/images/home/location.svg')}}"><span
                                                             class="main-color-sm">{{$post->city->name}}</span></div>
@@ -175,14 +175,17 @@
                                                             src="{{asset('assets/images/home/time.svg')}}"><span
                                                             class="main-color-sm">{{$post->created_at->diffForHumans()}}</span>
                                                 </div>
-                                                <div class="jobs__item-details-meta-item" style="margin-left: 90px;"><a
-                                                            class="btn all-jobs" href="#">Apply now</a></div>
-                                                <div class="jobs__item-details-meta-item">
-                                                    <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
-                                                                class="svg-icon svg-icon-2x far fa-star"></i></div>
-                                                </div>
                                             </div>
                                         </div>
+
+                                        <div class="jobs__item-details-meta-item" style="margin-top: 34px;margin-left: 89px"><a
+                                                    class="btn all-jobs applyNow" href="#">Apply now</a></div>
+
+                                        <div class="d-flex align-items-center jobs__item-details-meta-item">
+                                            <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
+                                                        class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                        </div>
+
                                     </div>
                                 @endforeach
                                 @if ($posts->hasPages())
