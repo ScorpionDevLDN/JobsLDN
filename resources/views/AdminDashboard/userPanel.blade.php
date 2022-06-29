@@ -3,7 +3,7 @@
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
         <h3 class="font-weight-bold m-0">User Profile
             {{--            <small class="text-muted font-size-sm ml-2">12 messages</small></h3>--}}
-            <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+            <a class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
                 <i class="ki ki-close icon-xs text-muted"></i>
             </a>
         </h3>
@@ -18,11 +18,10 @@
                 <i class="symbol-badge bg-primary"></i>
             </div>
             <div class="d-flex flex-column">
-                <a href="#"
-                   class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{auth('admins')->user()->name}}</a>
+                <a class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{auth('admins')->user()->name}}</a>
                 <div class="text-muted mt-1">JOBLDN Admin</div>
                 <div class="navi mt-2">
-                    <a href="#" class="navi-item">
+                    <a  class="navi-item">
 								<span class="navi-link p-0 pb-2">
 									<span class="navi-icon mr-1">
 										<span class="svg-icon svg-icon-lg svg-icon-primary">
@@ -114,7 +113,7 @@
 							</span>
 						</span>
                     <div class="d-flex flex-column flex-grow-1 mr-2">
-                        <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">{{$job->title}}</a>
+                        <a class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">{{$job->title}}</a>
                         <span class="text-muted font-size-sm">Ends at: {{$job->expired_at}}</span>
                     </div>
                     <span class="font-weight-bolder text-primary py-1 font-size-lg">#{{$job->applicants_count}} Applicant</span>
