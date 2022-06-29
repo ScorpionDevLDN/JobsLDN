@@ -84,7 +84,8 @@
             <!-- company details-->
 
             @if(auth()->guard('companies')->check())
-                <form>
+                <form method="POST" action="{{route('updateCompanyFront')}}">
+                    @csrf
                     <div class="row pb-0 pb-md-5">
                         <div class="col-md-3 pr-md-5 text-center text-md-left mt-4 mt-md-0">
                             <h6 class="mb-1">Company Details</h6>
@@ -92,6 +93,18 @@
                                 are.</small>
                         </div>
                         <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if(session('msgCompany'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{session('msgCompany')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 py-3">
                                     <div class="profile__details">
@@ -112,24 +125,24 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input class="form-control form-control-lg" type="text" placeholder="Company *"
-                                           required>
+                                    <input name="company_name" class="form-control form-control-lg" type="text" placeholder="Company *"
+                                           required value="{{$user->company_name}}">
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input class="form-control form-control-lg" type="text"
-                                           placeholder="Number of Employees *" required>
+                                    <input name="employee_count" class="form-control form-control-lg" type="number"
+                                           placeholder="Number of Employees *" required value="{{$user->employee_count}}">
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input class="form-control form-control-lg" type="text" placeholder="Industry *"
-                                           required>
+                                    <input name="industry" class="form-control form-control-lg" type="text" placeholder="Industry *"
+                                           required value="{{$user->industry}}">
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input class="form-control form-control-lg" type="text" placeholder="Website *"
-                                           required>
+                                    <input name="website_url" class="form-control form-control-lg" type="text" placeholder="Website *"
+                                           required value="{{$user->website_url}}">
                                 </div>
                                 <div class="col-md-12 py-3">
-                                    <textarea class="form-control" rows="5" placeholder="Overview *"
-                                              required></textarea>
+                                    <textarea name="overview" class="form-control" rows="5" placeholder="Overview *"
+                                              required>{{$user->overview}}</textarea>
                                 </div>
                                 <div class="px-3 mt-4 text-center text-md-left form-actions">
                                     <button class="btn btn-primary-ldn px-5" type="submit">Update</button>

@@ -21,8 +21,7 @@
                         <div class="navbar__profile-name">
                             <h6>{{auth('companies')->user()->name}}</h6><small>Company</small>
                         </div>
-                        <div class="navbar__dots"><a href="profile-company.html"><i class="fas fa-ellipsis-h"></i></a>
-                        </div>
+                        <div class="navbar__dots"><button class="btn-primary-ldn-dots" onclick="myFunction()"><i class="fas fa-ellipsis-h"></i></button></div>
                     </div>
                 @elseif(auth()->guard('job_seekers')->check())
                     <div class="navbar__profile">

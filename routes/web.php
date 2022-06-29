@@ -112,6 +112,7 @@ Route::prefix('front')->group(function () {
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);
     Route::post('update-password', [CompanyProfileController::class, 'updatePassword'])->name('updatePasswordFront');
+    Route::post('update-company', [CompanyProfileController::class, 'updateCompanyFront'])->name('updateCompanyFront');
     Route::resource('single-job', SingleJobController::class);
     Route::resource('company-jobs', CompanyJobController::class);
     Route::resource('company-notifications', CompanyNotificationController::class);

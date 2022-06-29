@@ -146,4 +146,17 @@ class CompanyProfileController extends Controller
             return redirect()->route('company-profile.index');
         }
     }
+
+    public function updateCompanyFront(Request $request)
+    {
+        Company::query()->where('id',auth('companies')->id())->update([
+            'photo' => $request->photo,
+            'company_name'=> $request->company_name,
+            'employee_count'=> $request->employee_count,
+            'industry'=> $request->industry,
+            'overview'=> $request->overview,
+        ]);
+        session()->flash('msgCompany','Profile Updated Successfully');
+        return redirect()->route('company-profile.index');
+    }
 }
