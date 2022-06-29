@@ -115,7 +115,7 @@ Route::prefix('front')->group(function (){
 });
 
 
-Route::view('/', 'dashboard.admin.login');
+Route::view('/', HomeFrontController::class);
 Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya', function () {
