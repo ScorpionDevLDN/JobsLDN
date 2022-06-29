@@ -64,7 +64,7 @@
     .select2 {
         width: 100% !important;
         border: 1px solid {{\App\Models\Setting::query()->first()->main_color}};
-        height: 55px;
+        height: 43px;
     }
     .select22 {
         width: 100% !important;

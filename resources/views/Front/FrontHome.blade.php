@@ -2,7 +2,7 @@
 @section('content')
     <!-- Slider-->
     <div class="slider">
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme my-4">
             @foreach($sliders as $slider)
                 <div class="slider__item">
                     <div class="container">
@@ -63,7 +63,7 @@
         <h2 class="section-title section-title--smaller section-title--half-margin">Discover now</h2>
         <div class="container">
             <form action="{{route('jobs.index')}}" method="get">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center align-items-center">
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="category">
                             <option value="">Category</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <div class="text-center text-md-left">
-                            <button class="btn btn-primary px-5 py-2 py-md-3" type="submit">Go</button>
+                            <button class="btn btn-primary-ldn px-5  py-md-2" type="submit">Go</button>
                         </div>
                     </div>
                 </div>
