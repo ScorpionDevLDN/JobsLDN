@@ -90,6 +90,7 @@ class JobSeekerController extends Controller
                 return redirect()->back()->with('fail', 'Something went Wrong, failed to login');
             }
         }
+        return redirect()->back()->with('fail', 'Something went Wrong, failed to login');
 
     }
 
