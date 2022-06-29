@@ -99,6 +99,11 @@
         color: whitesmoke;
         border-color: {{\App\Models\Setting::query()->first()->main_color}};
     }
+    .btn-primary-ldn-dots {
+        color: {{\App\Models\Setting::query()->first()->main_color}};
+        border: none;
+        background: none;
+    }
     .featured-jobs__job:hover{
         border: none;
         background-color: {{\App\Models\Setting::query()->first()->secondary_color}};

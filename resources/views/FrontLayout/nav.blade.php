@@ -32,8 +32,7 @@
                         <div class="navbar__profile-name">
                             <h6>{{auth('job_seekers')->user()->name}}</h6><small>Job Seeker</small>
                         </div>
-                        <div class="navbar__dots"><a href="profile-company.html"><i class="fas fa-ellipsis-h"></i></a>
-                        </div>
+                        <div class="navbar__dots"><button class="btn-primary-ldn-dots" onclick="myFunction()"><i class="fas fa-ellipsis-h"></i></button></div>
                     </div>
                 @else
                     <button class="btn ayaTst px-4" data-toggle="modal" data-target="#modalLoginForm">Login / Register
@@ -43,3 +42,28 @@
         </div>
     </div>
 </nav>
+
+<section id="myDIV" class="profile-page-banner" style="display:none;">
+    <div class="container">
+        <div class="profile-page-banner__navbar">
+            <ul>
+                <li class="active"><a href="profile-company.html">Profile</a></li>
+                <li><a href="profile-company-jobs.html">Jobs</a></li>
+                <li><a href="profile-company-notifications.html">Notifications</a></li>
+                <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
