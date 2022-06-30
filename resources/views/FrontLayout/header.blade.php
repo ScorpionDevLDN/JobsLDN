@@ -183,5 +183,12 @@
         color: {{\App\Models\Setting::query()->first()->secondary_color}};
         background: {{\App\Models\Setting::query()->first()->main_color}};
     }
+    ul.select2-results__options .select2-results__option--highlighted.select2-results__option--selectable, ul.select2-results__options .select2-results__option--selectable.select2-results__option--selected{
+        color: {{\App\Models\Setting::query()->first()->main_color}} !important;
+        background-color: white;
+    }
+    span.select2-search input.select2-search__field:focus{
+        border: 2px solid {{\App\Models\Setting::query()->first()->main_color}} !important;
+    }
 
 </style>
