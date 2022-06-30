@@ -32,7 +32,7 @@
                                         <select class="js-example-basic-single" name="category">
                                             <option value="">Category</option>
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                <option {{\request()->category==$category->id ? 'selected' : ""}} value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -40,7 +40,7 @@
                                         <select class="js-example-basic-single" name="city">
                                             <option value="">City</option>
                                             @foreach($cities as $city)
-                                                <option value="{{$city->id}}">{{$city->name}}</option>
+                                                <option {{\request()->city==$city->id ? 'selected' : ""}} value="{{$city->id}}">{{$city->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -49,7 +49,7 @@
                                         <select class="js-example-basic-single" name="type">
                                             <option value="">Type</option>
                                             @foreach($types as $type)
-                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                                <option {{\request()->type==$type->id ? 'selected' : ""}} value="{{$type->id}}">{{$type->name}}</option>
                                             @endforeach
 
                                         </select>
@@ -76,7 +76,11 @@
 
                                 <div class="jobs__salary-range">
                                     <div class="text-center text-md-left">
-                                        <button class="btn btn-primary-ldn px-4" type="submit">Apply</button>
+                                        @if(request()->has('category')  || request()->has('city') || request()->has('type') || request()->has('keywords') || request()->has('salary'))
+                                            <a href="{{route('jobs.index')}}" class="btn btn-primary-ldn px-4">Reset</a>
+                                        @else
+                                            <button class="btn btn-primary-ldn px-4" type="submit">Apply</button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -178,7 +182,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="jobs__item-details-meta-item" style="margin-top: 34px;margin-left: 89px"><a
+                                        <div class="jobs__item-details-meta-item"
+                                             style="margin-top: 34px;margin-left: 89px"><a
                                                     class="btn all-jobs applyNow" href="#">Apply now</a></div>
 
                                         <div class="d-flex align-items-center jobs__item-details-meta-item">
