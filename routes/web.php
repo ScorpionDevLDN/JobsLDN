@@ -106,6 +106,8 @@ Route::prefix('front')->group(function () {
     Route::resource('home', HomeFrontController::class);
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
     Route::resource('jobs', CompanyJobsController::class);
+    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
+    Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);

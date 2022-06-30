@@ -106,13 +106,16 @@
                             @if($posts_company->count()>0)
                                 @foreach($posts_company as $post)
                                     <div class="rounded jobs__item">
-                                        <div class="jobs__item-employer"><img
-                                                    src="{{\App\Models\Setting::query()->first()->logo}}">
+                                        <div class="jobs__item-employer">
+                                            <a href="">
+                                                <img src="{{\App\Models\Setting::query()->first()->logo}}">
+                                            </a>
                                         </div>
                                         <div class="jobs__item-details" style="margin-left: 20px">
-                                            <small>{{$post->company->company_name}}
-                                                ,{{$post->city->name}}</small>
-                                            <h6>{{$post->title}}</h6>
+                                            <small>{{$post->company->company_name}},{{$post->city->name}}</small>
+                                            <a class="text-dark" href="{{route('job_details',$post->id)}}">
+                                                <h6>{{$post->title}}</h6>
+                                            </a>
                                             <div class="jobs__item-details-meta">
                                                 <div class="jobs__item-details-meta-item"><img
                                                             src="{{asset('assets/images/home/location.svg')}}"><span

@@ -15,9 +15,9 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <p class="text-muted mb-0">Park Plaza London Riverbank</p>
-                                <h4>Super Project Manager</h4>
-                                <a class="btn ayaTst p-2 px-2 mt-3" href="" download>
+                                <p class="text-muted mb-0">{{$post->company->company_name}},{{$post->city->name}}</p>
+                                <h4>{{$post->title}}</h4>
+                                <a class="btn ayaTst p-2 px-2 mt-3" href="{{route('download',1)}}" >
                                     <span class="svg-icon svg-icon-2x">
                                     <svg id="ic-actions2-download" xmlns="http://www.w3.org/2000/svg" width="24"
                                          height="24" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
                                                         src="{{asset('assets/images/home/location.svg')}}"></div>
                                             <div class="single-job__details-info-item-text"><span
                                                         class="text-muted"><small>Location</small></span><small
-                                                        class="main-color">London</small>
+                                                        class="main-color">{{$post->city->name}}</small>
                                             </div>
                                         </div>
                                         <div class="col-md-3 single-job__details-info-item">
@@ -52,7 +52,7 @@
                                                         src="{{asset('assets/images/home/full-time.svg')}}"></div>
                                             <div class="single-job__details-info-item-text"><span
                                                         class="text-muted"><small>Type</small></span><small
-                                                        class="main-color">Full-Time</small>
+                                                        class="main-color">{{$post->type->name}}</small>
                                             </div>
                                         </div>
                                         <div class="col-md-3 single-job__details-info-item">
@@ -60,15 +60,15 @@
                                                         src="{{asset('assets/images/home/wallet.svg')}}"></div>
                                             <div class="single-job__details-info-item-text"><span
                                                         class="text-muted"><small>Salary</small></span><small
-                                                        class="main-color">$5000</small><span
-                                                        class="text-dark"><small>/Monthly</small></span></div>
+                                                        class="main-color">{{$post->salary}}</small><span
+                                                        class="text-dark"><small>/{{$post->per->per}}</small></span></div>
                                         </div>
                                         <div class="col-md-3 single-job__details-info-item">
                                             <div class="single-job__details-info-item-icon"><img
                                                         src="{{asset('assets/images/home/time.svg')}}"></div>
                                             <div class="single-job__details-info-item-text"><span
                                                         class="text-muted"><small>Date Posted</small></span><small
-                                                        class="main-color">2 days ago.</small>
+                                                        class="main-color">{{$post->created_at->diffForHumans()}}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -92,15 +92,9 @@
             <div class="row">
                 <div class="col-md-8">
                     <h4 class="mb-3 text-center text-md-left">Job Description</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint
-                        architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis
-                        beatae debitis.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint
-                        architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis
-                        beatae debitis.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus accusantium soluta sint
-                        architecto. Molestiae iusto totam aperiam, nobis quia praesentium obcaecati tempora perspiciatis
-                        beatae debitis.</p>
+                    <p>
+                        {{$post->summery}}
+                    </p>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
@@ -199,4 +193,12 @@
         </div>
     </section>
     <!-- similar-jobs-end-->
+@endsection
+
+@section('js')
+    <script>
+        function showVal(newVal) {
+            document.getElementById("valBox").innerHTML = newVal;
+        }
+    </script>
 @endsection

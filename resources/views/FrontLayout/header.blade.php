@@ -190,5 +190,15 @@
     span.select2-search input.select2-search__field:focus{
         border: 2px solid {{\App\Models\Setting::query()->first()->main_color}} !important;
     }
+    a:link { text-decoration: none; }
+
+
+    a:visited { text-decoration: none; }
+
+
+    a:hover { text-decoration: none; }
+
+
+    a:active { text-decoration: none; }
 
 </style>

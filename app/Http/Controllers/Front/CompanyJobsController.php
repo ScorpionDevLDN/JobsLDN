@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Job;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyJobsController extends Controller
 {
@@ -118,5 +119,13 @@ class CompanyJobsController extends Controller
         //
     }
 
-    public function search(){}
+    public function jobDetails($id){
+        $post = Job::query()->where('id',$id)->first();
+        return view('Front.Single-job',compact('post'));
+    }
+    public function download($id){
+        $post = Job::query()->where('id',$id)->first()->pdf_details;
+        return Storage::download($post);
+//        return response()->download($file_path_full, $basename, ['Content-Type' => 'application/force-download']);
+    }
 }
