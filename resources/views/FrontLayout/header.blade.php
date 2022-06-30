@@ -54,7 +54,7 @@
         }
     }
     .navbar{
-       border-bottom: 1px solid #b4b4b4;
+        border-bottom: 1px solid #b4b4b4;
     }
 
     .select2-container{
@@ -64,7 +64,7 @@
     .select2 {
         width: 100% !important;
         border: 1px solid {{\App\Models\Setting::query()->first()->main_color}};
-        height: 43px;
+        height: 56px;
     }
     .select22 {
         width: 100% !important;

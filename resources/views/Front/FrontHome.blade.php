@@ -65,8 +65,8 @@
             <form action="{{route('jobs.index')}}" method="get">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-2 mb-5 mb-md-0">
-                        <select class="js-example-basic-single" name="category">
-                            <option value="">Category</option>
+                        <select id="single" class="js-states form-control" name="category">
+                            <option selected="true" disabled="disabled">Category</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="type">
-                            <option value="">Type</option>
+                            <option selected="true" disabled="disabled">Type</option>
                             @foreach($types as $type)
                                 <option value="{{$type->id}}">{{$type->name}}</option>
                             @endforeach
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <select class="js-example-basic-single" name="city">
-                            <option value="">City</option>
+                            <option selected="true" disabled="disabled">City</option>
                             @foreach($cities as $city)
                                 <option value="{{$city->id}}">{{$city->name}}</option>
                             @endforeach
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-2 mb-5 mb-md-0">
                         <div class="text-center text-md-left">
-                            <button class="btn btn-primary-ldn px-5  py-md-2" type="submit">Go</button>
+                            <button class="btn btn-primary-ldn px-5  py-md-3" type="submit">Go</button>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,8 @@
                     </div>
                 @endforeach
             </div>
-            <div class="text-center py-3 py-md-4"><a class="all-jobs btn px-5" href="{{asset('front/jobs')}}">All Jobs</a></div>
+            <div class="text-center py-3 py-md-4"><a class="all-jobs btn px-5" href="{{asset('front/jobs')}}">All
+                    Jobs</a></div>
         </div>
     </section>
     <!-- featured-jobs-end-->
@@ -221,6 +222,11 @@
             duration: 1000,
             easing: "easeOutExpo",
             delay: 1000
+        });
+    </script>
+    <script>
+        $("#single").select2({
+            // placeholder: "Select a programming language",
         });
     </script>
 @endsection
