@@ -81,4 +81,8 @@ class JobSeeker extends Authenticatable
             Storage::delete($this->attributes['photo']);
         }
     }
+
+    public function bookmarks(){
+        return $this->hasMany(JobSeekerBookmark::class);
+    }
 }

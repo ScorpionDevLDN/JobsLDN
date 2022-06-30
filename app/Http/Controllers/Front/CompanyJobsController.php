@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Job;
+use App\Models\JobSeekerBookmark;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -121,11 +122,21 @@ class CompanyJobsController extends Controller
 
     public function jobDetails($id){
         $post = Job::query()->where('id',$id)->first();
-        return view('Front.Single-job',compact('post'));
+        $created_at = Job::query()->where('id',$id)->whereDate('created_at','<' ,now())->exists();
+        $bookmarked = JobSeekerBookmark::query()->where('job_id',$id)->where('job_seeker_id',auth('job_seekers')->id())->doesntExist();
+        return view('Front.Single-job',compact('post','bookmarked','created_at'));
     }
     public function download($id){
         $post = Job::query()->where('id',$id)->first()->pdf_details;
         return Storage::download($post);
 //        return response()->download($file_path_full, $basename, ['Content-Type' => 'application/force-download']);
+    }
+
+    public function bookmark($id){
+        JobSeekerBookmark::query()->create([
+            'job_seeker_id' => 1,
+            'job_id' => $id,
+        ]);
+        return redirect()->back()->with('msg','Job Booked marked successfully!');
     }
 }

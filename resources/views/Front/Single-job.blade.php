@@ -17,7 +17,7 @@
                             <div class="col-md-9">
                                 <p class="text-muted mb-0">{{$post->company->company_name}},{{$post->city->name}}</p>
                                 <h4>{{$post->title}}</h4>
-                                <a class="btn ayaTst p-2 px-2 mt-3" href="{{route('download',1)}}" >
+                                <a class="btn ayaTst p-2 px-2 mt-3" href="{{route('download',1)}}">
                                     <span class="svg-icon svg-icon-2x">
                                     <svg id="ic-actions2-download" xmlns="http://www.w3.org/2000/svg" width="24"
                                          height="24" viewBox="0 0 24 24">
@@ -61,7 +61,8 @@
                                             <div class="single-job__details-info-item-text"><span
                                                         class="text-muted"><small>Salary</small></span><small
                                                         class="main-color">{{$post->salary}}</small><span
-                                                        class="text-dark"><small>/{{$post->per->per}}</small></span></div>
+                                                        class="text-dark"><small>/{{$post->per->per}}</small></span>
+                                            </div>
                                         </div>
                                         <div class="col-md-3 single-job__details-info-item">
                                             <div class="single-job__details-info-item-icon"><img
@@ -97,27 +98,45 @@
                     </p>
                 </div>
                 <div class="col-md-1"></div>
+
                 <div class="col-md-3">
-                    <h6 class="mb-4 mt-4 mt-md-0 text-center text-md-left">Apply Now</h6>
-                    <form action="#" method="POST">
-                        <select class="js-example-basic-single" name="ApplyForJobCV">
-                            <option>Select your CV</option>
-                            <option>CV 1</option>
-                            <option>CV 2</option>
-                            <option>CV 3</option>
-                        </select>
-                        <button class="btn btn-primary px-5 py-2 btn-block mt-3" type="submit">Apply now</button>
-                    </form>
-                    <!-- single job actions-->
+                    @if(auth()->guard('job_seekers')->check())
+                        @if($created_at)
+                            <h6 class="mb-4 mt-4 text-danger mt-md-0 text-center text-md-left">This job is no longer available</h6>
+                        @else
+                        <h6 class="mb-4 mt-4 mt-md-0 text-center text-md-left">Apply Now</h6>
+                        <form action="#" method="POST">
+                            <select class="js-example-basic-single" name="ApplyForJobCV">
+                                <option>Select your CV</option>
+                                <option>CV 1</option>
+                                <option>CV 2</option>
+                                <option>CV 3</option>
+                            </select>
+                            <button class="btn btn-primary px-5 py-2 btn-block mt-3" type="submit">Apply now</button>
+                        </form>
+                    @endif
+                @endif
+                <!-- single job actions-->
                     <h4 class="mt-5 text-center text-md-left">Interesting?</h4>
                     <div class="copy-link mt-3">
-                        <input class="form-control" type="text"
-                               value="https://jobs.ldn.io/jobs/super-project-manager"><a href="#"><img
-                                    src="{{asset('assets/images/icons/copy.svg')}}"></a>
+
+                        <input disabled class="form-control" type="text" value="{{request()->url()}}" id="myInput">
+                        <a onclick="myFunction()"><img src="{{asset('assets/images/icons/copy.svg')}}"></a>
                     </div>
-                    <div class="share-link mt-5">
-                        <a class="mr-3" href="#"><img src="{{asset('assets/images/icons/star.svg')}}"></a>
-                        <a href="#"><img src="{{asset('assets/images/icons/share.svg')}}"></a></div>
+                    <div class="mt-3">
+                        @if(session('msg'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <small>{{session('msg')}}</small>
+                            </div>
+                        @endif
+
+                        @if($bookmarked)
+                        <a class="mr-3 btn btn-icon ayaTst btn-circle btn-facebook" href="{{route('bookmark',$post->id)}}">
+                            <i class="far fa-star"></i>
+                        </a>
+                            @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,63 +150,91 @@
             <div class="row mt-4">
                 <div class="col-md-3">
                     <div class="featured-jobs__job">
-                        <div class="featured-jobs__job-bookmark"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
+                        <div class="featured-jobs__job-bookmark"></div>
+                        <small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title text-dark">Co-Founder Roles</h6>
                         <div class="featured-jobs__job-info" style="margin-bottom: -40px;margin-top: -10px">
                             <div class="featured-jobs__job-info-description">
-                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span class="main-color">London</span></small></div>
-                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span class="main-color">Full-Time</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span
+                                                class="main-color">London</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span
+                                                class="main-color">Full-Time</span></small></div>
                             </div>
-                            <div class="featured-jobs__job-info-salary"><img class="icon" src="{{asset('assets/images/home/wallet.svg')}}"><small><span class="from main-color">$2000 - </span><span class="to main-color">$3000</span>
+                            <div class="featured-jobs__job-info-salary"><img class="icon"
+                                                                             src="{{asset('assets/images/home/wallet.svg')}}"><small><span
+                                            class="from main-color">$2000 - </span><span
+                                            class="to main-color">$3000</span>
                                     <span class="period text-muted"><small>/Monthly</small></span></small></div>
                         </div>
                     </div>
-                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
+                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a
+                                class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
                 <div class="col-md-3">
                     <div class="featured-jobs__job">
-                        <div class="featured-jobs__job-bookmark"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
+                        <div class="featured-jobs__job-bookmark"></div>
+                        <small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title text-dark">Co-Founder Roles</h6>
                         <div class="featured-jobs__job-info" style="margin-bottom: -40px;margin-top: -10px">
                             <div class="featured-jobs__job-info-description">
-                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span class="main-color">London</span></small></div>
-                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span class="main-color">Full-Time</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span
+                                                class="main-color">London</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span
+                                                class="main-color">Full-Time</span></small></div>
                             </div>
-                            <div class="featured-jobs__job-info-salary"><img class="icon" src="{{asset('assets/images/home/wallet.svg')}}"><small><span class="from main-color">$2000 - </span><span class="to main-color">$3000</span>
+                            <div class="featured-jobs__job-info-salary"><img class="icon"
+                                                                             src="{{asset('assets/images/home/wallet.svg')}}"><small><span
+                                            class="from main-color">$2000 - </span><span
+                                            class="to main-color">$3000</span>
                                     <span class="period text-muted"><small>/Monthly</small></span></small></div>
                         </div>
                     </div>
-                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
+                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a
+                                class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
                 <div class="col-md-3">
                     <div class="featured-jobs__job">
-                        <div class="featured-jobs__job-bookmark"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
+                        <div class="featured-jobs__job-bookmark"></div>
+                        <small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title text-dark">Co-Founder Roles</h6>
                         <div class="featured-jobs__job-info" style="margin-bottom: -40px;margin-top: -10px">
                             <div class="featured-jobs__job-info-description">
-                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span class="main-color">London</span></small></div>
-                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span class="main-color">Full-Time</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span
+                                                class="main-color">London</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span
+                                                class="main-color">Full-Time</span></small></div>
                             </div>
-                            <div class="featured-jobs__job-info-salary"><img class="icon" src="{{asset('assets/images/home/wallet.svg')}}"><small><span class="from main-color">$2000 - </span><span class="to main-color">$3000</span>
+                            <div class="featured-jobs__job-info-salary"><img class="icon"
+                                                                             src="{{asset('assets/images/home/wallet.svg')}}"><small><span
+                                            class="from main-color">$2000 - </span><span
+                                            class="to main-color">$3000</span>
                                     <span class="period text-muted"><small>/Monthly</small></span></small></div>
                         </div>
                     </div>
-                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
+                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a
+                                class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
                 <div class="col-md-3">
                     <div class="featured-jobs__job">
-                        <div class="featured-jobs__job-bookmark"></div><small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
+                        <div class="featured-jobs__job-bookmark"></div>
+                        <small class="featured-jobs__job-employer text-muted">The Waldorf Hilton, London</small>
                         <h6 class="featured-jobs__job-title text-dark">Co-Founder Roles</h6>
                         <div class="featured-jobs__job-info" style="margin-bottom: -40px;margin-top: -10px">
                             <div class="featured-jobs__job-info-description">
-                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span class="main-color">London</span></small></div>
-                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span class="main-color">Full-Time</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/location.svg')}}"><small><span
+                                                class="main-color">London</span></small></div>
+                                <div><img class="icon" src="{{asset('assets/images/home/full-time.svg')}}"><small><span
+                                                class="main-color">Full-Time</span></small></div>
                             </div>
-                            <div class="featured-jobs__job-info-salary"><img class="icon" src="{{asset('assets/images/home/wallet.svg')}}"><small><span class="from main-color">$2000 - </span><span class="to main-color">$3000</span>
+                            <div class="featured-jobs__job-info-salary"><img class="icon"
+                                                                             src="{{asset('assets/images/home/wallet.svg')}}"><small><span
+                                            class="from main-color">$2000 - </span><span
+                                            class="to main-color">$3000</span>
                                     <span class="period text-muted"><small>/Monthly</small></span></small></div>
                         </div>
                     </div>
-                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
+                    <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a
+                                class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
                 </div>
             </div>
         </div>
@@ -200,5 +247,22 @@
         function showVal(newVal) {
             document.getElementById("valBox").innerHTML = newVal;
         }
+
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
     </script>
+
+
 @endsection
