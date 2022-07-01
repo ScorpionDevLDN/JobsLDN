@@ -137,4 +137,8 @@ class CompanyJobsController extends Controller
         ]);
         return redirect()->back()->with('msg', 'Job Booked marked successfully!');
     }
+
+    public function uploadCv(){
+
+    }
 }

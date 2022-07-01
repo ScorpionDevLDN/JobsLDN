@@ -80,7 +80,7 @@ class CompanyProfileController extends Controller
     public function update(Request $request, $id)
     {
         if (auth()->guard('job_seekers')->check()){
-            $seeker =JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
+            JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
                 'first_name' => $request->first_name,
                 'last_name'=> $request->last_name,
                 'email'=> $request->email,

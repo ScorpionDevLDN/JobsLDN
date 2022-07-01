@@ -149,19 +149,23 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input name="company_name" class="form-control form-control-lg" type="text" placeholder="Company *"
+                                    <input name="company_name" class="form-control form-control-lg" type="text"
+                                           placeholder="Company *"
                                            required value="{{$user->company_name}}">
                                 </div>
                                 <div class="col-md-6 py-3">
                                     <input name="employee_count" class="form-control form-control-lg" type="number"
-                                           placeholder="Number of Employees *" required value="{{$user->employee_count}}">
+                                           placeholder="Number of Employees *" required
+                                           value="{{$user->employee_count}}">
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input name="industry" class="form-control form-control-lg" type="text" placeholder="Industry *"
+                                    <input name="industry" class="form-control form-control-lg" type="text"
+                                           placeholder="Industry *"
                                            required value="{{$user->industry}}">
                                 </div>
                                 <div class="col-md-6 py-3">
-                                    <input name="website_url" class="form-control form-control-lg" type="text" placeholder="Website *"
+                                    <input name="website_url" class="form-control form-control-lg" type="text"
+                                           placeholder="Website *"
                                            required value="{{$user->website_url}}">
                                 </div>
                                 <div class="col-md-12 py-3">
@@ -178,8 +182,59 @@
                         </div>
                     </div>
                 </form>
-        @endif
+            @endif
+
+            @if(auth()->guard('job_seekers')->check())
+                <div class="row pb-0 pb-md-2">
+                    <div class="col-md-3 pr-md-5 text-center text-md-left mt-4 mt-md-0">
+                        <h6 class="mb-1">My Cv</h6>
+                        <small class="text-muted mb-4 mb-md-0">Manage all CV’s to share
+                            It when applying on a job.</small>
+                    </div>
+                    <div class="col-md-9">
+                        <form method="POST" action="{{route('updatePasswordFront')}}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6 py-3">
+                                    <div class="file-input">
+                                        <input type="file" name="attachment" id="file-input" class="file-input__input"/>
+                                        <label class="file-input__label" for="file-input">
+                                            <span class="mr-2">Upload attachment</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="21.5"
+                                                 viewBox="0 0 17.5 21.5">
+                                                <g id="ic-actions-add-file" transform="translate(0.75 0.75)">
+                                                    <line id="Line_1" data-name="Line 1" x1="8" transform="translate(4 11.13)"
+                                                          fill="none" stroke="#56bb37" stroke-linecap="round"
+                                                          stroke-linejoin="bevel"
+                                                          stroke-width="1.5"/>
+                                                    <line id="Line_2" data-name="Line 2" y1="8" transform="translate(8 7.13)"
+                                                          fill="none" stroke="#56bb37" stroke-linecap="round"
+                                                          stroke-linejoin="bevel"
+                                                          stroke-width="1.5"/>
+                                                    <path id="Path_1" data-name="Path 1"
+                                                          d="M14.86,2H6A2,2,0,0,0,4,4V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V8.92a.94.94,0,0,0-.18-.57L15.67,2.43A1,1,0,0,0,14.86,2Z"
+                                                          transform="translate(-4 -2)" fill="none" stroke="#56bb37"
+                                                          stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"
+                                                          fill-rule="evenodd"/>
+                                                </g>
+                                            </svg>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center text-md-left form-actions">
+                                <button class="btn btn-primary-ldn px-5" type="submit">Update</button>
+                            </div>
+                        </form>
+                        <br>
+                        <br>
+                        <hr>
+                    </div>
+                </div>
+            @endif
+
         <!-- security-->
+
             <div class="row pb-0 pb-md-2">
                 <div class="col-md-3 pr-md-5 text-center text-md-left mt-4 mt-md-0">
                     <h6 class="mb-1">Security</h6>
