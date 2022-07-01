@@ -179,6 +179,11 @@
         border: none;
         background: {{\App\Models\Setting::query()->first()->secondary_color}} !important;
     }
+    .jobs__item:hover .applyNow {
+        background-color: {{\App\Models\Setting::query()->first()->main_color}};
+        color: whitesmoke;
+        border-color: {{\App\Models\Setting::query()->first()->main_color}};
+    }
     .applyNow:hover{
         color: {{\App\Models\Setting::query()->first()->secondary_color}};
         background: {{\App\Models\Setting::query()->first()->main_color}};
@@ -200,5 +205,10 @@
 
 
     a:active { text-decoration: none; }
+
+    .custom-range::-webkit-slider-thumb {
+        background: {{\App\Models\Setting::query()->first()->main_color}};
+    }
+
 
 </style>

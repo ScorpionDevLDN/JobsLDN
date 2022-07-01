@@ -43,16 +43,32 @@
 
     &-action {
       opacity: 0;
-      background-color: $grey;
+      background: $grey;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
       transition: all .3s ease-in-out;
+
+      .btn {
+        margin-bottom: 1rem;
+      }
     }
 
     &:hover {
       border: none;
       background: $grey;
 
+
       &+.featured-jobs__job-action {
         opacity: 1;
+        height: auto;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+
+        @include responsive(atMedium) {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
       }
     }
 

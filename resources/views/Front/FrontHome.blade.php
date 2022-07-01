@@ -107,7 +107,7 @@
 
                 {{--start posts--}}
                 @foreach($posts as $post)
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-4">
                         <div class="featured-jobs__job">
                             @if($post->is_super_post)
                                 <div class="featured-jobs__job-bookmark"><img

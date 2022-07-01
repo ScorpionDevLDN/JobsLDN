@@ -66,10 +66,11 @@
                                             <label><small class="text-muted">Salary</small><small>:{{$min_salary}}
                                                     - {{$max_salary}}</small></label>
                                             {{--                                        <small>Salary <small>£1,500 - £8,400</small></small>--}}
-                                            <div id="valBox"></div>
                                             <input onchange="showVal(this.value)" name="salary" type="range"
                                                    class="custom-range" min="{{$min_salary}}" max="{{$max_salary}}"
                                                    id="customRange2">
+                                            <div id="valBox"></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +162,7 @@
                                         <div class="jobs__item-employer"><img
                                                     src="{{\App\Models\Setting::query()->first()->logo}}">
                                         </div>
-                                        <div class="jobs__item-details" style="margin-left: 20px;margin-right: 50px">
+                                        <div class="jobs__item-details" style="margin-left: 20px;margin-right: 20px">
                                             <small>{{$post->company->company_name}}
                                                 ,{{$post->city->name}}</small>
                                             <h6>{{$post->title}}</h6>
