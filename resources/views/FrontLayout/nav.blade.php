@@ -8,11 +8,11 @@
                     class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="main-menu">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="{{asset('front/home')}}">Home<span
+                <li class="nav-item active"><a class="nav-link" href="{{asset('home')}}">Home<span
                                 class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="{{asset('front/jobs')}}">Jobs</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{asset('front/pages')}}">Dynamic Page</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{asset('front/contacts')}}">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{asset('jobs')}}">Jobs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{asset('pages')}}">Dynamic Page</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{asset('contacts')}}">Contacts</a></li>
                 @if(auth()->guard('companies')->check())
                     <div class="navbar__profile">
                         <div class="navbar__profile-image">

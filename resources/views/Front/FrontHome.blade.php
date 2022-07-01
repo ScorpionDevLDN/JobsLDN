@@ -138,7 +138,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="text-center py-3 py-md-4"><a class="all-jobs btn px-5" href="{{asset('front/jobs')}}">All
+            <div class="text-center py-3 py-md-4"><a class="all-jobs btn px-5" href="{{asset('jobs')}}">All
                     Jobs</a></div>
         </div>
     </section>

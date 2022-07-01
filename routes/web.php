@@ -25,6 +25,7 @@ use App\Http\Controllers\Front\JobSeekerProfileController;
 use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
+use App\Http\Controllers\JobSeeker\JobSeekerHomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -102,11 +103,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 });
 
-Route::prefix('front')->group(function () {
+Route::prefix('')->group(function () {
     Route::resource('home', HomeFrontController::class);
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
     Route::resource('jobs', CompanyJobsController::class);
-    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
     Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
     Route::get('bookmark/{id}', [CompanyJobsController::class,'bookmark'])->name('bookmark');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
@@ -137,17 +137,12 @@ Route::get('aya', function () {
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
-//    Route::view('/register', 'dashboard.jobSeekers.register')->name('register');
     Route::post('/create', [JobSeekerController::class, 'create'])->name('create');
-
-//    Route::view('/login', 'dashboard.jobSeekers.login')->name('login');
     Route::post('/check', [JobSeekerController::class, 'check'])->name('check');
 
-    Route::middleware('auth:job_seekers')->group(function () {
-        Route::view('/home', 'dashboard.jobSeekers.home')->name('home');
-        Route::post('/logout', [JobSeekerController::class, 'logout'])->name('logout');
-    });
-
+});
+Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
+    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
 });
 
 

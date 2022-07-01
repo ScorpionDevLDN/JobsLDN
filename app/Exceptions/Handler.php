@@ -14,10 +14,10 @@ class Handler extends ExceptionHandler
                 return redirect()->guest('/admin/login');
             }
             if ($request->is('companies') || $request->is('company/*')) {
-                return redirect()->guest('/company/login');
+                return redirect()->guest('/home');
             }
-            if ($request->is('job_seekers') || $request->is('job_seeker/*')) {
-                return redirect()->guest('/job_seeker/login');
+            if ($request->is('job_seekers')|| $request->is('jobs/*') || $request->is('job_seeker/*')) {
+                return redirect()->guest('/home');
             }
             return redirect()->to('/aya');
         }
