@@ -43,10 +43,10 @@ class ContactfrontController extends Controller
             'email' => 'required',
             'subject' => 'required',
             'message' => 'required',
-//            'attachment' => 'required',
+            'attachment' => 'required|mimes:pdf|max:10000',
         ]);
        Contact::query()->create($request->all());
-       return redirect()->route('home.index');
+       return redirect()->route('contacts.index')->with('message', 'Message Send successfully!');
     }
 
     /**
