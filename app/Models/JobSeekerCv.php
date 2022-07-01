@@ -27,6 +27,9 @@ class JobSeekerCv extends Model
         if (gettype($pdf) != 'string') {
             $pdf->store('public');
             $this->attributes['pdf'] = $pdf->hashName();
+            $this->attributes['cv_name'] = $pdf->getClientOriginalName();
+        } else {
+            $this->attributes['pdf'] = $pdf;
         }
     }
 

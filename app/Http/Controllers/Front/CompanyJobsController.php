@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Job;
 use App\Models\JobSeekerBookmark;
+use App\Models\JobSeekerCv;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -138,7 +139,16 @@ class CompanyJobsController extends Controller
         return redirect()->back()->with('msg', 'Job Booked marked successfully!');
     }
 
-    public function uploadCv(){
-
+    public function uploadCv(Request $request){
+        $request->validate([
+            'pdf' => 'required|mimes:pdf|max:10000',
+        ],[
+           'pdf.required' => 'Please upload your pdf cv'
+        ]);
+        JobSeekerCv::query()->create(array_merge(\request()->all(),[
+            'cv_name' => $request->pdf->getClientOriginalName(),
+            'job_seeker_id' => auth('job_seekers')->id(),
+        ]));
+        return redirect()->back()->with('cvSuccess', 'Cv Uploaded successfully!');
     }
 }

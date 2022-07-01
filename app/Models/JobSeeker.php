@@ -85,4 +85,8 @@ class JobSeeker extends Authenticatable
     public function bookmarks(){
         return $this->hasMany(JobSeekerBookmark::class);
     }
+
+    public function cvs(){
+        return $this->hasMany(JobSeekerCv::class);
+    }
 }
