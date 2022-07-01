@@ -127,14 +127,14 @@
                                 </div>
                                 <div class="featured-jobs__job-info-salary"><img class="icon"
                                                                                  src="{{asset('assets/images/home/wallet.svg')}}"><small>
-                                        <span class="from main-color">$2000 - </span>
-                                        <span class="to main-color">$3000</span>
+                                        <span class="from main-color">{{$post->salary}} </span>
+                                        <span class="to main-color">$</span>
                                         <span class="period text-muted"><small>/{{$post->per->per}}</small></span></small>
                                 </div>
                             </div>
                         </div>
                         <div class="featured-jobs__job-action py-2 px-md-3 text-center text-md-left"><a
-                                    class="btn btn-block btn-primary-ldn" href="#">More Details</a></div>
+                                    class="btn btn-block btn-primary-ldn" href="{{route('job_details',$post->id)}}">More Details</a></div>
                     </div>
                 @endforeach
             </div>
