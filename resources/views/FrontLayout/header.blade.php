@@ -209,6 +209,35 @@
     .custom-range::-webkit-slider-thumb {
         background: {{\App\Models\Setting::query()->first()->main_color}};
     }
+    .file-input__input {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .file-input__label {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        font-size: 14px;
+        padding: 10px 12px;
+        background-color: white;
+        border: 1px solid {{\App\Models\Setting::query()->first()->main_color}};
+        color: {{\App\Models\Setting::query()->first()->main_color}};
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .file-input__label svg {
+        height: 16px;
+        margin-right: 4px;
+    }
 
 
 </style>

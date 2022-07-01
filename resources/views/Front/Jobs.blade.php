@@ -188,7 +188,7 @@
 
                                         <div class="jobs__item-details-meta-item"
                                              style="margin-top: 34px;margin-left: 89px"><a
-                                                    class="btn all-jobs applyNow" href="#">Apply now</a></div>
+                                                    class="btn all-jobs applyNow" href="{{route('job_details',$post->id)}}">Apply now</a></div>
 
                                         <div class="d-flex align-items-center jobs__item-details-meta-item">
                                             <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
