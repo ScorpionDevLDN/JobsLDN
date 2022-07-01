@@ -80,12 +80,15 @@ class CompanyProfileController extends Controller
     public function update(Request $request, $id)
     {
         if (auth()->guard('job_seekers')->check()){
-            JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
+            $seeker =JobSeeker::query()->where('id',auth('job_seekers')->id())->update([
                 'first_name' => $request->first_name,
                 'last_name'=> $request->last_name,
                 'email'=> $request->email,
                 'confirm_email'=> $request->confirm_email,
+                'overview'=> $request->overview,
+                'photo'=> $request->photo,
             ]);
+
             session()->flash('msgProfile','Profile Updated Successfully');
             return redirect()->route('company-profile.index');
         }

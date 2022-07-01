@@ -5,7 +5,7 @@
     <section class="profile py-5">
         <div class="container">
             <h1 class="mb-4 text-center text-md-left">Profile</h1>
-            <form method="POST" action="{{route('company-profile.update',1)}}">
+            <form enctype="multipart/form-data" method="POST" action="{{route('company-profile.update',1)}}">
                 @method('PUT')
                 @csrf
                 <div>
@@ -48,6 +48,26 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12 py-3">
+                                    <div class="profile__details">
+                                        <div class="profile__details-logo"><span
+                                                    class="profile__details-logo-text">
+
+                                            </span></div>
+                                        <div class="profile__details-actions">
+                                            <div class="profile__details-actions-item">
+                                                <label for="profileLogo"><img
+                                                            src="{{asset('assets/images/icons/upload.svg')}}"></label>
+                                                <input class="profile__details-image-upload" type="file"
+                                                       id="profileLogo" name="photo" accept="image/*">
+                                            </div>
+                                            <div class="profile__details-actions-item"><a
+                                                        class="profile__details-logo-image-remover" href=""
+                                                        data-toggle="modal" data-target="#modalDeleteThis"><img
+                                                            src="{{asset('assets/images/icons/delete.svg')}}"></a></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-6 py-3">
                                     <input name="first_name" class="form-control form-control-lg" type="text"
                                            placeholder="First Name *" value="{{$user->first_name}}"
@@ -67,6 +87,10 @@
                                     <input name="confirm_email" class=" form-control form-control-lg" type="email"
                                            placeholder="Confirm Email *" value="{{$user->confirm_email}}">
                                     <span><small class="text-muted">Leave this field empty if you do not make any changes.</small></span>
+                                </div>
+                                <div class="col-md-12 py-3">
+                                    <textarea name="overview" class="form-control" rows="2" placeholder="Overview *"
+                                              required>{{$user->overview}}</textarea>
                                 </div>
                                 <div class="px-md-3 mt-4 text-center text-md-left form-actions">
                                     <button class="btn btn-primary-ldn px-5" type="submit">Update</button>
