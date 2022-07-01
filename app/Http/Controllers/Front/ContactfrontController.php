@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactfrontController extends Controller
 {
@@ -17,7 +18,7 @@ class ContactfrontController extends Controller
     public function index()
     {
         $setting = Setting::query()->first();
-        return view('Front.Contacts',compact('setting'));
+        return view('Front.Contacts', compact('setting'));
     }
 
     /**
@@ -33,7 +34,7 @@ class ContactfrontController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -45,14 +46,27 @@ class ContactfrontController extends Controller
             'message' => 'required',
             'attachment' => 'required|mimes:pdf|max:10000',
         ]);
-       Contact::query()->create($request->all());
-       return redirect()->route('contacts.index')->with('message', 'Message Send successfully!');
+        Contact::query()->create($request->all());
+
+        //send email
+        $data = array('name' => Setting::query()->first()->email_from,
+            'msgtst' => \request('message'));
+
+        Mail::send('mail', $data, function ($message) {
+            $message->to(Setting::query()->first()->email_from, Setting::query()->first()->website_name)
+                ->subject(\request('subject'));
+
+            $message->attach(\request('attachment'));
+
+            $message->from(\request('email'), \request('full_name'));
+        });
+        return redirect()->route('contacts.index')->with('message', 'Message Send successfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +77,7 @@ class ContactfrontController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -74,8 +88,8 @@ class ContactfrontController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -86,7 +100,7 @@ class ContactfrontController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
