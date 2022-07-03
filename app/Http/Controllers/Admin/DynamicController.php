@@ -110,11 +110,10 @@ class DynamicController extends Controller
         return redirect()->route('admin.pages.index');
     }
 
-    public function updateCategoryStatus($id){
-        $page = DynamicPage::query()->findOrFail($id)->first();
-        $page->update([
-            'status' => !$page->status
-        ]);
-        return redirect()->route('admin.pages.index');
+    public function changePageStatus(Request $request){
+        $ca = DynamicPage::find($request->id);
+        $ca->status = $request->status;
+        $ca->save();
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }

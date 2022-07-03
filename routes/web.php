@@ -49,6 +49,7 @@ Route::get('changePerStatus', [PerController::class, 'changePerStatus'])->name('
 Route::get('changeTypeStatus', [TypeController::class, 'changeTypeStatus'])->name('changeTypeStatus');
 Route::get('changePostStatus', [JobController::class, 'changePostStatus'])->name('changePostStatus');
 Route::get('changeSliderStatus', [SliderController::class, 'changeSliderStatus'])->name('changeSliderStatus');
+Route::get('changePageStatus', [DynamicController::class, 'changePageStatus'])->name('changePageStatus');
 
 
 //admin routes

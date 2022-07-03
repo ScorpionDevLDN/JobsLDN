@@ -26,20 +26,20 @@ class DynamicPage extends Model
     {
         $this->deleteImage();
         if (gettype($image) != 'string') {
-            $image->store('setting');
+            $image->store('public');
             $this->attributes['image'] = $image->hashName();
         }
     }
 
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url('setting/' . $image) : asset('assets/user.png');
+        return $image ? Storage::url($image) : asset('assets/user.png');
     }
 
     public function deleteImage()
     {
         if (isset($this->attributes['image']) && $this->attributes['image']) {
-            Storage::delete('setting/' . $this->attributes['image']);
+            Storage::delete('public/' . $this->attributes['image']);
         }
     }
 
@@ -51,4 +51,5 @@ class DynamicPage extends Model
             2 => 'Header & Footer',
         ])->get($this->shown_in);
     }
+
 }

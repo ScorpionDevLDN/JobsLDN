@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-3">
                     <ul class="site-footer__nav">
-                        @foreach(\App\Models\DynamicPage::query()->whereIn('shown_in',[0,2])->take(3)->get() as $page )
+                        @foreach(\App\Models\DynamicPage::query()->where('status',1)->whereIn('shown_in',[0,2])->take(3)->get() as $page )
                             <li><a href="{{route('page',$page->slug)}}"><small>{{$page->title}}</small></a></li>
                         @endforeach
                     </ul>
