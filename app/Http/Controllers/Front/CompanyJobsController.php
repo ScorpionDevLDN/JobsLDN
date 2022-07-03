@@ -135,6 +135,12 @@ class CompanyJobsController extends Controller
         return back()->with('applied','you have applied successfully');
     }
 
+
+    public function retract($id)
+    {
+        JobSeekerJob::query()->where('job_id',$id)->delete();
+        return back()->with('msgBookmarked','you have applied successfully');
+    }
     public function download($id)
     {
         $post = Job::query()->where('id', $id)->first()->pdf_details;
@@ -153,7 +159,7 @@ class CompanyJobsController extends Controller
 
     public function un_bookmark($id)
     {
-        JobSeekerBookmark::query()->where('id',$id)->delete();
+        JobSeekerBookmark::query()->where('job_id',$id)->delete();
         return redirect()->back()->with('msgBookmarked', 'Job removed from bookmarks successfully!');
     }
 

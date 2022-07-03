@@ -46,7 +46,7 @@
                                                     class="main-color-sm">{{$post->job->type->name}}</span></div>
                                         <div class="jobs__item-details-meta-item salary"><img
                                                     src="{{asset('assets/images/home/wallet.svg')}}"><span
-                                                    class="main-color-sm">{{$post->job->currency->symbol}}{{$post->salary}}</span><span
+                                                    class="main-color-sm">{{$post->job->currency->symbol}}{{$post->job->salary}}</span><span
                                                     class="period">/{{$post->job->per->per}}</span>
                                         </div>
                                         <div class="jobs__item-details-meta-item" style="margin-left: -60px;">
@@ -58,9 +58,8 @@
                                 </div>
 
                                 <div class="jobs__item-details-meta-item"
-                                     style="margin-top: 34px;margin-left: 110px"><a
-                                            class="btn all-jobs applyNow" href="{{route('job_details',$post->id)}}">Apply
-                                        now</a></div>
+                                     style="margin-top: 34px;margin-left: 150px"><a
+                                            class="btn all-jobs applyNow" href="{{route('retract',$post->id)}}">Retract</a></div>
 
                                 <div class="d-flex align-items-center jobs__item-details-meta-item">
                                     @if(auth('job_seekers')->user()->postbookmarked($post->id))
