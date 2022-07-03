@@ -103,6 +103,14 @@
                             </div>
                         </div>
 
+                        @if(session('msgBookmarked'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <small>{{session('msgBookmarked')}}</small>
+                            </div>
+                        @endif
+
                         @if(auth()->guard('companies')->check())
                             @if($posts_company->count()>0)
                                 @foreach($posts_company as $post)
@@ -191,8 +199,17 @@
                                                     class="btn all-jobs applyNow" href="{{route('job_details',$post->id)}}">Apply now</a></div>
 
                                         <div class="d-flex align-items-center jobs__item-details-meta-item">
-                                            <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
-                                                        class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                            @if(auth('job_seekers')->user()->postbookmarked($post->id))
+                                            <a href="{{route('bookmark',$post->id)}}">
+                                                <div class="btn btn-outline-primary font-weight-bold btn-icon">
+                                                    <i class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                            </a>
+                                            @else
+                                                <a href="{{route('un_bookmark',$post->id)}}">
+                                                <div class="btn btn-primary font-weight-bold btn-icon">
+                                                    <i class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                </a>
+                                            @endif
                                         </div>
 
                                     </div>

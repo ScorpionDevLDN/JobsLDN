@@ -148,7 +148,13 @@ class CompanyJobsController extends Controller
             'job_seeker_id' => 1,
             'job_id' => $id,
         ]);
-        return redirect()->back()->with('msg', 'Job Booked marked successfully!');
+        return redirect()->back()->with('msgBookmarked', 'Job Booked marked successfully!');
+    }
+
+    public function un_bookmark($id)
+    {
+        JobSeekerBookmark::query()->where('id',$id)->delete();
+        return redirect()->back()->with('msgBookmarked', 'Job removed from bookmarks successfully!');
     }
 
     public function uploadCv(Request $request){

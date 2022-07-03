@@ -86,6 +86,10 @@ class JobSeeker extends Authenticatable
         return $this->hasMany(JobSeekerBookmark::class);
     }
 
+    public function postbookmarked($post){
+        return $this->bookmarks()->where('job_id',$post)->doesntExist();
+    }
+
     public function cvs(){
         return $this->hasMany(JobSeekerCv::class);
     }

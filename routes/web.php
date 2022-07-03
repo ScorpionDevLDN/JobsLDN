@@ -108,7 +108,6 @@ Route::prefix('')->group(function () {
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
     Route::resource('jobs', CompanyJobsController::class);
     Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
-    Route::get('bookmark/{id}', [CompanyJobsController::class,'bookmark'])->name('bookmark');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::resource('contacts', ContactfrontController::class);
@@ -144,6 +143,8 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
     Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
     Route::post('apply/{job_id}', [CompanyJobsController::class,'apply'])->name('apply');
+    Route::get('bookmark/{id}', [CompanyJobsController::class,'bookmark'])->name('bookmark');
+    Route::get('un_bookmark/{id}', [CompanyJobsController::class,'un_bookmark'])->name('un_bookmark');
     Route::post('upload_cv', [CompanyJobsController::class,'uploadCv'])->name('uploadCv');
 });
 

@@ -10,6 +10,8 @@
 
     <!-- Styles-->
     <link rel="stylesheet" href="{{asset('assets/dist/styles.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <style>
     .ayaTst {
