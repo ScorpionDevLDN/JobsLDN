@@ -147,6 +147,9 @@ Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
     Route::get('un_bookmark/{id}', [CompanyJobsController::class,'un_bookmark'])->name('un_bookmark');
     Route::post('upload_cv', [CompanyJobsController::class,'uploadCv'])->name('uploadCv');
     Route::post('delete_cv/{id}', [CompanyJobsController::class,'deleteCv'])->name('deleteCv');
+
 });
+Route::get('myJobs', [CompanyJobsController::class,'myAppliedJobs'])->name('myJobs');
+
 
 

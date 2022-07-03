@@ -93,4 +93,8 @@ class JobSeeker extends Authenticatable
     public function cvs(){
         return $this->hasMany(JobSeekerCv::class);
     }
+
+    public function jobs(){
+        return $this->hasMany(JobSeekerJob::class);
+    }
 }

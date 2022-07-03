@@ -175,4 +175,9 @@ class CompanyJobsController extends Controller
         ]));
         return redirect()->back()->with('cvSuccess', 'Cv Uploaded successfully!');
     }
+
+    public function myAppliedJobs(){
+        $posts = JobSeekerJob::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
+        return view('Front.JobSeekerJobs',compact('posts'));
+    }
 }
