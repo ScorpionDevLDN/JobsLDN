@@ -97,4 +97,9 @@ class JobSeeker extends Authenticatable
     public function jobs(){
         return $this->hasMany(JobSeekerJob::class);
     }
+
+    public function myjob($id){
+        return $this->jobs()->where('job_id',$id)->exists();
+    }
+
 }

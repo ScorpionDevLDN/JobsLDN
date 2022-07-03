@@ -54,7 +54,7 @@
                 @else
                     <li class="active"><a href="{{route('company-profile.index')}}">Profile</a></li>
                     <li><a href="{{route('myJobs')}}">My Jobs</a></li>
-                    <li><a href="{{route('company-notifications.index')}}">Bookmarks</a></li>
+                    <li><a href="{{route('myBookmarks')}}">Bookmarks</a></li>
                     <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>
                 @endif
             </ul>

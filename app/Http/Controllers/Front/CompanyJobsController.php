@@ -186,4 +186,9 @@ class CompanyJobsController extends Controller
         $posts = JobSeekerJob::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
         return view('Front.JobSeekerJobs',compact('posts'));
     }
+
+    public function myBookmarks(){
+        $posts = JobSeekerBookmark::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
+        return view('Front.JobSeekerbookMarks',compact('posts'));
+    }
 }
