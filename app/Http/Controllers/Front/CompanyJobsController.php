@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Job;
 use App\Models\JobSeekerBookmark;
 use App\Models\JobSeekerCv;
+use App\Models\JobSeekerJob;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -120,7 +121,18 @@ class CompanyJobsController extends Controller
         $created_at = Job::query()->where('id', $id)->whereDate('created_at', '<', now())->exists();
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->inRandomOrder()->take(4)->get();
-        return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar'));
+        $cvs = auth('job_seekers')->user()->cvs;
+        return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar','cvs'));
+    }
+
+    public function apply($id)
+    {
+        JobSeekerJob::query()->create([
+            'job_seeker_id' => auth('job_seekers')->id(),
+            'job_id' => $id,
+            'job_seeker_cv_id' => \request('ApplyForJobCV'),
+        ]);
+        return back()->with('applied','you have applied successfully');
     }
 
     public function download($id)

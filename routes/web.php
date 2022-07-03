@@ -143,6 +143,7 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 });
 Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
     Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
+    Route::post('apply/{job_id}', [CompanyJobsController::class,'apply'])->name('apply');
     Route::post('upload_cv', [CompanyJobsController::class,'uploadCv'])->name('uploadCv');
 });
 

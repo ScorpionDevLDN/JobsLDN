@@ -106,12 +106,13 @@
                                 available</h6>
                         @else
                             <h6 class="mb-4 mt-4 mt-md-0 text-center text-md-left">Apply Now</h6>
-                            <form action="#" method="POST">
+                            <form action="{{route('apply',$post->id)}}" method="POST">
+                                @csrf
                                 <select class="js-example-basic-single" name="ApplyForJobCV">
-                                    <option>Select your CV</option>
-                                    <option>CV 1</option>
-                                    <option>CV 2</option>
-                                    <option>CV 3</option>
+                                    <option selected="true" disabled="disabled">Select your CV</option>
+                                    @foreach($cvs as $cv)
+                                        <option value="{{$cv->id}}">{{$cv->cv_name}}</option>
+                                    @endforeach
                                 </select>
                                 <button class="btn btn-primary px-5 py-2 btn-block mt-3" type="submit">Apply now
                                 </button>
