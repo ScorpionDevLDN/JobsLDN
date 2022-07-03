@@ -141,7 +141,7 @@
                                    name="email"
                                    required>
                             <div class="center my-4" style="text-align: center">
-                                <button class="btn btn-primary px-5" type="submit">Reset Password</button>
+                                <button class="btn btn-primary-ldn px-5" type="submit">Reset Password</button>
                             </div>
                         </div>
                     </div>
@@ -261,13 +261,14 @@
             <div class="modal-body text-center">
                 <h6>Are you sure you want to delete this?</h6>
                 <div class="my-4">
-                    <button class="btn btn-primary px-5" data-dismiss="modal">Yes</button>
+                    <button class="btn btn-primary-ldn px-5" data-dismiss="modal">Yes</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- delete-item-modal-end-->
+
 
 <!-- Retract application-->
 <div class="modal fade" id="modalRetractApplicationConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -282,7 +283,7 @@
             <div class="modal-body text-center">
                 <h6>Are you sure you want to retract your application?</h6>
                 <div class="my-4">
-                    <button class="btn btn-primary px-5" data-dismiss="modal">Yes</button>
+                    <button class="btn btn-primary-ldn px-5" data-dismiss="modal">Yes</button>
                 </div>
             </div>
         </div>

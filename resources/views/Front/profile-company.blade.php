@@ -212,7 +212,8 @@
                                 <div class="row">
                                     <div class="col-md-6 py-3">
                                         <div class="file-input">
-                                            <input type="file" name="pdf" id="file-input" onchange="form.submit()" class="file-input__input"/>
+                                            <input type="file" name="pdf" id="file-input" onchange="form.submit()"
+                                                   class="file-input__input"/>
                                             <label class="file-input__label" for="file-input">
                                                 <span class="mr-2">Upload attachment</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="21.5"
@@ -245,52 +246,108 @@
                             </form>
                         @endif
 
-                            @if(auth('job_seekers')->user()->cvs->count() > 0)
-                                <div class="mt-4 text-center text-md-left form-actions">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            @foreach(auth('job_seekers')->user()->cvs as $cv)
-                                                <div class="alert" style="background-color: {{\App\Models\Setting::query()->first()->secondary_color}}">
-                                                    <div class="row">
-                                                        <div class="col-md-10">
-                                                            <small><i class="far fa-folder-open text-primary mr-3"></i> {{$cv->cv_name}}</small>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="profile__details-actions">
-                                                                <div class="profile__details-actions-item">
-                                                                    <label for="profileLogo">
-                                                                        <svg id="ic-actions2-download" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                             height="24" viewBox="0 0 24 24">
-                                                                            <rect id="Rectangle_132" data-name="Rectangle 132" width="24" height="24" fill="none"/>
-                                                                            <g id="ic-actions-download" transform="translate(2 -0.66)">
-                                                                                <path id="Path_13" data-name="Path 13" d="M22,11.66v8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2v-8"
-                                                                                      transform="translate(-2 0.66)" fill="none" stroke="#56bb37" stroke-linecap="round" stroke-linejoin="round"
-                                                                                      stroke-width="1.5"/>
-                                                                                <line id="Line_25" data-name="Line 25" y2="11.499" transform="translate(10 3)" fill="none" stroke="#56bb37"
-                                                                                      stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
-                                                                                <path id="Path_14" data-name="Path 14" d="M7.22,14.09l4.11,4.1a1,1,0,0,0,1.41,0l4-4"
-                                                                                      transform="translate(-2 -3.981)" fill="none" stroke="#56bb37" stroke-linecap="round" stroke-linejoin="bevel"
-                                                                                      stroke-width="1.5"/>
-                                                                            </g>
-                                                                        </svg>
-                                                                    </label>
-                                                                    {{--                                                                 <input class="profile__details-image-upload" type="file"--}}
-                                                                    {{--                                                                        id="profileLogo" name="photo" accept="image/*">--}}
-                                                                </div>
-                                                                <div class="profile__details-actions-item"><a
-                                                                            class="profile__details-logo-image-remover" href=""
-                                                                            data-toggle="modal" data-target="#modalDeleteThis"><img
-                                                                                src="{{asset('assets/images/icons/delete.svg')}}"></a></div>
+                        @if(auth('job_seekers')->user()->cvs->count() > 0)
+                            <div class="mt-4 text-center text-md-left form-actions">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @if(session('msgBookmarked'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{session('msgBookmarked')}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        @foreach(auth('job_seekers')->user()->cvs as $cv)
+                                            <div class="alert"
+                                                 style="background-color: {{\App\Models\Setting::query()->first()->secondary_color}}">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <small><i class="far fa-folder-open text-primary mr-3"></i> {{$cv->cv_name}}
+                                                        </small>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="profile__details-actions">
+                                                            <div class="profile__details-actions-item">
+                                                                <a href="">
+                                                                    <svg id="ic-actions2-download"
+                                                                         xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                         height="24" viewBox="0 0 24 24">
+                                                                        <rect id="Rectangle_132"
+                                                                              data-name="Rectangle 132" width="24"
+                                                                              height="24" fill="none"/>
+                                                                        <g id="ic-actions-download"
+                                                                           transform="translate(2 -0.66)">
+                                                                            <path id="Path_13" data-name="Path 13"
+                                                                                  d="M22,11.66v8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2v-8"
+                                                                                  transform="translate(-2 0.66)"
+                                                                                  fill="none" stroke="#56bb37"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="round"
+                                                                                  stroke-width="1.5"/>
+                                                                            <line id="Line_25" data-name="Line 25"
+                                                                                  y2="11.499"
+                                                                                  transform="translate(10 3)"
+                                                                                  fill="none" stroke="#56bb37"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="bevel"
+                                                                                  stroke-width="1.5"/>
+                                                                            <path id="Path_14" data-name="Path 14"
+                                                                                  d="M7.22,14.09l4.11,4.1a1,1,0,0,0,1.41,0l4-4"
+                                                                                  transform="translate(-2 -3.981)"
+                                                                                  fill="none" stroke="#56bb37"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="bevel"
+                                                                                  stroke-width="1.5"/>
+                                                                        </g>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                            <div class="profile__details-actions-item"><a
+                                                                        class="profile__details-logo-image-remover"
+                                                                        href=""
+                                                                        data-toggle="modal"
+                                                                        data-target="#modalDeleteCv"><img
+                                                                            src="{{asset('assets/images/icons/delete.svg')}}"></a>
                                                             </div>
                                                         </div>
-
                                                     </div>
+
                                                 </div>
-                                            @endforeach
-                                        </div>
+                                            </div>
+
+                                            <!-- Modal-->
+                                            <div class="modal fade" id="modalDeleteCv" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog " role="document">
+                                                    <form action="{{route('deleteCv',$cv->id)}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="{{$cv->id}}">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Delete Cv</h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    Are You Sure You want to delete this?
+                                                                </div>
+                                                            </div>
+                                                            <div class="center mb-4" style="text-align: center">
+                                                                <button class="btn btn-primary-ldn px-5 text-center" type="submit">Delete
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!--end::Button-->
+                                        @endforeach
                                     </div>
                                 </div>
-                            @endif
+                            </div>
+                        @endif
                         <br>
                         <br>
                         <hr>
@@ -298,6 +355,7 @@
 
                 </div>
         @endif
+
 
         <!-- security-->
 

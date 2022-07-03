@@ -157,6 +157,12 @@ class CompanyJobsController extends Controller
         return redirect()->back()->with('msgBookmarked', 'Job removed from bookmarks successfully!');
     }
 
+    public function deleteCv($id)
+    {
+        JobSeekerCv::query()->where('id',$id)->delete();
+        return redirect()->back()->with('msgBookmarked', 'Job Cv removed successfully!');
+    }
+
     public function uploadCv(Request $request){
         $request->validate([
             'pdf' => 'required|mimes:pdf|max:10000',
