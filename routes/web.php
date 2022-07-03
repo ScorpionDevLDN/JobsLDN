@@ -110,6 +110,7 @@ Route::prefix('')->group(function () {
     Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
+    Route::get('page/{slug}', [PagefrontController::class,'page'])->name('page');
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);

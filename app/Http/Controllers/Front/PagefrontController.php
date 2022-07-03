@@ -15,7 +15,13 @@ class PagefrontController extends Controller
      */
     public function index()
     {
-        $page = DynamicPage::query()->take(1)->first();
+        $page = DynamicPage::query()->whereIn('shown_in',[1,2])->inRandomOrder()->take(1)->first();
+        return view('Front.DynamicPage',compact('page'));
+    }
+
+    public function page($slug)
+    {
+        $page = DynamicPage::query()->where('slug',$slug)->first();
         return view('Front.DynamicPage',compact('page'));
     }
 

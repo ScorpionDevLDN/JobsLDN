@@ -9,7 +9,12 @@
                 <div class="col-md-6">
                     <div class="site-footer__sm">
                         <h5>Following us now</h5>
-                        <div class="site-footer__sm-icons"><a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a><a class="social-icon" href="#"><i class="fab fa-instagram"></i></a><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-icon" href="#"><i class="fab fa-youtube"></i></a></div>
+                        <div class="site-footer__sm-icons">
+                            <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+                            <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="social-icon" href="#"><i class="fab fa-youtube"></i></a></div>
                     </div>
                 </div>
             </div>
@@ -24,24 +29,24 @@
                 </div>
                 <div class="col-md-3">
                     <ul class="site-footer__nav">
-                        <li><a href="#"><small>Home</small></a></li>
-                        <li><a href="#"><small>Jobs</small></a></li>
-                        <li><a href="#"><small>Contact</small></a></li>
+                        <li><a href="{{route('home.index')}}"><small>Home</small></a></li>
+                        <li><a href="{{route('jobs.index')}}"><small>Jobs</small></a></li>
+                        <li><a href="{{route('contacts.index')}}"><small>Contact</small></a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <ul class="site-footer__nav">
-                        <li><a href="#"><small>Dynamic Page</small></a></li>
-                        <li><a href="#"><small>Dynamic Page</small></a></li>
-                        <li><a href="#"><small>Dynamic Page</small></a></li>
-                        <li><a href="#"><small>Terms and Conditions</small></a></li>
+                        @foreach(\App\Models\DynamicPage::query()->whereIn('shown_in',[0,2])->take(3)->get() as $page )
+                            <li><a href="{{route('page',$page->slug)}}"><small>{{$page->title}}</small></a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <form action="#" method="GET">
                         <div class="form-group">
                             <label for="newsletterSubscription"><small>Subscribe to the latest updates</small></label>
-                            <input class="form-control form-control-lg mb-3" type="text" id="newsletterSubscription" name="newsletterSubscription" placeholder="Write your email">
+                            <input class="form-control form-control-lg mb-3" type="text" id="newsletterSubscription"
+                                   name="newsletterSubscription" placeholder="Write your email">
                             <button class="btn btn-primary-ldn px-4 py-2" type="submit">Sign up</button>
                         </div>
                     </form>
@@ -52,7 +57,9 @@
     <!-- copyright-->
     <div class="copyright py-3 text-center">
         <div class="container">
-            <small class="text-muted"> {{\App\Models\Setting::query()->first()->copy_right_text}} <script>document.write(new Date().getFullYear())</script></small>
+            <small class="text-muted"> {{\App\Models\Setting::query()->first()->copy_right_text}}
+                <script>document.write(new Date().getFullYear())</script>
+            </small>
         </div>
     </div>
 </footer>
