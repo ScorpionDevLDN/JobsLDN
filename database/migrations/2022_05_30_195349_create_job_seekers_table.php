@@ -23,12 +23,8 @@ return new class extends Migration {
             $table->string('password');
             $table->boolean('read_conditions')->default(0);
             $table->string('photo')->nullable();
-            $table->enum('type', ['job_seeker', 'company'])->default('job_seeker');
-            $table->string('company_name')->nullable();
-            $table->string('employee_count')->nullable();
-            $table->string('industry')->nullable();
-            $table->string('website_url')->nullable();
             $table->string('overview')->nullable();
+            $table->boolean('active')->default(1); // 1 active,0 deactive
             $table->rememberToken();
             $table->timestamps();
         });

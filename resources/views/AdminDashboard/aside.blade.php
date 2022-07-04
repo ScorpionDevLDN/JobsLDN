@@ -164,10 +164,9 @@
                 </a>
             </li>
 
-            <li class="menu-item mb-2 {{ (request()->is('admin/get-payments')) ? 'menu-item-active' : '' }}"
-                aria-haspopup="true">
-                <a href="{{route('admin.get-payments.index')}}" class="menu-link">
-					<span class="svg-icon menu-icon">
+            <li class="menu-item menu-item-submenu mb-2 {{ (request()->is('admin/get-payments')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+            										<span class="svg-icon menu-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
                              version="1.1">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -177,8 +176,33 @@
         <rect fill="#000000" opacity="0.3" x="16" y="14" width="4" height="2" rx="1"/>
     </g>
 </svg><!--end::Svg Icon--></span>
-                    <span class="menu-text">Payments</span>
+                    <span class="menu-text">Payment</span>
+                    <i class="menu-arrow"></i>
                 </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+            				<span class="menu-link">
+            					<span class="menu-text">Payment</span>
+            				</span>
+                        </li>
+
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="{{route('admin.get-payments.index')}}" class="menu-link">
+                                <span class="svg-icon menu-icon"></span>
+                                <span class="menu-text">Payments</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="{{route('admin.transactions')}}" class="menu-link">
+                                <span class="svg-icon menu-icon"></span>
+                                <span class="menu-text">Transactions</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             <li class="menu-item mb-2 {{ (request()->is('admin/sliders')) ? 'menu-item-active' : '' }}"
@@ -279,10 +303,10 @@
             </li>
 
 
-
             <li class="menu-item mb-2" aria-haspopup="true">
                 <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form>
-                <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="menu-link">
+                <a href="{{ route('admin.logout') }}"
+                   onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="menu-link">
 					<span class="svg-icon menu-icon"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Sign-out.svg--><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -292,7 +316,8 @@
                                           fill="#000000" fill-rule="nonzero" opacity="0.3"
                                           transform="translate(9.006943, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-9.006943, -12.000000) "/>
                                     <rect fill="#000000" opacity="0.3"
-                                          transform="translate(14.000000, 12.000000) rotate(-270.000000) translate(-14.000000, -12.000000) " x="13"
+                                          transform="translate(14.000000, 12.000000) rotate(-270.000000) translate(-14.000000, -12.000000) "
+                                          x="13"
                                           y="6" width="2" height="12" rx="1"/>
                                     <path d="M21.7928932,9.79289322 C22.1834175,9.40236893 22.8165825,9.40236893 23.2071068,9.79289322 C23.5976311,10.1834175 23.5976311,10.8165825 23.2071068,11.2071068 L20.2071068,14.2071068 C19.8165825,14.5976311 19.1834175,14.5976311 18.7928932,14.2071068 L15.7928932,11.2071068 C15.4023689,10.8165825 15.4023689,10.1834175 15.7928932,9.79289322 C16.1834175,9.40236893 16.8165825,9.40236893 17.2071068,9.79289322 L19.5,12.0857864 L21.7928932,9.79289322 Z"
                                           fill="#000000" fill-rule="nonzero"

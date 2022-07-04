@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\PaymentSetting;
 use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -40,6 +41,15 @@ class SettingSeeder extends Seeder
             'site_key' => 'test site_key',
             'secret_key' => 'test secret_key',
             'email_from' => 'email@gmail.com',
+        ]);
+
+        PaymentSetting::query()->create([
+            'title' => 'test',
+            'description'  => 'test',
+            'days_count' => 5,
+            'text'  => 'test',
+            'price' => 16,
+            'support_by' => 'paypal',
         ]);
     }
 }

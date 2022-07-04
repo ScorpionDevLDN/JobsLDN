@@ -93,6 +93,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('reject/{id}', [JobController::class, 'reject'])->name('reject');
         Route::resource('newsletter', NewsletterController::class);
         Route::resource('get-payments', PaymentConteroller::class);
+        Route::get('transactions', [PaymentConteroller::class, 'transactions'])->name('transactions');
 
         Route::resource('roles', RoleController::class)->middleware(['permission:role-list']);
         Route::resource('admins', UserController::class)->middleware(['permission:user-list']);

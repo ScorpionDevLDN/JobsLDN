@@ -32,6 +32,7 @@ class Company extends Authenticatable
         'industry',
         'website_url',
         'overview',
+        'active'
     ];
 
     protected $guarded = 'company';

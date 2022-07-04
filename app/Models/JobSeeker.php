@@ -28,12 +28,8 @@ class JobSeeker extends Authenticatable
         'password',
         'read_conditions',
         'photo',
-        'type',
-        'company_name',
-        'employee_count',
-        'industry',
-        'website_url',
         'overview',
+        'active'
     ];
     /**
      * The attributes that should be hidden for serialization.

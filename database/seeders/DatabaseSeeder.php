@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
         $role2 = Role::create(['name' => 'Editor']);
 
         $user = Admin::query()->create([
-            'name' => 'Nishan Admin',
-            'email' => 'nishan@admin.com',
+            'name' => 'Admin',
+            'email' => 'anmuom@gmail.com',
             'password' => 'nishan',
             'is_super_admin' => 1
         ]);
         $user2 = Admin::query()->create([
-            'name' => 'Aya Omar',
-            'email' => 'ayakhomar@gmail.com',
+            'name' => 'Anas',
+            'email' => 'ivanovss92@gmail.com',
             'password' => 'nishan',
         ]);
 

@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('industry')->nullable();
             $table->string('website_url')->nullable();
             $table->string('overview')->nullable();
+            $table->boolean('active')->default(1); // 1 active,0 deactive
             $table->timestamps();
         });
     }
