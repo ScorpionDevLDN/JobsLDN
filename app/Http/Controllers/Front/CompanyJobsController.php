@@ -202,4 +202,34 @@ class CompanyJobsController extends Controller
         $posts = JobSeekerBookmark::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
         return view('Front.JobSeekerbookMarks',compact('posts'));
     }
+
+    public function deleteJob($id)
+    {
+        Job::query()->where('id',$id)->delete();
+        return redirect()->back()->with('msgBookmarked', 'Job removed successfully!');
+    }
+
+    public function editJob($id)
+    {
+        $post = Job::query()->where('id',$id)->first();
+        return view('Front.PostJob',compact('post'));
+    }
+
+    public function editJobUpdate($id)
+    {
+//        dd(\request()->all());
+        Job::query()->where('id',$id)->update(\request()->only(
+            'title',
+            'summery',
+            'pdf_details',
+            'city_id',
+            'type_id',
+            'category_id',
+            'currency_id',
+            'per_id',
+            'salary',
+            'expired_at',
+            'job_post_email',));
+        return redirect()->back()->with('msgBookmarked', 'Job removed successfully!');
+    }
 }

@@ -157,6 +157,9 @@ Route::get('myBookmarks', [CompanyJobsController::class,'myBookmarks'])->name('m
 
 Route::prefix('jobs')->middleware('auth:companies')->group(function () {
     Route::get('job_details/{slug}', [CompanyJobsController::class,'job_details_company'])->name('job_details_company');
+    Route::delete('job/{id}', [CompanyJobsController::class,'deleteJob'])->name('deleteJob');
+    Route::get('edit_job/{id}', [CompanyJobsController::class,'editJob'])->name('editJob');
+    Route::post('edit_job_update/{id}', [CompanyJobsController::class,'editJobUpdate'])->name('editJobUpdate');
 });
 
 

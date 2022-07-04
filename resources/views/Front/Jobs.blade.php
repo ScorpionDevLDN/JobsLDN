@@ -22,84 +22,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 mt-4 mt-md-0 order-2 order-md-1">
-                        <div class="jobs__col-title text-center text-md-left">
-                            <p class="font-weight-light text-muted" style="margin-bottom: 60px">Search Filter</p>
-                        </div>
-                        <div class="jobs__search-filters">
-                            <form action="{{route('jobs.index')}}" method="get">
-                                <div class="row">
-                                    <div class="col-12 mb-5">
-                                        <select class="js-example-basic-single" name="category">
-                                            <option value="">Category</option>
-                                            @foreach($categories as $category)
-                                                <option {{\request()->category==$category->id ? 'selected' : ""}} value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-12 mb-5">
-                                        <select class="js-example-basic-single" name="city">
-                                            <option value="">City</option>
-                                            @foreach($cities as $city)
-                                                <option {{\request()->city==$city->id ? 'selected' : ""}} value="{{$city->id}}">{{$city->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-12 mb-5">
-                                        <select class="js-example-basic-single" name="type">
-                                            <option value="">Type</option>
-                                            @foreach($types as $type)
-                                                <option {{\request()->type==$type->id ? 'selected' : ""}} value="{{$type->id}}">{{$type->name}}</option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <input class="form-control form-control-lg mb-3" type="text" id="keywords"
-                                                   name="keywords" placeholder="keywords">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 mb-5">
-                                        <div class="form-group">
-                                            <label><small class="text-muted">Salary</small><small>:{{$min_salary}}
-                                                    - {{$max_salary}}</small></label>
-                                            {{--                                        <small>Salary <small>£1,500 - £8,400</small></small>--}}
-                                            <input onchange="showVal(this.value)" name="salary" type="range"
-                                                   class="custom-range" min="{{$min_salary}}" max="{{$max_salary}}"
-                                                   id="customRange2">
-                                            <div id="valBox"></div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="jobs__salary-range">
-                                    <div class="text-center text-md-left">
-                                        @if(request()->has('category')  || request()->has('city') || request()->has('type') || request()->has('keywords') || request()->has('salary'))
-                                            <a href="{{route('jobs.index')}}" class="btn btn-primary-ldn px-4">Reset</a>
-                                        @else
-                                            <button class="btn btn-primary-ldn px-4" type="submit">Apply</button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <h1>Jobs</h1>
+                        <br>
+                        <h6>24 Jobs Created</h6>
+                        <small class="text-muted">The number of jobs you have
+                            created.</small>
                     </div>
                     <div class="col-md-9 order-1 order-md-2">
-                        <div class="jobs__col-title d-flex justify-content-between align-items-center">
-                            <h4>Jobs</h4>
+                        <div class="jobs__col-title d-flex justify-content-end align-items-end">
                             <div class="sort-jobs text-muted"><span></span>
-                                <form action="{{route('jobs.index')}}" method="get">
-                                    <select name="filter" class="sort-filter" onchange="this.form.submit()">
-                                        {{--                                    <option >Sort By</option>--}}
-
-                                        <option value="">Sort By</option>
-                                        <option value="newest" selected>Newest</option>
-                                        <option value="salary">Salary</option>
-                                    </select>
-                                </form>
+                                <a class="px-5 btn btn-primary d-block">Post a job</a>
                             </div>
                         </div>
 
@@ -143,20 +75,53 @@
                                                             class="main-color-sm">{{$post->created_at->diffForHumans()}}</span>
                                                 </div>
                                                 <div class="jobs__item-details-meta-item"><a
-                                                            class="btn all-jobs">{{$post->seekerjobs->count()}} Applicant Sent</a></div>
+                                                            class="btn all-jobs">{{$post->seekerjobs->count()}}
+                                                        Applicant Sent</a></div>
                                                 <div class="jobs__item-details-meta-item"><a
-                                                            class="btn all-jobs" href="{{route('job_details_company',$post->id)}}">Open</a></div>
-                                                <div class="jobs__item-details-meta-item">
-                                                    <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
-                                                                class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                            class="btn all-jobs"
+                                                            href="{{route('job_details_company',$post->id)}}">Open</a>
                                                 </div>
-                                                <div class="jobs__item-details-meta-item">
-                                                    <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
-                                                                class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                <div class="jobs__item-details-meta-item"><a
+                                                            class="btn" href="{{route('editJob',$post->id)}}"><img
+                                                                src="{{asset('assets/icons/ic-actions-emultiple-edit.svg')}}"></a>
+                                                </div>
+                                                <div class="profile__details-actions-item"><a
+                                                            class="profile__details-logo-image-remover" href=""
+                                                            data-toggle="modal"
+                                                            data-target="#modalDeleteJob{{$post->id}}"><img
+                                                                src="{{asset('assets/images/icons/delete.svg')}}"></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="modal fade" id="modalDeleteJob{{$post->id}}" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form action="{{route('deleteJob',$post->id)}}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Job</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <h6>Are you sure you want to log out?</h6>
+                                                        <div class="my-4">
+                                                            <button class="btn btn-primary-ldn px-5" type="submit">
+                                                                Logout
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 @endforeach
 
                                 {{ $posts_company->links() }}
@@ -202,7 +167,8 @@
 
                                         <div class="jobs__item-details-meta-item"
                                              style="margin-top: 34px;margin-left: 110px"><a
-                                                    class="btn all-jobs applyNow" href="{{route('job_details',$post->id)}}">Apply now</a></div>
+                                                    class="btn all-jobs applyNow"
+                                                    href="{{route('job_details',$post->id)}}">Apply now</a></div>
 
                                         <div class="d-flex align-items-center jobs__item-details-meta-item">
                                             @if(auth('job_seekers')->user()->postbookmarked($post->id))
