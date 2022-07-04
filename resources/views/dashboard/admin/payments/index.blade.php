@@ -52,18 +52,6 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Image</label>
-                                    <div class="form-group col-9">
-                                        <div class="custom-file">
-                                            <input name="image" type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                            <img src="{{$payment->image}}" alt="">
-                                            <span class="text-danger">@error('image'){{ $message }}@enderror</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label class="col-3 col-form-label">Description</label>
                                     <div class="col-9">
                                     <textarea rows="8" name="description" class="form-control" type="text"
@@ -86,12 +74,54 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Text</label>
+                                    <label class="col-3 col-form-label">Price</label>
+                                    <div class="col-9">
+                                        <input value="{{$payment->price}}" name="price" class="form-control" type="text"
+                                               id="example-text-input">
+                                        <span class="text-danger">@error('price'){{ $message }}@enderror</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Support By</label>
+                                    <div class="col-9">
+                                        <input value="{{$payment->support_by}}" name="support_by" class="form-control" type="text"
+                                               id="example-text-input">
+                                        <span class="text-danger">@error('support_by'){{ $message }}@enderror</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Paypal Logo</label>
+                                    <div class="col-9">
+                                        <input value="{{$payment->paypal_logo}}" name="paypal_logo" class="form-control" type="text"
+                                               id="example-text-input">
+                                        <span class="text-danger">@error('paypal_logo'){{ $message }}@enderror</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Agreement</label>
                                     <div class="col-9">
                                         <input value="{{$payment->text}}" name="text" class="form-control" type="text"
                                                id="example-text-input">
                                         <span class="text-danger">@error('text'){{ $message }}@enderror</span>
 
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Image</label>
+                                    <div class="form-group col-9">
+                                        <div class="custom-file">
+                                            <input name="image" type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <img src="{{$payment->image}}" alt="">
+                                            <span class="text-danger">@error('image'){{ $message }}@enderror</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

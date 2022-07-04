@@ -155,5 +155,9 @@ Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
 Route::get('myJobs', [CompanyJobsController::class,'myAppliedJobs'])->name('myJobs');
 Route::get('myBookmarks', [CompanyJobsController::class,'myBookmarks'])->name('myBookmarks');
 
+Route::prefix('jobs')->middleware('auth:companies')->group(function () {
+    Route::get('job_details/{slug}', [CompanyJobsController::class,'job_details_company'])->name('job_details_company');
+});
+
 
 

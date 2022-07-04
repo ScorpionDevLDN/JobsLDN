@@ -108,4 +108,8 @@ class Job extends Model
         }
     }
 
+    public function seekerjobs(){
+        return $this->hasMany(JobSeekerJob::class);
+    }
+
 }

@@ -137,13 +137,19 @@
                                                             class="main-color-sm">{{$post->currency->symbol}}{{$post->salary}}</span><span
                                                             class="period">/{{$post->per->per}}</span>
                                                 </div>
-                                                <div class="jobs__item-details-meta-item" style="margin-left: -60px;">
+                                                <div class="jobs__item-details-meta-item">
                                                     <img
                                                             src="{{asset('assets/images/home/time.svg')}}"><span
                                                             class="main-color-sm">{{$post->created_at->diffForHumans()}}</span>
                                                 </div>
-                                                <div class="jobs__item-details-meta-item" style="margin-left: 90px;"><a
-                                                            class="btn all-jobs" href="#">Apply now</a></div>
+                                                <div class="jobs__item-details-meta-item"><a
+                                                            class="btn all-jobs">{{$post->seekerjobs->count()}} Applicant Sent</a></div>
+                                                <div class="jobs__item-details-meta-item"><a
+                                                            class="btn all-jobs" href="{{route('job_details_company',$post->id)}}">Open</a></div>
+                                                <div class="jobs__item-details-meta-item">
+                                                    <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
+                                                                class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                </div>
                                                 <div class="jobs__item-details-meta-item">
                                                     <div class="btn btn-outline-primary font-weight-bold btn-icon"><i
                                                                 class="svg-icon svg-icon-2x far fa-star"></i></div>
@@ -200,14 +206,14 @@
 
                                         <div class="d-flex align-items-center jobs__item-details-meta-item">
                                             @if(auth('job_seekers')->user()->postbookmarked($post->id))
-                                            <a href="{{route('bookmark',$post->id)}}">
-                                                <div class="btn btn-outline-primary font-weight-bold btn-icon">
-                                                    <i class="svg-icon svg-icon-2x far fa-star"></i></div>
-                                            </a>
+                                                <a href="{{route('bookmark',$post->id)}}">
+                                                    <div class="btn btn-outline-primary font-weight-bold btn-icon">
+                                                        <i class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                </a>
                                             @else
                                                 <a href="{{route('un_bookmark',$post->id)}}">
-                                                <div class="btn btn-primary font-weight-bold btn-icon">
-                                                    <i class="svg-icon svg-icon-2x far fa-star"></i></div>
+                                                    <div class="btn btn-primary font-weight-bold btn-icon">
+                                                        <i class="svg-icon svg-icon-2x far fa-star"></i></div>
                                                 </a>
                                             @endif
                                         </div>

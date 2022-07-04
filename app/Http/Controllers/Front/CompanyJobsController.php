@@ -10,6 +10,7 @@ use App\Models\JobSeekerBookmark;
 use App\Models\JobSeekerCv;
 use App\Models\JobSeekerJob;
 use App\Models\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -125,6 +126,13 @@ class CompanyJobsController extends Controller
         return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar','cvs'));
     }
 
+    public function job_details_company($id)
+    {
+        $post = Job::query()->where('id', $id)->first();
+        $created_at = Job::query()->where('id', $id)->whereDate('created_at', '<', now())->exists();
+        return view('Front.Company-Single-job', compact('post', 'created_at'));
+    }
+
     public function apply($id)
     {
         JobSeekerJob::query()->create([
@@ -132,6 +140,9 @@ class CompanyJobsController extends Controller
             'job_id' => $id,
             'job_seeker_cv_id' => \request('ApplyForJobCV'),
         ]);
+//        Job::query()->where('job_id',$id)->update([
+//
+//        ]);
         return back()->with('applied','you have applied successfully');
     }
 
