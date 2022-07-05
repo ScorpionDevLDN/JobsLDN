@@ -19,7 +19,7 @@
     <!-- Contact form-->
     <section class="py-5">
         <div class="container">
-            <form enctype="multipart/form-data" action="{{route('editJobUpdate',$post->id)}}" method="post">
+            <form enctype="multipart/form-data" action="{{route('payment',$post->id)}}" method="post">
                 @csrf
                 <div class="row">
                     @if(session()->has('message'))
@@ -162,7 +162,7 @@
                                                     these pages for 5 days for £16.99 only - Excluding VAT.
 
                                                 </h6>
-                                                <input name="is_super_post" type="checkbox">
+                                                <input name="is_super_post" type="checkbox" value="1">
                                                 <label for="">
                                                     Make this post as Super Post.
                                                 </label>

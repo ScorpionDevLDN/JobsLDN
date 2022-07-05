@@ -26,6 +26,7 @@ use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\JobSeeker\JobSeekerHomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -163,5 +164,8 @@ Route::prefix('jobs')->middleware('auth:companies')->group(function () {
     Route::post('edit_job_update/{id}', [CompanyJobsController::class,'editJobUpdate'])->name('editJobUpdate');
 });
 
+Route::post('pay/{id}', [PaymentController::class, 'pay'])->name('payment');
+Route::get('success', [PaymentController::class, 'success']);
+Route::get('error', [PaymentController::class, 'error']);
 
 

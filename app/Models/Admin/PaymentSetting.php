@@ -10,15 +10,17 @@ class PaymentSetting extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-      'title',
-      'image',
-      'description',
-      'days_count',
-      'text',
-      'price',
-      'support_by',
-      'paypal_logo',
+    protected $fillable = [
+        'title',
+        'image',
+        'description',
+        'days_count',
+        'text',
+        'price',
+        'support_by',
+        'paypal_logo',
+        'client_id',
+        'secret_id',
     ];
 
 
@@ -30,11 +32,13 @@ class PaymentSetting extends Model
             $this->attributes['image'] = $image->hashName();
         }
     }
+
 //
     public function getImageAttribute($image): ?string
     {
         return $image ? Storage::url($image) : null;
     }
+
 //
     public function deleteImage()
     {
@@ -51,11 +55,13 @@ class PaymentSetting extends Model
             $this->attributes['paypal_logo'] = $image->hashName();
         }
     }
+
 //
     public function getPaypalLogoAttribute($image): ?string
     {
         return $image ? Storage::url($image) : null;
     }
+
 //
     public function deletePaypalLogo()
     {

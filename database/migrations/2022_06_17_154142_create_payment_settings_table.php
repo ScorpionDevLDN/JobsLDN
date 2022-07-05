@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('days_count')->nullable();
             $table->string('text')->nullable();
+            $table->string('client_id')->nullable();
+            $table->string('secret_id')->nullable();
             $table->timestamps();
         });
     }
