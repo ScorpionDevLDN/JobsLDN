@@ -102,9 +102,9 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Manager</th>
                         <th scope="col">Name</th>
                         <th scope="col">Industry</th>
+                        <th scope="col">Owner</th>
                         <th scope="col">Email</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -113,9 +113,9 @@
                     @foreach($companies as $company)
                         <tr>
                             <th scope="row">{{$company->id}}</th>
-                            <td>{{$company->name}}</td>
                             <td>{{$company->company_name}}</td>
                             <td>{{$company->industry}}</td>
+                            <td>{{$company->name}}</td>
                             <td>{{$company->email}}</td>
                             <td>
                                 <div class="row">
@@ -174,12 +174,52 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>First Name
+                                                <label>Name
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$company->company_name}}" type="text" name="company_name"
+                                                       class="form-control"
+                                                       placeholder="Enter company name"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Industry
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$company->industry}}" type="text" name="industry"
+                                                       class="form-control"
+                                                       placeholder="Enter industry"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Owner
                                                     <span class="text-danger">*</span></label>
                                                 <input required value="{{$company->first_name}}" type="text" name="first_name"
                                                        class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                       placeholder="Enter owner name"/>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>Email
+                                                    <span class="text-danger"></span></label>
+                                                <input disabled value="{{$company->email}}" type="text" name="email"
+                                                       class="form-control"
+                                                       placeholder="Enter owner name"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Website URL
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$company->website_url}}" type="text" name="website_url"
+                                                       class="form-control"
+                                                       placeholder="Enter Website URL"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Overview
+                                                    <span class="text-danger">*</span></label>
+                                                <input required value="{{$company->overview}}" type="text" name="overview"
+                                                       class="form-control"
+                                                       placeholder="Enter overview"/>
+                                            </div>
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light-primary font-weight-bold"

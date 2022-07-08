@@ -64,7 +64,12 @@
                 <table id="tableToExcel" class="table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheckAll">
+                                <label class="custom-control-label" for="customCheckAll"></label>
+                            </div>
+                        </th>
                         <th scope="col">Job Company</th>
                         <th scope="col">Job Title</th>
                         <th scope="col">Job status</th>
@@ -72,9 +77,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($jobs as $job)
+                    @foreach($jobs as $i => $job)
                         <tr>
-                            <th scope="row">{{$job->id}}</th>
+                            <th scope="row">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input checkbox-tickets-select" id="customCheck{{$i}}" value="{{$job->id}}">
+                                    <label class="custom-control-label" for="customCheck{{$i}}"></label>
+                                </div>
+                            </th>
                             <td>{{$job->company->company_name}}</td>
                             <td>{{$job->title}}</td>
                             <td> {{$job->chechStatus()}}
@@ -303,8 +313,8 @@
 
                                             <div class="form-group">
                                                 <label>Job Details
-                                                    <span class="text-danger">*</span></label>
-                                                <input required
+                                                    <span class="text-danger"></span></label>
+                                                <input
                                                        value="{{$job->pdf_details}}"
                                                        type="file" name="pdf_details"
                                                        class="form-control"

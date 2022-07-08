@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Company;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

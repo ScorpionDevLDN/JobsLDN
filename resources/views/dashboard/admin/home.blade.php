@@ -102,7 +102,7 @@
                 var options = {
                     series: [
                         {
-                            name: 'Jobs Count',
+                            name: 'Sales',
                             data: data
                         },
                         // {
@@ -191,7 +191,7 @@
                         },
                         y: {
                             formatter: function (val) {
-                                return "$" + val + " thousands"
+                                return  val
                             }
                         }
                     },

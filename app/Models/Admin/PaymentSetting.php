@@ -27,9 +27,12 @@ class PaymentSetting extends Model
     public function setImageAttribute($image)
     {
         $this->deleteImage();
+
         if (gettype($image) != 'string') {
             $image->store('public');
             $this->attributes['image'] = $image->hashName();
+        } else {
+            $this->attributes['image'] = $image;
         }
     }
 
@@ -50,9 +53,12 @@ class PaymentSetting extends Model
     public function setPaypalLogoAttribute($image)
     {
         $this->deletePaypalLogo();
-        if (gettype($image) != 'string') {
+
+        if (gettype($image) != 'string' && $image != null) {
             $image->store('public');
             $this->attributes['paypal_logo'] = $image->hashName();
+        } else {
+            $this->attributes['paypal_logo'] = $image;
         }
     }
 

@@ -80,21 +80,21 @@
                                             <label>Name
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="name" class="form-control"
-                                                   placeholder="Enter name"/>
+                                                   placeholder="Enter Name"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Email
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="email" class="form-control"
-                                                   placeholder="Enter name"/>
+                                                   placeholder="Enter Email"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Password
                                                 <span class="text-danger">*</span></label>
                                             <input required type="text" name="password" class="form-control"
-                                                   placeholder="Enter name"/>
+                                                   placeholder="Enter Password"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleSelectd">Role</label>

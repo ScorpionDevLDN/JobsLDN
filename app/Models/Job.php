@@ -81,7 +81,7 @@ class Job extends Model
     public function chechStatus()
     {
         if ($this->status == 0) {
-            return 'Under Preview';
+            return 'Under Review';
         } elseif ($this->status == 1) {
             return 'Accepted';
         }

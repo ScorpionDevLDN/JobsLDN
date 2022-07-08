@@ -94,16 +94,6 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Paypal Logo</label>
-                                    <div class="col-9">
-                                        <input value="{{$payment->paypal_logo}}" name="paypal_logo" class="form-control" type="text"
-                                               id="example-text-input">
-                                        <span class="text-danger">@error('paypal_logo'){{ $message }}@enderror</span>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label class="col-3 col-form-label">Agreement</label>
                                     <div class="col-9">
                                         <input value="{{$payment->text}}" name="text" class="form-control" type="text"
@@ -119,7 +109,7 @@
                                         <div class="custom-file">
                                             <input name="image" type="file" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
-                                            <img src="{{$payment->image}}" alt="">
+                                            <img class="mt-3" width="200px" src="{{$payment->image}}" alt="">
                                             <span class="text-danger">@error('image'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -144,7 +134,7 @@
 
                                     <div class="col-12 col-lg-9 px-2">
                                         <input name="client_id" class="form-control" type="text"
-                                               value=""
+                                               value="{{$payment->client_id}}"
                                                id="example-color-input">
                                     </div>
                                 </div>
@@ -156,7 +146,7 @@
 
                                     <div class="col-12 col-lg-9 px-2">
                                         <input name="secret_id" class="form-control" type="text"
-                                               value=""
+                                               value="{{$payment->secret_id}}"
                                                id="example-color-input">
                                     </div>
                                 </div>
