@@ -8,9 +8,11 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use DatePeriod;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
@@ -34,12 +36,11 @@ class AdminController extends Controller
 
         $creds = $request->only('email', 'password');
 
-        $admin = Admin::query()->where('email',$request->email)->first();
+        $admin = Admin::query()->where('email', $request->email)->first();
 
         if (Auth::guard('admins')->attempt($creds)) {
             return redirect()->route('admin.home');
-        }
-        elseif (!Hash::check($admin->password, $request->password)) {
+        } elseif (!Hash::check($admin->password, $request->password)) {
             return Redirect::route('admin.login')
                 ->with('error', 'Your password didnt match our record !')
                 ->withInput();
@@ -60,13 +61,62 @@ class AdminController extends Controller
         $companies = Company::query()->count();
         $seekers = JobSeeker::query()->count();
         $jobs = Job::query()->count();
+
         $all_jobs = Job::query()->orderBy('created_at')->get()->groupBy(function ($t) {
             return Carbon::parse($t->created_at)->format('m');
         });
         $data_job = collect($all_jobs)->values()->map(function ($job) {
             return $job->count();
         });
-//        dd($data_job);
-        return view('dashboard.admin.home', compact('companies', 'seekers', 'jobs', 'data_job'));
+
+
+        $from = now()->subDays(30)->format('Y-m-d');
+        $to = now()->format('Y-m-d');
+
+        $period = CarbonPeriod::create($from, $to);
+        $dates = collect($period->toArray())->mapWithKeys(function ($date) {
+            return [$date->format('Y-m-d') => 0];
+        });
+
+        $uptimeChecks = Job::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->orderBy('created_at')
+            ->get();
+
+        $uptimeDates = $uptimeChecks->groupBy(function ($item, $key) {
+            return $item->created_at->format('Y-m-d');
+        });
+        $keys = $dates->keys();
+        $uptimeData = $dates->merge($uptimeDates);
+
+        $data_job_30 = collect($uptimeData)->values()->map(function ($job) {
+            return is_countable($job) ? count($job) : 0;
+        });
+
+        $fromwWeek = now()->subDays(6)->format('Y-m-d');
+
+        $periodWeek = CarbonPeriod::create($fromwWeek, $to);
+        $datesWeek = collect($periodWeek->toArray())->mapWithKeys(function ($date) {
+            return [$date->format('Y-m-d') => 0];
+        });
+
+        $uptimeChecksWeek = Job::query()
+            ->whereBetween('created_at', [$fromwWeek, $to])
+            ->orderBy('created_at')
+            ->get();
+
+        $uptimeDatesWeek = $uptimeChecksWeek->groupBy(function ($item, $key) {
+            return $item->created_at->format('Y-m-d');
+        });
+        $keysWeek = $datesWeek->keys();
+        $uptimeDataWeek = $datesWeek->merge($uptimeDatesWeek);
+
+        $data_job_7 = collect($uptimeDataWeek)->values()->map(function ($job) {
+            return is_countable($job) ? count($job) : 0;
+        });
+//        dump($datesWeek->keys());
+//        dd($data_job_7);
+
+        return view('dashboard.admin.home', compact('companies', 'seekers', 'jobs', 'data_job','keys','data_job_30','keysWeek','data_job_7'));
     }
 }
