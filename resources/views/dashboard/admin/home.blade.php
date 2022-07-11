@@ -83,7 +83,7 @@
                 <!--begin::Body-->
                 <div class="card-body d-flex align-items-center py-0 mt-8">
                     <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$companies}} total companies</a>
+                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$companies}} companies</a>
                         <span class="font-weight-bold text-muted font-size-lg"> </span>
                     </div>
                     <img src="{{asset('assets/media/svg/avatars/029-boy-11.svg')}}" alt=""
@@ -99,7 +99,7 @@
                 <!--begin::Body-->
                 <div class="card-body d-flex align-items-center py-0 mt-8">
                     <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$seekers}} total Job Seekers</a>
+                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$seekers}} Job Seekers</a>
                         <span class="font-weight-bold text-muted font-size-lg"></span>
                     </div>
                     <img src="{{asset('assets/media/svg/avatars/014-girl-7.svg')}}" alt=""
@@ -115,7 +115,7 @@
                 <!--begin::Body-->
                 <div class="card-body d-flex align-items-center py-0 mt-8">
                     <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$jobs}} total jobs</a>
+                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$jobs}} Posted jobs</a>
                         <span class="font-weight-bold text-muted font-size-lg"></span>
                     </div>
                     <img src="{{asset('assets/media/svg/avatars/004-boy-1.svg')}}" alt=""

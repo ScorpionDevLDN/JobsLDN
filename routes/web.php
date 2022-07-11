@@ -26,6 +26,7 @@ use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
 use App\Http\Controllers\JobSeeker\JobSeekerHomeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -51,6 +52,7 @@ Route::get('changeTypeStatus', [TypeController::class, 'changeTypeStatus'])->nam
 Route::get('changePostStatus', [JobController::class, 'changePostStatus'])->name('changePostStatus');
 Route::get('changeSliderStatus', [SliderController::class, 'changeSliderStatus'])->name('changeSliderStatus');
 Route::get('changePageStatus', [DynamicController::class, 'changePageStatus'])->name('changePageStatus');
+Route::get('changePartnerStatus', [PartnerController::class, 'changePartnerStatus'])->name('changePartnerStatus');
 
 
 //admin routes
@@ -84,6 +86,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('contacts', [AdminGetContactUsController::class, 'getContactUs'])->name('contacts');
         Route::resource('settings', SettingController::class);
         Route::resource('sliders', SliderController::class);
+        Route::resource('partners', PartnerController::class);
 
         Route::resource('get_companies', CompanyController::class)->middleware(['permission:user-list']);
 //        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
