@@ -66,7 +66,7 @@
                                 <div class="col-12 wow animate animate__fadeInDown salary-range-slider"
                                      style="visibility: visible; animation-name: fadeInDown;">
                                     <label for="amount">Salary:</label>
-                                    <input name="salary" type="text" id="amount" readonly="" disabled="">
+                                    <input name="salary" type="text" id="amount">
                                     <div id="salary-slider-range"
                                          class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                                         <div class="ui-slider-range ui-corner-all ui-widget-header"
@@ -98,11 +98,13 @@
                             <form action="{{route('posts.index')}}" method="get">
                                 <div class="sort-box d-flex justify-content-end">
                                     <h6 class="d-none d-lg-block mb-0">Sort by</h6>
-                                    <select class="select-2-select sort-input select2-hidden-accessible" name="filter"
+                                    <select class="select-2-select sort-input select2-hidden-accessible" name="sort_field"
                                             onchange="this.form.submit()">
                                         <option selected disabled>Sort By</option>
-                                        <option value="newest">Newest</option>
+                                        <option value="title">Title</option>
+                                        <option value="type">Type</option>
                                         <option value="salary">Salary</option>
+                                        <option value="created_at">Newest</option>
                                     </select>
                                 </div>
                             </form>

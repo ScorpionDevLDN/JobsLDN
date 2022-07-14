@@ -112,4 +112,51 @@ class Job extends Model
         return $this->hasMany(JobSeekerJob::class);
     }
 
+
+    public function scopeAccepted($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeFilterStatus($query)
+    {
+        $sortField = \request('sort_field', 'created_at');
+
+        if (!in_array($sortField, ['id', 'title','type_id','salary', 'created_at'])) {
+            $sortField = 'created_at';
+        }
+
+        $sortDirection = \request('sort_direction', 'desc');
+
+        if (!in_array($sortDirection, ['desc', 'asc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $query->orderBy($sortField, $sortDirection);
+
+        if (\request()->filled('category')) {
+            $query->where('category_id', \request()->category);
+        }
+
+        if (\request()->filled('city')) {
+            $query->where('city_id', \request()->city);
+        }
+
+        if (\request()->filled('type')) {
+            $query->where('type_id', \request()->type);
+        }
+        if (\request()->filled('salary')) {
+            $min = explode('-', \request('salary'));
+            $less = explode('£', $min[0]);
+            $than = explode('£', $min[1]);
+            $query->where('salary','>=',$less[1])->orWhere('salary','<=',$than[1]);
+
+        }
+
+        if (\request()->filled('keywords')) {
+            $keywords = \request()->keywords;
+            $query->whereRaw('(title like ?)', ["%$keywords%"]);
+        }
+    }
+
 }

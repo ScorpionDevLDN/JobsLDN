@@ -21,34 +21,15 @@ class CompanyJobsController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
-    {
-        if (\request()->filter == 'newest') {
-            $posts = Job::query()->where('status', 1)->orderByDesc('created_at')->paginate(5);
-        } elseif (\request()->filter == 'salary') {
-            $posts = Job::query()->where('status', 1)->orderByDesc('salary')->paginate(5);
-        } elseif (\request()->filled('category')) {
-            $posts = Job::query()->where('status', 1)->where('category_id', \request()->category)->paginate(5);
-        } elseif (\request()->filled('city')) {
-            $posts = Job::query()->where('status', 1)->where('city_id', \request()->city)->paginate(5);
-        } elseif (\request()->filled('type')) {
-            $posts = Job::query()->where('status', 1)->where('type_id', \request()->type)->paginate(5);
-        } elseif (\request()->filled('keywords')) {
-            $keywords = \request()->keywords;
-            $posts = Job::query()->where('status', 1)->whereRaw('(title like ?)', ["%$keywords%"])->paginate(5)->appends(['keywords' => $keywords]);
-        } elseif (\request()->filled('salary')) {
-            $posts = Job::query()->where('status', 1)->where('salary', \request('salary'))->paginate(5);
-        } else {
-            $posts = Job::query()->where('status', 1)->paginate(5);
-        }
-        $posts_company = Job::query()->where('status', 1)->where('company_id', auth('companies')->id())->paginate(5);
+    public function index(){
+        $posts = Job::query()->accepted()->FilterStatus()->paginate(5);
         $categories = Category::query()->where('status', 1)->get();
         $cities = City::query()->where('status', 1)->get();
         $types = Type::query()->where('status', 1)->get();
         $min_salary = Job::query()->min('salary');
         $max_salary = Job::query()->max('salary');
 //        return view('Front.Jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
-        return view('JobsLdn.all_jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
+        return view('JobsLdn.all_jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary'));
     }
 
     /**
