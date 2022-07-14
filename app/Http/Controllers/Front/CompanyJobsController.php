@@ -24,30 +24,31 @@ class CompanyJobsController extends Controller
     public function index()
     {
         if (\request()->filter == 'newest') {
-            $posts = Job::query()->orderByDesc('created_at')->paginate(5);
+            $posts = Job::query()->where('status', 1)->orderByDesc('created_at')->paginate(5);
         } elseif (\request()->filter == 'salary') {
-            $posts = Job::query()->orderByDesc('salary')->paginate(5);
+            $posts = Job::query()->where('status', 1)->orderByDesc('salary')->paginate(5);
         } elseif (\request()->filled('category')) {
-            $posts = Job::query()->where('category_id', \request()->category)->paginate(5);
+            $posts = Job::query()->where('status', 1)->where('category_id', \request()->category)->paginate(5);
         } elseif (\request()->filled('city')) {
-            $posts = Job::query()->where('city_id', \request()->city)->paginate(5);
+            $posts = Job::query()->where('status', 1)->where('city_id', \request()->city)->paginate(5);
         } elseif (\request()->filled('type')) {
-            $posts = Job::query()->where('type_id', \request()->type)->paginate(5);
+            $posts = Job::query()->where('status', 1)->where('type_id', \request()->type)->paginate(5);
         } elseif (\request()->filled('keywords')) {
             $keywords = \request()->keywords;
-            $posts = Job::query()->whereRaw('(title like ?)', ["%$keywords%"])->paginate(5)->appends(['keywords' => $keywords]);
+            $posts = Job::query()->where('status', 1)->whereRaw('(title like ?)', ["%$keywords%"])->paginate(5)->appends(['keywords' => $keywords]);
         } elseif (\request()->filled('salary')) {
-            $posts = Job::query()->where('salary', \request('salary'))->paginate(5);
+            $posts = Job::query()->where('status', 1)->where('salary', \request('salary'))->paginate(5);
         } else {
-            $posts = Job::query()->paginate(5);
+            $posts = Job::query()->where('status', 1)->paginate(5);
         }
-        $posts_company = Job::query()->where('company_id', auth('companies')->id())->paginate(5);
+        $posts_company = Job::query()->where('status', 1)->where('company_id', auth('companies')->id())->paginate(5);
         $categories = Category::query()->where('status', 1)->get();
         $cities = City::query()->where('status', 1)->get();
         $types = Type::query()->where('status', 1)->get();
         $min_salary = Job::query()->min('salary');
         $max_salary = Job::query()->max('salary');
-        return view('Front.Jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
+//        return view('Front.Jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
+        return view('JobsLdn.all_jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
     }
 
     /**
@@ -122,8 +123,8 @@ class CompanyJobsController extends Controller
         $created_at = Job::query()->where('id', $id)->whereDate('created_at', '<', now())->exists();
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->inRandomOrder()->take(4)->get();
-        $cvs = auth('job_seekers')->user()->cvs;
-        return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar','cvs'));
+//        $cvs = auth('job_seekers')->user()->cvs;
+        return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar'));
     }
 
     public function job_details_company($id)

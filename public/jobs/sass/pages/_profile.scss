@@ -1,0 +1,90 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.profile-content {
+  @include padding-top(100px);
+  @include padding-bottom(150px);
+  @include media ($xl) {
+    @include margin-top(130px);
+  }
+  .gap-50 {
+    row-gap: 50px;
+  }
+  hr {
+    color: #b4b4b4;
+    @include margin(100px 0);
+  }
+  .col-12.col-lg-4 {
+    width: 37.6%;
+    @include media ($lg) {
+      width: 100%;
+    }
+  }
+  .account-col {
+    margin-right: 60px;
+    @include media ($lg) {
+      @include margin-bottom(50px);
+      margin-right: 0;
+    }
+    h3,
+    p {
+      line-height: normal;
+    }
+    p {
+      @include font-size(16px);
+    }
+  }
+  .account-type-btns {
+    column-gap: 50px;
+    display: flex;
+    @include media ($lg) {
+      flex-direction: row;
+    }
+    .account-type-btn {
+      flex-grow: 1;
+      text-align: center;
+      &:hover {
+        color: $c_primary;
+        background-color: #fff;
+      }
+      &.active,
+      &.active:hover {
+        background-color: #f5f5ff;
+      }
+    }
+  }
+  .delete-account {
+    @include font-size(18px);
+    &:hover {
+      color: #f4001e;
+    }
+  }
+  .company-details-logo {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
+    .icon {
+      width: 24px;
+      cursor: pointer;
+    }
+  }
+  .toggle-password {
+    position: absolute;
+    font-size: 25px;
+    bottom: 50%;
+    right: 15px;
+    transform: translateY(50%);
+    cursor: pointer;
+    z-index: 99999999;
+    color: $c_primary;
+    &.with-p {
+      bottom: 62%;
+    }
+  }
+}

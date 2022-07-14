@@ -1,0 +1,67 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.featured-jobs {
+  .row.jobs-boxes {
+    row-gap: 1.5rem;
+  }
+  .job-box {
+    position: relative;
+    @include padding(40px);
+    border: 1px solid $c_primary;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    max-height: 230px;
+    &:hover {
+      background-color: #f5f5ff;
+      border-color: #f5f5ff;
+      max-height: 310px;
+      .more-details {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: .3s;
+      }
+    }
+    .row {
+      row-gap: 10px;
+    }
+    &.featured .featured-icon {
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      img {
+        width: 25.59px;
+      }
+    }
+    .job-place {
+      @include font-size(14px);
+      font-family: light;
+      line-height: normal;
+    }
+    .position {
+      @include font-size(20px);
+      line-height: 30px;
+    }
+    .icon-box {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 10px;
+      img {
+        width: 20px;
+      }
+      span span {
+        color: $c_heading;
+      }
+    }
+    .more-details {
+      @include margin-top(35px);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  .all-jobs {
+    @include margin-top(100px);
+  }
+}

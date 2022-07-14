@@ -1,0 +1,17 @@
+@use "./global/fonts";
+@use "./global/global";
+@use "./components/buttons";
+@use "./components/swiper_dots";
+@use "./layout/common";
+@use "./layout/header";
+@use "./layout/hero";
+@use "./layout/discover";
+@use "./layout/featured-jobs";
+@use "./layout/partners";
+@use "./layout/call-to-action";
+@use "./layout/footer";
+@use "./pages/jobs";
+@use "./pages/job";
+@use "./pages/contact";
+@use "./pages/dynamic";
+@use "./pages/profile";

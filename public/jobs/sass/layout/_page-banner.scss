@@ -1,0 +1,25 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+
+.page-banner {
+  background-color: $c_section;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include margin-bottom(100px);
+  @include media ($sm) {
+    padding-top: 100px;
+  }
+
+  .row {
+    align-items: center;
+
+    img {
+      max-width: 739.35px;
+      &.job-banner {
+        max-width: 449.3px;
+      }
+    }
+  }
+}

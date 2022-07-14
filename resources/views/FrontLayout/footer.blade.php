@@ -30,7 +30,7 @@
                 <div class="col-md-3">
                     <ul class="site-footer__nav">
                         <li><a href="{{route('home.index')}}"><small>Home</small></a></li>
-                        <li><a href="{{route('jobs.index')}}"><small>Jobs</small></a></li>
+                        <li><a href="{{route('posts.index')}}"><small>Jobs</small></a></li>
                         <li><a href="{{route('contacts.index')}}"><small>Contact</small></a></li>
                     </ul>
                 </div>

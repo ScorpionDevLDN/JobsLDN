@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminGetContactUsController;
+use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\City\CityController;
 use App\Http\Controllers\Admin\CompanyController;
@@ -105,6 +106,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put("profile", [UserController::class, 'updateProfile'])->name("profile.update");
         Route::put("updatePassword", [UserController::class, 'updatePassword'])->name("updatePassword");
 
+        Route::resource('advertises', AdvertiseController::class);
+
     });
 
 });
@@ -112,7 +115,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('')->group(function () {
     Route::resource('home', HomeFrontController::class);
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
-    Route::resource('jobs', CompanyJobsController::class);
+    Route::resource('posts', CompanyJobsController::class);
     Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
@@ -129,7 +132,8 @@ Route::prefix('')->group(function () {
 });
 
 
-Route::view('/', 'dashboard.admin.login');
+//Route::view('/', 'dashboard.admin.login');
+Route::get('/', [HomeFrontController::class, 'index']);
 Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya', function () {
@@ -148,7 +152,7 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
 });
 Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
-    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details');
+    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
     Route::post('apply/{job_id}', [CompanyJobsController::class,'apply'])->name('apply');
     Route::post('retract/{job_id}', [CompanyJobsController::class,'retract'])->name('retract');
     Route::get('bookmark/{id}', [CompanyJobsController::class,'bookmark'])->name('bookmark');

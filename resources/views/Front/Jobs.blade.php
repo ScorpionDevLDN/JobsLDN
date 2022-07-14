@@ -170,7 +170,7 @@
                                                     class="btn all-jobs applyNow"
                                                     href="{{route('job_details',$post->id)}}">Apply now</a></div>
 
-                                        <div class="d-flex align-items-center jobs__item-details-meta-item">
+                                       {{-- <div class="d-flex align-items-center jobs__item-details-meta-item">
                                             @if(auth('job_seekers')->user()->postbookmarked($post->id))
                                                 <a href="{{route('bookmark',$post->id)}}">
                                                     <div class="btn btn-outline-primary font-weight-bold btn-icon">
@@ -182,7 +182,7 @@
                                                         <i class="svg-icon svg-icon-2x far fa-star"></i></div>
                                                 </a>
                                             @endif
-                                        </div>
+                                        </div>--}}
 
                                     </div>
                                 @endforeach

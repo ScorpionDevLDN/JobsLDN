@@ -1,0 +1,85 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+
+footer {
+  .footer-top {
+    .logo {
+      max-width: 178.53px;
+      @include media ($sm) {
+        display: none;
+      }
+    }
+    h3 {
+      margin-bottom: 0;
+      @include media ($lg) {
+        line-height: normal;
+        margin-bottom: 20px;
+      }
+    }
+    border-top: 1px solid #b4b4b4;
+    border-bottom: 1px solid #b4b4b4;
+    @include padding(25px 0);
+    ul {
+      column-gap: 20px;
+      ion-icon {
+        @include font-size(30px);
+        color: $c_heading;
+        transition: all .3s ease-in-out;
+      }
+      a {
+        display: flex;
+        justify-content: center;
+      }
+      a:hover ion-icon {
+        color: $c_primary;
+      }
+    }
+    @include media ($lg) {
+      @include padding(50px 0);
+      .row {
+        text-align: center;
+      }
+    }
+  }
+  .footer-middel {
+    @include media ($sm) {
+      .row {
+        > div:nth-child(4) {
+          order: 1;
+        }
+        > div:nth-child(2),
+        > div:nth-child(3) {
+          order: 2;
+          width: 50%;
+        }
+      }
+    }
+    @include padding-top(50px);
+    @include padding-bottom( 50px);
+    h3,
+    h6 {
+      line-height: normal;
+    }
+    a {
+      color: $c_heading;
+      line-height: 30px;
+      &:hover {
+        color: $c_primary;
+      }
+    }
+    @include media ($lg) {
+      .row {
+        row-gap: 30px;
+      }
+    }
+  }
+  .footer-bottom {
+    @include padding-top( 50px);
+    @include padding-bottom( 50px);
+    border-top: 1px solid #b4b4b4;
+    p {
+      @include font-size(16px);
+    }
+  }
+}

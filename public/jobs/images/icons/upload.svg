@@ -1,0 +1,8 @@
+<svg id="upload" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="Rectangle_132" data-name="Rectangle 132" width="24" height="24" fill="none"/>
+  <g id="ic-actions-download" transform="translate(2 -0.66)">
+    <path id="Path_13" data-name="Path 13" d="M22,11.66v8a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2v-8" transform="translate(-2 0.66)" fill="none" stroke="#56bb37" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_25" data-name="Line 25" y1="11.499" transform="translate(10 3.001)" fill="none" stroke="#56bb37" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <path id="Path_14" data-name="Path 14" d="M7.22,18.481l4.11-4.1a1,1,0,0,1,1.41,0l4,4" transform="translate(-2 -11.09)" fill="none" stroke="#56bb37" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+  </g>
+</svg>

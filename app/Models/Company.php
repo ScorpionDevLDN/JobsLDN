@@ -72,7 +72,7 @@ class Company extends Authenticatable
 //
     public function getPhotoAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : asset('assets/a.jpeg');
+        return $image ? Storage::url($image) : asset('assets/media/logos/logo-4.png');
     }
 
 //
