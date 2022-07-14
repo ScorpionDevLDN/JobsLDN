@@ -1,6 +1,5 @@
 @extends('AdminDashboard.index')
 @section('breadcrumb')
-    <a href="{{route('admin.advertises.index')}}" class="btn">Job Settings</a>
     <a href="{{route('admin.advertises.index')}}" class="btn">advertises</a>
 @endsection
 @section('title','Advertises')
@@ -24,21 +23,40 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="{{route('admin.advertises.store')}}" method="post">
+                            <form enctype="multipart/form-data" action="{{route('admin.advertises.store')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Advertise</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <i aria-hidden="true" class="ki ki-close"></i>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Category Name
+                                            <label>Text
                                                 <span class="text-danger">*</span></label>
-                                            <input required type="text" name="name" class="form-control"
-                                                   placeholder="Enter Category name"/>
+                                            <input required type="text" name="text" class="form-control"
+                                                   placeholder="Enter text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Button Text
+                                                <span class="text-danger">*</span></label>
+                                            <input required type="text" name="cta" class="form-control"
+                                                   placeholder="Enter text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>link
+                                                <span class="text-danger">*</span></label>
+                                            <input required type="text" name="url" class="form-control"
+                                                   placeholder="Enter text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-file">
+                                                <input name="image" type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                <span class="text-danger">@error('image'){{ $message }}@enderror</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -60,7 +78,9 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Category Name</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Button</th>
+{{--                        <th scope="col">Link</th>--}}
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -68,7 +88,9 @@
                     @foreach($advertises as $advertise)
                         <tr>
                             <th scope="row">{{$advertise->id}}</th>
-                            <td>{{$advertise->name}}</td>
+                            <td><img class="mr-5" width="50px" src="{{$advertise->image}}" alt="">{{substr($advertise->text,0,20)}}</td>
+                            <td>{{$advertise->cta}}</td>
+{{--                            <td>{{$advertise->url}}</td>--}}
                             <td>
                                 <div class="row">
                                     <div class="col-1 pr-10" style="margin-left: -10px;">
@@ -128,12 +150,12 @@
                         <div class="modal fade" id="exampleModalEdit{{$advertise->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.advertises.update',$advertise->id)}}" method="post">
+                                <form enctype="multipart/form-data" action="{{route('admin.advertises.update',$advertise->id)}}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Advertise</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -141,11 +163,29 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Category Name
+                                                <label>Text
                                                     <span class="text-danger">*</span></label>
-                                                <input required value="{{$advertise->name}}" type="text" name="name"
-                                                       class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                <input value="{{$advertise->text}}" required type="text" name="text" class="form-control"
+                                                       placeholder="Enter text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Button Text
+                                                    <span class="text-danger">*</span></label>
+                                                <input value="{{$advertise->cta}}" required type="text" name="cta" class="form-control"
+                                                       placeholder="Enter text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>link
+                                                    <span class="text-danger">*</span></label>
+                                                <input value="{{$advertise->url}}" required type="text" name="url" class="form-control"
+                                                       placeholder="Enter text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-file">
+                                                    <input name="image" type="file" class="custom-file-input" id="customFile">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    <img width="50px" src="{{$advertise->image}}" alt="advertise{{$advertise->id}}">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -170,7 +210,7 @@
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Advertise</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -178,11 +218,10 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Are You sure to delete category? <span
+                                                <label>Are You sure to delete this? <span
                                                             class="text-danger">*</span></label>
-                                                <input readonly value="{{$advertise->name}}" type="text" name="name"
-                                                       class="form-control"
-                                                       placeholder="Enter category name"/>
+                                                <input disabled value="{{$advertise->text}}" type="text" name="text"
+                                                       class="form-control"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -232,13 +271,13 @@
             // $('.toggle-class').change(function () {
             $(document).on("click", ".toggle-class", function () {
                 var status = $(this).prop('checked') == true ? 1 : 0;
-                var category_id = $(this).data('id');
+                var advertise_id = $(this).data('id');
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changeStatus',
-                    data: {'status': status, 'id': category_id},
+                    url: '/updateAdvertiseStatus',
+                    data: {'status': status, 'id': advertise_id},
                     success: function (data) {
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';

@@ -14,6 +14,7 @@ class Advertise extends Model
         'image',
         'cta',
         'url',
+        'status',
     ];
 
         public function setImageAttribute($image)
@@ -27,7 +28,7 @@ class Advertise extends Model
 
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : asset('assets/user.png');
+        return $image ? Storage::url($image) : null;
     }
 
     public function deleteImage()
