@@ -18,7 +18,8 @@ class ContactfrontController extends Controller
     public function index()
     {
         $setting = Setting::query()->first();
-        return view('Front.Contacts', compact('setting'));
+        return view('JobsLdn.Contacts', compact('setting'));
+//        return view('Front.Contacts', compact('setting'));
     }
 
     /**
