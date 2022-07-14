@@ -134,7 +134,7 @@ Route::prefix('')->group(function () {
 
 
 //Route::view('/', 'dashboard.admin.login');
-Route::get('/', [HomeFrontController::class, 'index']);
+Route::get('/', [HomeFrontController::class, 'index'])->name('myHome');
 Route::view('/a', 'dashboard.crud.index');
 
 Route::get('aya', function () {

@@ -95,17 +95,17 @@
                             </div>
                         </div>
                         <div class="col-6 col-lg-6 col-xl-4">
-                            <div class="sort-box d-flex justify-content-end">
-                                <h6 class="d-none d-lg-block mb-0">Sort by</h6>
-                                <form action="{{route('posts.index')}}" method="get">
+                            <form action="{{route('posts.index')}}" method="get">
+                                <div class="sort-box d-flex justify-content-end">
+                                    <h6 class="d-none d-lg-block mb-0">Sort by</h6>
                                     <select class="select-2-select sort-input select2-hidden-accessible" name="filter"
                                             onchange="this.form.submit()">
                                         <option selected disabled>Sort By</option>
                                         <option value="newest">Newest</option>
                                         <option value="salary">Salary</option>
                                     </select>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="col-6 d-block d-lg-none text-end mb-5">
                             <button class="button filter-button" type="button" id="filter-button">

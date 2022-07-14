@@ -48,13 +48,13 @@
                     <div class="d-flex flex-column flex-md-row gap-0 gap-md-5">
                         <ul>
                             <li>
-                                <a href="#">Home</a>
+                                <a href="{{route('myHome')}}">Home</a>
                             </li>
                             <li>
-                                <a href="#">Jobs</a>
+                                <a href="{{route('posts.index')}}">Jobs</a>
                             </li>
                             <li>
-                                <a href="#">Contact</a>
+                                <a href="{{route('contacts.index')}}">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -62,18 +62,9 @@
                 <div class="col-12 col-lg-6 col-xxl-3">
                     <div class="d-flex flex-column flex-md-row gap-0 gap-md-5">
                         <ul>
-                            <li>
-                                <a href="#">Dynamic Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Dynamic Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="#">Terms & conditions</a>
-                            </li>
+                            @foreach(\App\Models\DynamicPage::query()->where('status',1)->whereIn('shown_in',[0,2])->take(3)->get() as $page )
+                                <li><a href="{{route('page',$page->slug)}}"><small>{{$page->title}}</small></a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
