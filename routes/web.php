@@ -58,7 +58,7 @@ Route::get('updateAdvertiseStatus', [AdvertiseController::class, 'updateAdvertis
 
 
 //admin routes
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('manage')->name('admin.')->group(function () {
 
     Route::view('/login', 'dashboard.admin.login')->name('login');
     Route::post('/check', [AdminController::class, 'check'])->name('check');
