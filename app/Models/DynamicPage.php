@@ -52,4 +52,14 @@ class DynamicPage extends Model
         ])->get($this->shown_in);
     }
 
+    public function scopeAccepted($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeHeaderAndFooter($query)
+    {
+        return $query->whereIn('shown_in', 1,2);
+    }
+
 }

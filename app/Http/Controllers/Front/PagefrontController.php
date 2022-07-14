@@ -22,7 +22,8 @@ class PagefrontController extends Controller
     public function page($slug)
     {
         $page = DynamicPage::query()->where('slug',$slug)->first();
-        return view('Front.DynamicPage',compact('page'));
+        return view('JobsLdn.DynamicPage',compact('page'));
+//        return view('Front.DynamicPage',compact('page'));
     }
 
     /**
