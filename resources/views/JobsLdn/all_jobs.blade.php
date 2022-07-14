@@ -13,7 +13,7 @@
                     </h1>
                 </div>
                 <div class="col-12 col-lg-6 d-none d-lg-block">
-                    <img src="{{asset('jobs/images/page-banners/jobs_banner.svg')}}" alt="Girl">
+                    <img src="{{asset('jobs/images/jobs_banner.svg')}}" alt="Girl">
                 </div>
             </div>
         </div>
