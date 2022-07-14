@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Slider;
+use App\Models\Advertise;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\Partner;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,8 @@ class HomeFrontController extends Controller
     public function index()
     {
         $sliders = Slider::query()->where('status', 1)->get();
-//        $sliders = Slider::query()->where('status', 1)->get();
+        $partners = Partner::query()->where('status', 1)->get();
+        $advertise = Advertise::query()->where('status', 1)->inRandomOrder()->take(1)->first();
         $companies = Company::query()->count();
         $job_seekers = JobSeeker::query()->count();
         $posts_count = Job::query()->count();
@@ -30,7 +33,10 @@ class HomeFrontController extends Controller
         $categories = Category::query()->where('status', 1)->get();
         $cities = City::query()->where('status', 1)->get();
         $types = Type::query()->where('status', 1)->get();
-        return view('JobsLdn.home', compact('sliders', 'posts', 'companies', 'job_seekers', 'posts_count', 'categories', 'cities', 'types'));
+        return view('JobsLdn.home',
+            compact('sliders', 'posts',
+                'companies', 'job_seekers', 'posts_count',
+                'categories', 'cities', 'types','partners','advertise'));
     }
 
     /**

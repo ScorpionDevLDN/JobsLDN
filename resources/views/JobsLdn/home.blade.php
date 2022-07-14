@@ -233,27 +233,11 @@
             </div>
             <div class="swiper partnersSwiper wow animate animate__fadeInUp">
                 <div class="swiper-wrapper">
+                    @foreach($partners as $partner)
                     <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
+                        <img src="{{$partner->image}}" alt="Partner">
                     </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{asset('jobs/images/partners/partner.svg')}}" alt="Partner">
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -265,13 +249,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 d-none d-lg-block">
-                    <img src="{{asset('jobs/images/call-to-action.svg')}}" alt="Girl"
+                    <img src="{{$advertise->image}}" alt="Girl"
                          class="wow animate animate__fadeIn">
                 </div>
                 <div class="col-12 col-lg-6">
-                    <h2 class="wow animate animate__fadeInUp">The best businesses deserve
-                        the best people</h2>
-                    <a href="#" class="button wow animate animate__fadeInDown">Advertise now</a>
+                    <h2 class="wow animate animate__fadeInUp">{{$advertise->text}}</h2>
+                    <a target="_blank" href="{{$advertise->url}}" class="button wow animate animate__fadeInDown">{{$advertise->cta}}</a>
                 </div>
             </div>
         </div>
