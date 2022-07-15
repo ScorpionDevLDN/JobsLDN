@@ -48,7 +48,7 @@
                         <a class="nav-link" href="{{route('page',\App\Models\DynamicPage::query()->accepted()->first()->slug)}}">{{\App\Models\DynamicPage::query()->accepted()->first()->title}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{{route('contacts.index')}}">Contact</a>
                     </li>
                     <li class="nav-item d-block d-xl-none">
                         <a class="nav-link" href="#">Profile</a>
