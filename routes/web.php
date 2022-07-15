@@ -59,7 +59,9 @@ Route::get('updateAdvertiseStatus', [AdvertiseController::class, 'updateAdvertis
 
 //admin routes
 Route::prefix('manage')->name('admin.')->group(function () {
-
+    Route::get('/', function () {
+        return redirect()->route('admin.login');
+    });
     Route::view('/login', 'dashboard.admin.login')->name('login');
     Route::post('/check', [AdminController::class, 'check'])->name('check');
 
@@ -117,10 +119,10 @@ Route::prefix('')->group(function () {
     Route::resource('home', HomeFrontController::class);
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
     Route::resource('posts', CompanyJobsController::class);
-    Route::get('download/{id}', [CompanyJobsController::class,'download'])->name('download');
+    Route::get('download/{id}', [CompanyJobsController::class, 'download'])->name('download');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
-    Route::get('page/{slug}', [PagefrontController::class,'page'])->name('page');
+    Route::get('page/{slug}', [PagefrontController::class, 'page'])->name('page');
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);
@@ -153,23 +155,23 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
 });
 Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
-    Route::get('job/{slug}', [CompanyJobsController::class,'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
-    Route::post('apply/{job_id}', [CompanyJobsController::class,'apply'])->name('apply');
-    Route::post('retract/{job_id}', [CompanyJobsController::class,'retract'])->name('retract');
-    Route::get('bookmark/{id}', [CompanyJobsController::class,'bookmark'])->name('bookmark');
-    Route::get('un_bookmark/{id}', [CompanyJobsController::class,'un_bookmark'])->name('un_bookmark');
-    Route::post('upload_cv', [CompanyJobsController::class,'uploadCv'])->name('uploadCv');
-    Route::post('delete_cv/{id}', [CompanyJobsController::class,'deleteCv'])->name('deleteCv');
+    Route::get('job/{slug}', [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
+    Route::post('apply/{job_id}', [CompanyJobsController::class, 'apply'])->name('apply');
+    Route::post('retract/{job_id}', [CompanyJobsController::class, 'retract'])->name('retract');
+    Route::get('bookmark/{id}', [CompanyJobsController::class, 'bookmark'])->name('bookmark');
+    Route::get('un_bookmark/{id}', [CompanyJobsController::class, 'un_bookmark'])->name('un_bookmark');
+    Route::post('upload_cv', [CompanyJobsController::class, 'uploadCv'])->name('uploadCv');
+    Route::post('delete_cv/{id}', [CompanyJobsController::class, 'deleteCv'])->name('deleteCv');
 
 });
-Route::get('myJobs', [CompanyJobsController::class,'myAppliedJobs'])->name('myJobs');
-Route::get('myBookmarks', [CompanyJobsController::class,'myBookmarks'])->name('myBookmarks');
+Route::get('myJobs', [CompanyJobsController::class, 'myAppliedJobs'])->name('myJobs');
+Route::get('myBookmarks', [CompanyJobsController::class, 'myBookmarks'])->name('myBookmarks');
 
 Route::prefix('jobs')->middleware('auth:companies')->group(function () {
-    Route::get('job_details/{slug}', [CompanyJobsController::class,'job_details_company'])->name('job_details_company');
-    Route::delete('job/{id}', [CompanyJobsController::class,'deleteJob'])->name('deleteJob');
-    Route::get('edit_job/{id}', [CompanyJobsController::class,'editJob'])->name('editJob');
-    Route::post('edit_job_update/{id}', [CompanyJobsController::class,'editJobUpdate'])->name('editJobUpdate');
+    Route::get('job_details/{slug}', [CompanyJobsController::class, 'job_details_company'])->name('job_details_company');
+    Route::delete('job/{id}', [CompanyJobsController::class, 'deleteJob'])->name('deleteJob');
+    Route::get('edit_job/{id}', [CompanyJobsController::class, 'editJob'])->name('editJob');
+    Route::post('edit_job_update/{id}', [CompanyJobsController::class, 'editJobUpdate'])->name('editJobUpdate');
 });
 
 Route::post('pay/{id}', [PaymentController::class, 'pay'])->name('payment');
