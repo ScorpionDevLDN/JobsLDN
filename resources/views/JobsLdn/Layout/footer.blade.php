@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="{{\App\Models\Setting::query()->first()->facebook_link}}">
+                            <a target="_blank" href="{{redirect()->away(\App\Models\Setting::query()->first()->facebook_link)}}">
                                 <ion-icon name="logo-facebook"></ion-icon>
                             </a>
                         </li>
