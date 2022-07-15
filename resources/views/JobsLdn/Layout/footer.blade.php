@@ -9,27 +9,27 @@
                     <h3>Following us now</h3>
                     <ul class="d-flex">
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{\App\Models\Setting::query()->first()->telegram_link}}">
                                 <ion-icon name="logo-linkedin"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{\App\Models\Setting::query()->first()->twitter_link}}">
                                 <ion-icon name="logo-twitter"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{\App\Models\Setting::query()->first()->instagram_link}}">
                                 <ion-icon name="logo-instagram"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{\App\Models\Setting::query()->first()->facebook_link}}">
                                 <ion-icon name="logo-facebook"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a  target="_blank" href="{{\App\Models\Setting::query()->first()->youtube_link}}">
                                 <ion-icon name="logo-youtube"></ion-icon>
                             </a>
                         </li>
