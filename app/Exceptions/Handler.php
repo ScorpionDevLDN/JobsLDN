@@ -10,7 +10,7 @@ class Handler extends ExceptionHandler
 {
     protected function unauthenticated($request, AuthenticationException $exception)
         {
-            if ($request->is('admins') || $request->is('manage/*')) {
+            if ($request->is('manage') || $request->is('manage/*')) {
                 return redirect()->guest('/manage/login');
             }
             if ($request->is('companies') || $request->is('company/*')) {
