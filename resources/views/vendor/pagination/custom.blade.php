@@ -26,7 +26,7 @@
 
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <a class="jobs-page">
+                        <a class="jobs-page active">
                             {{ $page }}
                         </a>
                     @else
