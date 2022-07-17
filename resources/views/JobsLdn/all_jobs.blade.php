@@ -98,7 +98,8 @@
                             <form action="{{route('posts.index')}}" method="get">
                                 <div class="sort-box d-flex justify-content-end">
                                     <h6 class="d-none d-lg-block mb-0">Sort by</h6>
-                                    <select class="select-2-select sort-input select2-hidden-accessible" name="sort_field"
+                                    <select class="select-2-select sort-input select2-hidden-accessible"
+                                            name="sort_field"
                                             onchange="this.form.submit()">
                                         <option selected disabled>Sort By</option>
                                         <option value="title">Title</option>
@@ -233,11 +234,7 @@
                         @endif
                     </div>
                     <!-- Start Jobs Pagination -->
-                    @if ($posts->hasPages())
-                        <div class="pagination-wrapper">
-                            {{ $posts->links() }}
-                        </div>
-                @endif
+                {{ $posts->links('vendor.pagination.custom') }}
                 <!-- End Jobs Pagination -->
                 </div>
             </div>
