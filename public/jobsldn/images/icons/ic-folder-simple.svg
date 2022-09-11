@@ -1,0 +1,7 @@
+<svg id="ic-folder-simple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="Rectangle_260" data-name="Rectangle 260" width="24" height="24" fill="none"/>
+  <g id="ic-folder-simple-2" data-name="ic-folder-simple" transform="translate(-0.62 -0.25)">
+    <path id="Path_200" data-name="Path 200" d="M3,7.6H20.24a2,2,0,0,1,2,2V18a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2Z" fill="none" stroke="#2923ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_201" data-name="Path 201" d="M3,10.7V5.39a.92.92,0,0,1,.94-.89h9.19a1,1,0,0,1,.67.26L15.44,7.6" fill="none" stroke="#2923ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -17,9 +17,7 @@ class ContactfrontController extends Controller
      */
     public function index()
     {
-        $setting = Setting::query()->first();
-        return view('JobsLdn.Contacts', compact('setting'));
-//        return view('Front.Contacts', compact('setting'));
+        return view('frontend.jobsldn.Contacts');
     }
 
     /**
@@ -45,7 +43,7 @@ class ContactfrontController extends Controller
             'email' => 'required',
             'subject' => 'required',
             'message' => 'required',
-            'attachment' => 'required|mimes:pdf|max:10000',
+            'attachment' => 'sometimes|mimes:pdf',
         ]);
         Contact::query()->create($request->all());
 

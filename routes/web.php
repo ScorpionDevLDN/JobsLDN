@@ -117,12 +117,15 @@ Route::prefix('manage')->name('admin.')->group(function () {
 
 Route::prefix('')->group(function () {
     Route::resource('home', HomeFrontController::class);
+    Route::get('set-cookie', [HomeFrontController::class, 'setCookies'])->name('cookie');
     Route::post('logout', [HomeFrontController::class, 'logout'])->name('logoutFront');
+
     Route::resource('posts', CompanyJobsController::class);
     Route::get('download/{id}', [CompanyJobsController::class, 'download'])->name('download');
 //    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::get('page/{slug}', [PagefrontController::class, 'page'])->name('page');
+
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
     Route::resource('company-profile', CompanyProfileController::class);
@@ -134,27 +137,16 @@ Route::prefix('')->group(function () {
     Route::resource('company-post-job', CompanyPostJobController::class);
 });
 
-
-//Route::view('/', 'dashboard.admin.login');
 Route::get('/', [HomeFrontController::class, 'index'])->name('myHome');
-Route::view('/a', 'dashboard.crud.index');
-
-Route::get('aya', function () {
-    set_time_limit(0);
-    Artisan::call('optimize');
-    Artisan::call('config:cache');
-    Artisan::call('cache:clear');
-//    Artisan::call('migrate:fresh --seed');
-    return 'success clear';
-});
 
 Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 
-    Route::post('/create', [JobSeekerController::class, 'create'])->name('create');
+    Route::post('/createJobSeeker', [JobSeekerController::class, 'createJobSeeker'])->name('createJobSeeker');
+    Route::post('/createCompany', [JobSeekerController::class, 'createCompany'])->name('createCompany');
     Route::post('/check', [JobSeekerController::class, 'check'])->name('check');
 
 });
-Route::prefix('jobs')->middleware('auth:job_seekers')->group(function () {
+Route::prefix('posts')->middleware('auth:job_seekers')->group(function () {
     Route::get('job/{slug}', [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
     Route::post('apply/{job_id}', [CompanyJobsController::class, 'apply'])->name('apply');
     Route::post('retract/{job_id}', [CompanyJobsController::class, 'retract'])->name('retract');

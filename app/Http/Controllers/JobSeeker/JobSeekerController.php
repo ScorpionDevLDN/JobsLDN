@@ -10,53 +10,55 @@ use Illuminate\Support\Facades\Auth;
 
 class JobSeekerController extends Controller
 {
-    function create(Request $request)
+    public function createJobSeeker(Request $request)
     {
-        if ($request->type == 'company') {
-            $request->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'email' => 'required|email|unique:companies,email',
-                'password' => 'required|min:5|max:30',
-                'cpassword' => 'required|min:5|max:30|same:password',
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:job_seekers,email',
+            'password' => 'required|min:5|max:30',
+            'cpassword' => 'required|min:5|max:30|same:password',
 //                'read_conditions' => 'required|in:1',
-            ]);
+        ]);
 
-            $save = Company::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
+        $save = JobSeeker::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
 
-            $creds = $request->only('email', 'password');
+        $creds = $request->only('email', 'password');
 
-            if (Auth::guard('companies')->attempt($creds)) {
-                Auth::guard('companies')->login($save);
-                return redirect()->route('home.index');
-            }
-            return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
-        } else {
-            $request->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'email' => 'required|email|unique:job_seekers,email',
-                'password' => 'required|min:5|max:30',
-                'cpassword' => 'required|min:5|max:30|same:password',
-//                'read_conditions' => 'required|in:1',
-            ]);
-
-            $save = JobSeeker::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
-
-            $creds = $request->only('email', 'password');
-
-            if (Auth::guard('job_seekers')->attempt($creds)) {
-                Auth::guard('job_seekers')->login($save);
-                return redirect()->route('home.index');
-            }
-            return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
+        if (Auth::guard('job_seekers')->attempt($creds)) {
+            Auth::guard('job_seekers')->login($save);
+            return redirect()->route('home.index');
         }
+        return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
+
+    }
+
+    public function createCompany(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:companies,email',
+            'password' => 'required|min:5|max:30',
+            'cpassword' => 'required|min:5|max:30|same:password',
+//                'read_conditions' => 'required|in:1',
+        ]);
+
+        $save = Company::query()->create($request->only('first_name', 'last_name', 'email', 'confirm_email', 'password'));
+
+        $creds = $request->only('email', 'password');
+
+        if (Auth::guard('companies')->attempt($creds)) {
+            Auth::guard('companies')->login($save);
+            return redirect()->route('home.index');
+        }
+        return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
 
     }
 
     function check(Request $request)
     {
-        if (JobSeeker::query()->where('email',$request->email)->exists()){
+        if (JobSeeker::query()->where('email', $request->email)->exists()) {
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:job_seekers,email',
@@ -72,8 +74,7 @@ class JobSeekerController extends Controller
             } else {
                 return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
             }
-        }
-        elseif (Company::query()->where('email',$request->email)->exists()){
+        } elseif (Company::query()->where('email', $request->email)->exists()) {
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:companies,email',

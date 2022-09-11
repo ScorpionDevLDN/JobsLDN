@@ -1,0 +1,19 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.featured-jobs {
+  .row.jobs-boxes {
+    row-gap: 1.5rem;
+    .icon-box {
+      width: 100%;
+      align-items: flex-start;
+      img {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .all-jobs {
+    @include margin-top(100px);
+  }
+}

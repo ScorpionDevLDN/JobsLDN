@@ -1,0 +1,37 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+
+.page-banner {
+  background-color: $c_section;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include margin-bottom(100px);
+  height: 600px;
+  @include media($lg) {
+    height: auto;
+  }
+  @include media ($sm) {
+    padding-top: 100px;
+  }
+
+  .row {
+    align-items: center;
+  }
+  .jobs-banner {
+    max-width: 600px;
+  }
+  .dynamic-banner {
+    max-width: 390px;
+  }
+  .contact-banner {
+    max-width: 500px;
+  }
+  .job-not-available-banner {
+    max-width: 300px;
+  }
+  .post-a-job-banner {
+    max-width: 500px;
+  }
+}

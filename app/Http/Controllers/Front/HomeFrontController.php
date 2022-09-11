@@ -11,7 +11,9 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
 use App\Models\Partner;
+use App\Models\Setting;
 use App\Models\Type;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class HomeFrontController extends Controller
@@ -33,10 +35,11 @@ class HomeFrontController extends Controller
         $categories = Category::query()->where('status', 1)->get();
         $cities = City::query()->where('status', 1)->get();
         $types = Type::query()->where('status', 1)->get();
-        return view('JobsLdn.home',
+        $setting = Setting::query()->first();
+        return view('frontend.jobsldn.home',
             compact('sliders', 'posts',
                 'companies', 'job_seekers', 'posts_count',
-                'categories', 'cities', 'types','partners','advertise'));
+                'categories', 'cities', 'types','partners','advertise','setting'));
     }
 
     /**
@@ -116,8 +119,19 @@ class HomeFrontController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
-        return redirect('/home');
+        return redirect()->route('home.index');
     }
 
+    public function setCookies(Request $request)
+    {
+
+        if ($request->has('accept')) {
+            $response = new Response('Set Cookie');
+            $response->cookie(cookie('nishan-cookie', 'MyValue', 129500));
+            return $response;
+        }
+
+        return false;
+    }
 
 }

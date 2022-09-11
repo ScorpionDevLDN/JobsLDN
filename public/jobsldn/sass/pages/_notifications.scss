@@ -1,0 +1,35 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.notifications {
+  .gap-20 {
+    row-gap: 20px;
+  }
+  .alert {
+    display: flex;
+    column-gap: 15px;
+    background-color: #f5f5fe;
+    border-radius: 5px;
+    align-items: center;
+    color: $c_primary;
+    @include font-size(16px);
+    margin-bottom: 0;
+    p {
+      color: $c_primary;
+      @include font-size(16px);
+    }
+    .icon {
+      width: 24px;
+      max-width: 24px;
+      @include media ($md) {
+        width: 50px;
+        max-width: 50px;
+      }
+    }
+    span {
+      color: $c_heading;
+      font-family: bold;
+    }
+  }
+}

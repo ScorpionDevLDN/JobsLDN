@@ -1,0 +1,86 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+/*!
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.fa {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+.fa-check:before {
+  content: "\f00c";
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url(../../webfonts/fa-solid-900.eot);
+  src: url(../../webfonts/fa-solid-900.eot?#iefix) format("embedded-opentype"),
+    url(../../webfonts/fa-solid-900.woff2) format("woff2"),
+    url(../../webfonts/fa-solid-900.woff) format("woff"),
+    url(../../webfonts/fa-solid-900.ttf) format("truetype");
+}
+.checkboxes input[type=checkbox]:checked + label:before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  background-color: $c_primary;
+  border-color: $c_primary;
+  color: #fef6ed;
+  font-style: normal;
+  font-weight: 900;
+  font-display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}
+label[for*=option] {
+  color: #fef6ed;
+}
+
+.checkboxes.radios input[type=radio],
+.checkboxes input[type=checkbox] {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.checkboxes label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  left: 38px;
+  margin-bottom: 0;
+  color: #000;
+  @include font-size(16px);
+}
+
+.checkboxes label:before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  left: -38px;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid $c_primary;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: all .25s;
+  @include font-size(16px);
+  color: #fff;
+  text-align: center;
+}
+
+.checkboxes input[type=checkbox]:checked + label:before,
+.checkboxes input[type=radio]:checked + label:before {
+  background-color: $c_primary;
+}

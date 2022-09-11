@@ -29,7 +29,7 @@ class CompanyJobsController extends Controller
         $min_salary = Job::query()->min('salary');
         $max_salary = Job::query()->max('salary');
 //        return view('Front.Jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
-        return view('JobsLdn.all_jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary'));
+        return view('frontend.jobsldn.jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary'));
     }
 
     /**
@@ -105,7 +105,7 @@ class CompanyJobsController extends Controller
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->inRandomOrder()->take(4)->get();
 //        $cvs = auth('job_seekers')->user()->cvs;
-        return view('Front.Single-job', compact('post', 'bookmarked', 'created_at','similar'));
+        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at','similar'));
     }
 
     public function job_details_company($id)

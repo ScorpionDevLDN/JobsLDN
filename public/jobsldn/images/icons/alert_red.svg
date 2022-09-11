@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_352" data-name="Group 352" transform="translate(-558 -673)">
+    <rect id="Rectangle_469" data-name="Rectangle 469" width="24" height="24" transform="translate(558 673)" fill="none"/>
+    <path id="Path_437" data-name="Path 437" d="M19,18H5L7.217,6.921A4.878,4.878,0,0,1,12,3h0a4.878,4.878,0,0,1,4.783,3.921l1.16,5.8Z" transform="translate(558 673)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd"/>
+    <line id="Line_562" data-name="Line 562" x2="18" transform="translate(561 691)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_438" data-name="Path 438" d="M15,18a3,3,0,0,1-6,0" transform="translate(558 673)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_563" data-name="Line 563" x1="4.243" y2="4.243" transform="translate(567.879 682.828)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <line id="Line_564" data-name="Line 564" x1="4.243" y1="4.243" transform="translate(567.879 682.828)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+  </g>
+</svg>

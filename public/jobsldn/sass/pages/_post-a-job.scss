@@ -1,0 +1,85 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.post-a-job-content {
+  @include padding-bottom(150px);
+  .account-col {
+    margin-right: 60px;
+    @include media ($lg) {
+      @include margin-bottom(50px);
+      margin-right: 0;
+    }
+    h3,
+    p {
+      line-height: normal;
+    }
+    p {
+      @include font-size(16px);
+    }
+  }
+  .pdf-upload-btn {
+    img {
+      width: 20px;
+    }
+  }
+  hr {
+    color: #b4b4b4;
+    @include margin(100px 0);
+  }
+  .select2-container--default .select2-selection--single {
+    background-color: #fff;
+  }
+  input {
+    padding-left: calc(1.3125rem + 0.75vw) !important;
+    color: $c_primary !important;
+    &::placeholder {
+      color: $c_primary !important;
+    }
+  }
+  .date-icon {
+    position: absolute;
+    width: 30px;
+    top: 35%;
+    transform: translateY(-50%);
+    right: 25px;
+    z-index: 99999999;
+  }
+  .cancel-button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: $c_text;
+  }
+  .super-post {
+    background-color: $c_section;
+    h2 {
+      line-height: normal;
+    }
+    border-radius: 5px;
+    @include padding(50px  70px);
+    overflow: hidden;
+    @include media ($lg) {
+      @include padding(50px  70px);
+    }
+    p.super-post-text {
+      color: $c_primary;
+      @include margin(50px 0);
+    }
+    img.super-post-img {
+      transform: translateY(20px);
+    }
+    .secured-by {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      p {
+        color: $c_heading;
+        @include font-size(14px);
+      }
+      .paypal {
+        max-width: 50px;
+      }
+    }
+  }
+}

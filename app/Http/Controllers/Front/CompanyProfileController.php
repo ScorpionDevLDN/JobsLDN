@@ -24,7 +24,7 @@ class CompanyProfileController extends Controller
         else{
             $user = auth('companies')->user();
         }
-        return view('Front.profile-company',compact('user'));
+        return view('frontend.jobsldn.profile',compact('user'));
     }
 
     /**

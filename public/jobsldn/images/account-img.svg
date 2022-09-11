@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g id="account-img" transform="translate(-560 -810)">
+    <g id="account-img-2" data-name="account-img">
+      <circle id="Ellipse_66" data-name="Ellipse 66" cx="60" cy="60" r="60" transform="translate(560 810)" fill="#f0eded"/>
+    </g>
+    <g id="ic-actions-user" transform="translate(605 855)">
+      <rect id="Rectangle_166" data-name="Rectangle 166" width="30" height="30" fill="none"/>
+      <g id="ic-actions-user-2" data-name="ic-actions-user" transform="translate(3.75 2.488)">
+        <path id="Path_42" data-name="Path 42" d="M3,24.5l.988-3.6C7.25,9.026,21.25,9.026,24.512,20.9l.988,3.6" transform="translate(-3 0.524)" fill="none" stroke="#2132f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <circle id="Ellipse_20" data-name="Ellipse 20" cx="6.25" cy="6.25" r="6.25" transform="translate(5)" fill="none" stroke="#2132f5" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

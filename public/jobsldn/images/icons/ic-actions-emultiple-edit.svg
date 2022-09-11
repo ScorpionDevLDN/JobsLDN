@@ -1,0 +1,8 @@
+<svg id="ic-actions-emultiple-edit" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <rect id="Rectangle_131" data-name="Rectangle 131" width="50" height="50" fill="none"/>
+  <g id="ic-actions-emultiple-edit-2" data-name="ic-actions-emultiple-edit" transform="translate(5.462 3.911)">
+    <path id="Path_15" data-name="Path 15" d="M35.345,21.375V33.25a4.167,4.167,0,0,1-4.167,4.167H9.887A4.167,4.167,0,0,1,5.72,33.25V6.167A4.167,4.167,0,0,1,9.887,2H22.178" transform="translate(0.947 -1.905)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <path id="Path_16" data-name="Path 16" d="M32.124,35v2.5a4.167,4.167,0,0,1-4.167,4.167H6.687A4.167,4.167,0,0,1,2.52,37.5V8.4A4.167,4.167,0,0,1,6.687,4.23h2.5" transform="translate(-2.52 0.511)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <path id="Path_17" data-name="Path 17" d="M27.447,2.57a2.083,2.083,0,0,0-2.958,0l-12.5,12.5h0l-.208,6.25a.437.437,0,0,0,.479.458l6.25-.208h0l12.5-12.5a2.083,2.083,0,0,0-.021-2.854Z" transform="translate(7.511 -1.954)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

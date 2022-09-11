@@ -1,0 +1,12 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+.dynamic-content {
+  @include padding-bottom(150px);
+  .dynamic-desc-content p {
+    @include font-size(18px);
+    color: $c_heading;
+    line-height: 30px;
+    @include margin-bottom(50px);
+  }
+}
