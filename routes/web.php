@@ -32,6 +32,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SocialShareButtonsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -172,5 +173,6 @@ Route::prefix('jobs')->middleware('auth:companies')->group(function () {
 Route::post('pay/{id}', [PaymentController::class, 'pay'])->name('payment');
 Route::get('success', [PaymentController::class, 'success']);
 Route::get('error', [PaymentController::class, 'error']);
+Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget'])->name('ShareWidget');
 
 

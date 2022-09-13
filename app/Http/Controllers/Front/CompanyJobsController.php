@@ -103,7 +103,12 @@ class CompanyJobsController extends Controller
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->active()->inRandomOrder()->take(4)->get();
         $cvs = auth('job_seekers')->check() ? auth('job_seekers')->user()->cvs : null;
-        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar','cvs'));
+        $shareComponent = \Share::page(
+            'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+            'Your share text comes here',
+        )
+            ->whatsapp();
+        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar', 'cvs', 'shareComponent'));
     }
 
     public function job_details_company($id)

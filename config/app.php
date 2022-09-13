@@ -187,6 +187,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 //        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
         /*
@@ -212,6 +213,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Share' => Jorenvh\Share\ShareFacade::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
 //        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
 //        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
