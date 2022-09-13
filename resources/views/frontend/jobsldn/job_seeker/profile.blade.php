@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-9">
-                    <form action="{{route('uploadCv')}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('uploadCv')}}" method="post">
                         @csrf
                         <div class="row gap-20">
                             @if(auth('job_seekers')->user()->cvs->count() < 10)

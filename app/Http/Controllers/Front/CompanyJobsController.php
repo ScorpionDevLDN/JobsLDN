@@ -162,9 +162,10 @@ class CompanyJobsController extends Controller
     {
         $cv = JobSeekerCv::query()->where('id', $id)->first();
         if ($cv and isset($cv->pdf)) {
+            $extensions = explode('.', $cv->pdf);
+            $ext = $extensions[count($extensions) - 1];
             // return $ext;
-            //return Storage::disk('public_storage')->download($cv->pdf, 'aya.pdf');
-            return Storage::download($cv->pdf);
+            return Storage::disk('public')->download($cv->pdf, 'aya' . '.' . $ext);
         }
         return redirect()->back();
     }
@@ -192,7 +193,7 @@ class CompanyJobsController extends Controller
         }
 
         $data['job_seeker_id'] = auth('job_seekers')->id();
-        $data['cv_name'] = 'aya.pdf';
+        $data['cv_name'] = $request->pdf;
         JobSeekerCv::query()->create($data);
         return redirect()->back()->with('cvSuccess', 'Cv Uploaded successfully!');
     }
