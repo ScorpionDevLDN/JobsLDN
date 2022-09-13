@@ -42,13 +42,14 @@
                             <a href="#" class="button outline" data-bs-toggle="modal" data-bs-target="#post-job">Post a job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link {{$menu == 'home' ? 'active' : ''}}" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('posts.index')}}">Jobs</a>
+                            <a class="nav-link {{$menu == 'jobs' ? 'active' : ''}}" href="{{route('posts.index')}}">Jobs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
+                            @php $title = \App\Models\DynamicPage::query()->accepted()->first()->title; @endphp
+                            <a class="nav-link {{$menu == $title ? 'active' : ''}}"
                                href="{{route('page',\App\Models\DynamicPage::query()->accepted()->first()->slug)}}">{{\App\Models\DynamicPage::query()->accepted()->first()->title}}</a>
                         </li>
                         <li class="nav-item">
@@ -144,7 +145,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-block d-xl-none">
-                            <a href="#" class="button outline">Apply for a job</a>
+                            <a href="{{route('posts.index')}}" class="button outline">Apply for a job</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{$menu == 'home' ? 'active' : ''}}" aria-current="page" href="/">Home</a>
@@ -175,7 +176,7 @@
                         </li>
                     </ul>
                     <div class="header-button d-none d-xl-block">
-                        <a href="#" class="button outline">Apply for a job</a>
+                        <a href="{{route('posts.index')}}" class="button outline">Apply for a job</a>
                     </div>
                     <div class="header-profile-info d-flex align-items-center d-none d-xl-flex">
                         <div class="avatar">
@@ -270,3 +271,6 @@
         </nav>
     </header>
 @endif
+
+<!-- Post a job -->
+@include('frontend.jobsldn.app.parts.post_job')
