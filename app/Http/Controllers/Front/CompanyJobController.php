@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class CompanyJobController extends Controller
@@ -14,7 +15,8 @@ class CompanyJobController extends Controller
      */
     public function index()
     {
-        return view('Front.CompanyJobs');
+        $posts = Job::query()->where('company_id',auth('companies')->id())->paginate(5);
+        return view('frontend.jobsldn.company.jobs',compact('posts'));
     }
 
     /**
