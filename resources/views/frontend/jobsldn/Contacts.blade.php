@@ -117,7 +117,7 @@
                                             Upload attachment
                                             <img src="{{asset('jobsldn/images/icons/ic-actions-add-file.svg')}}" alt="Donwload Icon">
                                         </label>
-                                        <input class="custom-upload__input" name="attachment" accept=".pdf"
+                                        <input class="custom-upload__input" name="attachment_pdf" accept=".pdf"
                                                id="client_form_file" type="file" data-behaviour="custom-upload-input"
                                                >
                                         <p class="note">You can only upload PDF files.

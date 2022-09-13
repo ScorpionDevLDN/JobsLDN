@@ -10,6 +10,7 @@
         "biscolab/laravel-recaptcha": "^5.4",
         "brian2694/laravel-toastr": "^5.57",
         "guzzlehttp/guzzle": "^7.2",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/breeze": "^1.9",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
