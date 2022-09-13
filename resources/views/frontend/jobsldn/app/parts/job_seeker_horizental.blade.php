@@ -13,7 +13,11 @@
                 @endif
             </li>
             <li>
-                <a href="{{route('myBookmarks')}}" class="{{$menu == 'myBookmarks' ? 'active' : ''}}">Bookmarks</a>
+                @if(auth('job_seekers')->check())
+                    <a href="{{route('myBookmarks')}}" class="{{$menu == 'myBookmarks' ? 'active' : ''}}">Bookmarks</a>
+                @else
+                    <a href="{{route('company-notifications.index')}}" class="{{$menu == 'myBookmarks' ? 'active' : ''}}">Notification</a>
+                @endif
             </li>
             <li>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#logout">Logout</a>
