@@ -13,6 +13,10 @@ class Currency extends Model
         'code',
         'symbol',
         'status'
-
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

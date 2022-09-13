@@ -31,15 +31,12 @@ class HomeFrontController extends Controller
         $companies = Company::query()->count();
         $job_seekers = JobSeeker::query()->count();
         $posts_count = Job::query()->count();
-        $posts = Job::query()->where('status', 1)->take(9)->orderByDesc('is_super_post')->get();
-        $categories = Category::query()->where('status', 1)->get();
-        $cities = City::query()->where('status', 1)->get();
-        $types = Type::query()->where('status', 1)->get();
+        $posts = Job::query()->active()->take(9)->orderByDesc('is_super_post')->get();
+
         $setting = Setting::query()->first();
         return view('frontend.jobsldn.home',
             compact('sliders', 'posts',
-                'companies', 'job_seekers', 'posts_count',
-                'categories', 'cities', 'types','partners','advertise','setting'));
+                'companies', 'job_seekers', 'posts_count', 'partners', 'advertise', 'setting'));
     }
 
     /**

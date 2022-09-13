@@ -23,14 +23,11 @@ class CompanyJobsController extends Controller
      */
     public function index()
     {
-        $posts = Job::query()->accepted()->FilterStatus()->paginate(5);
-        $categories = Category::query()->where('status', 1)->get();
-        $cities = City::query()->where('status', 1)->get();
-        $types = Type::query()->where('status', 1)->get();
+        $posts = Job::query()->active()->FilterStatus()->paginate(5);
         $min_salary = Job::query()->min('salary');
         $max_salary = Job::query()->max('salary');
 //        return view('Front.Jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary', 'posts_company'));
-        return view('frontend.jobsldn.jobs', compact('posts', 'categories', 'cities', 'types', 'min_salary', 'max_salary'));
+        return view('frontend.jobsldn.jobs', compact('posts',  'min_salary', 'max_salary'));
     }
 
     /**

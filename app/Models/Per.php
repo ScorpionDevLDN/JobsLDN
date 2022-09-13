@@ -13,5 +13,10 @@ class Per extends Model
         'per',
         'status'
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }
 

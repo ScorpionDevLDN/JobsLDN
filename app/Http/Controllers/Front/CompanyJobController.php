@@ -33,11 +33,50 @@ class CompanyJobController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        /*$request->validate([
+            'title' => 'required',
+            'summery'=> 'required',
+            'pdf_details'=> 'required',
+            'city_id'=> 'required',
+            'type_id'=> 'required',
+            'category_id'=> 'required',
+            'currency_id'=> 'required',
+            'per_id'=> 'required',
+            'salary'=> 'required',
+            'expired_at'=> 'required',
+            'job_post_email'=> 'required',
+        ]);*/
+        //dd($request->all());
+        $data = $request->only([
+            'company_id',
+            'title',
+            'summery',
+            'pdf_details',
+            'city_id',
+            'type_id',
+            'category_id',
+            'currency_id',
+            'per_id',
+            'salary',
+            'expired_at',
+            'job_post_email',
+            'is_super_post',
+        ]);
+
+        /*if ($request->has('pdf_details')){
+            $filename = $request->pdf_details->store('public');
+            $imagename = $request->pdf_details->hashName();
+            $data['pdf_details'] = $request->file('pdf_details')->store('');
+        }*/
+
+        $data['company_id'] = auth('companies')->id();
+
+        Job::query()->create($data);
+        return redirect()->route('company-jobs.index')->with('success', 'Job Created successfully!');
     }
 
     /**

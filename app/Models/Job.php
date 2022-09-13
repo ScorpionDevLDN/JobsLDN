@@ -30,6 +30,10 @@ class Job extends Model
         'shown'
     ];
 
+    protected $casts = [
+        'expired_at' => 'date'
+    ];
+
     public function city()
     {
         return $this->belongsTo(City::class);
@@ -58,6 +62,10 @@ class Job extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1)->where('shown', 1);
     }
 
 //    public function getStatusAttribute(){
@@ -98,17 +106,18 @@ class Job extends Model
 
     public function getPdfDetailsAttribute($image): ?string
     {
-        return $image ? Storage::url($image): null;
+        return $image ? Storage::url($image) : null;
     }
 
     public function deletePdfDetails()
     {
         if (isset($this->attributes['pdf_details']) && $this->attributes['pdf_details']) {
-            Storage::delete( $this->attributes['pdf_details']);
+            Storage::delete($this->attributes['pdf_details']);
         }
     }
 
-    public function seekerjobs(){
+    public function seekerjobs()
+    {
         return $this->hasMany(JobSeekerJob::class);
     }
 
@@ -122,7 +131,7 @@ class Job extends Model
     {
         $sortField = \request('sort_field', 'created_at');
 
-        if (!in_array($sortField, ['id', 'title','type_id','salary', 'created_at'])) {
+        if (!in_array($sortField, ['id', 'title', 'type_id', 'salary', 'created_at'])) {
             $sortField = 'created_at';
         }
 
@@ -149,7 +158,7 @@ class Job extends Model
             $min = explode('-', \request('salary'));
             $less = explode('£', $min[0]);
             $than = explode('£', $min[1]);
-            $query->where('salary','>=',$less[1])->orWhere('salary','<=',$than[1]);
+            $query->where('salary', '>=', $less[1])->orWhere('salary', '<=', $than[1]);
 
         }
 

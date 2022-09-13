@@ -9,6 +9,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('jobsldn/css/bootstrap/bootstrap.min.css')}}">
     <!-- Select 2 -->
+    <link rel="stylesheet" href="{{asset('jobsldn/css/jquery-ui.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('jobsldn/css/select2.min.css')}}">
     <!-- Swiper  -->
     <link rel="stylesheet" href="{{asset('jobsldn/css/swiper-bundle.min.css')}}">
@@ -31,5 +33,8 @@
     <script src="{{asset('jobsldn/js/wow.min.js')}}"></script>
     <!-- Main Script -->
     <script defer src="{{asset('jobsldn/js/main.js')}}"></script>
+    <script defer src="{{asset('jobsldn/js/jquery-ui.min.js')}}"></script>
+    <script defer src="{{asset('jobsldn/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script defer src="{{asset('jobsldn/js/jquery-simple-txt-counter.min.js')}}"></script>
     @stack('scripts')
 </head>
