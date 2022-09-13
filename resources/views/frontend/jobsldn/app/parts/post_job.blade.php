@@ -74,10 +74,7 @@
                             </select>
                         </div>
                         <div class="col-12 position-relative">
-                            <input type="text" name="expired_at" placeholder="Expiration Date*"
-                                   class="form-control date"
-                                   id="datepicker" required>
-                            <img src="{{asset('jobsldn/images/icons/date.svg')}}" alt="Date" class="date-icon">
+                            <input class="form-control" name="expired_at" type="date" id="example-date-input">
                         </div>
                         <div class="col-12">
                             <div class="floating-label-group">
