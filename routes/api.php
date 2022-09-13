@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialShareButtonsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('reg',[\App\Http\Controllers\CompanyController::class,'rejester']);
+Route::post('/test', [SocialShareButtonsController::class,'test'])->name('test');

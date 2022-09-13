@@ -16,4 +16,10 @@ class SocialShareButtonsController extends Controller
 
         return back();
     }
+
+    public function test(){
+        \Newsletter::subscribe('john.smith@gmail.com');
+        \Newsletter::getLastError();
+        dd('tst');
+    }
 }
