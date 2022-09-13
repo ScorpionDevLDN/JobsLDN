@@ -21,15 +21,15 @@
                         <a href="#">
                             <div class="header-profile-info d-block d-xl-none">
                                 <div class="avatar">
-                                    <img src="{{auth('job_seekers')->user()->photo}}" alt="Avatar">
+                                    <img src="{{auth('job_seekers')->check() ? auth('job_seekers')->user()->photo : auth('companies')->user()->photo}}" alt="Avatar">
                                 </div>
                                 <div class="info">
                                     <div>
                                         <div class="name">
-                                            <h6>{{auth('job_seekers')->user()->name}}</h6>
+                                            <h6>{{auth('job_seekers')->check() ?auth('job_seekers')->user()->name :auth('companies')->user()->name}}</h6>
                                         </div>
                                         <div class="type">
-                                            <span>Jobseeker</span>
+                                            <span>{{auth('job_seekers')->check() ? 'JobSeeker' : 'Company'}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                     </li>
 
                     <li class="nav-item d-block d-xl-none">
-                        <a class="nav-link {{$menu == 'profile' ? 'active' : ''}}"  href="{{route('company-profile.index')}}">Profile</a>
+                        <a class="nav-link {{$menu == 'profile' ? 'active' : ''}}"  href="{{route('my-profile.index')}}">Profile</a>
                     </li>
                     <li class="nav-item d-block d-xl-none">
                         <a class="nav-link {{$menu == 'myJobs' ? 'active' : ''}}" href="{{route('myJobs')}}">Jobs</a>
@@ -72,15 +72,15 @@
                 </div>
                 <div class="header-profile-info d-flex align-items-center d-none d-xl-flex">
                     <div class="avatar">
-                        <img src="{{auth('job_seekers')->user()->photo}}" alt="Avatar">
+                        <img src="{{auth('job_seekers')->check() ? auth('job_seekers')->user()->photo : auth('companies')->user()->photo}}" alt="Avatar">
                     </div>
                     <div class="info">
                         <div>
                             <div class="name">
-                                <h6>{{auth('job_seekers')->user()->name}}</h6>
+                                <h6>{{auth('job_seekers')->check() ? auth('job_seekers')->user()->name : auth('companies')->user()->name}}</h6>
                             </div>
                             <div class="type">
-                                <span>Jobseeker</span>
+                                <span>{{auth('job_seekers')->check() ? 'JobSeeker' : 'Company'}}</span>
                             </div>
                         </div>
                     </div>

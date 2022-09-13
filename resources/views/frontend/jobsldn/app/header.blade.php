@@ -87,7 +87,7 @@
                     <div class="container">
                         <ul>
                             <li>
-                                <a href="{{route('company-profile.index')}}">Profile</a>
+                                <a href="{{route('my-profile.index')}}">Profile</a>
                             </li>
                             <li>
                                 <a href="{{route('posts.index')}}">Jobs</a>
@@ -162,7 +162,7 @@
                         </li>
 
                         <li class="nav-item d-block d-xl-none">
-                            <a class="nav-link" href="{{route('company-profile.index')}}">Profile</a>
+                            <a class="nav-link" href="{{route('my-profile.index')}}">Profile</a>
                         </li>
                         <li class="nav-item d-block d-xl-none">
                             <a class="nav-link" href="{{route('myJobs')}}">Jobs</a>
@@ -202,7 +202,7 @@
                     <div class="container">
                         <ul>
                             <li>
-                                <a href="{{route('company-profile.index')}}">Profile</a>
+                                <a href="{{route('my-profile.index')}}">Profile</a>
                             </li>
                             <li>
                                 <a href="{{route('myJobs')}}">Jobs</a>

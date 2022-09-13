@@ -41,7 +41,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-9">
-                    <form>
+                    <form method="post" action="{{route('my-profile.update',$user->id)}}">
+                        @csrf
+                        @method('put')
                         <div class="row gap-50">
                             <div class="col-12 company-details-logo">
                                 <img src="{{asset('jobsldn/images/account-img.svg')}}" alt="Logo" class="logo">
@@ -55,7 +57,7 @@
                                     </label>
                                     <input class="custom-upload__input" name="client_form_file" accept=".png,.jpeg,.jpg"
                                            id="client_form_file" type="file" data-behaviour="custom-upload-input"
-                                           required>
+                                    >
                                 </div>
                                 <img src="{{asset('jobsldn/images/icons/delete.svg')}}" class="icon" alt="Delete">
                             </div>
@@ -124,7 +126,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-9">
-                    <form>
+                    <form action="{{route('uploadCv')}}" method="post">
+                        @csrf
                         <div class="row gap-20">
                             @if(auth('job_seekers')->user()->cvs->count() < 10)
                                 <form enctype="multipart/form-data" method="post" action="{{route('uploadCv')}}">
@@ -133,10 +136,10 @@
                                         @if(session('cvSuccess'))
                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                 {{session('cvSuccess')}}
-                                                <button type="button" class="close" data-dismiss="alert"
+                                                {{--<button type="button" class="close" data-dismiss="alert"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                </button>--}}
                                             </div>
                                         @endif
                                     </div>
@@ -162,23 +165,30 @@
                                 </form>
                             @endif
                             @if(auth('job_seekers')->user()->cvs->count() > 0)
-                                <div class="col-12">
-                                    <div class="uploaded-file">
-                                        <div class="content">
-                                            <div class="icon">
-                                                <img src="images/icons/ic-folder-simple.svg" alt="Icon">
+                                @foreach(auth('job_seekers')->user()->cvs as $cv)
+                                    <div class="col-12">
+                                        <div class="uploaded-file">
+                                            <div class="content">
+                                                <div class="icon">
+                                                    <img src="{{asset('jobsldn/images/icons/ic-folder-simple.svg')}}"
+                                                         alt="Icon">
+                                                </div>
+                                                <p>{{$cv->cv_name}}</p>
+                                                <span>3MB</span>
                                             </div>
-                                            <p>Designer-CV.pdf</p>
-                                            <span>3MB</span>
-                                        </div>
-                                        <div class="actions">
-                                            <img src="images/icons/ic-actions-download.svg" alt="Download"
-                                                 class="action-download">
-                                            <img src="images/icons/ic-actions-trash.svg" alt="Trash"
-                                                 class="action-trash">
+                                            <div class="actions">
+                                                <a href="{{route('downloadCv',$cv->id)}}">
+                                                    <img src="{{asset('jobsldn/images/icons/ic-actions-download.svg')}}"
+                                                         alt="Download"
+                                                         class="action-download">
+                                                </a>
+                                                <img src="{{asset('jobsldn/images/icons/ic-actions-trash.svg')}}"
+                                                     alt="Trash"
+                                                     class="action-trash">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             @endif
                         </div>
                     </form>

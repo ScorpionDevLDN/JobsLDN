@@ -21,7 +21,8 @@ class CompanyJobsController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(){
+    public function index()
+    {
         $posts = Job::query()->accepted()->FilterStatus()->paginate(5);
         $categories = Category::query()->where('status', 1)->get();
         $cities = City::query()->where('status', 1)->get();
@@ -105,7 +106,7 @@ class CompanyJobsController extends Controller
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->inRandomOrder()->take(4)->get();
 //        $cvs = auth('job_seekers')->user()->cvs;
-        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at','similar'));
+        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar'));
     }
 
     public function job_details_company($id)
@@ -125,15 +126,16 @@ class CompanyJobsController extends Controller
 //        Job::query()->where('job_id',$id)->update([
 //
 //        ]);
-        return back()->with('applied','you have applied successfully');
+        return back()->with('applied', 'you have applied successfully');
     }
 
 
     public function retract($id)
     {
-        JobSeekerJob::query()->where('job_id',$id)->delete();
-        return back()->with('msgBookmarked','you have applied successfully');
+        JobSeekerJob::query()->where('job_id', $id)->delete();
+        return back()->with('msgBookmarked', 'you have applied successfully');
     }
+
     public function download($id)
     {
         $post = Job::query()->where('id', $id)->first()->pdf_details;
@@ -152,56 +154,77 @@ class CompanyJobsController extends Controller
 
     public function un_bookmark($id)
     {
-        JobSeekerBookmark::query()->where('job_id',$id)->delete();
+        JobSeekerBookmark::query()->where('job_id', $id)->delete();
         return redirect()->back()->with('msgBookmarked', 'Job removed from bookmarks successfully!');
+    }
+
+    public function downloadCv($id)
+    {
+        $cv = JobSeekerCv::query()->where('id', $id)->first();
+        if ($cv and isset($cv->pdf)) {
+            // return $ext;
+            //return Storage::disk('public_storage')->download($cv->pdf, 'aya.pdf');
+            return Storage::download($cv->pdf);
+        }
+        return redirect()->back();
     }
 
     public function deleteCv($id)
     {
-        JobSeekerCv::query()->where('id',$id)->delete();
+        JobSeekerCv::query()->where('id', $id)->delete();
         return redirect()->back()->with('msgBookmarked', 'Job Cv removed successfully!');
     }
 
-    public function uploadCv(Request $request){
-        dd($request->all());
-        $request->validate([
+    public function uploadCv(Request $request)
+    {
+        /*$request->validate([
             'pdf' => 'required|mimes:pdf|max:10000',
         ],[
            'pdf.required' => 'Please upload your pdf cv'
-        ]);
-        JobSeekerCv::query()->create(array_merge(\request()->all(),[
-            'cv_name' => $request->pdf->getClientOriginalName(),
-            'job_seeker_id' => auth('job_seekers')->id(),
-        ]));
+        ]);*/
+
+        $data = $request->only(['job_seeker_id', 'cv_name', 'pdf']);
+        if ($request->hasFile('pdf')) {
+            $filename = $request->pdf->store('public');
+            $imagename = $request->pdf->hashName();
+            //$data['pdf'] = $imagename;
+            $data['pdf'] = $request->file('pdf')->store('');
+        }
+
+        $data['job_seeker_id'] = auth('job_seekers')->id();
+        $data['cv_name'] = 'aya.pdf';
+        JobSeekerCv::query()->create($data);
         return redirect()->back()->with('cvSuccess', 'Cv Uploaded successfully!');
     }
 
-    public function myAppliedJobs(){
-        $posts = JobSeekerJob::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(5);
-        return view('frontend.jobsldn.job_seeker.JobSeekerJobs',compact('posts'));
+    public function myAppliedJobs()
+    {
+        $posts = JobSeekerJob::query()->where('job_seeker_id', auth('job_seekers')->id())->paginate(5);
+        return view('frontend.jobsldn.job_seeker.JobSeekerJobs', compact('posts'));
     }
 
-    public function myBookmarks(){
-        $posts = JobSeekerBookmark::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(5);
-        return view('frontend.jobsldn.job_seeker.bookmark',compact('posts'));
+    public function myBookmarks()
+    {
+        $posts = JobSeekerBookmark::query()->where('job_seeker_id', auth('job_seekers')->id())->paginate(5);
+        return view('frontend.jobsldn.job_seeker.bookmark', compact('posts'));
     }
 
     public function deleteJob($id)
     {
-        Job::query()->where('id',$id)->delete();
+        Job::query()->where('id', $id)->delete();
         return redirect()->back()->with('msgBookmarked', 'Job removed successfully!');
     }
 
     public function editJob($id)
     {
-        $post = Job::query()->where('id',$id)->first();
-        return view('Front.PostJob',compact('post'));
+        $post = Job::query()->where('id', $id)->first();
+        return view('Front.PostJob', compact('post'));
     }
 
     public function editJobUpdate($id)
     {
 //        dd(\request()->all());
-        Job::query()->where('id',$id)->update(\request()->only(
+        Job::query()->where('id', $id)->update(\request()->only(
             'title',
             'summery',
             'pdf_details',

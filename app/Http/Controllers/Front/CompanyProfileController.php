@@ -23,7 +23,7 @@ class CompanyProfileController extends Controller
             return view('frontend.jobsldn.job_seeker.profile', compact('user'));
         } else {
             $user = auth('companies')->user();
-            return view('frontend.jobsldn.profile', compact('user'));
+            return view('frontend.jobsldn.company.profile', compact('user'));
         }
     }
 
@@ -90,7 +90,7 @@ class CompanyProfileController extends Controller
             ]);
 
             session()->flash('msgProfile', 'Profile Updated Successfully');
-            return redirect()->route('company-profile.index');
+            return redirect()->route('my-profile.index');
         } else {
             Company::query()->where('id', auth('companies')->id())->update([
                 'first_name' => $request->first_name,
@@ -99,7 +99,7 @@ class CompanyProfileController extends Controller
                 'confirm_email' => $request->confirm_email,
             ]);
             session()->flash('msgProfile', 'Profile Updated Successfully');
-            return redirect()->route('company-profile.index');
+            return redirect()->route('my-profile.index');
         }
     }
 
@@ -130,7 +130,7 @@ class CompanyProfileController extends Controller
                 'password' => bcrypt($request->password),
             ]);
             session()->flash('msg', 'Password Updated Successfully');
-            return redirect()->route('company-profile.index');
+            return redirect()->route('my-profile.index');
         } else {
             $validatedData = $request->validate([
                 'currPassword' => function ($attribute, $value, $fail) {
@@ -145,7 +145,7 @@ class CompanyProfileController extends Controller
                 'password' => $request->password,
             ]);
             session()->flash('msg', 'Password Updated Successfully');
-            return redirect()->route('company-profile.index');
+            return redirect()->route('my-profile.index');
         }
     }
 
@@ -159,6 +159,6 @@ class CompanyProfileController extends Controller
             'overview' => $request->overview,
         ]);
         session()->flash('msgCompany', 'Profile Updated Successfully');
-        return redirect()->route('company-profile.index');
+        return redirect()->route('my-profile.index');
     }
 }

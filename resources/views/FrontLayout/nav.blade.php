@@ -47,12 +47,12 @@
         <div class="profile-page-banner__navbar">
             <ul>
                 @if(auth()->guard('companies')->check())
-                    <li class="active"><a href="{{route('company-profile.index')}}">Profile</a></li>
+                    <li class="active"><a href="{{route('my-profile.index')}}">Profile</a></li>
                     <li><a href="{{route('jobs.index')}}">Jobs</a></li>
                     <li><a href="{{route('company-notifications.index')}}">Notifications</a></li>
                     <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>
                 @else
-                    <li class="active"><a href="{{route('company-profile.index')}}">Profile</a></li>
+                    <li class="active"><a href="{{route('my-profile.index')}}">Profile</a></li>
                     <li><a href="{{route('myJobs')}}">My Jobs</a></li>
                     <li><a href="{{route('myBookmarks')}}">Bookmarks</a></li>
                     <li><a href="" data-toggle="modal" data-target="#modalLogout">Logout</a></li>

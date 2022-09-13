@@ -3,7 +3,7 @@
     <div class="container">
         <ul>
             <li>
-                <a href="{{route('company-profile.index')}}" class="{{$menu == 'profile' ? 'active' : ''}}">Profile</a>
+                <a href="{{route('my-profile.index')}}" class="{{$menu == 'profile' ? 'active' : ''}}">Profile</a>
             </li>
             <li>
                 <a href="{{route('myJobs')}}" class="{{$menu == 'myJobs' ? 'active' : ''}}">Jobs</a>

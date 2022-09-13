@@ -45,6 +45,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*change status for admin*/
 Route::get('changeStatus', [CategoryController::class, 'updateCategoryStatus'])->name('changeStatus');
 Route::get('changeCityStatus', [CityController::class, 'updateCityStatus'])->name('changeCityStatus');
 Route::get('changeCurrencyStatus', [CurrencyController::class, 'changeCurrencyStatus'])->name('changeCurrencyStatus');
@@ -115,6 +116,8 @@ Route::prefix('manage')->name('admin.')->group(function () {
 
 });
 
+
+/*frontend routes*/
 Route::prefix('')->group(function () {
     Route::resource('home', HomeFrontController::class);
     Route::get('set-cookie', [HomeFrontController::class, 'setCookies'])->name('cookie');
@@ -122,13 +125,12 @@ Route::prefix('')->group(function () {
 
     Route::resource('posts', CompanyJobsController::class);
     Route::get('download/{id}', [CompanyJobsController::class, 'download'])->name('download');
-//    Route::post('search',[CompanyJobsController::class,'search'])->name('search');
     Route::resource('pages', PagefrontController::class);
     Route::get('page/{slug}', [PagefrontController::class, 'page'])->name('page');
 
     Route::resource('contacts', ContactfrontController::class);
     Route::resource('job_seeker-profile', JobSeekerProfileController::class);
-    Route::resource('company-profile', CompanyProfileController::class);
+    Route::resource('my-profile', CompanyProfileController::class);
     Route::post('update-password', [CompanyProfileController::class, 'updatePassword'])->name('updatePasswordFront');
     Route::post('update-company', [CompanyProfileController::class, 'updateCompanyFront'])->name('updateCompanyFront');
     Route::resource('single-job', SingleJobController::class);
@@ -153,6 +155,7 @@ Route::prefix('posts')->middleware('auth:job_seekers')->group(function () {
     Route::get('bookmark/{id}', [CompanyJobsController::class, 'bookmark'])->name('bookmark');
     Route::get('un_bookmark/{id}', [CompanyJobsController::class, 'un_bookmark'])->name('un_bookmark');
     Route::post('upload_cv', [CompanyJobsController::class, 'uploadCv'])->name('uploadCv');
+    Route::get('download_cv/{id}', [CompanyJobsController::class, 'downloadCv'])->name('downloadCv');
     Route::post('delete_cv/{id}', [CompanyJobsController::class, 'deleteCv'])->name('deleteCv');
 
 });
