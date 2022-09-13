@@ -163,6 +163,7 @@ class CompanyJobsController extends Controller
     }
 
     public function uploadCv(Request $request){
+        dd($request->all());
         $request->validate([
             'pdf' => 'required|mimes:pdf|max:10000',
         ],[
@@ -176,13 +177,13 @@ class CompanyJobsController extends Controller
     }
 
     public function myAppliedJobs(){
-        $posts = JobSeekerJob::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
-        return view('Front.JobSeekerJobs',compact('posts'));
+        $posts = JobSeekerJob::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(5);
+        return view('frontend.jobsldn.job_seeker.JobSeekerJobs',compact('posts'));
     }
 
     public function myBookmarks(){
-        $posts = JobSeekerBookmark::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(10);
-        return view('Front.JobSeekerbookMarks',compact('posts'));
+        $posts = JobSeekerBookmark::query()->where('job_seeker_id',auth('job_seekers')->id())->paginate(5);
+        return view('frontend.jobsldn.job_seeker.bookmark',compact('posts'));
     }
 
     public function deleteJob($id)

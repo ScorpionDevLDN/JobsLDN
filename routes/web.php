@@ -149,7 +149,7 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
 Route::prefix('posts')->middleware('auth:job_seekers')->group(function () {
     Route::get('job/{slug}', [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
     Route::post('apply/{job_id}', [CompanyJobsController::class, 'apply'])->name('apply');
-    Route::post('retract/{job_id}', [CompanyJobsController::class, 'retract'])->name('retract');
+    Route::get('retract/{job_id}', [CompanyJobsController::class, 'retract'])->name('retract');
     Route::get('bookmark/{id}', [CompanyJobsController::class, 'bookmark'])->name('bookmark');
     Route::get('un_bookmark/{id}', [CompanyJobsController::class, 'un_bookmark'])->name('un_bookmark');
     Route::post('upload_cv', [CompanyJobsController::class, 'uploadCv'])->name('uploadCv');
