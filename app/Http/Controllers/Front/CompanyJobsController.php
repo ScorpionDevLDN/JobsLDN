@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Mail\ApplyToJob;
 use App\Mail\MailMailableSend;
 use App\Mail\newApplied;
+use App\Mail\Retracted;
+use App\Mail\RetractFromJob;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Job;
@@ -105,18 +107,19 @@ class CompanyJobsController extends Controller
     {
         $post = Job::query()->where('id', $id)->first();
         $created_at = Job::query()->where('id', $id)->whereDate('expired_at', '>', now())->exists();
+        $dont_applied = auth('job_seekers')->check() ? JobSeekerJob::query()->where('job_seeker_id', auth('job_seekers')->id())->doesntExist() : null;
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->active()->inRandomOrder()->take(4)->get();
         $cvs = auth('job_seekers')->check() ? auth('job_seekers')->user()->cvs : null;
         $shareComponent = \Share::page(
-            'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
-            'Your share text comes here',
+            \request()->url(),
+            $post->title,
         )
             ->whatsapp();
         $post->update([
             'views_count' => $post->views_count + 1
         ]);
-        return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar', 'cvs', 'shareComponent'));
+        return view('frontend.jobsldn.job', compact('post', 'dont_applied', 'bookmarked', 'created_at', 'similar', 'cvs', 'shareComponent'));
     }
 
     public function job_details_company($id)
@@ -164,8 +167,18 @@ class CompanyJobsController extends Controller
 
     public function retract($id)
     {
+        $setting = Setting::first();
+
+        $job = Job::query()->where('id', $id)->first();
+
         JobSeekerJob::query()->where('job_id', $id)->delete();
-        return back()->with('msgBookmarked', 'you have applied successfully');
+
+        //$setting->email_from
+        //auth('job_seekers')->user()->email
+        Mail::to('ayakhomar@gmail.com')->send(new RetractFromJob('Retract from ' . $job->title, $job, auth('job_seekers')->user()));
+
+        Mail::to('ayakhomar@gmail.com')->send(new Retracted('job Seeker has retract from' . $job->title, $job, auth('job_seekers')->user()));
+        return back()->with('success', 'you have retracted successfully');
     }
 
     public function download($id)

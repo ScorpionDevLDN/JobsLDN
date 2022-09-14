@@ -67,8 +67,8 @@
                                             </div>
                                         </div>
                                         <div class="job-actions">
-                                            <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#retract">Retract
-                                                <span>13 days applied.</span>
+                                            <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#retract{{$post->job_id}}">Retract
+                                                <span>{{\Carbon\Carbon::parse($post->created_at)->diffInDays()}} days applied.</span>
                                             </a>
                                             @if(auth('job_seekers')->user()->postbookmarked($post->id))
                                                 <div class="favorite-box">
@@ -132,7 +132,8 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="retract" tabindex="-1" aria-labelledby="retractLabel" aria-hidden="true">
+    @foreach($posts as $post)
+    <div class="modal fade" id="retract{{$post->job_id}}" tabindex="-1" aria-labelledby="retractLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,12 +147,13 @@
                 </div>
                 <div class="modal-footer">
                     @if(isset($post))
-                        <a href="{{route('retract',$post->id)}}" class="button mx-auto" type="button">Yes</a>
+                        <a href="{{route('retract',$post->job_id)}}" class="button mx-auto" type="button">Yes</a>
                     @endif
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
 
     <!-- Retract Success -->
     <div class="modal fade" id="retract-success" tabindex="-1" aria-labelledby="retractSuccessLabel" aria-hidden="true">

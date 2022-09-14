@@ -100,7 +100,7 @@
                     <p></p>
                 </div>
                 <div class="col-12 col-xl-3">
-                    @if($created_at)
+                    @if($created_at && $dont_applied)
                         @if(auth()->guard('job_seekers')->check())
                             <div class="section-heading">
                                 <h2>Apply now</h2>
