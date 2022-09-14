@@ -100,14 +100,14 @@
                     <p></p>
                 </div>
                 <div class="col-12 col-xl-3">
-                    @if(!$created_at)
+                    @if($created_at)
                         @if(auth()->guard('job_seekers')->check())
                             <div class="section-heading">
                                 <h2>Apply now</h2>
                             </div>
                             <form action="{{route('apply',$post->id)}}" method="POST">
                                 @csrf
-                                <select class="select-2-select cv-input w-100" name="category">
+                                <select class="select-2-select cv-input w-100" name="job_seeker_cv_id">
                                     <option selected="true" disabled="disabled">Select your CV</option>
                                     @foreach($cvs as $cv)
                                         <option value="{{$cv->id}}">{{$cv->cv_name}}</option>

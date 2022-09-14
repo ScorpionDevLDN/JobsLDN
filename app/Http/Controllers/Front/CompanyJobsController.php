@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ApplyToJob;
+use App\Mail\MailMailableSend;
+use App\Mail\newApplied;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Job;
 use App\Models\JobSeekerBookmark;
 use App\Models\JobSeekerCv;
 use App\Models\JobSeekerJob;
+use App\Models\Setting;
 use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CompanyJobsController extends Controller
@@ -99,7 +104,7 @@ class CompanyJobsController extends Controller
     public function jobDetails($id)
     {
         $post = Job::query()->where('id', $id)->first();
-        $created_at = Job::query()->where('id', $id)->whereDate('created_at', '<', now())->exists();
+        $created_at = Job::query()->where('id', $id)->whereDate('expired_at', '>', now())->exists();
         $bookmarked = JobSeekerBookmark::query()->where('job_id', $id)->where('job_seeker_id', auth('job_seekers')->id())->doesntExist();
         $similar = Job::query()->active()->inRandomOrder()->take(4)->get();
         $cvs = auth('job_seekers')->check() ? auth('job_seekers')->user()->cvs : null;
@@ -109,7 +114,7 @@ class CompanyJobsController extends Controller
         )
             ->whatsapp();
         $post->update([
-            'views_count' => $post->views_count+ 1
+            'views_count' => $post->views_count + 1
         ]);
         return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar', 'cvs', 'shareComponent'));
     }
@@ -121,16 +126,35 @@ class CompanyJobsController extends Controller
         return view('Front.Company-Single-job', compact('post', 'created_at'));
     }
 
-    public function apply($id)
+    public function apply(Request $request, $id)
     {
+        $request->validate([
+            'job_seeker_cv_id' => 'required'
+        ], [
+            'job_seeker_cv_id.required' => 'Please choose a cv to apply for this Job!'
+        ]);
+        //dd($request->all());
+        $setting = Setting::first();
+        $job = Job::query()->where('id', $id)->first();
+        $attachment1 = JobSeekerCv::query()->where('id', $request->job_seeker_cv_id)->first()->pdf;
+
+        $attachment = [
+            "path" => asset('storage/' . $attachment1),
+            "as" => "my_cv.pdf",
+            "mime" => "application/pdf",
+        ];
+
         JobSeekerJob::query()->create([
             'job_seeker_id' => auth('job_seekers')->id(),
             'job_id' => $id,
-            'job_seeker_cv_id' => \request('ApplyForJobCV'),
+            'job_seeker_cv_id' => $request->job_seeker_cv_id,
         ]);
-//        Job::query()->where('job_id',$id)->update([
-//
-//        ]);
+
+
+        //$setting->email_from
+        Mail::to('ayakhomar@gmail.com')->send(new ApplyToJob('Apply to ' . $job->title, $job, auth('job_seekers')->user(), $attachment));
+
+        Mail::to('ayakhomar@gmail.com')->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user(), $attachment));
         return back()->with('applied', 'you have applied successfully');
     }
 

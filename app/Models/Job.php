@@ -106,10 +106,10 @@ class Job extends Model
         }
     }
 
-    public function getPdfDetailsAttribute($image): ?string
+    /*public function getPdfDetailsAttribute($image): ?string
     {
         return $image ? Storage::url($image) : null;
-    }
+    }*/
 
     public function deletePdfDetails()
     {
