@@ -199,7 +199,7 @@ class CompanyJobsController extends Controller
     public function bookmark($id)
     {
         JobSeekerBookmark::query()->create([
-            'job_seeker_id' => 1,
+            'job_seeker_id' => auth('job_seekers')->id(),
             'job_id' => $id,
         ]);
         return redirect()->back()->with('msgBookmarked', 'Job Booked marked successfully!');

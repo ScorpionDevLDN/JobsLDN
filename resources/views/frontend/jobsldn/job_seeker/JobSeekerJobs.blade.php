@@ -67,46 +67,44 @@
                                             </div>
                                         </div>
                                         <div class="job-actions">
-                                            <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#retract{{$post->job_id}}">Retract
+                                            <a href="#" class="button" data-bs-toggle="modal"
+                                               data-bs-target="#retract{{$post->job_id}}">Retract
                                                 <span>{{\Carbon\Carbon::parse($post->created_at)->diffInDays()}} days applied.</span>
                                             </a>
+                                            {{--مش موجودة بالمفضلة وبدي اضيفها--}}
                                             @if(auth('job_seekers')->user()->postbookmarked($post->id))
                                                 <div class="favorite-box">
-                                                    <svg id="ic-actions-star" xmlns="http://www.w3.org/2000/svg"
-                                                         width="24"
-                                                         height="24"
-                                                         viewBox="0 0 24 24">
-                                                        <rect id="Rectangle_160" data-name="Rectangle 160" width="24"
-                                                              height="24"
-                                                              fill="none"/>
-                                                        <g id="ic-actions-star-2" data-name="ic-actions-star"
-                                                           transform="translate(-0.005 -0.015)">
-                                                            <path id="Path_38" data-name="Path 38"
-                                                                  d="M11,3.19a1.08,1.08,0,0,1,2.06,0l1.86,5.72h6a1.09,1.09,0,0,1,.64,2l-4.87,3.53,1.86,5.73a1.08,1.08,0,0,1-1.67,1.21L12,17.81,7.13,21.35a1.08,1.08,0,0,1-1.67-1.21l1.86-5.73L2.45,10.88a1.09,1.09,0,0,1,.64-2h6Z"
-                                                                  fill="none" stroke="#2923ff" stroke-linecap="round"
-                                                                  stroke-linejoin="round"
-                                                                  stroke-width="1.5" fill-rule="evenodd"/>
-                                                        </g>
-                                                    </svg>
+                                                    <a href="#" data-bs-toggle="modal"
+                                                       data-bs-target="#bookmark{{$post->job_id}}">
+                                                        <svg id="ic-actions-star" xmlns="http://www.w3.org/2000/svg"
+                                                             width="24"
+                                                             height="24"
+                                                             viewBox="0 0 24 24">
+                                                            <rect id="Rectangle_160" data-name="Rectangle 160" width="24"
+                                                                  height="24"
+                                                                  fill="none"/>
+                                                            <g id="ic-actions-star-2" data-name="ic-actions-star"
+                                                               transform="translate(-0.005 -0.015)">
+                                                                <path id="Path_38" data-name="Path 38"
+                                                                      d="M11,3.19a1.08,1.08,0,0,1,2.06,0l1.86,5.72h6a1.09,1.09,0,0,1,.64,2l-4.87,3.53,1.86,5.73a1.08,1.08,0,0,1-1.67,1.21L12,17.81,7.13,21.35a1.08,1.08,0,0,1-1.67-1.21l1.86-5.73L2.45,10.88a1.09,1.09,0,0,1,.64-2h6Z"
+                                                                      fill="none" stroke="#2923ff" stroke-linecap="round"
+                                                                      stroke-linejoin="round"
+                                                                      stroke-width="1.5" fill-rule="evenodd"/>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
                                                 </div>
                                             @else
                                                 <div class="favorite-box active">
-                                                    <svg id="ic-actions-star" xmlns="http://www.w3.org/2000/svg"
-                                                         width="24"
-                                                         height="24"
-                                                         viewBox="0 0 24 24">
-                                                        <rect id="Rectangle_160" data-name="Rectangle 160" width="24"
-                                                              height="24"
-                                                              fill="none"/>
-                                                        <g id="ic-actions-star-2" data-name="ic-actions-star"
-                                                           transform="translate(-0.005 -0.015)">
-                                                            <path id="Path_38" data-name="Path 38"
-                                                                  d="M11,3.19a1.08,1.08,0,0,1,2.06,0l1.86,5.72h6a1.09,1.09,0,0,1,.64,2l-4.87,3.53,1.86,5.73a1.08,1.08,0,0,1-1.67,1.21L12,17.81,7.13,21.35a1.08,1.08,0,0,1-1.67-1.21l1.86-5.73L2.45,10.88a1.09,1.09,0,0,1,.64-2h6Z"
-                                                                  fill="none" stroke="#2923ff" stroke-linecap="round"
-                                                                  stroke-linejoin="round"
-                                                                  stroke-width="1.5" fill-rule="evenodd"/>
-                                                        </g>
-                                                    </svg>
+                                                    <a href="#" data-bs-toggle="modal"
+                                                       data-bs-target="#unbookmark{{$post->job_id}}">
+                                                        <svg id="ic-actions-star" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                            <rect id="Rectangle_160" data-name="Rectangle 160" width="24" height="24" fill="none"></rect>
+                                                            <g id="ic-actions-star-2" data-name="ic-actions-star" transform="translate(-0.005 -0.015)">
+                                                                <path id="Path_38" data-name="Path 38" d="M11,3.19a1.08,1.08,0,0,1,2.06,0l1.86,5.72h6a1.09,1.09,0,0,1,.64,2l-4.87,3.53,1.86,5.73a1.08,1.08,0,0,1-1.67,1.21L12,17.81,7.13,21.35a1.08,1.08,0,0,1-1.67-1.21l1.86-5.73L2.45,10.88a1.09,1.09,0,0,1,.64-2h6Z" fill="none" stroke="#2923ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" fill-rule="evenodd"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
                                                 </div>
                                             @endif
                                         </div>
@@ -133,26 +131,72 @@
         </div>
     </section>
     @foreach($posts as $post)
-    <div class="modal fade" id="retract{{$post->job_id}}" tabindex="-1" aria-labelledby="retractLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title" id="retractLabel">Notification</h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <ion-icon name="close-outline"></ion-icon>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="text-center"> Are you sure you want to retract your application? </h5>
-                </div>
-                <div class="modal-footer">
-                    @if(isset($post))
-                        <a href="{{route('retract',$post->job_id)}}" class="button mx-auto" type="button">Yes</a>
-                    @endif
+        <div class="modal fade" id="retract{{$post->job_id}}" tabindex="-1" aria-labelledby="retractLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="retractLabel">Notification</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center"> Are you sure you want to retract your application? </h5>
+                    </div>
+                    <div class="modal-footer">
+                        @if(isset($post))
+                            <a href="{{route('retract',$post->job_id)}}" class="button mx-auto" type="button">Yes</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
+        <div class="modal fade" id="bookmark{{$post->job_id}}" tabindex="-1" aria-labelledby="retractLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="retractLabel">Bookmark</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center"> Add {{$post->job->tile}} to Bookmark?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        @if(isset($post))
+                            <a href="{{route('bookmark',$post->job_id)}}" class="button mx-auto" type="button">Yes</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="unbookmark{{$post->job_id}}" tabindex="-1" aria-labelledby="retractLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="retractLabel">Remove from Bookmark</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center"> Remove {{$post->job->tile}} from Bookmark?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        @if(isset($post))
+                            <a href="{{route('bookmark',$post->job_id)}}" class="button mx-auto" type="button">Yes</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 
     <!-- Retract Success -->
