@@ -160,7 +160,7 @@ class CompanyJobsController extends Controller
         //$setting->email_from
         Mail::to(auth('job_seekers')->user()->email)->send(new ApplyToJob('Apply to ' . $job->title, $job, auth('job_seekers')->user(), $attachment));
 
-        Mail::to($setting->email_from)->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user(), $attachment));
+        Mail::to($job->email)->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user(), $attachment));
         return back()->with('applied', 'you have applied successfully');
     }
 
@@ -175,9 +175,9 @@ class CompanyJobsController extends Controller
 
         //$setting->email_from
         //auth('job_seekers')->user()->email
-        Mail::to('ayakhomar@gmail.com')->send(new RetractFromJob('Retract from ' . $job->title, $job, auth('job_seekers')->user()));
+        Mail::to(auth('job_seekers')->user()->email)->send(new RetractFromJob('Retract from ' . $job->title, $job, auth('job_seekers')->user()));
 
-        Mail::to('ayakhomar@gmail.com')->send(new Retracted('job Seeker has retract from' . $job->title, $job, auth('job_seekers')->user()));
+        Mail::to($job->email)->send(new Retracted('job Seeker has retract from' . $job->title, $job, auth('job_seekers')->user()));
         return back()->with('success', 'you have retracted successfully');
     }
 
