@@ -34,10 +34,10 @@ class JobSeekerCv extends Model
     }
 
 //
-    public function getPdfAttribute($pdf): ?string
+    /*public function getPdfAttribute($pdf): ?string
     {
         return $pdf ? Storage::url($pdf) : null;
-    }
+    }*/
 
 //
     public function deletePdf()

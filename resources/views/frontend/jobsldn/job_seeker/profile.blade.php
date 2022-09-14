@@ -108,7 +108,8 @@
                                 <button type="submit" class="button w-100">Update</button>
                             </div>
                             <div class="col-6 col-lg-3 align-self-center text-end text-lg-start">
-                                <a href="#" class="danger delete-account">Delete My Account</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#delete-account"
+                                   class="danger delete-account">Delete My Account</a>
                             </div>
                         </div>
                     </form>
@@ -182,12 +183,16 @@
                                                          alt="Download"
                                                          class="action-download">
                                                 </a>
-                                                <img src="{{asset('jobsldn/images/icons/ic-actions-trash.svg')}}"
-                                                     alt="Trash"
-                                                     class="action-trash">
+                                                <a href="#" data-bs-toggle="modal"
+                                                   data-bs-target="#delete-cv{{$cv->id}}">
+                                                    <img src="{{asset('jobsldn/images/icons/ic-actions-trash.svg')}}"
+                                                         alt="Trash"
+                                                         class="action-trash">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
+
                                 @endforeach
                             @endif
                         </div>
@@ -250,4 +255,53 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="delete-account" tabindex="-1" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="logoutLabel">Delete Account</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                </div>
+                <form action="{{route('my-profile.destroy',1)}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">
+                        <h5 class="text-center">Are you sure you want to delete your account?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button mx-auto" type="submit">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @foreach(auth('job_seekers')->user()->cvs as $cv)
+        <div class="modal fade" id="delete-cv{{$cv->id}}" tabindex="-1" aria-labelledby="logoutLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="logoutLabel">Delete CV</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <form action="{{route('deleteCv',$cv->id)}}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <h5 class="text-center">Are you sure you want to delete your {{$cv->cv_name}} CV?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button mx-auto" type="submit">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
 @endsection
