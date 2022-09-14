@@ -81,14 +81,17 @@
                             <th scope="row">{{$newsletter->id}}</th>
                             <td>{{$newsletter->email}}</td>
                             <td>{{$newsletter->created_at->format('Y-m-d')}}</td>
-                            <td><div class="col-2">
-                                    <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
+                            <td>
+                                <div class="col-2">
+                                    <a href="#" class="btn btn-light-danger btn-icon font-weight-bold"
+                                       data-toggle="modal"
                                        data-target="#exampleModalDelete{{$newsletter->id}}">
                                         <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g stroke="none" stroke-width="1" fill="none"
+                                                               fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z"
                                                                       fill="#000000" fill-rule="nonzero"/>
@@ -97,7 +100,8 @@
                                                             </g>
                                                         </svg><!--end::Svg Icon--></span>
                                     </a>
-                                </div></td>
+                                </div>
+                            </td>
                         </tr>
                         <div class="modal fade" id="exampleModalDelete{{$newsletter->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,7 +111,8 @@
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Newsletter</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Are You sure to delete
+                                                newsletter?</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>
@@ -115,8 +120,6 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Are You sure to delete newsletter? <span
-                                                            class="text-danger">*</span></label>
                                                 <input readonly value="{{$newsletter->email}}" type="text" name="email"
                                                        class="form-control"
                                                        placeholder="Enter category name"/>
@@ -150,7 +153,7 @@
                 {
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                     responsive: true,
-                    language: { search: "" },
+                    language: {search: ""},
                     pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
@@ -166,7 +169,7 @@
     <script>
         $(function () {
             // $('.toggle-class').change(function () {
-            $(document).on("click", ".toggle-class", function(){
+            $(document).on("click", ".toggle-class", function () {
                 var status = $(this).prop('checked') == true ? 1 : 0;
                 var category_id = $(this).data('id');
 

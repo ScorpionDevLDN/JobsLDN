@@ -87,6 +87,11 @@ class SettingController extends Controller
             $imagename = $request->email_logo->hashName();
             $requestData['email_logo'] = $imagename;
         }
+        if ($request->icon_logo) {
+            $filename = $request->icon_logo->store('public');
+            $imagename = $request->icon_logo->hashName();
+            $requestData['icon_logo'] = $imagename;
+        }
         Setting::query()->findOrFail($id)->update($requestData);
         return redirect()->route('admin.settings.index');
     }

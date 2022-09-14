@@ -42,9 +42,9 @@
                 <!--begin::Form-->
                 <form enctype="multipart/form-data" action="{{route('admin.settings.update',$setting->id)}}"
                       method="post">
-                @method('put')
-                @csrf
-                <!--begin::Body-->
+                    @method('put')
+                    @csrf
+                    <!--begin::Body-->
                     <div class="card-body">
                         <div class="tab-content pt-3">
                             <!--begin::Tab Pane-->
@@ -155,6 +155,24 @@
 
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Icon Logo
+                                    </div>
+
+
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <select class="form-control" name="icon_logo" id="">
+                                            {{--@foreach($setting as $icon)
+                                                <option value="1">
+                                                    <i class="fa {{$icon}}"></i>
+                                                </option>
+                                            @endforeach--}}
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
                                         Secondary Color
                                     </div>
 
@@ -248,6 +266,15 @@
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
                                         Linkedin URL
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="linkedin_link" class="form-control"
+                                               value="{{$setting->linkedin_link}}">
+                                    </div>
+                                </div>
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Telegram URL
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="telegram_link" class="form-control"

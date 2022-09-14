@@ -13,6 +13,7 @@ class Setting extends Model
     protected $fillable = [
         'website_name',
         'logo',
+        'icon_logo',
         'cover',
         'address',
         'bio',
@@ -31,6 +32,7 @@ class Setting extends Model
         'twitter_link',
         'instagram_link',
         'youtube_link',
+        'linkedin_link',
         'telegram_link',
         'site_key',
         'secret_key',
@@ -53,6 +55,10 @@ class Setting extends Model
 //    }
 //
     public function getLogoAttribute($logo): ?string
+    {
+        return $logo ? Storage::url($logo) : asset('assets/user.png');
+    }
+    public function getIconLogoAttribute($logo): ?string
     {
         return $logo ? Storage::url($logo) : asset('assets/user.png');
     }
