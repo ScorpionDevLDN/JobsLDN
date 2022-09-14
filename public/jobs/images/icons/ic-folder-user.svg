@@ -1,9 +1,0 @@
-<svg id="ic-folder-user" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-  <rect id="Rectangle_261" data-name="Rectangle 261" width="50" height="50" fill="none"/>
-  <g id="ic-folder-user-2" data-name="ic-folder-user" transform="translate(4.167 6.792)">
-    <path id="Path_202" data-name="Path 202" d="M12,27.6l.917-3.333c3.021-11,15.979-11,19,0l.917,3.333" transform="translate(8.833 8.813)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    <circle id="Ellipse_55" data-name="Ellipse 55" cx="5.792" cy="5.792" r="5.792" transform="translate(25.458 13.229)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
-    <path id="Path_203" data-name="Path 203" d="M14.5,34.383H6.167A4.167,4.167,0,0,1,2,30.217V7.3H39.5a4.167,4.167,0,0,1,4.167,4.167" transform="translate(-2 -0.633)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    <path id="Path_204" data-name="Path 204" d="M2,18.683V6.183A2.083,2.083,0,0,1,3.9,4.1H22.354a1.854,1.854,0,0,1,1.333.6L27,10.767" transform="translate(-2 -4.1)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-  </g>
-</svg>

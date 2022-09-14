@@ -11,7 +11,7 @@
                     <h1>Jobs</h1>
                 </div>
                 <div>
-                    <a href="post_a_job.html" class="button">Post a job</a>
+                    <a href="{{route('company-post-job.index')}}" class="button">Post a job</a>
                 </div>
             </div>
 

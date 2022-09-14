@@ -36,6 +36,7 @@
                                         <input type="email" name="email" id="login_email" class="form-control"
                                                required/>
                                         <label class="floating-label" for="login_email">Email</label>
+                                        <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -44,6 +45,7 @@
                                                class="form-control"
                                                required>
                                         <label class="floating-label" for="login_password">Password</label>
+                                        <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                                         <ion-icon class="toggle-password with-forgot-pass"
                                                   name="eye-outline"></ion-icon>
                                         <a href="#" class="forgot-password" data-bs-toggle="modal"

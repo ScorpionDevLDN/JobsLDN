@@ -32,7 +32,8 @@ class Company extends Authenticatable
         'industry',
         'website_url',
         'overview',
-        'active'
+        'active',
+        'is_deleted' // 1 deleted account
     ];
 
     protected $guarded = 'company';

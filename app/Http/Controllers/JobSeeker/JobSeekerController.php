@@ -58,7 +58,7 @@ class JobSeekerController extends Controller
 
     function check(Request $request)
     {
-        if (JobSeeker::query()->where('email', $request->email)->exists()) {
+        if (JobSeeker::query()->where('email', $request->email)->where('is_deleted',0)->exists()) {
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:job_seekers,email',
@@ -74,7 +74,7 @@ class JobSeekerController extends Controller
             } else {
                 return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
             }
-        } elseif (Company::query()->where('email', $request->email)->exists()) {
+        } elseif (Company::query()->where('email', $request->email)->where('is_deleted',0)->exists()) {
             //Validate Inputs
             $request->validate([
                 'email' => 'required|email|exists:companies,email',

@@ -15,8 +15,8 @@ class CompanyJobController extends Controller
      */
     public function index()
     {
-        $posts = Job::query()->where('company_id',auth('companies')->id())->paginate(5);
-        return view('frontend.jobsldn.company.jobs',compact('posts'));
+        $posts = Job::query()->active()->where('company_id', auth('companies')->id())->paginate(5);
+        return view('frontend.jobsldn.company.jobs', compact('posts'));
     }
 
     /**
@@ -32,24 +32,36 @@ class CompanyJobController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'title' => 'required',
-            'summery'=> 'required',
-            'pdf_details'=> 'required',
-            'city_id'=> 'required',
-            'type_id'=> 'required',
-            'category_id'=> 'required',
-            'currency_id'=> 'required',
-            'per_id'=> 'required',
-            'salary'=> 'required',
-            'expired_at'=> 'required',
-            'job_post_email'=> 'required',
-        ]);*/
+            'summery' => 'required',
+//            'pdf_details'=> 'required',
+            'city_id' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',
+            'currency_id' => 'required',
+            'per_id' => 'required',
+            'salary' => 'required|integer',
+            'expired_at' => 'required',
+            'job_post_email' => 'required',
+        ], [
+            'title.required' => 'Title field are required',
+            'summery.required' => 'Summery field are required',
+            'city_id.required' => 'City field are required',
+            'type_id.required' => 'Type field are required',
+            'category_id.required' => 'Category field are required',
+            'currency_id.required' => 'Currency field are required',
+            'salary.required' => 'Salary field are required',
+            'salary.integer' => 'Salary field should be integer',
+            'per_id.required' => 'Per field are required',
+            'expired_at.required' => 'Expire date field are required',
+            'job_post_email.required' => 'Email field are required',
+        ]);
         //dd($request->all());
         $data = $request->only([
             'company_id',
@@ -82,7 +94,7 @@ class CompanyJobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -93,7 +105,7 @@ class CompanyJobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -104,8 +116,8 @@ class CompanyJobController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,7 +128,7 @@ class CompanyJobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

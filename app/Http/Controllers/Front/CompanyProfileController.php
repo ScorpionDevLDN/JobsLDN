@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Job;
 use App\Models\JobSeeker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -107,11 +108,28 @@ class CompanyProfileController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        if (auth('job_seekers')->check()) {
+            JobSeeker::query()->where('id', auth('job_seekers')->id())->update([
+                'is_deleted' => 1
+            ]);
+            auth('job_seekers')->logout();
+        } elseif (auth('companies')->check()) {
+            $company_id = auth('companies')->id();
+            Company::query()->where('id', $company_id)->update([
+                'is_deleted' => 1
+            ]);
+            Job::query()->where('company_id', $company_id)->toBase()->update([
+                'is_deleted' => 1,
+                'shown' => 0,
+            ]);
+            auth('companies')->logout();
+            return redirect()->route('home.index');
+        }
+        return redirect()->back();
     }
 
     public function updatePassword(Request $request)
@@ -127,7 +145,7 @@ class CompanyProfileController extends Controller
                 'password' => 'required|min:6|confirmed',
             ]);
             JobSeeker::query()->where('id', auth('job_seekers')->id())->update([
-                'password' => bcrypt($request->password),
+                'password' => Hash::make($request->password),
             ]);
             session()->flash('msg', 'Password Updated Successfully');
             return redirect()->route('my-profile.index');
@@ -142,7 +160,7 @@ class CompanyProfileController extends Controller
                 'password' => 'required|min:6|confirmed',
             ]);
             Company::query()->where('id', auth('companies')->id())->update([
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
             ]);
             session()->flash('msg', 'Password Updated Successfully');
             return redirect()->route('my-profile.index');
@@ -151,11 +169,18 @@ class CompanyProfileController extends Controller
 
     public function updateCompanyFront(Request $request)
     {
+        $request->validate([
+            'company_name' => 'required',
+            'industry' => 'required',
+            'website_url' => 'required',
+            'overview' => 'required',
+        ]);
         Company::query()->where('id', auth('companies')->id())->update([
             'photo' => $request->photo,
             'company_name' => $request->company_name,
             'employee_count' => $request->employee_count,
             'industry' => $request->industry,
+            'website_url' => $request->website_url,
             'overview' => $request->overview,
         ]);
         session()->flash('msgCompany', 'Profile Updated Successfully');

@@ -26,7 +26,6 @@ use App\Http\Controllers\Front\JobSeekerProfileController;
 use App\Http\Controllers\Front\PagefrontController;
 use App\Http\Controllers\Front\SingleJobController;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
-use App\Http\Controllers\JobSeeker\JobSeekerHomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;

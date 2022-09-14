@@ -91,7 +91,7 @@
                                 <a href="{{route('my-profile.index')}}">Profile</a>
                             </li>
                             <li>
-                                <a href="{{route('posts.index')}}">Jobs</a>
+                                <a href="{{route('company-jobs.index')}}">Jobs</a>
                             </li>
                             <li>
                                 <a href="{{route('company-notifications.index')}}">Notifications</a>

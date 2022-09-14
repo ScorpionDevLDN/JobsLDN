@@ -29,7 +29,8 @@ class JobSeeker extends Authenticatable
         'read_conditions',
         'photo',
         'overview',
-        'active'
+        'active',
+        'is_deleted'
     ];
     /**
      * The attributes that should be hidden for serialization.

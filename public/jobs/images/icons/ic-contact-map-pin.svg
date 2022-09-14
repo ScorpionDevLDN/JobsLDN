@@ -1,7 +1,0 @@
-<svg id="ic-contact-map-pin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <rect id="Rectangle_188" data-name="Rectangle 188" width="20" height="20" fill="none"/>
-  <g id="ic-contact-map-pin-2" data-name="ic-contact-map-pin" transform="translate(4.216 1.306)">
-    <path id="Path_82" data-name="Path 82" d="M11.476,1.6H10.209a5.942,5.942,0,0,0-4.425,8.783L10.2,18.6a.725.725,0,0,0,1.283,0L15.9,10.408A5.968,5.968,0,0,0,11.476,1.6Z" transform="translate(-5.057 -1.6)" fill="none" stroke="#f4001e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
-    <rect id="Rectangle_26" data-name="Rectangle 26" width="4.167" height="4.167" rx="2.083" transform="translate(3.703 3.667)" fill="none" stroke="#f4001e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
-  </g>
-</svg>

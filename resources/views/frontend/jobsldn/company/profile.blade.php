@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-12 col-lg-9">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mb-5">
                             @if(session('msgProfile'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{session('msgProfile')}}
@@ -94,7 +94,7 @@
                                 <button type="submit" class="button w-100">Update</button>
                             </div>
                             <div class="col-6 col-lg-3 align-self-center text-end text-lg-start">
-                                <a href="#" class="danger delete-account">Delete My Account</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#delete-account" class="danger delete-account">Delete My Account</a>
                             </div>
                         </div>
                     </form>
@@ -129,7 +129,7 @@
                                         <img src="{{asset('jobsldn/images/icons/upload.svg')}}" class="icon"
                                              alt="Upload">
                                     </label>
-                                    <input class="custom-upload__input" name="client_form_file" accept=".png,.jpeg,.jpg"
+                                    <input class="custom-upload__input" name="client_form_file"
                                            id="client_form_file" type="file" data-behaviour="custom-upload-input"
                                     >
                                 </div>
@@ -159,7 +159,7 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="floating-label-group">
-                                    <input value="{{$user->website_url}}" type="text" name="website" id="website"
+                                    <input value="{{$user->website_url}}" type="text" name="website_url" id="website"
                                            class="form-control" required/>
                                     <label class="floating-label" for="website">Website *</label>
                                 </div>
@@ -256,4 +256,28 @@
         </div>
     </section>
     <!-- End Profile Content -->
+
+    <div class="modal fade" id="delete-account" tabindex="-1" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="logoutLabel">Delete Account</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                </div>
+                <form action="{{route('my-profile.destroy',1)}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">
+                        <h5 class="text-center">Are you sure you want to delete your account?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button mx-auto" type="submit">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection

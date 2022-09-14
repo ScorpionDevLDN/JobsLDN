@@ -1,9 +1,0 @@
-@use "../helpers/vars" as *;
-@use "../bootstrap/vendor/rfs" as *;
-@use "../helpers/mixins" as *;
-.our-partners {
-  @include padding-bottom(150px);
-  img {
-    max-width: 200px;
-  }
-}

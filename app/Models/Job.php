@@ -27,7 +27,8 @@ class Job extends Model
         'applicants_count',
         'views_count',
         'status', //0 under preview,1 accepted,2 rejected
-        'shown'
+        'shown',
+        'is_deleted',
     ];
 
     protected $casts = [
@@ -63,9 +64,10 @@ class Job extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
     public function scopeActive($query)
     {
-        return $query->where('status', 1)->where('shown', 1);
+        return $query->where('status', 1)->where('shown', 1)->where('is_deleted', 0);
     }
 
 //    public function getStatusAttribute(){
@@ -98,7 +100,7 @@ class Job extends Model
 
     public function setPdfDetailsAttribute($image)
     {
-        if (gettype($image) != 'string') {
+        if ($image && gettype($image) != 'string') {
             $image->store('public');
             $this->attributes['pdf_details'] = $image->hashName();
         }

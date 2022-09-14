@@ -100,10 +100,7 @@
                     <p></p>
                 </div>
                 <div class="col-12 col-xl-3">
-                    @if($created_at)
-                        <h6 class="mb-4 mt-4 text-danger mt-md-0 text-center text-md-left">This job is no longer
-                            available</h6>
-                    @else
+                    @if(!$created_at)
                         @if(auth()->guard('job_seekers')->check())
                             <div class="section-heading">
                                 <h2>Apply now</h2>
