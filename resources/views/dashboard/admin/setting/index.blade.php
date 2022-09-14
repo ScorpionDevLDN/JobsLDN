@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Instagram Link
+                                        Instagram URL
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="instagram_link" class="form-control"
@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Youtube Link
+                                        Youtube URL
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="youtube_link" class="form-control"
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Telegram Link
+                                        Linkedin URL
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="telegram_link" class="form-control"

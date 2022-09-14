@@ -1,4 +1,3 @@
-
 <footer class="footer" id="footer">
     <div class="footer-top">
         <div class="container">
@@ -11,27 +10,27 @@
                     <h3>Following us on</h3>
                     <ul class="d-flex">
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{$setting->telegram_link}}">
                                 <ion-icon name="logo-linkedin"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{$setting->twitter_link}}">
                                 <ion-icon name="logo-twitter"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{$setting->instagram_link}}">
                                 <ion-icon name="logo-instagram"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{$setting->facebook_link}}">
                                 <ion-icon name="logo-facebook"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="{{$setting->youtube_link}}">
                                 <ion-icon name="logo-youtube"></ion-icon>
                             </a>
                         </li>
@@ -72,8 +71,9 @@
                 </div>
                 <div class="col-12 col-lg-5 col-xxl-3">
                     <h6>Subscribe to the latest updates</h6>
-                    <form class="newsletter-form">
-                        <input type="email" name="email_newsletter" placeholder="Write your e-mail"
+                    <form class="newsletter-form" action="{{route('home.store')}}" method="post">
+                        @csrf
+                        <input type="email" name="email" placeholder="Write your e-mail"
                                class="form-control mt-3" id="email_newsletter">
                         <button class="news-letter-button button mt-4">Sign up</button>
                     </form>

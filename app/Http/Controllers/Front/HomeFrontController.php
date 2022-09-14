@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\Newsletter;
 use App\Models\Partner;
 use App\Models\Setting;
 use App\Models\Type;
@@ -53,11 +54,16 @@ class HomeFrontController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
+    /*create newsletter*/
     public function store(Request $request)
     {
-        //
+        Newsletter::query()->firstOrCreate([
+            'email' => $request->email,
+        ]);
+        \Newsletter::subscribe($request->email);
+        return back();
     }
 
     /**

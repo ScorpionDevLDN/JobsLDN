@@ -46,7 +46,6 @@ class ContactfrontController extends Controller
             'attachment' => 'sometimes|mimes:pdf',
         ]);
         Contact::query()->create($request->all());
-        \Newsletter::subscribe($request->email);
         //send email
         $data = array('name' => Setting::query()->first()->email_from,
             'msgtst' => \request('message'));
