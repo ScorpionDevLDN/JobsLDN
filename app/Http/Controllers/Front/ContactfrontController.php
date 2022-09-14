@@ -62,7 +62,8 @@ class ContactfrontController extends Controller
             $message->from(\request('email'), \request('full_name'));
         });*/
         Mail::to($setting->email_from)->send(new MailMailableSend($request->subject,$request->message,$request->attachment));
-        return redirect()->route('contacts.index')->with('message', 'Message Send successfully!');
+        return redirect()->route('contacts.index');
+            /*->with('message', 'Message Send successfully!');*/
     }
 
     /**
