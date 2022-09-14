@@ -35,7 +35,11 @@ class Setting extends Model
         'site_key',
         'secret_key',
 
-        'email_from'
+        'email_from',
+        'email_port',
+        'email_password',
+        'email_host',
+        'email_logo',
     ];
 
 
@@ -51,6 +55,10 @@ class Setting extends Model
     public function getLogoAttribute($logo): ?string
     {
         return $logo ? Storage::url($logo) : asset('assets/user.png');
+    }
+    public function getEmailLogoAttribute($email_logo): ?string
+    {
+        return $email_logo ? Storage::url($email_logo) : asset('assets/user.png');
     }
 
 //    public function deleteLogo()

@@ -297,13 +297,63 @@
 
                             <!--begin::Tab Pane-->
                             <div class="tab-pane" id="kt_builder_email">
+
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label ">Email Logo</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <div class="image-input image-input-outline" id="kt_image_2">
+                                            <div class="image-input-wrapper"
+                                                 style="background-image: url({{isset($setting['email_logo']) ? $setting['email_logo'] : null}})"></div>
+                                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                   data-action="change" data-toggle="tooltip"
+                                                   title="image"
+                                                   data-original-title="Change Image">
+                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                <input type="file" name="email_logo"
+                                                       accept=".png, .jpg, .jpeg"/>
+                                                <input type="hidden" name="profile_avatar_remove"/>
+                                            </label>
+                                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                  data-action="cancel" data-toggle="tooltip"
+                                                  title="Cancel Image">
+												<i class="ki ki-bold-close icon-xs text-muted"></i>
+											</span>
+                                        </div>
+                                        <span class="form-text text-muted">accept:.png, .jpg, .jpeg</span>
+                                        @error('email_logo')
+                                        <span class="form-text text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Emails from
+                                        Email
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="email_from" class="form-control"
-                                               value="test@demo2.admin.com">
+                                               value="{{$setting->email_from}}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Password
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="email_password" class="form-control"
+                                               value="{{$setting->email_password}}">
+                                    </div>
+
+                                </div>
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Host
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="email_host" class="form-control"
+                                               value="{{$setting->email_host}}">
                                     </div>
 
                                 </div>
@@ -312,18 +362,8 @@
                                         Port
                                     </div>
                                     <div class="col-12 col-lg-9 px-2">
-                                        <input type="text" name="port" class="form-control"
-                                               value="465">
-                                    </div>
-
-                                </div>
-                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
-                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        SMPT
-                                    </div>
-                                    <div class="col-12 col-lg-9 px-2">
-                                        <input type="text" name="smpt" class="form-control"
-                                               value="smpt">
+                                        <input type="text" name="email_port" class="form-control"
+                                               value="{{$setting->email_port}}">
                                     </div>
 
                                 </div>

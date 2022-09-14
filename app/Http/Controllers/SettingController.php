@@ -16,7 +16,7 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::query()->first();
-        return view('dashboard.admin.setting.index',compact('setting'));
+        return view('dashboard.admin.setting.index', compact('setting'));
     }
 
     /**
@@ -32,7 +32,7 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +43,7 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +54,7 @@ class SettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
@@ -65,23 +65,27 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-
         $requestData = $request->all();
-        if($request->logo){
-            $filename= $request->logo->store('public');
-            $imagename= $request->logo->hashName();
+        if ($request->logo) {
+            $filename = $request->logo->store('public');
+            $imagename = $request->logo->hashName();
             $requestData['logo'] = $imagename;
         }
-        if($request->cover){
-            $filename= $request->cover->store('public');
-            $imagename= $request->cover->hashName();
+        if ($request->cover) {
+            $filename = $request->cover->store('public');
+            $imagename = $request->cover->hashName();
             $requestData['cover'] = $imagename;
+        }
+        if ($request->email_logo) {
+            $filename = $request->email_logo->store('public');
+            $imagename = $request->email_logo->hashName();
+            $requestData['email_logo'] = $imagename;
         }
         Setting::query()->findOrFail($id)->update($requestData);
         return redirect()->route('admin.settings.index');
@@ -90,7 +94,7 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -98,15 +102,16 @@ class SettingController extends Controller
         //
     }
 
-    public function updateLogo(Request $request){
+    public function updateLogo(Request $request)
+    {
         $requestData = $request->logo;
-        if($request->logo){
+        if ($request->logo) {
             $fileName = $request->logo->store("setting");
             $imageName = $request->logo->hashName();
             $requestData['logo'] = $imageName;
         }
         Setting::query()->update($requestData);
 
-       return Setting::all();
+        return Setting::all();
     }
 }

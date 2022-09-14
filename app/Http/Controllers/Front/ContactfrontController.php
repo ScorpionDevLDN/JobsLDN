@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailMailableSend;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -38,6 +39,7 @@ class ContactfrontController extends Controller
      */
     public function store(Request $request)
     {
+        $setting =Setting::first();
         $request->validate([
             'full_name' => 'required',
             'email' => 'required',
@@ -46,18 +48,20 @@ class ContactfrontController extends Controller
             'attachment' => 'sometimes|mimes:pdf',
         ]);
         Contact::query()->create($request->all());
-        //send email
-        $data = array('name' => Setting::query()->first()->email_from,
-            'msgtst' => \request('message'));
 
-        Mail::send('mail', $data, function ($message) {
+        //send email
+        /*$data = array('name' => Setting::query()->first()->email_from,
+            'msgtst' => \request('message'));*/
+
+        /*Mail::send('mail', $data, function ($message) {
             $message->to(Setting::query()->first()->email_from, Setting::query()->first()->website_name)
                 ->subject(\request('subject'));
 
             $message->attach(\request('attachment'));
 
             $message->from(\request('email'), \request('full_name'));
-        });
+        });*/
+        Mail::to($setting->email_from)->send(new MailMailableSend($request->subject,$request->message,$request->attachment));
         return redirect()->route('contacts.index')->with('message', 'Message Send successfully!');
     }
 
