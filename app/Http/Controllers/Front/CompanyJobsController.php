@@ -150,11 +150,14 @@ class CompanyJobsController extends Controller
             'job_seeker_cv_id' => $request->job_seeker_cv_id,
         ]);
 
+        $job->update([
+            'applicants_count' => $job->applicants_count + 1
+        ]);
 
         //$setting->email_from
-        Mail::to('ayakhomar@gmail.com')->send(new ApplyToJob('Apply to ' . $job->title, $job, auth('job_seekers')->user(), $attachment));
+        Mail::to(auth('job_seekers')->user()->email)->send(new ApplyToJob('Apply to ' . $job->title, $job, auth('job_seekers')->user(), $attachment));
 
-        Mail::to('ayakhomar@gmail.com')->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user(), $attachment));
+        Mail::to($setting->email_from)->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user(), $attachment));
         return back()->with('applied', 'you have applied successfully');
     }
 
@@ -167,9 +170,17 @@ class CompanyJobsController extends Controller
 
     public function download($id)
     {
-        $post = Job::query()->where('id', $id)->first()->pdf_details;
-        return Storage::download($post);
-//        return response()->download($file_path_full, $basename, ['Content-Type' => 'application/force-download']);
+        //$post = Job::query()->where('id', $id)->first()->pdf_details;
+        //return Storage::download($post);
+
+        $post = Job::query()->where('id', $id)->first();
+        if ($post and isset($post->pdf_details)) {
+            $extensions = explode('.', $post->pdf_details);
+            $ext = $extensions[count($extensions) - 1];
+            // return $ext;
+            return Storage::disk('public')->download($post->pdf_details, $post->title . '.' . $ext);
+        }
+        return redirect()->back();
     }
 
     public function bookmark($id)
@@ -194,7 +205,7 @@ class CompanyJobsController extends Controller
             $extensions = explode('.', $cv->pdf);
             $ext = $extensions[count($extensions) - 1];
             // return $ext;
-            return Storage::disk('public')->download($cv->pdf, 'aya' . '.' . $ext);
+            return Storage::disk('public')->download($cv->pdf, 'cv' . '.' . $ext);
         }
         return redirect()->back();
     }
