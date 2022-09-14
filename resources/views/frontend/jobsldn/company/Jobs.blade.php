@@ -28,31 +28,36 @@
                             @foreach($posts as $post)
                                 <div class="col-12">
                                     <!-- Start Job Box -->
-                                    <div class="job-box wow animate animate__fadeInDown animation-delay-1">
+                                    <div class="job-box wow animate animate__fadeInDown animation-delay-{{$post->id}}">
                                         <div class="job-info">
-                                            <h3 class="position">{{$post->title}} <span> ({{$post->views_count}} views)</span></h3>
+                                            <h3 class="position">{{$post->title}}
+                                                <span> ({{$post->views_count}} views)</span></h3>
                                             <div class="icons">
                                                 <div class="icon-box">
                                                     <div class="icon location">
-                                                        <img src="{{asset('jobsldn/images/icons/ic-contact-map-pin.svg')}}" alt="Location">
+                                                        <img src="{{asset('jobsldn/images/icons/ic-contact-map-pin.svg')}}"
+                                                             alt="Location">
                                                     </div>
                                                     <span class="content">{{$post->city->name}}</span>
                                                 </div>
                                                 <div class="icon-box">
                                                     <div class="icon salary">
-                                                        <img src="{{asset('jobsldn/images/icons/ic-shopping-wallet.svg')}}" alt="Salary">
+                                                        <img src="{{asset('jobsldn/images/icons/ic-shopping-wallet.svg')}}"
+                                                             alt="Salary">
                                                     </div>
                                                     <span class="content">{{$post->currency->symbol}}{{$post->salary}} / <span>{{$post->per->per}}</span></span>
                                                 </div>
                                                 <div class="icon-box">
                                                     <div class="icon time">
-                                                        <img src="{{asset('jobsldn/images/icons/ic-furniture-light.svg')}}" alt="Time">
+                                                        <img src="{{asset('jobsldn/images/icons/ic-furniture-light.svg')}}"
+                                                             alt="Time">
                                                     </div>
                                                     <span class="content">{{$post->type->name}}</span>
                                                 </div>
                                                 <div class="icon-box">
                                                     <div class="icon published-time">
-                                                        <img src="{{asset('jobsldn/images/icons/time.svg')}}" alt="Time">
+                                                        <img src="{{asset('jobsldn/images/icons/time.svg')}}"
+                                                             alt="Time">
                                                     </div>
                                                     <span class="content">{{$post->created_at->diffForHumans()}}</span>
                                                 </div>
@@ -61,11 +66,12 @@
                                         <div class="job-actions">
                                             <!-- <div class="button applications-sent">30 Applications Sent</div> -->
                                             <div class="open">
-                                                <a href="{{route('job_details',$post->id)}}" class="button d-flex gap-1">open
+                                                <a href="{{route('job_details',$post->id)}}"
+                                                   class="button d-flex gap-1">open
                                                     <img src="{{asset('jobsldn/images/icons/arrow-right.svg')}}" alt="">
                                                 </a>
                                             </div>
-                                            <a href="#" class="edit-box">
+                                            <a href="{{route('company-jobs.edit',$post->id)}}" class="edit-box">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.919" height="21.863"
                                                      viewBox="0 0 19.919 21.863">
                                                     <g id="Group_351" data-name="Group 351"
@@ -86,7 +92,7 @@
                                                 </svg>
                                             </a>
                                             <a href="#" class="delete-box" data-bs-toggle="modal"
-                                               data-bs-target="#delete-box">
+                                               data-bs-target="#delete-box{{$post->id}}">
                                                 <svg id="ic-actions-trash" xmlns="http://www.w3.org/2000/svg" width="24"
                                                      height="24" viewBox="0 0 24 24">
                                                     <g id="ic-actions-trash-2" data-name="ic-actions-trash"
@@ -117,24 +123,7 @@
                                     </div>
                                     <!-- End Job Box -->
                                 </div>
-                                <div class="modal fade" id="delete-box" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title" id="deleteLabel">Notification</h6>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                    <ion-icon name="close-outline"></ion-icon>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5 class="text-center"> Are you sure you want to delete this?</h5>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="button mx-auto" type="button">Yes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             @endforeach
                         @endif
                     </div>
@@ -146,7 +135,30 @@
             </div>
         </div>
     </section>
-    <!-- End Profile Content -->
 
-    <!-- Post a job -->
+    @foreach($posts as $post)
+        <div class="modal fade" id="delete-box{{$post->id}}" tabindex="-1" aria-labelledby="deleteLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="deleteLabel">Delete {{$post->title}}</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <form action="{{route('company-jobs.destroy',$post->id)}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <div class="modal-body">
+                            <h5 class="text-center"> Are you sure you want to delete this?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button mx-auto" type="submit">Yes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

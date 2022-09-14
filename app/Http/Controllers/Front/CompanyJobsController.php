@@ -108,6 +108,9 @@ class CompanyJobsController extends Controller
             'Your share text comes here',
         )
             ->whatsapp();
+        $post->update([
+            'views_count' => $post->views_count+ 1
+        ]);
         return view('frontend.jobsldn.job', compact('post', 'bookmarked', 'created_at', 'similar', 'cvs', 'shareComponent'));
     }
 
