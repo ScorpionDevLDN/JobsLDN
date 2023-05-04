@@ -1,0 +1,8 @@
+$fonts: light, regular, medium, bold, black;
+
+@each $font in $fonts {
+  @font-face {
+    font-family: #{$font};
+    src: url("../fonts/sofia-pro-#{$font}.otf");
+  }
+}

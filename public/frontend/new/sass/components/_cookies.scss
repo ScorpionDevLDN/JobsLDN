@@ -1,0 +1,46 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.cookies-card {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 95%;
+  @include padding(20px 40px);
+  column-gap: 20px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  img {
+    width: 30px;
+  }
+  p {
+    @include font-size(18px);
+    a {
+      @include font-size(18px);
+      color: $c_primary;
+    }
+  }
+
+  .decline,
+  .decline:hover {
+    border: none;
+    background-color: transparent;
+    color: $c_primary;
+  }
+  @include media ($lg) {
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    row-gap: 10px;
+    width: 90%;
+    img {
+      width: 50px;
+    }
+  }
+}

@@ -20,7 +20,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public $setting, $payment_setting, $currencies, $categories, $cities, $pers, $types;
+    public $setting, $payment_setting, $currencies, $categories, $cities, $pers, $types,$disk;
 
     public function __construct()
     {
@@ -28,7 +28,7 @@ class Controller extends BaseController
         $payment_setting = PaymentSetting::first();
 
         $currencies = Currency::active()->get();
-        $categories = Category::active()->get();
+        $categories = Category::active()->orderBy('name')->get();
         $cities = City::active()->get();
         $pers = Per::active()->get();
         $types = Type::active()->get();
@@ -41,6 +41,7 @@ class Controller extends BaseController
         $this->cities = $cities;
         $this->pers = $pers;
         $this->types = $types;
+        $this->disk = config('filesystems.default') == 's3' ? 's3' : 'public';
         $this->viewShare();
     }
 
@@ -56,7 +57,12 @@ class Controller extends BaseController
         $this->viewShare['cities'] = $this->cities;
         $this->viewShare['pers'] = $this->pers;
         $this->viewShare['types'] = $this->types;
+        $this->viewShare['disk'] = $this->disk;
 
         View::share($this->viewShare);
+    }
+
+    public function getDisk(){
+        return config('filesystems.default') == 's3' ? 's3' : 'public';
     }
 }

@@ -10,7 +10,10 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $table = 'my_jobs';
+
     protected $fillable = [
+        'session_job_id',
         'company_id',
         'title',
         'summery',
@@ -24,6 +27,7 @@ class Job extends Model
         'expired_at',
         'job_post_email',
         'is_super_post',
+        'success_payment',
         'applicants_count',
         'views_count',
         'status', //0 under preview,1 accepted,2 rejected
@@ -98,13 +102,13 @@ class Job extends Model
         return 'Rejected';
     }
 
-    public function setPdfDetailsAttribute($image)
+    /*public function setPdfDetailsAttribute($image)
     {
         if ($image && gettype($image) != 'string') {
             $image->store('public');
             $this->attributes['pdf_details'] = $image->hashName();
         }
-    }
+    }*/
 
     /*public function getPdfDetailsAttribute($image): ?string
     {
@@ -131,19 +135,23 @@ class Job extends Model
 
     public function scopeFilterStatus($query)
     {
-        $sortField = \request('sort_field', 'created_at');
-
-        if (!in_array($sortField, ['id', 'title', 'type_id', 'salary', 'created_at'])) {
-            $sortField = 'created_at';
-        }
-
-        $sortDirection = \request('sort_direction', 'desc');
-
-        if (!in_array($sortDirection, ['desc', 'asc'])) {
-            $sortDirection = 'desc';
-        }
-
-        $query->orderBy($sortField, $sortDirection);
+//        $sortField = \request('sort_field', 'created_at');
+//
+//        if (!in_array($sortField, ['id', 'title',/* 'type_id', 'salary',*/ 'created_at'])) {
+//            $sortField = 'created_at';
+//        }
+//
+//        $sortDirection = \request('sort_direction', 'asc');
+//
+//        if (!in_array($sortDirection, ['desc', 'asc'])) {
+//            $sortDirection = 'desc';
+//        }
+//
+//        if ($sortField == 'created_at') {
+//            $sortField = 'created_at';
+//            $query->orderBy($sortField, 'desc');
+//        }
+//        $query->orderBy($sortField, $sortDirection);
 
         if (\request()->filled('category')) {
             $query->where('category_id', \request()->category);
@@ -156,18 +164,27 @@ class Job extends Model
         if (\request()->filled('type')) {
             $query->where('type_id', \request()->type);
         }
-        if (\request()->filled('salary')) {
+        /*if (\request()->filled('salary')) {
             $min = explode('-', \request('salary'));
             $less = explode('£', $min[0]);
             $than = explode('£', $min[1]);
-            $query->where('salary', '>=', $less[1])->orWhere('salary', '<=', $than[1]);
+            $query->where('salary', '>=', (float)$less[1])->orWhere('salary', '<=', (float)$than[1]);
 
-        }
+        }*/
 
         if (\request()->filled('keywords')) {
             $keywords = \request()->keywords;
             $query->whereRaw('(title like ?)', ["%$keywords%"]);
         }
+    }
+
+    public function scopePayment($query)
+    {
+        //$query->where('is_super_post', 1)->where('success_payment', 1)->orWhere('is_super_post', 0)->where('is_deleted', 0);
+        $query->Accepted()
+            ->where(function ($query) {
+                $query->where('is_super_post', 1)->where('success_payment', 1);
+            })->orWhere('is_super_post', 0)->where('status', 1);
     }
 
 }

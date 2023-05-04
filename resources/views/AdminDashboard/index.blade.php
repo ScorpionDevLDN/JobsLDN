@@ -35,8 +35,7 @@
             <div class="brand flex-column-auto" id="kt_brand">
                 <!--begin::Logo-->
                 <a href="{{route('admin.home')}}">
-                    <img style="height: 25px" alt="Logo"
-                         src="{{isset($setting->icon_logo) ? $setting->icon_logo : asset('assets/media/svg/logo.svg')}}"/>
+                    <img src="{{isset($setting->icon_logo) ? asset('storage/'.$setting->icon_logo) : asset('admin/images/dashboard-logo.png')}}" style="width:40px;max-height: 100px;">
                 </a>
                 <!--end::Logo-->
                 <!--begin::Toggle-->
@@ -82,7 +81,7 @@
                 <div class="d-flex flex-column-fluid">
                     <!--begin::Container-->
                     <div class="container">
-                        @include('dashboard.shared.msg')
+                        {{--@include('dashboard.shared.msg')--}}
                         @yield('content')
                     </div>
                     <!--end::Container-->
@@ -109,6 +108,7 @@
 <!--end::Scrolltop-->
 
 @include('AdminDashboard.scripts')
+@include('dashboard.shared.msg')
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->

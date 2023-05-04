@@ -72,8 +72,8 @@ class SliderController extends Controller
     {
         Slider::query()->findOrFail($id)->update($request->all());
 
-        session()->flash('msg','Slider Updated Successfully');
-        return redirect()->route('admin.sliders.index');
+//        session()->flash('msg','Slider Updated Successfully');
+        return redirect()->route('admin.sliders.index')->with('success', 'Slider updated successfully');
     }
 
     /**

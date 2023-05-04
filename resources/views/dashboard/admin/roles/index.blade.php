@@ -42,28 +42,39 @@
                                             <br/>
                                             @foreach($permissions as $value)
                                                 @if($value->id == 1)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Categories</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}"
+                                                                  type="checkbox">Categories</label>
                                                     <br/>
                                                 @elseif($value->id == 2)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Cities</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}" type="checkbox">Cities</label>
                                                     <br/>
                                                 @elseif($value->id == 3)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Pers</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}" type="checkbox">Pers</label>
                                                     <br/>
                                                 @elseif($value->id == 4)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Currencies</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}"
+                                                                  type="checkbox">Currencies</label>
                                                     <br/>
                                                 @elseif($value->id == 5)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Types</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}" type="checkbox">Types</label>
                                                     <br/>
                                                 @elseif($value->id == 6)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Roles</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}" type="checkbox">Roles</label>
                                                     <br/>
                                                 @elseif($value->id == 7)
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Users</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}" type="checkbox">Users</label>
                                                     <br/>
                                                 @else
-                                                    <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
+                                                    <label><input style="margin: 5px" name="permission[]"
+                                                                  value="{{$value->id}}"
+                                                                  type="checkbox">{{ $value->name }}</label>
                                                     <br/>
                                                 @endif
                                             @endforeach
@@ -118,13 +129,15 @@
                                         </a>
                                     </div>
                                     <div class="col-1">
-                                        <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
+                                        <a href="#" class="btn btn-light-danger btn-icon font-weight-bold"
+                                           data-toggle="modal"
                                            data-target="#exampleModalDelete{{$role->id}}">
                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g stroke="none" stroke-width="1" fill="none"
+                                                               fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z"
                                                                       fill="#000000" fill-rule="nonzero"/>
@@ -164,33 +177,25 @@
                                             <div class="form-group">
                                                 <strong>Permission:</strong>
                                                 <br/>
-                                                @foreach($permissions as $value)
-                                                    @if($value->id == 1)
-                                                        <label><input  style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Categories</label>
-                                                        <br/>
-                                                    @elseif($value->id == 2)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Cities</label>
-                                                        <br/>
-                                                    @elseif($value->id == 3)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Pers</label>
-                                                        <br/>
-                                                    @elseif($value->id == 4)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Currencies</label>
-                                                        <br/>
-                                                    @elseif($value->id == 5)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Types</label>
-                                                        <br/>
-                                                    @elseif($value->id == 6)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Roles</label>
-                                                        <br/>
-                                                    @elseif($value->id == 7)
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">Users</label>
-                                                        <br/>
-                                                    @else
-                                                        <label><input style="margin: 5px" name="permission[]" value="{{$value->id}}" type="checkbox">{{ $value->name }}</label>
-                                                        <br/>
-                                                    @endif
-                                                @endforeach
+                                                <div class="row hide-section">
+                                                    @foreach($permissions as $value)
+                                                        <div class="form-group col-lg-3 col-md-3 col-sm-6">
+                                                            <label class=" col-form-label">{{$value->getName()}}</label>
+                                                            <div class="">
+                                                                        <span class="switch  switch-icon">
+                                                                            <label>
+                                                                                <input {{in_array($value->id,collect($role->permissions)->pluck('id')->toArray()) ? 'checked' : ''}} type="checkbox"
+                                                                                       name="permission[]"
+                                                                                       id="{{$value->id}}"
+                                                                                       value="{{$value->id}}"
+                                                                                       onclick="$(this).val(this.checked ? {{$value->id}} : 0)"/>
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </span>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -258,7 +263,7 @@
                 {
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                     responsive: true,
-                    language: { search: "" },
+                    language: {search: ""},
                     pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
@@ -274,14 +279,14 @@
     <script>
         $(function () {
             // $('.toggle-class').change(function () {
-            $(document).on("click", ".toggle-class", function(){
+            $(document).on("click", ".toggle-class", function () {
                 var status = $(this).prop('checked') == true ? 1 : 0;
                 var role_id = $(this).data('id');
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changeStatus',
+                    url: '/test/changeStatus',
                     data: {'status': status, 'id': role_id},
                     success: function (data) {
                         console.log(data.success)

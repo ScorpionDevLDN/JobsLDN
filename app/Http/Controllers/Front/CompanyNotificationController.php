@@ -15,8 +15,11 @@ class CompanyNotificationController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::query()->paginate(5);
-        return view('frontend.jobsldn.company.notification', compact('notifications'));
+        $notifications = Notification::query()
+            ->where('company_id',auth('companies')->id())
+            ->orderBy('id','desc')
+            ->paginate(10);
+        return view('frontend.company.notification', compact('notifications'));
     }
 
     /**

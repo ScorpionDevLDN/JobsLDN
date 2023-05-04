@@ -28,10 +28,10 @@ class Contact extends Model
         }
     }
 
-    public function getAttachmentAttribute($image): ?string
+    /*public function getAttachmentAttribute($image): ?string
     {
         return $image ? Storage::url($image) : null;
-    }
+    }*/
 
 //
     public function deleteAttachment()

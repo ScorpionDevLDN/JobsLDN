@@ -4,6 +4,10 @@
 @endsection
 @section('title' ,'Settings')
 @section('js')
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
     <script type="text/javascript">
         $('.settings-tab-opener').on('click', function () {
             $('.settings-tab-opener').removeClass('active');
@@ -12,7 +16,32 @@
             $('.taber').removeClass('active');
             $('.taber#' + open_id).addClass('active');
         });
+        var getFontawsomeIcons = [
+            // {text : "{{trans('app.select_icon')}}" , id : 0 },
+                @foreach(getFontawsomeIcons() as $item)
+            {
+                id: '{{$item}}',
+                text: '{{$item}}',
+                html: '<i class="{{$item}} fa-2x"></i>',
+            },
+            @endforeach
+        ];
+        $("#single").select2({
+            placeholder: "Select a logo",
+            allowClear: true,
+            data: getFontawsomeIcons,
+            templateResult: function (d) {
+                return $(d.html);
+            },
+            templateSelection: function (d) {
+                return $(d.html);
+            },
+        });
+        $(".enable_s3").click(function(){
+            $("#storage").toggle();
+        });
     </script>
+
 @endsection
 @section('content')
     <div class="row">
@@ -31,7 +60,13 @@
                             <a class="nav-link" data-toggle="tab" href="#kt_builder_header">Links</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_builder_storage">Storage</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#kt_builder_recaptcha">Re-captcha</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_builder_mailchimp">Mail-Chimp</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#kt_builder_email">Emails from</a>
@@ -107,6 +142,30 @@
                                                value="{{$setting->copy_right_text}}">
                                     </div>
                                 </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Terms And Condition
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                                <textarea id="content" rows='8' name="terms" placeholder="description"
+                                                          class="form-control summernote">
+                                                    {{$setting->terms}}
+                                                </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Privacy
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                                <textarea id="content" rows='8' name="privacy" placeholder="description"
+                                                          class="form-control summernote">
+{{$setting->privacy}}
+                                                </textarea>
+                                    </div>
+                                </div>
                             </div>
                             <!--end::Tab Pane-->
                             <!--begin::Tab Pane-->
@@ -160,16 +219,20 @@
 
 
                                     <div class="col-12 col-lg-9 px-2">
-                                        <select class="form-control" name="icon_logo" id="">
-                                            {{--@foreach($setting as $icon)
-                                                <option value="1">
-                                                    <i class="fa {{$icon}}"></i>
-                                                </option>
-                                            @endforeach--}}
-                                        </select>
+                                        <div class="custom-file">
+                                            <input name="icon_logo" type="file" class="custom-file-input"
+                                                   id="customFile1">
+                                            <label class="custom-file-label" for="customFile1">Choose
+                                                file</label>
+                                        </div>
+                                        <div class="col-12 p-2">
+                                            <img src="{{isset($setting->icon_logo) ? asset('storage/'.$setting->icon_logo) : asset('admin/images/dashboard-logo.png')}}"
+                                                 style="width:100px;max-height: 100px;">
+                                        </div>
 
                                     </div>
                                 </div>
+
 
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
@@ -279,6 +342,120 @@
                                     <div class="col-12 col-lg-9 px-2">
                                         <input type="text" name="telegram_link" class="form-control"
                                                value="{{$setting->telegram_link}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab Pane-->
+
+                            <!--begin::Tab Pane-->
+                            <div class="tab-pane" id="kt_builder_mailchimp">
+                                {{--capatcha--}}
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <h6>
+                                        Get your key from here:
+                                        <a target="_blank"
+                                           href="https://us8.admin.mailchimp.com/?referrer=%2Flists%2Fmembers%2F">Mailchimp</a>
+                                    </h6>
+
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        MAILCHIMP_LIST_ID
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="mailchimp_list_id" class="form-control"
+                                               value="{{$setting->mailchimp_list_id}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        MAILCHIMP_APIKEY
+                                    </div>
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input type="text" name="mailchimp_api_key" class="form-control"
+                                               value="{{$setting->mailchimp_api_key}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Tab Pane-->
+
+                            <!--begin::Tab Pane-->
+                            <div class="tab-pane" id="kt_builder_storage">
+                                {{--capatcha--}}
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <h6 class="text-dark"> Note: Be careful when you enable S3, your files storage for
+                                        attachments will be stored directly in your AWS S3 service. If you like it to be
+                                        directly in your local hosting make it disable. </h6>
+                                </div>
+
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <h6>
+                                        Click this link to see how to enable S3 service
+                                        <a target="_blank" href="{{route('s3')}}"> AWS
+                                            S3 </a></h6>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="form-group">
+                                        <label class=" col-form-label">Enable S3</label>
+                                        <div class="">
+											<span class="switch  switch-icon">
+												<label>
+													<input id="enable_s3" class="enable_s3" type="checkbox"
+                                                           name="enable_s3"
+                                                           value="1" {{(isset($setting['enable_s3']) and $setting['enable_s3']) ? 'checked="checked"' : ''}} />
+													<span></span>
+												</label>
+											</span>
+                                        </div>
+                                        @error('enable_s3')
+                                        <span class="form-text text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div id="storage" style="display: {{$setting['enable_s3'] == 1 ? '' : 'none'}}">
+                                    <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                        <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                            Access Key ID <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-12 col-lg-9 px-2">
+                                            <input type="text" name="s3_key" class="form-control"
+                                                   value="{{$setting->s3_key}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                        <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                            Secret Access Key <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-12 col-lg-9 px-2">
+                                            <input type="text" name="s3_secret" class="form-control"
+                                                   value="{{$setting->s3_secret}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                        <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                            S3 Region <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-12 col-lg-9 px-2">
+                                            <input type="text" name="s3_region" class="form-control"
+                                                   value="{{$setting->s3_region}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                        <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                            S3 Bucket <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-12 col-lg-9 px-2">
+                                            <input type="text" name="s3_bucket" class="form-control"
+                                                   value="{{$setting->s3_bucket}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

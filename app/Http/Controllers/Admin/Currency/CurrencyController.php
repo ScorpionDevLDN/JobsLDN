@@ -38,7 +38,7 @@ class CurrencyController extends Controller
     public function store(Request $request)
     {
         Currency::query()->create($request->all());
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.currencies.index')->with('success', 'Currency created successfully');
     }
 
     /**
@@ -73,7 +73,7 @@ class CurrencyController extends Controller
     public function update(Request $request, Currency $currency)
     {
         $currency->update($request->all());
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.currencies.index')->with('success', 'Currency updated successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class CurrencyController extends Controller
     public function destroy(Currency $currency)
     {
         $currency->delete();
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.currencies.index')->with('success', 'Currency deleted successfully');
     }
 
     public function updateCategoryStatus(Currency $currency){

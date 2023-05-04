@@ -131,7 +131,7 @@
                 <!--begin::Body-->
                 <div class="card-body d-flex align-items-center py-0 mt-8">
                     <div class="d-flex flex-column flex-grow-1 py-2 py-lg-5">
-                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$jobs}} Sales</a>
+                        <a class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 text-hover-primary">{{$sales}} Sales</a>
                         <span class="font-weight-bold text-muted font-size-lg"></span>
                     </div>
                     <img src="{{asset('assets/media/svg/illustrations/login-visual-1.svg')}}" alt=""

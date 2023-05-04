@@ -50,7 +50,7 @@ class DynamicController extends Controller
         DynamicPage::query()->create($validatedData + [
                 'shown_in' => $request->shown_in
             ]);
-        return redirect()->route('admin.pages.index')->with('msg', 'Page Created Successfully');
+        return redirect()->route('admin.pages.index')->with('success', 'Page Created Successfully');
     }
 
     /**
@@ -95,7 +95,7 @@ class DynamicController extends Controller
 //            'metadata' => 'required',
 //        ]);
         DynamicPage::query()->findOrFail($id)->update($request->all());
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('admin.pages.index')->with('success', 'Page updated successfully');
     }
 
     /**
@@ -107,7 +107,7 @@ class DynamicController extends Controller
     public function destroy( $id)
     {
         DynamicPage::query()->findOrFail($id)->delete();
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('admin.pages.index')->with('success', 'Page deleted successfully');
     }
 
     public function changePageStatus(Request $request){

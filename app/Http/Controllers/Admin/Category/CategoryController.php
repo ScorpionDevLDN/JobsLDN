@@ -49,7 +49,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:255',
         ]);
         Category::query()->create($validatedData);
-        return redirect()->route('admin.categories.index')->with('msg', 'Category Created Successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category Created Successfully');
     }
 
     /**
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name
         ]);
-        return redirect()->route('admin.categories.index')->with('msg', 'Category Updated Successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category Updated Successfully');
     }
 
     /**
@@ -98,7 +98,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('msg', 'Category Deleted Successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category Deleted Successfully');
     }
 
     public function updateCategoryStatus(Request $request){

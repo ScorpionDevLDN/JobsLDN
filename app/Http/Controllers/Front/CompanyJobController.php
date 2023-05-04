@@ -3,66 +3,54 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\EndSuperPost;
+use App\Models\Admin\PaymentSetting;
 use App\Models\Job;
+use App\Models\JobSeekerBookmark;
+use App\Models\JobSeekerJob;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use Srmklive\PayPal\Services\ExpressCheckout;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyJobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function index()
     {
-        $posts = Job::query()->active()->where('company_id', auth('companies')->id())->paginate(5);
-        return view('frontend.jobsldn.company.jobs', compact('posts'));
+        $posts = Job::query()->payment()->active()->where('company_id', auth('companies')->id())->orderByDesc('id')->paginate(10);
+        return view('frontend.company.Jobs', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'title' => 'required',
             'summery' => 'required',
-//            'pdf_details'=> 'required',
             'city_id' => 'required',
             'type_id' => 'required',
             'category_id' => 'required',
             'currency_id' => 'required',
             'per_id' => 'required',
-            'salary' => 'required|integer',
-            'expired_at' => 'required',
+            'salary' => 'required',
             'job_post_email' => 'required',
         ], [
             'title.required' => 'Title field are required',
-            'summery.required' => 'Summery field are required',
+            'summery.required' => 'Summary field are required',
             'city_id.required' => 'City field are required',
             'type_id.required' => 'Type field are required',
             'category_id.required' => 'Category field are required',
             'currency_id.required' => 'Currency field are required',
             'salary.required' => 'Salary field are required',
-            'salary.integer' => 'Salary field should be integer',
+            'salary.numeric' => 'Salary field should be integer',
             'per_id.required' => 'Per field are required',
             'expired_at.required' => 'Expire date field are required',
             'job_post_email.required' => 'Email field are required',
         ]);
-        //dd($request->all());
+
+        if (str_contains($request->salary, '-')){
+            return back()->withInput()->with('salary',"Salary should be positive number");
+        }
         $data = $request->only([
             'company_id',
             'title',
@@ -74,55 +62,36 @@ class CompanyJobController extends Controller
             'currency_id',
             'per_id',
             'salary',
-            'expired_at',
             'job_post_email',
             'is_super_post',
         ]);
 
-        /*if ($request->has('pdf_details')){
-            $filename = $request->pdf_details->store('public');
-            $imagename = $request->pdf_details->hashName();
-            $data['pdf_details'] = $request->file('pdf_details')->store('');
-        }*/
+        if ($request->has('pdf_details')) {
+            $data['pdf_details'] = Storage::disk($this->getDisk())->put('', $request->file('pdf_details'));
+        }
 
+        $data['salary'] = $request->salary;
         $data['company_id'] = auth('companies')->id();
-
-        Job::query()->create($data);
-        return redirect()->route('company-jobs.index')->with('success', 'Job Created successfully!');
+        $data['expired_at'] = $request->is_super_post ? today()->addDays(29)->format('d-m-Y') : today()->addDays(8)->format('d-m-Y');
+        $job = Job::query()->create($data);
+        if ($request->is_super_post) {
+            return $this->payment($job->id);
+        }
+        return redirect()->route('company-jobs.index')->with('success', 'Your job posting is on the way! It normally takes up to 24hrs for us to review & approve it. Thank you for your patience. ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function edit($id)
     {
-        $job = Job::query()->where('id', $id)->first();
-        return view('frontend.jobsldn.company.EditPostJob', compact('job'));
+        $job = Job::query()->payment()->where('id', $id)->where('status', 1)->first();
+        if (!$job) {
+            return back();
+        }
+        return view('frontend.company.EditPostJob', compact('job'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $request->validate([
             'title' => 'required',
             'summery' => 'required',
@@ -132,8 +101,8 @@ class CompanyJobController extends Controller
             'category_id' => 'required',
             'currency_id' => 'required',
             'per_id' => 'required',
-            'salary' => 'required|integer',
-            'expired_at' => 'required',
+            'salary' => 'required',
+//            'expired_at' => 'required',
             'job_post_email' => 'required',
         ], [
             'title.required' => 'Title field are required',
@@ -148,36 +117,88 @@ class CompanyJobController extends Controller
             'expired_at.required' => 'Expire date field are required',
             'job_post_email.required' => 'Email field are required',
         ]);
-        //dd($request->all());
+        if (str_contains($request->salary, '-')){
+            return back()->withInput()->with('salary',"Salary should be positive number");
+        }
+        //dd($request->all(),$request->filled('pdf_details'));
         $data = $request->only([
             'company_id',
             'title',
             'summery',
-            'pdf_details',
             'city_id',
             'type_id',
             'category_id',
             'currency_id',
             'per_id',
             'salary',
-            'expired_at',
+//            'expired_at',
             'job_post_email',
             'is_super_post',
         ]);
 
-        Job::query()->where('id', $id)->update($data);
-        return redirect()->route('company-jobs.index')->with('success', 'Job Created successfully!');
+        if ($request->has('pdf_details')) {
+            //Storage::disk('public_storage')->delete($setting->data);
+            $filename = $request->pdf_details->store('public');
+            $imagename = $request->pdf_details->hashName();
+            $data['pdf_details'] = $imagename;
+        }
+
+        if ($request->is_super_post) {
+            $this->payment($id);
+            return Job::query()->where('id', $id)->update($data + [
+                    'status' => 0,
+                    'is_super_post' => 1,
+                ]);
+        } else {
+            Job::query()->where('id', $id)->update($data + [
+                    'is_super_post' => 0,
+                    'status' => 0,
+                ]);
+        }
+
+
+        return redirect()->route('company-jobs.index')->with('success', 'Your job posting is on the way! It normally takes up to 24hrs for us to review & approve it. Thank you for your patience. ');
+    }
+
+
+    public function destroy($id)
+    {
+        JobSeekerBookmark::query()->where('job_id', $id)->delete();
+        JobSeekerJob::query()->where('job_id', $id)->delete();
+        Notification::query()->where('job_id', $id)->delete();
+        Job::query()->findOrFail($id)->delete();
+
+        return redirect()->route('company-jobs.index')->with('success', 'Job Deleted successfully!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Responds with a welcome message with instructions
      *
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    private function payment($job_id)
     {
-        Job::query()->where('id',$id)->delete();
-        return redirect()->route('company-jobs.index')->with('success', 'Job Deleted successfully!');
+        $price = PaymentSetting::query()->first()->price;
+        $data['items'] = [
+            [
+                'name' => "JOB #: $job_id",
+                'price' => $price,
+                'desc' => "JOB #: $job_id",
+                'qty' => 1
+            ]
+        ];
+
+        $data['invoice_id'] = $job_id;
+        $data['invoice_description'] = "Job #{$data['invoice_id']} Invoice";
+        $data['return_url'] = route('payment.success', $job_id);
+        $data['cancel_url'] = route('payment.cancel', $job_id);
+        $data['total'] = $price;
+
+        $provider = new ExpressCheckout;
+
+        $response = $provider->setExpressCheckout($data);
+        $response = $provider->setExpressCheckout($data, true);
+
+        return redirect($response['paypal_link']);
     }
 }

@@ -18,6 +18,6 @@ class NewsletterController extends Controller
     {
         \Newsletter::unsubscribe($newsletter->email);
         $newsletter->delete();
-        return redirect()->route('admin.newsletter.index')->with('msg', 'Newsletter Deleted Successfully');
+        return redirect()->route('admin.newsletter.index')->with('success', 'Newsletter Deleted Successfully');
     }
 }

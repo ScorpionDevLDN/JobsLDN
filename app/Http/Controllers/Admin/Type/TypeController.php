@@ -46,7 +46,7 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         Type::query()->create($request->all());
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.index')->with('success', 'Type created successfully');
     }
 
     /**
@@ -81,7 +81,7 @@ class TypeController extends Controller
     public function update(Request $request, Type $type)
     {
         $type->update($request->all());
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.index')->with('success', 'Type updated successfully');
     }
 
     /**
@@ -93,7 +93,7 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         $type->delete();
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.index')->with('success', 'Type deleted successfully');
     }
 
     public function updateCategoryStatus(Type $type){

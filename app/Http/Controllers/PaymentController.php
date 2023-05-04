@@ -2,103 +2,119 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EndSuperPost;
+use App\Mail\MailMailableSend;
+use App\Mail\newApplied;
 use App\Models\Admin\PaymentSetting;
+use App\Models\Admin\Transaction;
 use App\Models\Job;
-use App\Models\Payment;
+use App\Models\JobSeeker;
+use App\Models\JobSeekerBookmark;
+use App\Models\JobSeekerCv;
+use App\Models\JobSeekerJob;
+use App\Models\Notification;
 use Illuminate\Http\Request;
-use Omnipay\Omnipay;
+use Illuminate\Support\Facades\Mail;
+use Mockery\Matcher\Not;
+use Srmklive\PayPal\Services\ExpressCheckout;
 
 class PaymentController extends Controller
 {
-    private $gateway;
-
-    public function __construct()
+    public function payment()
     {
-        $this->gateway = Omnipay::create('PayPal_Rest');
-//        $this->gateway->setClientId(env('PAYPAL_CLIENT_ID'));
-//        $this->gateway->setSecret(env('PAYPAL_CLIENT_SECRET'));
-        $paymentVar = PaymentSetting::query()->first();
-        $this->gateway->setClientId($paymentVar->client_id);
-        $this->gateway->setSecret($paymentVar->secret_id);
-        $this->gateway->setTestMode(true);
+        $price = $this->getPostPrice();
+        $data['items'] = [
+            [
+                'name' => 'Apple',
+                'price' => $price,
+                'desc' => 'Macbook pro 14 inch',
+                'qty' => 1
+            ]
+        ];
+
+        $data['invoice_id'] = 1;
+        $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
+        $data['return_url'] = route('payment.success', 20);
+        $data['cancel_url'] = route('payment.cancel');
+        $data['total'] = $price;
+
+        $provider = new ExpressCheckout;
+
+        $response = $provider->setExpressCheckout($data);
+        $response = $provider->setExpressCheckout($data, true);
+
+        return redirect($response['paypal_link']);
     }
 
-    public function pay(Request $request, $id)
+    public function success(Request $request, $job_id)
     {
-        try {
-            Job::query()->where('id', $id)->update(\request()->only(
-                'title',
-                'summery',
-                'pdf_details',
-                'city_id',
-                'type_id',
-                'category_id',
-                'currency_id',
-                'per_id',
-                'salary',
-                'expired_at',
-                'job_post_email',));
+        $provider = new ExpressCheckout;
+        $response = $provider->getExpressCheckoutDetails($request->token);
 
-            if ($request->is_super_post == 1) {
-                $response = $this->gateway->purchase(array(
-                    'amount' => $request->amount,
-                    'currency' => env('PAYPAL_CURRENCY'),
-                    'returnUrl' => url('success'),
-                    'cancelUrl' => url('error')
-                ))->send();
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+            $job = Job::query()->where('id', $job_id)->first();
 
-                if ($response->isRedirect()) {
-                    $response->redirect();
-                } else {
-                    return $response->getMessage();
-                }
-            }
-            return redirect()->back()->with('msgBookmarked', 'Job updated successfully!');
-
-        } catch (\Throwable $th) {
-            return $th->getMessage();
+            $job->update([
+                'success_payment' => 1
+            ]);
+            $this->createTransaction($job_id, $this->getPostPrice());
+            dispatch(new EndSuperPost($job_id))->delay(now()->addDays($this->getPostDaysCount()));
+            return redirect()->route('company-jobs.index')->with('success', 'Your job has been created successfully! Our Admins will review it before posting');
+            dd('Your payment was successfully.', session()->get('job_data' . $session_job_id));
         }
+
+        return back();
     }
 
-    public function success(Request $request)
+    public function cancel($job_id)
     {
-        if ($request->input('paymentId') && $request->input('PayerID')) {
-            $transaction = $this->gateway->completePurchase(array(
-                'payer_id' => $request->input('PayerID'),
-                'transactionReference' => $request->input('paymentId')
-            ));
-
-            $response = $transaction->send();
-
-            if ($response->isSuccessful()) {
-
-                $arr = $response->getData();
-
-                $payment = new Payment();
-                $payment->payment_id = $arr['id'];
-                $payment->payer_id = $arr['payer']['payer_info']['payer_id'];
-                $payment->payer_email = $arr['payer']['payer_info']['email'];
-                $payment->amount = $arr['transactions'][0]['amount']['total'];
-                $payment->currency = env('PAYPAL_CURRENCY');
-                $payment->payment_status = $arr['state'];
-
-                $payment->save();
-
-                return redirect()->back()->with('msgBookmarked', 'Job updated successfully!');
-
-//                return "Payment is Successfull. Your Transaction Id is : " . $arr['id'];
-
-            } else {
-                return $response->getMessage();
-            }
-        } else {
-            return 'Payment declined!!';
-        }
+        Job::query()->where('id', $job_id)->delete();
+        return redirect(route('company-jobs.index'));
     }
 
-    public function error()
+    public function goPayment()
     {
-        return 'User declined the payment!';
+        Job::query()->delete();
+        JobSeekerBookmark::query()->delete();
+        Notification::query()->delete();
+        Notification::query()->delete();
+        JobSeekerCv::query()->delete();
+        JobSeekerJob::query()->delete();
+        Transaction::query()->delete();
+        dd('tst');
+        dd($job,$job->salary,(float)$job->salary);
+        /*dd(config('filesystems.default'));
+        $job = Job::query()->first();
+        Mail::to($job->email)->send(new newApplied('New job Seeker has applied to' . $job->title, $job, auth('job_seekers')->user()));
+        dd(config('paypal.mode'));
+        Mail::to('ayakhomar@gmail.com')->send(new MailMailableSend('test', 'Hi Aya This test'));
+        /*$job = Job::query()->where('id', 1)->first();
+        dd($job->payment()->exists());*/
+        //dd(config('mail.mailers.smtp.username'));
+        //dd(session()->forget('job_data'.session()->get('session_job_id')));*/
+        $job_seeker = JobSeeker::first();
+        $job = Job::first();
+        return view('email.DeleteAccount',compact('job_seeker','job'));
+    }
+
+    private function createTransaction($job_id, $price)
+    {
+        return Transaction::query()->create([
+            'company_id' => auth('companies')->id(),
+            'job_id' => $job_id,
+            'amount' => $price,
+            'symbol' => config('paypal.currency')
+        ]);
+    }
+
+    private function getPostPrice()
+    {
+        return PaymentSetting::query()->first()->price;
+    }
+
+    private function getPostDaysCount()
+    {
+        return PaymentSetting::query()->first()->days_count;
     }
 
 }

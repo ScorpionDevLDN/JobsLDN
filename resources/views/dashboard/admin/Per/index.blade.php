@@ -279,7 +279,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changePerStatus',
+                    url: '/test/changePerStatus',
                     data: {'status': status, 'id': per_id},
                     success: function (data) {
                         toastr.options.closeButton = true;

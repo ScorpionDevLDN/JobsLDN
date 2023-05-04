@@ -38,7 +38,7 @@ class PerController extends Controller
     public function store(Request $request)
     {
         Per::query()->create($request->all());
-        return redirect()->route('admin.pers.index');
+        return redirect()->route('admin.pers.index')->with('success', 'Per created successfully');
     }
 
     /**
@@ -73,7 +73,7 @@ class PerController extends Controller
     public function update(Request $request, Per $per)
     {
         $per->update($request->all());
-        return redirect()->route('admin.pers.index');
+        return redirect()->route('admin.pers.index')->with('success', 'Per updated successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class PerController extends Controller
     public function destroy(Per $per)
     {
         $per->delete();
-        return redirect()->route('admin.pers.index');
+        return redirect()->route('admin.pers.index')->with('success', 'Per deleted successfully');
     }
 
     public function updateCategoryStatus(Per $per){

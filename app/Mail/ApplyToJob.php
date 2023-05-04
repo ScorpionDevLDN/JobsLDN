@@ -44,9 +44,10 @@ class ApplyToJob extends Mailable
             'job_seeker' => $this->job_seeker,
             'attachment' => $this->attachment,
             'settings' => $settings,
-        ])->subject($this->subject)->attachData($this->attachment["path"], $this->attachment["as"], [
-            'mime' => 'application/pdf'
-        ]);
+        ])->subject($this->subject)->attach($this->attachment["path"],
+            [$this->attachment["as"],
+                'mime' => 'application/pdf'
+            ]);
 
 
         return $mail;

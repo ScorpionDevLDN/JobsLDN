@@ -23,6 +23,10 @@ class ForgotPasswordController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:admins',
+        ],[
+            'email.required' => 'Email filed is required',
+            'email.email' => 'Email filed Should be Email type',
+            'email.exists' => 'This email does not exist in our records!',
         ]);
 
         $token = Str::random(64);
@@ -52,6 +56,13 @@ class ForgotPasswordController extends Controller
             'email' => 'required|email|exists:admins',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
+        ],[
+            'email.required' => 'Email field is required',
+            'email.exists' => 'Email field doesnt exist',
+            'password.required' => 'Password field is required',
+            'password.min' => 'Password field Must be at least 8 characters',
+            'password.confirmed' => 'Password Confirmation Must match Password',
+            'password_confirmation.required' => 'Password Confirmation field is required',
         ]);
 
         $updatePassword = DB::table('password_resets')

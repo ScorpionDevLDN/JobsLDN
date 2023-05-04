@@ -1,0 +1,95 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include margin-bottom(100px);
+  .swiper-wrapper {
+    align-items: center;
+  }
+  @include media ($sm) {
+    padding-top: 100px;
+  }
+  .slide-content {
+    h1,
+    h2 {
+      @include margin-bottom(40px);
+    }
+    p {
+      @include margin-bottom(50px);
+    }
+    @include media ($xl) {
+      h1,
+      h2,
+      p {
+        @include padding-right(250px);
+      }
+    }
+    @include media ($lg) {
+      h1,
+      h2,
+      p {
+        @include padding-right(150px);
+      }
+    }
+    @include media ($md) {
+      h1,
+      h2,
+      p {
+        @include padding-right(50px);
+      }
+    }
+    @include media ($sm) {
+      h1,
+      h2,
+      p {
+        @include padding-right(0px);
+      }
+    }
+    .button {
+      @include padding(12px 70px);
+    }
+    .icon-box {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 10px;
+      border-top: 1px solid #1d1d1b;
+      padding-top: 15px;
+      @include margin-top(70px);
+      .icon img {
+        max-width: 50px;
+      }
+      .content {
+        h6 {
+          line-height: normal;
+        }
+        span {
+          color: $c_primary;
+        }
+      }
+    }
+  }
+  @include media($xxl) {
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal,
+    .swiper-pagination-custom,
+    .swiper-pagination-fraction {
+      bottom: -40px;
+    }
+  }
+  @include media($sm) {
+    .content {
+      text-align: left;
+    }
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal,
+    .swiper-pagination-custom,
+    .swiper-pagination-fraction {
+      bottom: -50px;
+    }
+  }
+}

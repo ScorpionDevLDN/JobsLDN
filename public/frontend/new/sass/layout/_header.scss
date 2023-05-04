@@ -1,0 +1,313 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+
+header {
+  background-color: #fff;
+  position: fixed;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  transition: all 0.4s ease-in-out;
+
+  &.nav-up {
+    top: -200px;
+  }
+  .navbar {
+    transition: all 0.3s ease-in-out;
+    min-height: 130px;
+    background-color: #fff;
+    &.gray {
+      background-color: #f5f5ff;
+      @include media ($xl) {
+        background-color: #fff;
+      }
+    }
+  }
+  border-bottom: 1px solid #b4b4b4;
+  .navbar-brand img {
+    max-width: 178px;
+  }
+  .menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    z-index: 999;
+  }
+  .line {
+    fill: none;
+    stroke: $c_primary;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+  .line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+  }
+  .line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+  .opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+  .opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+  }
+  .opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+
+  .navbar-collapse {
+    column-gap: 100px;
+  }
+  .navbar-nav {
+    column-gap: 30px;
+  }
+  .nav-link {
+    color: $c_heading;
+    @include font-size(16px);
+    font-family: light;
+    line-height: 34px;
+    &.active,
+    &:focus,
+    &:hover {
+      color: $c_primary;
+    }
+  }
+
+  @include media ($lg) {
+    .header-button a {
+      color: $c_heading;
+    }
+    .navbar-collapse {
+      position: fixed;
+      display: flex;
+      @include padding-top(50px);
+      align-items: flex-start;
+      justify-content: flex-start !important;
+      background-color: #fff;
+      min-width: 300px;
+      height: 100vh;
+      top: 0;
+      left: -100%;
+      z-index: 9;
+      text-align: left;
+      @include padding-left(40px);
+      @include padding-right(40px);
+      overflow: scroll;
+      transition: all .5s ease-in-out;
+      &.collapse.show {
+        left: 0;
+      }
+      .nav-link {
+        @include font-size(20px);
+      }
+      &.collapse:not(.show) {
+        display: block;
+      }
+
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+        0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+        0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+      &::-webkit-scrollbar {
+        width: 0px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $c_primary;
+        border-radius: 50px;
+      }
+    }
+    .navbar-nav {
+      row-gap: 10px;
+    }
+  }
+  @include media ($lg) {
+    .navbar {
+      min-height: 100px;
+    }
+  }
+  @keyframes header {
+    0% {
+      opacity: 0;
+      top: -100%;
+    }
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+  &.login_person,
+  &.login_company {
+    .navbar-collapse {
+      column-gap: 30px;
+    }
+    .header-profile-info {
+      column-gap: 15px;
+      .avatar img {
+        max-width: 60px;
+        max-height: 60px;
+        width: 60px;
+        height: 60px;
+        border: 1px solid $c_primary;
+        border-radius: 50%;
+      }
+      .name {
+        h6 {
+          color: $c_primary;
+          font-family: light;
+          @include font-size(16px);
+          line-height: normal;
+          margin: 0;
+          @include media ($xl) {
+            text-align: left;
+          }
+        }
+      }
+      .type span {
+        color: $c_text;
+        font-family: light;
+        @include font-size(14px);
+        @include media ($xl) {
+          text-align: left;
+        }
+      }
+      .info {
+        display: flex;
+        column-gap: 10px;
+        .options-dots {
+          display: flex;
+          align-self: flex-start;
+          justify-content: flex-start;
+          column-gap: 1px;
+          transform: translateY(7px);
+          flex-direction: row;
+          transition: all .3s ease-in-out;
+          span {
+            width: 5px;
+            height: 5px;
+            border: 1px solid $c_primary;
+            border-radius: 50px;
+          }
+        }
+        .dropdown-menu {
+          padding-top: 0;
+          padding-bottom: 0;
+          border-color: $c_primary !important;
+          .dropdown-item {
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+          .dropdown-item:focus,
+          .dropdown-item:hover {
+            background-color: $c_primary;
+            color: #fff;
+          }
+          hr {
+            color: $c_primary;
+          }
+        }
+        .dropdown-toggle:after {
+          content: "";
+          display: none;
+        }
+        .dropdown-menu[data-bs-popper] {
+          transform: translateX(-70%);
+        }
+      }
+      &:hover .options-dots {
+        transform: rotate(-90deg) translateX(-10px);
+      }
+    }
+    @include media ($xl) {
+      .header-button a {
+        color: $c_heading;
+      }
+      .navbar-collapse {
+        position: absolute;
+        display: flex;
+        @include padding-top(50px);
+        @include padding-bottom(150px);
+        align-items: flex-start;
+        justify-content: flex-start !important;
+        background-color: #fff;
+        min-width: 300px;
+        min-height: 100vh;
+        top: 0;
+        left: -100%;
+        z-index: 9;
+        text-align: left;
+        transition: all .4s ease-in-out;
+        @include padding-left(40px);
+        @include padding-right(40px);
+        overflow: scroll;
+        &::-webkit-scrollbar {
+          width: 0px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: $c_primary;
+          border-radius: 50px;
+        }
+
+        &.collapse.show {
+          left: 0;
+        }
+        .nav-link {
+          @include font-size(20px);
+        }
+        &.collapse:not(.show) {
+          display: block;
+        }
+        .button.outline {
+          margin: 20px 0;
+        }
+      }
+      .navbar-nav {
+        row-gap: 10px;
+      }
+    }
+    @include media ($xl) {
+      .header-profile-info {
+        .avatar {
+          img {
+            width: 100px;
+            height: 100px;
+            max-width: 100px;
+            max-height: 100px;
+          }
+        }
+        .info {
+          display: block;
+          @include padding-top(20px);
+          .name,
+          .type {
+            text-align: center;
+          }
+          .name h6 {
+            @include font-size(20px);
+            font-family: bold;
+          }
+          .type span {
+            display: block;
+            padding-top: 10px;
+            @include font-size(16px);
+          }
+        }
+      }
+    }
+  }
+}

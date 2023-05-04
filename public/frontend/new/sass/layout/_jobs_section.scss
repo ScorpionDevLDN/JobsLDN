@@ -1,0 +1,378 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.jobs {
+  @include padding-bottom(150px);
+  .select2-container {
+    width: 100% !important;
+  }
+  .search-filter {
+    h5 {
+      color: $c_text;
+      font-family: light;
+      @include font-size(18px);
+    }
+    .row {
+      row-gap: 20px;
+      .select2-container--default .select2-selection--single {
+        background-color: transparent;
+        border-color: #9f9f9f;
+        border-radius: 5px;
+        min-height: 60px;
+        position: relative;
+        z-index: 999999;
+      }
+      .select2-container--open .select2-selection--single {
+        background-color: #fff;
+        border-color: $c_primary;
+      }
+      .select2-selection__rendered {
+        color: $c_text !important;
+        line-height: 60px !important;
+        padding-left: calc(1.3125rem + 0.75vw) !important;
+      }
+      .arrow:not(.filter) {
+        display: none;
+      }
+      .filter_keywords {
+        color: $c_primary;
+        border-color: #9f9f9f;
+        padding-left: calc(1.3125rem + 0.75vw) !important;
+        &::placeholder {
+          color: $c_text;
+        }
+        &:focus {
+          border-color: $c_primary;
+        }
+      }
+      .salary-range-slider {
+        label {
+          @include font-size(16px);
+          color: $c_text;
+          margin-right: 10px;
+        }
+        input {
+          background-color: transparent;
+          border: none;
+          @include font-size(16px);
+          color: $c_heading;
+        }
+        #salary-slider-range {
+          @include margin-top(35px);
+          background-color: transparent;
+          height: 1px;
+          border: none;
+          border-top: 2px solid #9f9f9f;
+          .ui-slider-handle {
+            border-radius: 50%;
+            background-color: #fff;
+            border-width: 2px;
+            border-color: #9f9f9f;
+            top: -10px;
+            &:focus {
+              border-color: $c_primary;
+            }
+          }
+        }
+      }
+      .filter-changed .select2-container--default .select2-selection--single,
+      .select2-container--open .select2-selection--single {
+        border-color: $c_primary;
+      }
+      .filter-changed .select2-selection__rendered {
+        color: $c_primary !important;
+      }
+      .filter-changed .arrow:not(.filter) {
+        display: block;
+      }
+      .filter-changed .arrow.filter {
+        display: none;
+      }
+      .keyword {
+        display: inline-block;
+        margin-top: 20px;
+        margin-right: 10px;
+        background-color: $c_primary;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: #fff;
+        ion-icon {
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .button.filter_on {
+      background-color: #f4001e;
+      border-color: #f4001e;
+      &:hover {
+        color: #f4001e;
+        background-color: transparent;
+      }
+    }
+  }
+  .sort-box {
+    h6 {
+      font-family: light;
+      @include font-size(18px);
+      width: 40%;
+    }
+  }
+  .jobs-boxes {
+    .job-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 20px;
+      max-height: 100%;
+
+      @include padding(20px);
+      .job-provider {
+        width: 10%;
+        img {
+          max-width: 100px;
+          max-height: 100px;
+          width: 100px;
+          height: 100px;
+          border: 1px solid $c_primary;
+          border-radius: 50%;
+          transition: all .3s ease-in-out;
+        }
+      }
+      .job-info {
+        width: 60%;
+        .job-place {
+          @include font-size(16px);
+          font-family: light;
+          line-height: 10px;
+        }
+        .position {
+          @include font-size(22px);
+          line-height: 30px;
+        }
+        .icons {
+          display: flex;
+          column-gap: 15px;
+          align-items: flex-start;
+          .icon-box {
+            align-items: flex-start;
+            img {
+              margin-bottom: 5px;
+            }
+          }
+          span span {
+            display: block;
+          }
+        }
+      }
+      .job-actions {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .button {
+          background-color: #f5f5ff;
+          border-color: #f5f5ff;
+          color: $c_primary;
+        }
+        .favorite-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          border: 1px solid $c_primary;
+          border-radius: 5px;
+          cursor: pointer;
+          svg path {
+            transition: all .3s ease-in-out;
+          }
+          &:hover {
+            background-color: $c_primary;
+            svg path {
+              fill: #fff;
+              stroke: #fff;
+            }
+          }
+        }
+      }
+      &:hover {
+        background-color: #f5f5ff;
+        border-color: #f5f5ff;
+        .job-provider img {
+          border-color: $c_text;
+        }
+        .button {
+          background-color: $c_primary;
+          border-color: $c_primary;
+          color: #fff;
+        }
+      }
+      &.favorited {
+        svg path {
+          fill: $c_primary;
+        }
+      }
+
+      @include media ($lg) {
+        flex-wrap: wrap;
+        column-gap: 0;
+        justify-content: flex-start;
+        align-items: flex-start;
+        row-gap: 20px;
+        .job-provider {
+          width: 20%;
+        }
+        .job-info {
+          width: 75%;
+        }
+        .job-actions {
+          width: 100%;
+          justify-content: center;
+          column-gap: 20px;
+        }
+      }
+      @include media ($md) {
+        .job-provider,
+        .job-info,
+        .job-actions,
+        .icon-box {
+          width: 100%;
+        }
+        .icons {
+          width: 80%;
+          margin-right: auto;
+          margin-left: auto;
+          row-gap: 10px;
+          column-gap: 10px !important;
+          text-align: left;
+        }
+        .job-actions {
+          justify-content: center;
+          column-gap: 20px;
+        }
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        row-gap: 30px;
+        .job-actions {
+          column-gap: 20px;
+        }
+      }
+    }
+  }
+  @include media ($xxl) {
+    .search-filter {
+      position: fixed;
+      background-color: #fff;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: -100%;
+      z-index: 9999999;
+      @include padding(50px 20px);
+      transition: all .3s ease-in-out;
+      overflow: hidden;
+      overflow-y: scroll;
+      .select2-container,
+      .form-control,
+      #salary-slider-range {
+        max-width: 350px;
+        margin: auto;
+      }
+      .col-12 {
+        text-align: center;
+      }
+      .select2-selection__rendered {
+        text-align: left;
+      }
+      .salary-range-slider input {
+        max-width: 130px;
+      }
+
+      &.show {
+        left: 0;
+      }
+      h5 {
+        text-align: center;
+        color: $c_heading;
+        font-family: bold;
+      }
+    }
+    .filter-button {
+      svg {
+        width: 25px;
+        height: 25px;
+        path {
+          fill: #fff;
+          transition: all .3s ease-in-out;
+        }
+      }
+      &:hover {
+        svg path {
+          fill: $c_primary;
+        }
+      }
+    }
+    .back-filter {
+      cursor: pointer;
+      p {
+        color: $c_primary;
+      }
+      color: $c_primary;
+      ion-icon {
+        @include font-size(22px);
+      }
+    }
+  }
+  @include media ($md) {
+    .job-box {
+      position: relative;
+    }
+    .icons {
+      @include margin(30px 0);
+      column-gap: 0 !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
+      column-gap: 30px;
+    }
+    .job-actions {
+      width: 100%;
+      .button {
+        width: 100%;
+      }
+      .favorite-box {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none !important;
+        background-color: transparent;
+        &:hover {
+          background-color: transparent !important;
+          svg path {
+            stroke: $c_primary !important;
+            fill: $c_primary !important;
+          }
+        }
+      }
+    }
+  }
+  @include media ($sm) {
+    .search-filter {
+      .select2-container,
+      .form-control,
+      #salary-slider-range {
+        max-width: 100%;
+        margin: auto;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}

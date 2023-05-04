@@ -71,6 +71,16 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request->all());
+        Setting::query()->update([
+            'terms' => $request->terms,
+            'privacy' => $request->privacy,
+            'enable_s3' => $request->enable_s3,
+            's3_key' => $request->s3_key,
+            's3_secret' => $request->s3_secret,
+            's3_region' => $request->s3_region,
+            's3_bucket' => $request->s3_bucket,
+        ]);
         $requestData = $request->all();
         if ($request->logo) {
             $filename = $request->logo->store('public');
@@ -93,7 +103,7 @@ class SettingController extends Controller
             $requestData['icon_logo'] = $imagename;
         }
         Setting::query()->findOrFail($id)->update($requestData);
-        return redirect()->route('admin.settings.index');
+        return redirect()->route('admin.settings.index')->with('success', 'Updated successfully');
     }
 
     /**
@@ -118,5 +128,10 @@ class SettingController extends Controller
         Setting::query()->update($requestData);
 
         return Setting::all();
+    }
+
+    public function guideS3()
+    {
+        return view('dashboard.admin.setting.s3');
     }
 }

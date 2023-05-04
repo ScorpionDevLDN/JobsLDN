@@ -1,0 +1,231 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.created-jobs-content {
+  .jobs-boxes {
+    row-gap: 20px;
+    .job-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 20px;
+      max-height: 100%;
+      @include padding(40px 50px);
+      .job-info {
+        width: 70%;
+        .position {
+          @include font-size(22px);
+          line-height: 30px;
+          span {
+            color: $c_text;
+            font-family: light;
+          }
+        }
+        .icons {
+          display: flex;
+          column-gap: 15px;
+          align-items: flex-start;
+          .icon-box {
+            align-items: flex-start;
+            img {
+              margin-bottom: 5px;
+            }
+          }
+          span span {
+            display: block;
+          }
+        }
+      }
+      .job-actions {
+        width: 40%;
+        column-gap: 10px;
+        .applications-sent,
+        .open {
+          padding: 10px 14px;
+        }
+        .open {
+          img {
+            width: 30px;
+          }
+        }
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .button {
+          background-color: #f5f5ff;
+          border-color: #f5f5ff;
+          color: $c_primary;
+        }
+        .edit-box,
+        .delete-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          border: 1px solid $c_primary;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+          svg {
+            width: 20px;
+          }
+          svg {
+            path,
+            rect,
+            line,
+            g {
+              transition: all .3s ease-in-out;
+            }
+          }
+          &:hover {
+            background-color: $c_primary;
+            svg {
+              path,
+              rect,
+              line,
+              g {
+                stroke: #fff;
+              }
+            }
+          }
+        }
+        .delete-box {
+          border-color: #e0302e;
+          &:hover {
+            background-color: #e0302e;
+            border-color: #e0302e;
+          }
+        }
+      }
+      &:hover {
+        background-color: #f5f5ff;
+        border-color: #f5f5ff;
+        .job-provider img {
+          border-color: $c_text;
+        }
+        .button {
+          background-color: #fff;
+          border-color: #fff;
+          color: $c_primary;
+        }
+      }
+      &.favorited {
+        svg path {
+          fill: $c_primary;
+        }
+      }
+      @include media ($lg) {
+        flex-wrap: wrap;
+        column-gap: 0;
+        justify-content: center;
+        align-items: center;
+        row-gap: 20px;
+        .job-info {
+          width: 100%;
+        }
+        .job-actions {
+          width: 100%;
+          .edit-box,
+          .delete-box {
+            border: none !important;
+            background-color: transparent;
+            &:hover {
+              background-color: transparent !important;
+            }
+          }
+          .edit-box {
+            &:hover svg {
+              path,
+              rect,
+              line,
+              g {
+                stroke: $c_primary;
+              }
+            }
+          }
+
+          .delete-box {
+            svg {
+              width: 30px;
+            }
+            &:hover svg {
+              path,
+              rect,
+              line,
+              g {
+                stroke: #e0302e;
+              }
+            }
+          }
+          .open {
+            width: 100%;
+            padding: 0;
+            a {
+              text-align: center;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          justify-content: center;
+          column-gap: 20px;
+        }
+      }
+      @include media ($md) {
+        .job-info,
+        .job-actions,
+        .icon-box {
+          width: 100%;
+        }
+        .job-info {
+          .position {
+            span {
+              display: block;
+            }
+          }
+        }
+        .icons {
+          width: 80%;
+          margin-right: auto;
+          margin-left: auto;
+          row-gap: 10px;
+          column-gap: 10px !important;
+          text-align: left;
+        }
+        .job-actions {
+          justify-content: center;
+          column-gap: 20px;
+        }
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        row-gap: 30px;
+        .job-actions {
+          column-gap: 20px;
+        }
+      }
+      @include media ($sm) {
+        .icons {
+          width: 100%;
+        }
+      }
+    }
+    @include media ($md) {
+      .job-box {
+        position: relative;
+      }
+      .icons {
+        @include margin(30px 0);
+        column-gap: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+        column-gap: 30px;
+      }
+    }
+  }
+}

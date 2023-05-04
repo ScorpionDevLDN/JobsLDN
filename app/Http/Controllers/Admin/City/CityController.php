@@ -40,7 +40,7 @@ class CityController extends Controller
         City::query()->create([
             'name' => $request->name
         ]);
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.cities.index')->with('success', 'City Created Successfully');
     }
 
     /**
@@ -77,7 +77,7 @@ class CityController extends Controller
         $city->update([
             'name' => $request->name
         ]);
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.cities.index')->with('success', 'City updated Successfully');
     }
 
     /**
@@ -89,7 +89,7 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         $city->delete();
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.cities.index')->with('success', 'City deleted successfully');
     }
 
     public function updateCategoryStatus(City $city){

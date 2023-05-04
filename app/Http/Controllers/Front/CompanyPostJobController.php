@@ -14,7 +14,7 @@ class CompanyPostJobController extends Controller
      */
     public function index()
     {
-        return view('frontend.jobsldn.company.PostJob');
+        return view('frontend.company.PostJob');
     }
 
     /**

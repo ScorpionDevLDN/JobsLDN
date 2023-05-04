@@ -19,10 +19,15 @@ class PaymentSetting extends Model
         'price',
         'support_by',
         'paypal_logo',
-        'client_id',
-        'secret_id',
+        'mode',
+        'username',
+        'password',
+        'secret',
     ];
 
+    protected $casts = [
+        'password' => 'encrypted',
+    ];
 
     public function setImageAttribute($image)
     {
@@ -39,7 +44,7 @@ class PaymentSetting extends Model
 //
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : null;
+        return $image ? asset('storage/' . $image) : null;
     }
 
 //
@@ -65,7 +70,7 @@ class PaymentSetting extends Model
 //
     public function getPaypalLogoAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : null;
+        return $image ? asset('storage/'.$image) : null;
     }
 
 //

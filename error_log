@@ -1,0 +1,2 @@
+[14-Sep-2022 20:17:57 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/aya/public_html/jobsldn/vendor/nunomaduro/termwind/src/Functions.php on line 17
+[14-Sep-2022 20:28:15 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/aya/public_html/jobsldn/vendor/nunomaduro/termwind/src/Functions.php on line 17

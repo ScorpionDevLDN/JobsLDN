@@ -1,0 +1,246 @@
+@use "../helpers/vars" as *;
+@use "../helpers/mixins" as *;
+@use "../bootstrap/vendor/rfs" as *;
+
+.modal {
+  z-index: 9999999;
+
+  .modal-body {
+    padding : {
+      left: 2rem;
+      right: 2rem;
+    }
+  }
+
+  .modal-content {
+    border-color: $c_primary;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+
+  .modal-header {
+    padding: 2rem;
+    align-items: center;
+
+    .btn-close {
+      background-image: none;
+      opacity: 1;
+      width: 30px;
+      height: 30px;
+
+      ion-icon {
+        font-size: 30px;
+        color: $c_primary;
+      }
+    }
+  }
+
+  &#retract-success,
+  &#retract-faild {
+    .modal-body {
+      text-align: center;
+
+      ion-icon {
+        color: #56bb37;
+        @include font-size(30px);
+      }
+
+      h5 {
+        color: $c_primary;
+      }
+    }
+  }
+
+  &#retract-faild {
+    .modal-body {
+
+      h5,
+      ion-icon {
+        color: #f4001e;
+      }
+    }
+  }
+}
+
+.login-register-tab {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: $c_text;
+  @include font-size(17px);
+
+  &.active {
+    color: $c_heading;
+  }
+}
+
+#login-register-modal {
+  .login-top {
+    margin-top: 50px;
+
+    h5 {
+      line-height: normal;
+    }
+
+    p {
+      @include font-size(16px);
+      color: $c_heading;
+
+      a {
+        color: $c_primary;
+      }
+    }
+  }
+
+  .row {
+    margin: 50px 0;
+
+    .forgot-password {
+      display: inline-block;
+      @include font-size(16px);
+      color: $c_heading;
+      margin-top: 10px;
+      @include padding-left(25px);
+    }
+  }
+}
+
+.modal {
+  .account-type-btns {
+    column-gap: 50px;
+    display: flex;
+
+    @include media ($lg) {
+      flex-direction: row;
+    }
+
+    .account-type-btn {
+      flex-grow: 1;
+      text-align: center;
+
+      &:hover {
+        color: $c_primary;
+        background-color: #fff;
+      }
+
+      &.active,
+      &.active:hover {
+        background-color: #f5f5ff;
+      }
+    }
+  }
+
+  #nav-register {
+    .checkboxes label {
+      width: 90%;
+    }
+
+    a {
+      color: $c_primary;
+      text-decoration: underline;
+    }
+  }
+}
+
+.register-top {
+  line-height: normal;
+  margin: 50px 0;
+}
+
+#post-job {
+  .row {
+    margin: 50px 0;
+  }
+
+  .select2-container {
+    width: 100% !important;
+  }
+
+  .select2-container--default .select2-selection--single {
+    background-color: transparent;
+  }
+
+  .date-icon {
+    position: absolute;
+    width: 30px;
+    top: 29px;
+    transform: translateY(-50%);
+    right: 25px;
+    z-index: 99999999;
+  }
+
+  input {
+    padding-left: calc(1.3125rem + 0.75vw) !important;
+    color: $c_primary  !important;
+
+    &::placeholder {
+      color: $c_primary  !important;
+    }
+  }
+
+  .pdf-upload-btn {
+    img {
+      width: 20px;
+    }
+  }
+
+  .super-post {
+    .row {
+      margin: 0;
+    }
+
+    h3 {
+      line-height: normal;
+    }
+
+    border-radius: 5px;
+
+    p.super-post-text {
+      color: $c_primary;
+      @include margin(30px 0);
+      @include font-size(15px);
+    }
+
+    img.super-post-img {
+      transform: translateY(50px);
+    }
+
+    .checkboxes label {
+      @include font-size(15px);
+    }
+
+    .secured-by {
+      position: absolute;
+      bottom: -50px;
+      left: 0px;
+
+      p {
+        color: $c_heading;
+        @include font-size(14px);
+      }
+
+      .paypal {
+        max-width: 50px;
+      }
+    }
+  }
+}
+
+.modal-title {
+  font-family: bold;
+}
+
+#retract,
+#retract-success,
+#retract-faild,
+#delete-box {
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-footer {
+    padding-bottom: 2rem;
+  }
+}

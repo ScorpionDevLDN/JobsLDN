@@ -48,11 +48,30 @@
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                         Hello {{$job->company->name}},
                                     </p>
+                                    <br>
+
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        {{$job_seeker->name}} has applied to your job with title {{$job->title}}
+                                        You've received one new application through
+                                        {{-- <a href="https://jobsldn.co.uk/test/home">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a> --}}
+                                        <a href="{{URL::to('/test/home') }}">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a>
+
+
+                                    </p>
+                                    <br>
+                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                        Please find the CV attached to this email.
+                                    </p>
+                                    <br>
+                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                        Thank you,
                                     </p>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        Please take the suitable response
+                                        Your
+                                        {{-- <a href="https://jobsldn.co.uk/test/home">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a> --}}
+                                        <a href="{{ URL::to('/test/home') }}">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a>
+
+
+                                        team.
                                     </p>
                                 </td>
                             </tr>

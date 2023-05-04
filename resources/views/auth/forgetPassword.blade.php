@@ -53,7 +53,7 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="email"
+                                <input value="{{ old('email') }}" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="email"
                                        name="email" autocomplete="off"/>
                                 @if($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>

@@ -19,7 +19,7 @@ class Handler extends ExceptionHandler
             if ($request->is('job_seekers')|| $request->is('jobs/*') || $request->is('job_seeker/*')) {
                 return redirect()->guest('/home');
             }
-            return redirect()->to('/aya');
+            return redirect()->to('/home');
         }
     /**
      * A list of exception types with their corresponding custom log levels.

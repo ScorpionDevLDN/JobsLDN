@@ -40,7 +40,7 @@ class PartnerController extends Controller
 //            'name' => 'required|unique:categories|max:255',
 //        ]);
         Partner::query()->create($request->only('image','name','link'));
-        return redirect()->route('admin.partners.index')->with('msg', 'Partners Created Successfully');
+        return redirect()->route('admin.partners.index')->with('success', 'Partners Created Successfully');
     }
 
     /**
@@ -75,7 +75,7 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $partner->update($request->only('image','link','name'));
-        return redirect()->route('admin.partners.index')->with('msg', 'Partner Updated Successfully');
+        return redirect()->route('admin.partners.index')->with('success', 'Partner Updated Successfully');
     }
 
     /**
@@ -87,7 +87,7 @@ class PartnerController extends Controller
     public function destroy(Partner $partner)
     {
         $partner->delete();
-        return redirect()->route('admin.partners.index')->with('msg', 'Partner Deleted Successfully');
+        return redirect()->route('admin.partners.index')->with('success', 'Partner Deleted Successfully');
     }
 
     public function changePartnerStatus(Request $request){

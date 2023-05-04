@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -78,7 +79,7 @@ class CompanyController extends Controller
             'website_url',
             'overview',
         ));
-        return redirect()->route('admin.get_companies.index');
+        return redirect()->route('admin.get_companies.index')->with('success', 'Company updated successfully');
     }
 
     /**
@@ -90,6 +91,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         Company::query()->where('id', $id)->delete();
-        return redirect()->route('admin.get_companies.index');
+        Job::query()->where('company_id', $id)->delete();
+        return redirect()->route('admin.get_companies.index')->with('success', 'Company deleted successfully');
     }
 }

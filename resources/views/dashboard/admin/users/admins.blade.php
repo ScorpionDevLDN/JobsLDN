@@ -57,12 +57,12 @@
                     <!--end::Dropdown-->
                     <!--begin::Button-->
 
-{{--                    <!-- Button trigger modal-->--}}
+                    {{--                    <!-- Button trigger modal-->--}}
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Add new
                     </button>
 
-{{--                    <!-- Modal-->--}}
+                    {{--                    <!-- Modal-->--}}
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -100,7 +100,7 @@
                                             <label for="exampleSelectd">Role</label>
                                             <select name="roles" class="form-control" id="exampleSelectd">
                                                 @foreach($roles as $role)
-                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                                    <option value="{{$role->id}}">{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -164,13 +164,15 @@
                                         </a>
                                     </div>
                                     <div class="col-1">
-                                        <a href="#" class="btn btn-light-danger btn-icon font-weight-bold" data-toggle="modal"
+                                        <a href="#" class="btn btn-light-danger btn-icon font-weight-bold"
+                                           data-toggle="modal"
                                            data-target="#exampleModalDelete{{$admin->id}}">
                                             <span class="svg-icon svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g stroke="none" stroke-width="1" fill="none"
+                                                               fill-rule="evenodd">
                                                                 <rect x="0" y="0" width="24" height="24"/>
                                                                 <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z"
                                                                       fill="#000000" fill-rule="nonzero"/>
@@ -210,21 +212,24 @@
                                             <div class="form-group">
                                                 <label>Email
                                                     <span class="text-danger">*</span></label>
-                                                <input value="{{$admin->email}}" required type="text" name="email" class="form-control"
+                                                <input value="{{$admin->email}}" required type="text" name="email"
+                                                       class="form-control"
                                                        placeholder="Enter email"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Password
                                                     <span class="text-danger">*</span></label>
-                                                <input value="" required type="text" name="password" class="form-control"
+                                                <input value="" required type="text" name="password"
+                                                       class="form-control"
                                                        placeholder="Enter password"/>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group"
+                                                 style="display: {{$admin->is_super_admin?'none' : ''}}">
                                                 <label for="exampleSelectd">Role</label>
                                                 <select name="roles" class="form-control" id="exampleSelectd">
                                                     @foreach($roles as $role)
-                                                        <option {{ $role->id == $admin->roles->first()->id ? 'selected' : '' }} value="{{$role->id}}">{{$role->name}}</option>
+                                                        <option {{ $admin->hasAnyRole() && $role->id == $admin->roles->first()->id ? 'selected' : '' }} value="{{$role->id}}">{{$role->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -294,7 +299,7 @@
                 {
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                     responsive: true,
-                    language: { search: "" },
+                    language: {search: ""},
                     pagingType: 'numbers',
                     // "dom": '<"dt-buttons"Bf><"clear">lirtp',
                     // dom: 'Bfrtip',
@@ -310,7 +315,7 @@
     <script>
         $(function () {
             // $('.toggle-class').change(function () {
-            $(document).on("click", ".toggle-class", function(){
+            $(document).on("click", ".toggle-class", function () {
                 var status = $(this).prop('checked') == true ? 1 : 0;
                 var admin_id = $(this).data('id');
 

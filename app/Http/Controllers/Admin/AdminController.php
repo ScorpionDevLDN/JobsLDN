@@ -25,13 +25,15 @@ class AdminController extends Controller
 
     function check(Request $request)
     {
-        //Validate Inputs
         $request->validate([
             'email' => 'required|email|exists:admins,email',
-            'password' => 'required|min:5|max:30',
+            'password' => 'required',
 //            'g-recaptcha-response' => 'required|captcha',
         ], [
-            'email.exists' => 'This email is not match our records '
+            'email.required' => 'Email field is required',
+            'email.email' => 'Email field should be Email type',
+            'email.exists' => 'This email is not match our records ',
+            'password.required' => 'Password field is required',
         ]);
 
         $creds = $request->only('email', 'password');
@@ -60,14 +62,14 @@ class AdminController extends Controller
     {
         $companies = Company::query()->count();
         $seekers = JobSeeker::query()->count();
-        $jobs = Job::query()->count();
+        $jobs = Job::query()->where('status',1)->payment()->count();
+        $sales = Job::query()->where('status',1)->where('is_super_post',1)->where('success_payment',1)->count();
 
-        $all_jobs = Job::query()->orderBy('created_at')->get()->groupBy(function ($t) {
-            return Carbon::parse($t->created_at)->format('m');
-        });
-        $data_job = collect($all_jobs)->values()->map(function ($job) {
-            return $job->count();
-        });
+        $data_job = [
+            test_created(1, 1), test_created(1, 2), test_created(1, 3), test_created(1, 4),
+            test_created(1, 5), test_created(1, 6), test_created(1, 7), test_created(1, 8),
+            test_created(1, 9), test_created(1, 10), test_created(1, 11), test_created(1, 12),
+        ];
 
 
         $from = now()->subDays(30)->format('Y-m-d');
@@ -117,6 +119,6 @@ class AdminController extends Controller
 //        dump($datesWeek->keys());
 //        dd($data_job_7);
 
-        return view('dashboard.admin.home', compact('companies', 'seekers', 'jobs', 'data_job','keys','data_job_30','keysWeek','data_job_7'));
+        return view('dashboard.admin.home', compact('companies','sales', 'seekers', 'jobs', 'data_job', 'keys', 'data_job_30', 'keysWeek', 'data_job_7'));
     }
 }

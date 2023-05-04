@@ -129,24 +129,50 @@
                                 </div>
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Client Id
+                                        Mode
                                     </div>
 
                                     <div class="col-12 col-lg-9 px-2">
-                                        <input name="client_id" class="form-control" type="text"
-                                               value="{{$payment->client_id}}"
+                                        <select class="form-control" name="mode" id="">
+                                            <option {{$payment->mode == 'sandbox' ? 'selected' : ''}} value="sandbox">Sandbox</option>
+                                            <option {{$payment->mode == 'live' ? 'selected' : ''}} value="live">Live</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Username
+                                    </div>
+
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input name="username" class="form-control" type="text"
+                                               value="{{$payment->username}}"
                                                id="example-color-input">
                                     </div>
                                 </div>
 
                                 <div class="col-12 px-10 d-flex mb-3 row pb-3">
                                     <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
-                                        Secret Id
+                                        Password
                                     </div>
 
                                     <div class="col-12 col-lg-9 px-2">
-                                        <input name="secret_id" class="form-control" type="text"
-                                               value="{{$payment->secret_id}}"
+                                        <input name="password" class="form-control" type="text"
+                                               value="{{$payment->password}}"
+                                               id="example-color-input">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 px-10 d-flex mb-3 row pb-3">
+                                    <div class="col-12 col-lg-3 px-2 text-lg-end pt-1 pb-3 pb-lg-0">
+                                        Secret
+                                    </div>
+
+                                    <div class="col-12 col-lg-9 px-2">
+                                        <input name="secret" class="form-control" type="text"
+                                               value="{{$payment->secret}}"
                                                id="example-color-input">
                                     </div>
                                 </div>

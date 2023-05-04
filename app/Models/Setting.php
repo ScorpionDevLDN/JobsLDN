@@ -36,6 +36,8 @@ class Setting extends Model
         'telegram_link',
         'site_key',
         'secret_key',
+        'mailchimp_list_id',
+        'mailchimp_api_key',
 
         'email_from',
         'email_port',
@@ -56,15 +58,16 @@ class Setting extends Model
 //
     public function getLogoAttribute($logo): ?string
     {
-        return $logo ? Storage::url($logo) : asset('assets/user.png');
+        return $logo ? asset('storage/' . $logo) : asset('assets/user.png');
     }
-    public function getIconLogoAttribute($logo): ?string
+
+    /*public function getIconLogoAttribute($logo): ?string
     {
-        return $logo ? Storage::url($logo) : asset('assets/user.png');
-    }
+        return $logo ? $logo : asset('assets/user.png');
+    }*/
     public function getEmailLogoAttribute($email_logo): ?string
     {
-        return $email_logo ? Storage::url($email_logo) : asset('assets/user.png');
+        return $email_logo ? asset('storage/' . $email_logo) : asset('assets/user.png');
     }
 
 //    public function deleteLogo()
@@ -86,7 +89,7 @@ class Setting extends Model
 
     public function getCoverAttribute($cover): ?string
     {
-        return $cover ? Storage::url( $cover) : asset('assets/user.png');
+        return $cover ? asset('storage/' . $cover) : asset('assets/user.png');
     }
 
 //    public function deleteCover()

@@ -37,15 +37,21 @@ class MailMailableSend extends Mailable
     {
         $settings = Setting::first();
 
-        $mail = $this->view('email.template', [
-            'subject' => $this->subject,
-            'msg' => $this->msg,
-            'attachment' => $this->attachment,
-            'settings' => $settings,
-        ])->subject($this->subject);
-
-        if (!empty($this->attachment)) {
-            $mail = $mail->attach($this->attachment);
+        if ($this->attachment) {
+            $mail = $this->view('email.template', [
+                'subject' => $this->subject,
+                'msg' => $this->msg,
+                'settings' => $settings,
+            ])->subject($this->subject);
+        } else {
+            $mail = $this->view('email.template', [
+                'subject' => $this->subject,
+                'msg' => $this->msg,
+                'settings' => $settings,
+            ])->subject($this->subject)
+                ->attach(@$this->attachment["path"], [@$this->attachment["as"],
+                    'mime' => 'application/pdf'
+                ]);
         }
 
         return $mail;

@@ -48,14 +48,21 @@
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                         Hello {{$job_seeker->name}},
                                     </p>
+                                    <br>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        You have Successfully Applied for {{$job->title}}
+                                        Your application has been submitted!
                                     </p>
+                                    <br>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        We will reach You as possible as can.
+                                        If there is a match, the hiring manager for {{$job->title}} will contact you.
                                     </p>
+                                    <br>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        Thanks for Applying
+                                        Thank you!
+                                    </p>
+                                    <br>
+                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                        In the meantime, check out the other job opportunities we have for you.
                                     </p>
                                 </td>
                             </tr>

@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DeleteAccount;
 use App\Models\Admin;
 use App\Models\Company;
+use App\Models\Job;
 use App\Models\JobSeeker;
+use App\Models\JobSeekerBookmark;
+use App\Models\JobSeekerJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -20,50 +25,38 @@ class UserController extends Controller
         return view('dashboard.admin.users.companies', compact('companies'));
     }
 
-    public function editCompany($id){
-        Company::query()->where('id',$id)->update(\request()->all());
-        return redirect()->route('admin.get_companies');
+    public function editCompany($id)
+    {
+        Company::query()->where('id', $id)->update(\request()->all());
+        return redirect()->route('admin.get_companies')->with('success', 'Company updated successfully');
     }
 
-    public function deleteCompany($id){
-        Company::query()->where('id',$id)->delete();
-        return redirect()->route('admin.get_companies');
+    public function DeleteCompany($id)
+    {
+        $company = Company::query()->where('id', $id)->first();
+        Job::query()->where('company_id', $id)->delete();
+        JobSeekerJob::query()->whereIn('job_id', $company->jobs->pluck('id'))->delete();
+        JobSeekerBookmark::query()->whereIn('job_id', $company->jobs->pluck('id'))->delete();
+        $company->delete();
+        return back()->with('success', 'Company deleted successfully');
     }
 
     public function getJobSeekers(Request $request)
     {
-//        $listId = 'a7c2d8d8e4';
-//
-//        $mailchimp = new \Mailchimp('d713eb5c6555e5ae6e46f1a3174c3d35-us8');
-//
-//        $campaign = $mailchimp->campaigns->create('regular', [
-//            'list_id' => $listId,
-//            'subject' => 'Example Mail',
-//            'from_email' => 'rajeshgajjar1997@gmail.com',
-//            'from_name' => 'Rajesh',
-//            'to_name' => 'Rajesh Subscribers'
-//
-//        ], [
-//            'html' => $request->input('content'),
-//            'text' => strip_tags($request->input('content'))
-//        ]);
-//
-//        //Send campaign
-//        $mailchimp->campaigns->send($campaign['id']);
-
-//        dd('Campaign send successfully.');
         $job_seekers = JobSeeker::query()->get();
         return view('dashboard.admin.users.jobSeekers', compact('job_seekers'));
     }
 
-    public function editJobSeeker($id){
-        JobSeeker::query()->where('id',$id)->update(\request()->all());
-        return redirect()->route('admin.get_job_seekers');
+    public function editJobSeeker($id)
+    {
+        JobSeeker::query()->where('id', $id)->update(\request()->all());
+        return redirect()->route('admin.get_job_seekers')->with('success', 'JobSeeker updated successfully');
     }
 
-    public function deleteJobSeeker($id){
-        JobSeeker::query()->where('id',$id)->delete();
-        return redirect()->route('admin.get_job_seekers');
+    public function deleteJobSeeker($id)
+    {
+        JobSeeker::query()->where('id', $id)->delete();
+        return redirect()->route('admin.get_job_seekers')->with('success', 'JobSeeker deleted successfully');
     }
 
     public function index()
@@ -96,9 +89,9 @@ class UserController extends Controller
 
 
         $user = Admin::query()->create($validatedData);
-        $user->assignRole($request->input('roles'));
+        $user->syncRoles($request->input('roles'));
 
-        return redirect()->route('admin.admins.index')->with('msg', 'User created successfully');
+        return redirect()->route('admin.admins.index')->with('success', 'User created successfully');
     }
 
     /**
@@ -141,11 +134,11 @@ class UserController extends Controller
 
         $admin = Admin::find($id);
         $admin->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        if (!$admin->is_super_admin) {
+            $admin->syncRoles($request->input('role'));
+        }
 
-        $admin->assignRole($request->input('roles'));
-
-        return redirect()->route('admin.admins.index')->with('msg', 'Admin Updated successfully');
+        return redirect()->route('admin.admins.index')->with('success', 'Admin Updated successfully');
     }
 
     /**
@@ -156,11 +149,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if ($id == 1) {
+            return back()->with('msg', 'Super Admin Cant be deleted!');
+        }
         Admin::find($id)->delete();
-        return redirect()->route('admin.admins.index')->with('msg', 'Admin Deleted successfully');
+        return redirect()->route('admin.admins.index')->with('success', 'Admin Deleted successfully');
     }
 
-    public function editProfile(){
+    public function editProfile()
+    {
         $user = auth('admins')->user();
         return view('dashboard.admin.users.profile')->withUser($user);
     }
@@ -168,39 +165,47 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user = auth('admins')->user();
-        $filename="";
-        $requestData= $request->all();
+        $filename = "";
+        $requestData = $request->all();
 
-        if($request->image){
-            $filename= $request->image->store('public');
-            $imagename= $request->image->hashName();
+        if ($request->image) {
+            $filename = $request->image->store('public');
+            $imagename = $request->image->hashName();
             $requestData['image'] = $imagename;
         }
         $user->fill($requestData);
         $user->save();
-        $customerDB= Admin::find($request->id);
-        if($customerDB){
+        $customerDB = Admin::find($request->id);
+        if ($customerDB) {
             $customerDB->update($requestData);
         }
-        session()->flash('msg','Profile Updated Successfully');
-        return redirect(route("admin.profile.edit"));
+//        session()->flash('msg', 'Profile Updated Successfully');
+        return redirect(route("admin.profile.edit"))->with('success', 'Profile Updated Successfully');
     }
 
-    public function forgetPassword(){
+    public function forgetPassword()
+    {
         return view('dashboard.admin.forget_password');
     }
-    
-    public function updatePassword(Request $request){
+
+    public function updatePassword(Request $request)
+    {
         $request->validate([
             'password' => 'required',
             'new_password' => 'required|confirmed',
         ]);
 
         Auth::guard('admins')->user()->update([
-           'password' =>  $request->new_password
+            'password' => $request->new_password
         ]);
-        session()->flash('msg','Password Updated Successfully');
+//        session()->flash('msg', 'Password Updated Successfully');
 
-        return redirect(route("admin.profile.edit"));
+        return redirect(route("admin.profile.edit"))->with('success', 'Password Updated Successfully');
+    }
+
+    public function DeleteJobSeekers($job_seeker)
+    {
+        JobSeeker::query()->findOrFail($job_seeker)->delete();
+        return back()->with('success', 'JobSeeker Deleted Successfully');
     }
 }

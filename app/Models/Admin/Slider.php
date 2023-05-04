@@ -30,7 +30,7 @@ class Slider extends Model
 
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : null;
+        return $image ? asset('storage/'.$image) : null;
     }
 
     public function deleteImage()

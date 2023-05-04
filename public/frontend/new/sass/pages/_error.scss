@@ -1,0 +1,18 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.error-page {
+  h1 {
+    @include font-size(60px);
+  }
+  h4 {
+    color: $c_text;
+  }
+  img {
+    max-width: 500px;
+    @include media ($lg) {
+      max-width: 300px;
+    }
+  }
+}

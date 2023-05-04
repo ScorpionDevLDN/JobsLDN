@@ -199,7 +199,7 @@
                                             <div class="form-group">
                                                 <label>Email
                                                     <span class="text-danger"></span></label>
-                                                <input disabled value="{{$company->email}}" type="text" name="email"
+                                                <input value="{{$company->email}}" type="text" name="email"
                                                        class="form-control"
                                                        placeholder="Enter owner name"/>
                                             </div>
@@ -238,12 +238,12 @@
                         <div class="modal fade" id="exampleModalDelete{{$company->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <form action="{{route('admin.categories.destroy',$company->id)}}" method="post">
+                                <form action="{{route('admin.DeleteCompany',$company->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Company</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <i aria-hidden="true" class="ki ki-close"></i>

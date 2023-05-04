@@ -1,0 +1,30 @@
+@use "../helpers/vars" as *;
+@use "../bootstrap/vendor/rfs" as *;
+@use "../helpers/mixins" as *;
+
+.pagination {
+  @include margin-top(90px);
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  .prev,
+  .next,
+  .jobs-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #f5f5ff;
+    color: $c_primary;
+    font-family: bold;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    &:hover,
+    &.active {
+      background-color: $c_primary;
+      color: #fff;
+    }
+  }
+}

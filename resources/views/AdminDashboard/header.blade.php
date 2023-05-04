@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8" />
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{{$setting->website_name}} @yield('title')</title>
+    <title>{{isset($setting->website_name) ? $setting->website_name : 'JOBSLDN'}} @yield('title')</title>
     <meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!--end::Page Vendors Styles-->
     <!--begin::Page Scripts(used by this page)-->
-	<link rel="shortcut icon" href="{{isset($setting->logo) ? $setting->logo : asset('assets/media/svg/logo.svg')}}"  />
+	<link rel="shortcut icon" href="{{isset($setting->icon_logo) ? asset('storage/'.$setting->icon_logo) : asset('admin/images/dashboard-logo.png')}}"  />
     <!--end::Page Scripts-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
@@ -79,6 +79,13 @@
     }
     table.dataTable thead th {
         border-bottom: none;
+    }
+    .form-icon .select2-container {
+        width: 100% !important;
+    }
+
+    .form-icon .select2-container--default .select2-selection--single .select2-selection__rendered {
+        min-height: calc(1.5em + 1.3rem + 2px);
     }
 
 </style>

@@ -1,46 +1,49 @@
-
 <!DOCTYPE html>
-<!--
-Template Name: Metronic - Bootstrap 4 HTML, React, Angular 11 & VueJS Admin Dashboard Theme
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: https://1.envato.market/EA4JP
-Renew Support: https://1.envato.market/EA4JP
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="en">
-<!--begin::Head-->
+
 <head>
-    <base href="../../../">
-    <meta charset="utf-8" />
-    <title>403 Unauthorized User</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    @include('AdminDashboard.header')
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{\App\Models\Setting::query()->first()->website_name}}</title>
+    <!-- Site Icon -->
+    <link rel="shortcut icon" href="{{asset('frontend/new/images/logo.svg')}}" type="image/x-icon">
+
+    <!-- *****Css Files***** -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{asset('frontend/new/css/bootstrap/bootstrap.min.css')}}">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{{asset('frontend/new/css/animate.min.css')}}">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="{{asset('frontend/new/css/style.css')}}">
+
+    <!-- *****Js Files***** -->
+
+    <!-- Jquery -->
+    <script defer src="{{asset('frontend/new/jquery.min.js')}}"></script>
+    <!-- Smoth Scroll -->
+    <script defer src="{{asset('frontend/new/smoth-scroll.min.js')}}"></script>
+    <!-- Wow Js -->
+    <script src="{{asset('frontend/new/wow.min.js')}}"></script>
+
+    <!-- Main Script -->
+    <script defer src="{{asset('frontend/new/main.js')}}"></script>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-<!--begin::Main-->
-<div class="d-flex flex-column flex-root">
-    <!--begin::Error-->
-    <div class="error error-5 d-flex flex-row-fluid bgi-size-cover bgi-position-center" style="background-image: url(assets/media/error/bg5.jpg);">
-        <!--begin::Content-->
-        <div class="container d-flex flex-row-fluid flex-column justify-content-md-center p-12">
-            <h1 class="error-title font-weight-boldest text-info mt-10 mt-md-0 mb-12">Oops!</h1>
-            <p class="font-weight-boldest display-4">Something went wrong here.</p>
-            <p class="font-size-h3">We're working on it and we'll get it fixedas soon possible.You can back or use our Help Center.</p>
-        </div>
-        <!--end::Content-->
+
+<body>
+
+<section class="error-page overflow-hidden d-flex justify-content-center align-items-center gap-5 flex-column pt-5" id="error-page">
+    <div class="container text-center">
+        <h1 class="wow animate animate__fadeInDown">OOPS!</h1>
+        <h4 class="wow animate animate__fadeInUp">We're working on it and we'll get it fixed as soon possible. </h4>
+
+        <img src="{{asset('frontend/new/images/403.svg')}}" alt="Error" class=" wow animate animate__fadeInOut">
     </div>
-    <!--end::Error-->
-</div>
-@include('AdminDashboard.scripts')
-<!--end::Global Theme Bundle-->
+    <div class="text-center">
+        <a href="{{route('home.index')}}" class="button">Go To Home Page</a>
+    </div>
+</section>
+
 </body>
-<!--end::Body-->
+
 </html>

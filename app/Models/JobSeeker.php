@@ -56,19 +56,19 @@ class JobSeeker extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function setPhotoAttribute($image)
+    /*public function setPhotoAttribute($image)
     {
         $this->deletePhoto();
         if (gettype($image) != 'string') {
             $image->store('public');
             $this->attributes['photo'] = $image->hashName();
         }
-    }
+    }*/
 
 //
     public function getPhotoAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : asset('assets/a.jpeg');
+        return $image ? asset('storage/'.$image) : asset('frontend/new/images/account-img.svg');
     }
 
 //

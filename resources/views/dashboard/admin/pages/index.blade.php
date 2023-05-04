@@ -206,7 +206,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changePageStatus',
+                    url: '/test/changePageStatus',
                     data: {'status': status, 'id': page_id},
                     success: function (data) {
                         toastr.options.closeButton = true;

@@ -1,0 +1,9 @@
+<svg id="ic-actions-trash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="Rectangle_165" data-name="Rectangle 165" width="24" height="24" fill="none"/>
+  <g id="ic-actions-trash-2" data-name="ic-actions-trash" transform="translate(3 1.81)">
+    <line id="Line_53" data-name="Line 53" x1="6" y1="6" transform="translate(6 9.39)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <line id="Line_54" data-name="Line 54" x1="6" y2="6" transform="translate(6 9.39)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="18" height="4" rx="1" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"/>
+    <path id="Path_41" data-name="Path 41" d="M19,5.81V20.19a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V5.81" transform="translate(-3 -1.81)" fill="none" stroke="#e0302e" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5" fill-rule="evenodd"/>
+  </g>
+</svg>

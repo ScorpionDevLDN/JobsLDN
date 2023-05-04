@@ -22,7 +22,7 @@ class PagefrontController extends Controller
     public function page($slug)
     {
         $page = DynamicPage::query()->where('slug',$slug)->first();
-        return view('frontend.jobsldn.DynamicPage',compact('page'));
+        return view('frontend.DynamicPage',compact('page'));
     }
 
     /**

@@ -33,7 +33,7 @@ class DynamicPage extends Model
 
     public function getImageAttribute($image): ?string
     {
-        return $image ? Storage::url($image) : asset('assets/user.png');
+        return $image ? asset('storage/'.$image) : asset('assets/user.png');
     }
 
     public function deleteImage()
@@ -60,6 +60,11 @@ class DynamicPage extends Model
     public function scopeHeaderAndFooter($query)
     {
         return $query->whereIn('shown_in', 1,2);
+    }
+
+    public function scopeFooter($query)
+    {
+        return $query->whereIn('shown_in', 0,2);
     }
 
 }

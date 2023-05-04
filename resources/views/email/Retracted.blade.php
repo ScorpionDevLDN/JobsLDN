@@ -48,14 +48,20 @@
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                         Hello {{$job->company->name}},
                                     </p>
+                                    <br>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        {{$job_seeker->name}} , {{$job_seeker->email}} has Retracted from your job {{$job->title}} at {{$job->company->company_name}} in {{$job->city->name}}
+                                        This is an automated email to inform you that {{$job_seeker->email}} has decided to withdraw his application for the {{$job->title}} role.
+                                    </p>
+                                    <br>
+                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                        Best,
                                     </p>
                                     <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        Please take the suitable action
-                                    </p>
-                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                        Thanks
+                                        Your
+                                                {{--<a href="https://jobsldn.co.uk/test/home">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a> --}}
+                                                <a href="{{URL::to('/test/home')}}">{{isset($setting['website_name']) ? $setting['website_name'] : ''}}</a>
+
+                                        team.
                                     </p>
                                 </td>
                             </tr>

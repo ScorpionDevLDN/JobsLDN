@@ -109,9 +109,13 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->save();
 
-        $role->syncPermissions($request->input('permission'));
+        if ($id == 1) {
+            return back()->with('msg', 'Roles Cant be edited for super account');
+        } else {
+            $role->syncPermissions($request->input('permission'));
+        }
 
-        return redirect()->route('admin.roles.index')->with('msg', 'Role updated successfully');
+        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully');
     }
 
     /**
@@ -122,7 +126,11 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id', $id)->delete();
-        return redirect()->route('admin.roles.index')->with('msg', 'Role deleted successfully');
+        if ($id == 1) {
+            return back()->with('msg', 'Role of Super Admin Cant be deleted');
+        } else {
+            DB::table("roles")->where('id', $id)->delete();
+        }
+        return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully');
     }
 }

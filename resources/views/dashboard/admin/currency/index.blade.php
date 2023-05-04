@@ -309,7 +309,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/changeCurrencyStatus',
+                    url: '/test/changeCurrencyStatus',
                     data: {'status': status, 'id': currency_id},
                     success: function (data) {
                         toastr.options.closeButton = true;
