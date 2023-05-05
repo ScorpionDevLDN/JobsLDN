@@ -1,4 +1,5 @@
-@php$menu = 'myBookmarks';
+@php
+$menu = 'myBookmarks';
 @endphp
 @extends('frontend.app.parts.layout')
 @section('content')

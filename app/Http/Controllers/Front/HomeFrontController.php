@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
 
 class HomeFrontController extends Controller
 {
+
     public function index()
     {
         return redirect()->route('myHome');
@@ -58,10 +59,12 @@ class HomeFrontController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:newsletters'
+            'email' => 'required|email|unique:newsletters'
         ], [
             'email.required' => 'Please Enter a valid Email',
             'email.unique' => 'You have already subscribed',
+            'email.email' => 'You have already subscribed',
+
         ]);
 
         if ($validator->fails()) {

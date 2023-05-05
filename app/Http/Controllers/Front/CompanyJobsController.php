@@ -360,4 +360,9 @@ class CompanyJobsController extends Controller
             'job_post_email',));
         return redirect()->back()->with('msgBookmarked', 'Job removed successfully!');
     }
+
+    public function show(Request $request)
+    {
+
+    }
 }

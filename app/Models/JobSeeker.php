@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
-class JobSeeker extends Authenticatable
+class JobSeeker extends Authenticatable implements MustVerifyEmail
 {
     protected $table='job_seekers';
     use HasApiTokens, HasFactory, Notifiable;

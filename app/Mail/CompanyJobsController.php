@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Fronts;
+// namespace App\Http\Controllers\Front;
+
 
 use App\Http\Controllers\Controller;
 use App\Mail\ApplyToJob;

@@ -35,6 +35,10 @@ use App\Http\Controllers\SocialShareButtonsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +50,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*change status for admin*/
+
 Route::get('changeStatus', [CategoryController::class, 'updateCategoryStatus'])->name('changeStatus');
 Route::get('changeCityStatus', [CityController::class, 'updateCityStatus'])->name('changeCityStatus');
 Route::get('changeCurrencyStatus', [CurrencyController::class, 'changeCurrencyStatus'])->name('changeCurrencyStatus');
@@ -94,7 +99,7 @@ Route::prefix('manage')->name('admin.')->group(function () {
         Route::resource('partners', PartnerController::class);
 
         Route::resource('get_companies', CompanyController::class)->middleware(['permission:user-list']);
-//        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
+        //        Route::resource('jobseekers',CompanyController::class)->middleware(['permission:user-list']);
 
         Route::get('get_job_seekers', [UserController::class, 'getJobSeekers'])->name('get_job_seekers')->middleware(['permission:user-list']);
         Route::delete('job-seeker/{id}', [UserController::class, 'DeleteJobSeekers'])->name('DeleteJobSeekers');
@@ -113,15 +118,14 @@ Route::prefix('manage')->name('admin.')->group(function () {
         Route::put("updatePassword", [UserController::class, 'updatePassword'])->name("updatePassword");
 
         Route::resource('advertises', AdvertiseController::class);
-
     });
-
 });
 
 
 /*frontend routes*/
 Route::prefix('')->group(function () {
-    Route::resource('home', HomeFrontController::class)->only('index','store');
+
+    Route::resource('home', HomeFrontController::class)->only('index', 'store');
     Route::get('set-cookie', [HomeFrontController::class, 'setCookies'])->name('cookie');
     Route::get('privacy-policy', [HomeFrontController::class, 'privacyPolicy'])->name('privacyPolicy');
     Route::get('terms-and-conditions', [HomeFrontController::class, 'termsAndConditions'])->name('termsAndConditions');
@@ -153,11 +157,14 @@ Route::prefix('job_seeker')->name('job_seeker.')->group(function () {
     Route::post('/createJobSeeker', [JobSeekerController::class, 'createJobSeeker'])->name('createJobSeeker');
     Route::post('/createCompany', [JobSeekerController::class, 'createCompany'])->name('createCompany');
     Route::post('/check', [JobSeekerController::class, 'check'])->name('check');
-
 });
 Route::prefix('posts')->middleware('auth:job_seekers')->group(function () {
-Route::get('job/{id}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details_old')->withoutMiddleware('auth:job_seekers');
-   Route::get('job/{id}/{slug}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
+    // checkTestMail
+    // Route::post('checkTestMail', [CompanyJobsController::class, 'checkTestMail']);
+
+
+    Route::get('job/{id}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details_old')->withoutMiddleware('auth:job_seekers');
+    Route::get('job/{id}/{slug}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
 
     Route::post('apply/{job_id}', [CompanyJobsController::class, 'apply'])->name('apply');
     Route::post('upload_apply/{job_id}', [CompanyJobsController::class, 'uploadApply'])->name('uploadApply');
@@ -167,7 +174,6 @@ Route::get('job/{id}',      [CompanyJobsController::class, 'jobDetails'])->name(
     Route::post('upload_cv',       [CompanyJobsController::class, 'uploadCv'])->name('uploadCv');
     Route::get('download_cv/{id}', [CompanyJobsController::class, 'downloadCv'])->name('downloadCv');
     Route::post('delete_cv/{id}',  [CompanyJobsController::class, 'deleteCv'])->name('deleteCv');
-
 });
 Route::get('myJobs', [CompanyJobsController::class, 'myAppliedJobs'])->name('myJobs')->middleware('auth:job_seekers');
 Route::get('myBookmarks', [CompanyJobsController::class, 'myBookmarks'])->name('myBookmarks')->middleware('auth:job_seekers');
@@ -181,11 +187,8 @@ Route::prefix('jobs')->middleware('auth:companies')->group(function () {
 
 Route::get('go-payment', [PaymentController::class, 'goPayment'])->name('payment.go');
 
-Route::get('payment',[PaymentController::class, 'payment'])->name('payment');
-Route::get('cancel/{id}',[PaymentController::class, 'cancel'])->name('payment.cancel');
+Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
+Route::get('cancel/{id}', [PaymentController::class, 'cancel'])->name('payment.cancel');
 Route::get('payment/success/{id}', [PaymentController::class, 'success'])->name('payment.success');
-Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget'])->name('ShareWidget');
+Route::get('/social-media-share', [SocialShareButtonsController::class, 'ShareWidget'])->name('ShareWidget');
 Route::get('how-to-enable-s3', [SettingController::class, 'guideS3'])->name('s3')->middleware('auth:admins');
-
-
-
