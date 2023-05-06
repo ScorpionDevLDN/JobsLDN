@@ -9,4 +9,9 @@ class emailVertification extends Model
 {
     use HasFactory;
     protected $fillable = ['entity_id' , 'entity_type' , 'expire_on' , 'status'];
+
+    public function approve()
+    {
+        $this->fill(['status' => "approved"])->save();
+    }
 }

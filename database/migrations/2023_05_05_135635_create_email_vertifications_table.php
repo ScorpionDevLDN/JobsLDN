@@ -19,7 +19,7 @@ class CreateEmailVertificationsTable extends Migration
             $table->unsignedBigInteger('entity_id');
             $table->string('entity_type');
             $table->string('expire_on');
-            $table->enum('status', ['pending', 'expired'])->default('pending');
+            $table->enum('status', ['pending','approved' ,'expired'])->default('pending');
             $table->timestamps();
         });
     }

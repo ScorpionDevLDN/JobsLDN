@@ -12,4 +12,9 @@ class Newsletter extends Model
       'email',
       'status'
     ];
+
+    public function approve()
+    {
+        $this->fill(['status' => "approved"])->save();
+    }
 }

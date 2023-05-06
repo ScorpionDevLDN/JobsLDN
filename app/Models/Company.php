@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
-
+use Carbon\Carbon;
 class Company extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -55,6 +55,12 @@ class Company extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function approve()
+    {
+        $this->email_verified_at = Carbon::now();
+        return $this->save();
+    }
 
     public function setPasswordAttribute($value)
     {

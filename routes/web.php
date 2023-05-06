@@ -32,9 +32,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialShareButtonsController;
+
+use App\Http\Controllers\SendEmailVerificationController;
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -162,7 +164,6 @@ Route::prefix('posts')->middleware('auth:job_seekers')->group(function () {
     // checkTestMail
     // Route::post('checkTestMail', [CompanyJobsController::class, 'checkTestMail']);
 
-
     Route::get('job/{id}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details_old')->withoutMiddleware('auth:job_seekers');
     Route::get('job/{id}/{slug}',      [CompanyJobsController::class, 'jobDetails'])->name('job_details')->withoutMiddleware('auth:job_seekers');
 
@@ -192,3 +193,14 @@ Route::get('cancel/{id}', [PaymentController::class, 'cancel'])->name('payment.c
 Route::get('payment/success/{id}', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/social-media-share', [SocialShareButtonsController::class, 'ShareWidget'])->name('ShareWidget');
 Route::get('how-to-enable-s3', [SettingController::class, 'guideS3'])->name('s3')->middleware('auth:admins');
+
+
+
+// Route::get('sendEmail', [SendEmailVerificationController::class, 'checkmail']);
+// Route::get('resendEmail', [SendEmailVerificationController::class, 'checkmail']);
+Route::get('company-resend-email', [SendEmailVerificationController::class, 'resendCompanyVerfication'])->name('resendCompanyVerfication')->middleware('auth:companies');
+Route::get('seeker-resend-email',  [SendEmailVerificationController::class, 'resendSeekerVerfication'])->name('resendSeekerVerfication')->middleware('auth:job_seekers');
+
+
+
+Route::get('verification/callback/{hash}', [SendEmailVerificationController::class, 'verify'])->name('verification.callback');

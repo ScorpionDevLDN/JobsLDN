@@ -14,7 +14,8 @@ class AddStatusToNewslettersTable extends Migration
     public function up()
     {
         Schema::table('newsletters', function (Blueprint $table) {
-            //
+            $table->enum('status', ['pending', 'expired','approved'])->default('pending')->after('email');
+
         });
     }
 
@@ -26,7 +27,8 @@ class AddStatusToNewslettersTable extends Migration
     public function down()
     {
         Schema::table('newsletters', function (Blueprint $table) {
-            //
+            $table->dropColumn('status');
+
         });
     }
 }

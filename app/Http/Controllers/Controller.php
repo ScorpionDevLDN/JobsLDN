@@ -15,10 +15,11 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\View;
+use App\Traits\EmailVerification;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests , EmailVerification;
 
     public $setting, $payment_setting, $currencies, $categories, $cities, $pers, $types,$disk , $viewShare;
 
@@ -66,23 +67,5 @@ class Controller extends BaseController
         return config('filesystems.default') == 's3' ? 's3' : 'public';
     }
 
-    function encrypt_decrypt($action, $string)
-    {
-        $output = false;
-        $encrypt_method = "AES-256-CBC";
-        $secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxx';
-        $secret_iv = 'xxxxxxxxxxxxxxxxxxxxxxxxx';
-        // hash
-        $key = hash('sha256', $secret_key);
-        // iv - encrypt method AES-256-CBC expects 16 bytes
-        $iv = substr(hash('sha256', $secret_iv), 0, 16);
-        if ($action == 'encrypt') {
-            $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
-            $output = base64_encode($output);
-        } else if ($action == 'decrypt') {
-            $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
-        }
-        return $output;
-    }
 }
 

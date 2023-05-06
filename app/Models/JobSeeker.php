@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
-
-class JobSeeker extends Authenticatable implements MustVerifyEmail
+use Carbon\Carbon;
+class JobSeeker extends Authenticatable
 {
     protected $table='job_seekers';
     use HasApiTokens, HasFactory, Notifiable;
@@ -30,7 +30,9 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
         'photo',
         'overview',
         'active',
-        'is_deleted'
+        'is_deleted',
+        'email_verified_at'
+
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -50,6 +52,12 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function approve()
+    {
+        $this->email_verified_at = Carbon::now();
+        return $this->save();
+    }
 
     public function setPasswordAttribute($value)
     {

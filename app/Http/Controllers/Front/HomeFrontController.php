@@ -19,9 +19,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Traits\EmailVerification;
 
 class HomeFrontController extends Controller
 {
+    use EmailVerification;
 
     public function index()
     {
@@ -73,14 +75,27 @@ class HomeFrontController extends Controller
             ]);
         }
 
-        Newsletter::query()->firstOrCreate([
+        $letter = Newsletter::query()->firstOrCreate([
             'email' => $request->email,
         ]);
         \Newsletter::subscribe($request->email);
-        return response()->json([
-            'subscribed' => 'Thanks for subscribing to our newsletter!',
+
+        $this->SendVerification([
+            'entity_id' => $letter->id,
+            'entity_type' => "App\Models\Newsletter",
+            'expire_on' => Carbon::now()->addHour(),
+            'verification_subject' => "Newsletter Subscription",
+            'email' => $request->email,
+            'intro_subject' => "You are receiving this email because we received newsletter subscription from this email.
+            Please verify email with clicking button below",
+
         ]);
-        return back()->with('subscribed', 'Thanks for subscribing to our newsletter!');
+
+
+        return response()->json([
+            'subscribed' => 'Thanks for subscribing to our newsletter!. Please check your mailbox for verification',
+        ]);
+        return back()->with('subscribed', 'Thanks for subscribing to our newsletter!. Please check your mailbox for verification');
     }
 
     public function logout(Request $request)

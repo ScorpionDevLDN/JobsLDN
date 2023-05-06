@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 class JobSeekerController extends Controller
 {
     public function createJobSeeker(Request $request)
@@ -54,6 +54,18 @@ class JobSeekerController extends Controller
         if (Auth::guard('job_seekers')->attempt($creds)) {
             Auth::guard('job_seekers')->login($save);
             Mail::to(auth('job_seekers')->user()->email)->send(new CreateAccount());
+
+            $this->SendVerification([
+                'entity_id' => auth('job_seekers')->user()->id,
+                'entity_type' => "App\Models\JobSeeker",
+                'expire_on' => Carbon::now()->addMonth(),
+                'verification_subject' => "Job Seeker Registration",
+                'email' => $request->email,
+                'intro_subject' => "You are receiving this email because we received Job Seeker registration from this email.
+                Please verify email with clicking button below",
+
+            ]);
+
             return redirect()->route('myHome')->with('success', 'Your account has been created successfully');
         }
         return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
@@ -99,6 +111,19 @@ class JobSeekerController extends Controller
         if (Auth::guard('companies')->attempt($creds)) {
             Auth::guard('companies')->login($save);
             Mail::to(auth('companies')->user()->email)->send(new CreateAccount());
+
+            //
+            $this->SendVerification([
+                'entity_id' => auth('companies')->user()->id,
+                'entity_type' => "App\Models\Company",
+                'expire_on' => Carbon::now()->addMonth(),
+                'verification_subject' => "Company Registration",
+                'email' => $request->email,
+                'intro_subject' => "You are receiving this email because we received company registration from this email.
+                Please verify email with clicking button below",
+
+            ]);
+
             return redirect()->route('myHome')->with('success', 'Your account has been created successfully');;
         }
         return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
